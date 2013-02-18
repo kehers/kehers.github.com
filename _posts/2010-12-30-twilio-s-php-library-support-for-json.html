@@ -1,0 +1,34 @@
+--- 
+published: true
+title: Twilio's PHP library support for JSON
+layout: post
+---
+<p>I have been hacking <a href="http://twilio.com/">Twilio</a> for some days now and it's been fun.</p>
+<p>The  Twilio API supports XML and JSON as response formats, XML being the  default. Twilio has also been generous to include sample libraries in  various languages to play around the API. Thing however is that the PHP  library has support for only XML as the response type. Being a fan of  JSON (the reduction in data transfer as compared to XML among other  things), I added a little hack to the response class in the library.</p>
+<p>So here is my new constructor of the <strong>TwilioRestResponse</strong> class:</p>
+<p>{% highlight php linenos %}
+<?php
+// ...
+         public function __construct($url, $text, $status) {
+             preg_match('/([^?]+)\??(.*)/', $url, $matches);
+             $this->Url = $matches[1];
+             $this->QueryString = $matches[2];
+             $this->ResponseText = $text;
+             $this->HttpStatus = $status;
+             if($this->HttpStatus != 204) // HTTP 204 => No content
+                 $this->ResponseJson = @json_decode($text);
+             
+             if($this->IsError = ($status >= 400))
+                 $this->ErrorMessage =
+                     (string) $this->ResponseJson->message;
+ 
+             /*if($this->HttpStatus != 204)
+                 $this->ResponseXml = @simplexml_load_string($text);
+             
+             if($this->IsError = ($status >= 400))
+                 $this->ErrorMessage =
+                     (string)$this->ResponseXml->RestException->Message;
+             //*/
+         }
+
+{% endhighlight %}</p>

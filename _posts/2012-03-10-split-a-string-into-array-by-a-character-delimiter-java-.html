@@ -1,0 +1,66 @@
+--- 
+published: true
+title: Split a string into array by a character delimiter [Java]
+layout: post
+---
+<p>JavaME actually as there could be a string method to do this in Java (which I doubt though). Anyways, the objective is to split a string into array by a character delimiter, like the <a href="http://php.net/manual/en/function.explode.php">explode function in php</a>.</p>
+<p>Here:</p>
+<p>{% highlight java linenos %}
+private String[] charSplit(char delimiter, String subject)
+{
+    Vector chunkStore = new Vector();
+    String chunk = "";
+    char [] subjectChars = subject.toCharArray();
+
+    for(int i=0;i<subjectChars.length;i++)
+    {
+        if (subjectChars[i] == delimiter)
+        {
+            chunkStore.addElement(chunk);
+            chunk = "";
+        }
+        else
+            chunk += subjectChars[i];
+    }
+    chunkStore.addElement(chunk);
+    
+    String [] pieces = new String[chunkStore.size()];
+    chunkStore.copyInto(pieces);
+
+    return pieces;
+}
+{% endhighlight %}</p>
+<p><strong>Example</strong></p>
+<p>Working on the <a href="http://prowork.me/">Prowork</a> mobile app, I have to convert a date field (from the due date for a new task) to mysql format for the (unofficial) api. Unfortunately the string representation of date from the datefield in J2ME is <em>dow mon dd hh:mm:ss zzz yyyy</em> and to convert this mysql's <em>yyyy-mm-dd hh:mm:ss</em> I need to split this string by space and join together the pieces in the wanted order.</p>
+<p>{% highlight java linenos %}
+// Return date in mysql format: yyyy-mm-dd hh:mm:ss
+private String formatDate(Date date)
+{
+    // Convert the date to string:
+    // i.e dow mon dd hh:mm:ss zzz yyyy
+    String dateString = date.toString();
+    // Split by space
+    String [] dateObjects = charSplit(' ', dateString);
+    // so we have [0] = dow, [1] = mon, [2] = dd, [3] hh:mm:ss, etc
+
+    // Get month index from month (dateObjects[1])
+    // --> We need to convert the returned mnt from say Dec to 12
+    // There are/should be better ways to do this
+    String [] months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    int monthIndex = 0;
+    for(int i=0;i<months.length;i++)
+    {
+        if (dateObjects[1].equalsIgnoreCase(months[i]))
+        {
+            monthIndex = i+1;
+            break;
+        }
+    }
+    // Put the preceeding 0 (for 01 to 09) if need be 
+    String month = monthIndex > 9 ? ""+monthIndex : "0"+monthIndex;
+    
+    String formattedDate = dateObjects[5]+"-"+month+"-"+dateObjects[2]+" "+dateObjects[3];
+    //System.out.println(formattedDate);
+    return formattedDate;
+}
+{% endhighlight %}</p>

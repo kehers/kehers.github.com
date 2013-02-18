@@ -1,0 +1,28 @@
+--- 
+published: true
+title: Twitter oAuth and the net.oauth.j2me library
+layout: post
+---
+<p>So I have been toying with a twitter mobile client in Java. I'm using the <a href="https://github.com/simonpk/j2me-oauth">j2me-oauth library</a> to perform authentication, sign requests and the all the oAuth ish. Everything seems to be working perfectly except that tweeting fails occasionally, returning 401 Unauthorized error. It's clear from the <a href="https://dev.twitter.com/docs/error-codes-responses">dev docs</a> that it is an authentication credential problem and most likely has to do with the oauth signature. I spent some time debugging how the library performs the oauth signing and noticed the encoding of some characters are skipped. The encoding should actually include all non-alphanumeric characters except -_. with ~ converted to %7E.</p>
+<p>My simple workaround is replacing the <tt>unreservedCharacters</tt> in <tt>net.oauth.j2me.OAuthParameterEncoder</tt> with</p>
+<p>{% highlight java linenos %}
+//private String unreservedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";<br />private String unreservedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";
+{% endhighlight %}</p>
+<p>and comment out some lines in <tt>net.oauth.j2me.Util</tt></p>
+<p>{% highlight java linenos %}
+    } else if (
+        // safe characters
+        c == '-'
+        || c == '_'
+        || c == '.'
+        //|| c == '!'
+        //|| c == '~'
+        //|| c == '*'
+        //|| c == '\''
+        //|| c == '('
+        //|| c == ')'
+        || (c &gt;= 'A' &amp;&amp; c &lt;= 'Z')
+        || (c &gt;= 'a' &amp;&amp; c &lt;= 'z') ) {
+{% endhighlight %}</p>
+
+<p>Here is a zip of both files: <a href="http://cl.ly/9RNJ">http://cl.ly/9RNJ</a></p>

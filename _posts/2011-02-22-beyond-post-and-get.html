@@ -1,0 +1,21 @@
+--- 
+published: true
+title: Beyond POST and GET
+layout: post
+---
+<p>POST and GET are the most common http data transfer methods. There are however others like HEAD, PUT and DELETE. The problem with these other methods however is support on various clients. Some clients don't support them, so you are left with the choice of workarounds.</p>
+<p>So what are your workaround options?</p>
+<p><strong>1. _method</strong><br />Some clients allow you to pass a <strong>_method</strong> parameter to the URL like this</p>
+<p>{% highlight html linenos %}
+    http://api.somesite.com/user/1234?_method=PUT
+{% endhighlight %}</p>
+<p>You can then pass other required body of the query via post to the modded url. The same applies to DELETE as well.</p>
+<p><strong>2. Google Data Protocol</strong><br />Google's Data Protocol allows you set a method overwrite header. <a href="http://code.google.com/apis/gdata/docs/2.0/basics.html#UpdatingEntry">The specs</a> states you simple add the applicable method override header to your request like this:</p>
+<p>{% highlight html linenos %}
+    X-HTTP-Method-Override: PUT
+{% endhighlight %}</p>
+<p>or</p>
+<p>{% highlight html linenos %}
+    X-HTTP-Method-Override: DELETE
+{% endhighlight %}</p>
+<p>Normally, you'd think this specs will apply to google API's and resources alone but many clients are adopting this work around as well. I came to notice this when toying with the <a href="http://developer.getcloudapp.com">cloudApp API</a> via J2ME. The <strong>_method</strong> hack didn't work but the Google Data Protocol did work.</p>

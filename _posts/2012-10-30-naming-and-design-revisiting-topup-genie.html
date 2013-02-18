@@ -1,0 +1,13 @@
+--- 
+published: true
+title: Naming and Design - Revisiting Topup Genie
+layout: post
+---
+<p>So <a href="http://topupgenie.com/">TopupGenie</a> got across to me on twitter to know what problems I was having with the site. Mentioning I couldn't register seem strange to them so I decided to give it another patient spin this morning. But I still couldn't find any other fields except the pin field in the signup page.</p>
+<p>[[posterous-content:IatFzhsfFgbzpkpAjgwg]]</p>
+<p>I mentioned it to <a href="http://twitter.com/namzo">Namzo</a> and he suggested I turn off ad-block (Yeah, I have ad-block *devil smiley*). That sounded strange. How could ad-block possibly affect the fields? So I checked the source code and yeah, there were other fields, hidden.</p>
+<p>[[posterous-content:cvigzDFBIdbyAcxuwgiH]]</p>
+<p>The reason doesn't seem far fetched. The elements have ids (<strong>adj</strong>) similar to the word "<strong>ad</strong>". Truly, when I turned off ad-block, viola, the fields were back.</p>
+<p>[[posterous-content:IAxujDccDDlHadBvhjlH]]</p>
+<p>While Topup Genie can't be blamed for the naming, I guess I can't be blamed for using ad-block as well :) Many others do and will. I think the lesson is we should be careful of how we name design elements and attributes.</p>
+<p>I have notified Topup Genie about this and sure they will fix it pretty soon.</p>

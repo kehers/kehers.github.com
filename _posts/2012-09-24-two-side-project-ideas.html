@@ -1,0 +1,21 @@
+--- 
+published: true
+title: Two side project ideas
+layout: post
+---
+<p>Inspired by Balkan's <a href="http://ahmetalpbalkan.com/blog/ideas-i-am-giving-away/">Side project ideas I am giving away</a>, here are some of the ideas I have worked on at a time, didn't see it through and not planning to work on anytime soon.</p>
+<p><strong>Who Called?</strong></p>
+<p>Won't it be nice to be able to access a list of those who tried calling you when your phone number is not available? There is something similar on my Etisalat plan - sms notifications for my missed calls but on top of that, what about something that cuts across every network (and plan) and a website you can manage the call history from? You may add the sms notifications too.</p>
+<p>The architecture is not rocket science. The way it works is that the user sets his/her forward-to-when-busy/unavailable-number (available on most phones via <em>Settings -&gt; Call -&gt; Divert/Forwarding)</em> to a specific number. The number tracks and records the <em>'from'</em> number (the caller) and the <em>'forwarded from'</em> number (the number called). A lot of IVR companies provide such numbers. <a href="http://twilio.com/">Twilio</a> works like a charm. When I tested on <a href="http://tropo.com/">Tropo</a>, the <em>'forwarded from'</em> wasn't logged. A work-around on Tropo will be to have a dedicated number for each user. That way, no need to track the <em>'forward from'</em> number. More cost though.</p>
+<p>One more note, I had issues with setting the forward-to-when-busy/unavailable-number to an international number on MTN. I kept getting an invalid number response. It worked well on Etisalat though. I didn't try on the other networks.</p>
+<p><strong>Tweet Stream</strong></p>
+<p>The idea is a simpler and cleaner <a href="http://twitterfall.com/">Twitterfall</a> with better UX. The target will be primarily for events though (<a href="https://twitter.com/#!/search/%23momonigeria">#momoNigeria</a> as an example). Most importantly is a rich analytics featuring:</p>
+<ul>
+<li>Total contributors</li>
+<li>Tweet locations</li>
+<li>Total tweets</li>
+<li>Separate media (picture/video) grid</li>
+<li>And a couple of others</li>
+</ul>
+<p>A point of reference is the twitter <a href="https://dev.twitter.com/docs/streaming-apis">streaming API</a>. Don't forget that the underlying programming language should be able to keep alive the http connection for incoming data stream. Try not to break the<a href="http://opeyemi.posterous.com/the-twitter-api-changes-bs"> new Twitter API guidelines</a> as well.</p>
+<p>That is all for now. There are a couple of other ideas I will find time to post.</p>

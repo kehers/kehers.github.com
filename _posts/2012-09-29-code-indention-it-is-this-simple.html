@@ -1,0 +1,79 @@
+--- 
+published: true
+title: "Code indention: it is this simple"
+layout: post
+---
+<p>Codes should be sexy. They should be beautiful. One great ingredient of this is code indention. And you should do it. It makes your code neat and easy to go through. Most <a href="{% post_url 2012-04-19-the-minimalistic-editor %}">good editors</a> automatically indent your code. But it is really not difficult doing it yourself. Code indention is just about identifying nested blocks within your code and spacing them from the left appropriately. This separates the block from the nesting parent.</p>
+<p>Let's look at a markup example.</p>
+<p>In HTML, it is obvious a code block is a container block tag. Just prefix containing elements with few spaces (I use tabs). If it contains another container tag, indent again. Repeat this for all container tags.</p>
+<p>{% highlight html linenos %}
+<footer>
+  <div>
+    <img src="" />
+    <p>
+      &amp;copy; Year
+    </p>
+  </div>
+</footer>
+{% endhighlight %}</p>
+<p>If the content of the container tag is just a one-liner, no need indenting. An example is the P tag above.</p>
+<p>{% highlight html linenos %}
+<footer>
+  <div>
+    <img src="" />
+    <p>&amp;copy; Year</p>
+  </div>
+</footer>
+{% endhighlight %}</p>
+<p>In core programming, it is simple as indenting contents of conditional statements, loops and method declarations. One easy way to spot the block is the curly brackets {}.</p>
+<p>Here is a javascript (node) example:</p>
+<p>{% highlight javascript linenos %}
+app.post('/', function(req, res){
+  var collection = new mongodb.Collection(db, 'keywords');
+  collection.insert({_id: req.body.keyword}, {safe: true}, function(err, records){
+    req.session.keyword = req.body.keyword;
+    res.redirect('/'+encodeURIComponent(req.body.keyword));
+  });
+});
+{% endhighlight %}</p>
+<p>...and PHP</p>
+<p>{% highlight php linenos %}
+<?php
+if ($query['_id']) {
+  $aid = $query['_id'];
+  if (count($target_members))
+    $members = $target_members;
+  else
+    $members = $this->getMembers();
+    
+  $q = array();
+  foreach ($members as $v) {
+    // ...
+  }
+}
+{% endhighlight %}</p>
+<p>Sometimes though, indenting doesn't only apply to code blocks. Since the primary idea is to make your code neat, you can use it for long-lined statements as well. An example of this is array declaration.</p>
+<p>{% highlight php linenos %}
+<?php
+$query = array(
+  'ts' => new MongoDate(),
+  'member_id' => (int) $member_id,
+  'object' => $object
+);
+{% endhighlight %}</p>
+<p>...JSON as well</p>
+<p>{% highlight json linenos %}
+{
+  "name": "prowork-notifications", 
+  "fullName": "Prowork Notifications", 
+  "description": "Prowork Notifications Addon for Firefox"
+  "author": "Opeyemi Obembe (http://twitter.com/kehers)", 
+  "homepage": "http://prowork.me/", 
+  "icon": "data/icon.png",
+  "icon64": "data/icon64.png",
+  "license": "MPL 2.0", 
+  "id": "...", 
+  "version": "0.2",
+}
+{% endhighlight %}</p>
+<p>Remember, good code is not just about writing codes that work. Making your code easy to understand and work on is important too.</p>

@@ -1,0 +1,22 @@
+--- 
+published: true
+title: JQuery and Element Objects
+layout: post
+---
+<p>Part of the switch I'm making includes <a href="http://prototypejs.org">prototypejs</a> to <a href="http://jquery.com">JQuery</a>. No, not like I've found anything lacking in prototype. It's just about the change.<br />The transition has been quite easy very much unlike <a href="{% post_url 2010-07-31-mongodb-my-first-impressions %}">MySQL to MongoDB</a>. The two javascript frameworks even share some methods that are exactly the same - same name, same work. The little problem however is the way both handles objects.<br />JQuery doesn't seem to work with core element objects. I will explain. Take a look at the sample code:</p>
+<p>{% highlight html linenos %}
+<p onclick="alert(this)">Sup?</p>
+{% endhighlight %}</p>
+<p>This will output something like <strong>object HTMLParagraphElement</strong>. This is what I'm referring to as the core element object. And you can't use this directly in JQuery. This won't work:</p>
+<p>{% highlight html linenos %}
+<p onclick="this.addClass('on')">Sup?</p>
+{% endhighlight %}</p>
+<p>It will in prototype though:</p>
+<p>{% highlight html linenos %}
+<p onclick="this.addClassName('on')">Sup?</p>
+{% endhighlight %}</p>
+<p>Thing is, it is necessary to convert any element object to JQuery's object with <strong>$()</strong>. So this will work:</p>
+<p>{% highlight html linenos %}
+<p onclick="$(this).addClass('on')">Sup?</p>
+{% endhighlight %}</p>
+<p>The knowledge of this simple thing, can save a lot of headache.</p>

@@ -1,0 +1,40 @@
+--- 
+published: true
+title: Sending compressed data over http with PHP curl
+layout: post
+---
+<p>There are times applications need to sync across multiple servers by data transfer via http. This data could at times be bulky, taking up to tenths of megs. Instead of sending that large volume, a better way would be to compress first, send, and decompress at the other end. This will not only reduce the consumption of bandwidth but as well make the transfer faster.</p>
+<p>Here is a the way to do it in PHP using the <a href="http://php.net/manual/en/book.curl.php">CURL</a> library:</p>
+<ol>
+<li>Compress the data
+<p>{% highlight php linenos %}
+<?php
+$compressed_data = gzdeflate($raw_data, 9);
+{% endhighlight %}</p>
+</li>
+<li>Send
+<p>{% highlight php linenos %}
+<?php
+$url = "http://some_site_or_ip.com/reciever.php";
+//open connection
+$ch = curl_init();
+//set the url and POST data
+curl_setopt($ch,CURLOPT_URL, $url);
+curl_setopt($ch,CURLOPT_POST, true);
+curl_setopt($ch,CURLOPT_POSTFIELDS, $compressed_data);
+//execute post
+$result = curl_exec($ch);
+//echo curl_error($ch);
+//close connection
+curl_close($ch);
+{% endhighlight %}</p>
+</li>
+<li>Decompress (at the other end i.e reciever.php)
+<p>{% highlight php linenos %}
+<?php
+$input = file_get_contents('php://input');
+$output = gzinflate($input);
+// You have ur data back as $output
+{% endhighlight %}</p>
+</li>
+</ol>

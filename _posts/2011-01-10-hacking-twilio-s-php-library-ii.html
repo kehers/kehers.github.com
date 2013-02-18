@@ -1,0 +1,65 @@
+--- 
+published: true
+title: Hacking Twilio's PHP library II
+layout: post
+---
+<p>So here are three more hacks for the Twilio PHP library.</p>
+<p><strong>1. Support for both XML and JSON</strong></p>
+<p>In <a href="{% post_url 2010-12-30-twilio-s-php-library-support-for-json %}">my last piece</a>, I posted a code hack that enables using the JSON endpoints of the API instead of the XML. What if we can find a way to support both? Here is a rewrite of the <strong>TwilioRestResponse</strong> constructor class to do that.</p>
+<p>{% highlight php linenos %}
+<?php
+// ...
+public function __construct($url, $text, $status) {
+    preg_match('/([^?]+)\??(.*)/', $url, $matches);
+    $this->Url = $matches[1];
+    $this->QueryString = $matches[2];
+    $this->ResponseText = $text;
+    $this->HttpStatus = $status;
+    
+    // Lets check for XML first
+    // ...easier to detect that Json
+    if($this->HttpStatus != 204)
+        $this->Response = @simplexml_load_string($text);
+    
+    // If it fails, then prolly json
+    if ($this->Response === FALSE) {
+        $this->Response = @json_decode($text);
+        $isJson = true;
+    }
+    
+    if($this->IsError = ($status >= 400))
+        $this->ErrorMessage =
+            $isJson ? (string) $this->Response->message : (string) $this->Response->RestException->Message;
+    
+}
+{% endhighlight %}</p>
+<p>Notice that the result of your API is now available via <strong>$this->Response</strong> and not <strong>$this->ResponseJson </strong>or<strong> $this->ResponseXML</strong>. You will also notice I checked for XML first. For some funny reasons, trying to <strong>json_decode</strong> an XML string gives a valid result but parsing a JSON string with simplexml fails. So that explains why.</p>
+<p><strong>2. Support for Reject</strong></p>
+<p>Trying to construct a <a href="http://www.twilio.com/docs/api/2010-04-01/twiml/reject">Reject</a> response gives an error with the library. In other words, the following code will fail:</p>
+<p>{% highlight php linenos %}
+<?php
+// ...
+$r = new Response();
+$r->append(new Reject());
+{% endhighlight %}</p>
+<p>The simple workaround is including '<strong>Reject</strong>' in the nesting array of the <strong>Response class</strong>:</p>
+<p>{% highlight php linenos %}
+<?php
+// ...
+class Response extends Verb {
+    private $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response></Response>";
+    protected $nesting = array('Say', 'Play', 'Gather', 'Record', 
+        'Dial', 'Redirect', 'Pause', 'Hangup', 'Sms', 'Reject');
+{% endhighlight %}</p>
+<p><strong>3. Recording DAILed calls</strong></p>
+<p>Although there is no official documentation of how to record a conversation instatiated with the <a href="http://www.twilio.com/docs/api/2010-04-01/twiml/dial">DIAL verb</a>, <a href="http://getsatisfaction.com/twilio/topics/recording_a_conversation_between_caller_and_recipient">there is a workaround</a>. Problem is, adding the <strong>record </strong>attribute fails with the library. The hack is to add '<strong>record</strong>' to the <strong>valid </strong>array of the <strong>Dial class</strong></p>
+<p>{% highlight php linenos %}
+<?php
+// ...
+class Dial extends Verb {
+    protected $valid = array('action','method','timeout','hangupOnStar',
+        'timeLimit','callerId','record');
+{% endhighlight %}</p>
+<p>Please note that recording <strong>Dail</strong>ed calls is not officially supported by the API and this feat may change anytime.</p>
+<p>You can download the whole <em>new</em> source code of the<strong> Twilio class</strong> here: <a href="http://cl.ly/3wyA">http://cl.ly/3wyA</a></p>
+<p>By the way, wanna check out the web app I built with the API? Here: <a href="http://goahoy.com/">goAhoy.com</a>. I'm sending out invites already, so don't forget to drop your number on the signup page.</p>
