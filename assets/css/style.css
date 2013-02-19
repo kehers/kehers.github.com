@@ -50,6 +50,10 @@ article{
   font-size: 90%;
   border-bottom: 1px solid #ddd;
 }
+article img{
+  max-width: 570px;
+  text-align: center;
+}
 .post-list{
   list-style: none;
   margin: 0;
