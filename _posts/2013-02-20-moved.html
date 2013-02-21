@@ -1,0 +1,49 @@
+--- 
+published: false
+title: Moved
+layout: post
+---
+<p>I have moved my blog here (from <a href="http://opeyemi.posterous.com/">posterous</a>). My choice of [<a href="http://jekyllrb.com">jekyll</a> on] <a href="http://pages.github.com/">github pages</a> was because I wanted something I can control - something that resides right here on my pc; something I can easily break, move and mess around with. Fuck that. I chose github pages because it's like some cool 'hacky' thing. And 'hacky' is fun. But there are things I will miss. Autosharing on social networks and posting via email as examples.</p>
+<p><strong>Setting up Jekyll on Github pages</strong></p>
+<ul>
+	<li>
+		<p><strong>Create your page</strong></p>
+		<p>To create your page, simply create a new github repo with the name: [your username].github.com</p>
+	</li>
+	<li>
+		<p><strong>Clone the repo</strong></p>
+		<p>Cd to your choice directory and clone the repo with any name you want. I used <strong>blog</strong></p>
+		<p>{% highlight %}
+		$ git clone https://github.com/[your username]/[your username].github.com.git blog
+		{% endhighlight %}</p>
+		<p><em>I'm cloning over https because my current connection sucks on ssh.</em></p>
+	</li>
+	<li>
+		<p><strong>Install jekyll</strong></p>
+		<p>Install jekyll. I assume you have ruby installed already. If not, that comes first.</p>
+		<p>{% highlight %}
+		$ sudo gem install jekyll
+		{% endhighlight %}</p>
+		<p>This installs jekyll and other dependencies. Really, if you know what you are doing (which you won't as a first timer), you may not need to install jekyll locally as it is github that eventually run their server version on your pages. It is however necessary to run a local version for test, debug and development purpose.</p>
+	</li>
+	<li>
+		<p><strong>Setup your blog</strong></p>
+		<p>The jekyll blog has a standard structure of folders and files. <a href="http://github.com/kehers/kehers.github.com">Mine</a> has just _layouts (the standard folder that contains layouts), _posts (the standard folder that contains posts), assets (contains css and images), index.html, posts.html and the config file _config.yml. See <a href="https://github.com/mojombo/jekyll/wiki/usage">usage</a> for details about creating this and content.</p>
+		<p>My _config.yml file has just two lines. Pygments is for code highlighting.</p>
+		<p>{% highlight yaml %}
+			pygments: true
+			pagination: 20
+		{% endhighlight %}</p>
+		<p>I migrated my posterous posts using the posterous migrator at that came with Jekyll.</p>
+		<p>{% highlight %}
+		$ ~
+		{% endhighlight %}</p>
+	</li>
+</ul>
+<p>Thanks to @dpencilpusher, @damilare and @mcrpt for suggestions of blog alternatives.</p>
+
+Create github pages
+Clone
+Install jekyll
+Setup site
+Push
