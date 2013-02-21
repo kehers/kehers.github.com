@@ -1,49 +1,63 @@
 --- 
-published: false
+published: true
 title: Moved
 layout: post
 ---
-<p>I have moved my blog here (from <a href="http://opeyemi.posterous.com/">posterous</a>). My choice of [<a href="http://jekyllrb.com">jekyll</a> on] <a href="http://pages.github.com/">github pages</a> was because I wanted something I can control - something that resides right here on my pc; something I can easily break, move and mess around with. Fuck that. I chose github pages because it's like some cool 'hacky' thing. And 'hacky' is fun. But there are things I will miss. Autosharing on social networks and posting via email as examples.</p>
+<p>I have moved my blog here (from <a href="http://opeyemi.posterous.com/">posterous</a>). My choice of [<a href="http://jekyllrb.com">jekyll</a> on] <a href="http://pages.github.com/">github pages</a> was because I wanted something I can control - something that resides right here on my pc; something I can easily break, move and mess around with.</p>
+<p>Fuck that. I chose github pages because it's like some cool 'hacky' thing. And 'hacky' is fun. But there are things I will miss. Autosharing on social networks and posting via email as examples.</p>
 <p><strong>Setting up Jekyll on Github pages</strong></p>
-<ul>
+<p>Setting up jekyll on github pages is a not a complex thing. Just few steps and you are done.</p>
+<ol>
 	<li>
-		<p><strong>Create your page</strong></p>
-		<p>To create your page, simply create a new github repo with the name: [your username].github.com</p>
+		<p><strong>Create your github page</strong></p>
+		<p>To create your page, simply <a href="https://github.com/new">create a new github repo</a> with the name: [your username].github.com</p>
 	</li>
 	<li>
 		<p><strong>Clone the repo</strong></p>
 		<p>Cd to your choice directory and clone the repo with any name you want. I used <strong>blog</strong></p>
-		<p>{% highlight %}
-		$ git clone https://github.com/[your username]/[your username].github.com.git blog
-		{% endhighlight %}</p>
+		<p>{% highlight powershell %}
+$ git clone https://github.com/[your username]/[your username].github.com.git blog
+{% endhighlight %}</p>
 		<p><em>I'm cloning over https because my current connection sucks on ssh.</em></p>
 	</li>
 	<li>
 		<p><strong>Install jekyll</strong></p>
-		<p>Install jekyll. I assume you have ruby installed already. If not, that comes first.</p>
-		<p>{% highlight %}
-		$ sudo gem install jekyll
-		{% endhighlight %}</p>
-		<p>This installs jekyll and other dependencies. Really, if you know what you are doing (which you won't as a first timer), you may not need to install jekyll locally as it is github that eventually run their server version on your pages. It is however necessary to run a local version for test, debug and development purpose.</p>
+		<p>Install <a href="http://jekyllrb.com">jekyll</a>. What jekyll does is to generate a static website from stuctured markup texts. You will need ruby installed already though. If not, that comes first.</p>
+		<p>{% highlight powershell %}
+$ sudo gem install jekyll
+{% endhighlight %}</p>
+		<p>This installs jekyll and other dependencies. Really, if you know what you are doing (which you won't unless you've been doing this for a while), you may not need to install jekyll locally. Github runs jekyll on the server. It is however necessary if you want to run a local version for test, debug and development purpose.</p>
 	</li>
 	<li>
 		<p><strong>Setup your blog</strong></p>
-		<p>The jekyll blog has a standard structure of folders and files. <a href="http://github.com/kehers/kehers.github.com">Mine</a> has just _layouts (the standard folder that contains layouts), _posts (the standard folder that contains posts), assets (contains css and images), index.html, posts.html and the config file _config.yml. See <a href="https://github.com/mojombo/jekyll/wiki/usage">usage</a> for details about creating this and content.</p>
-		<p>My _config.yml file has just two lines. Pygments is for code highlighting.</p>
+		<p>The interesting thing about jekyll on github pages is the power to design your site in whatever way easily. I went for a boring plain design that took just few minutes. A jekyll site has a standard structure of folders and files. <a href="http://github.com/kehers/kehers.github.com">Mine</a> has just _layouts (the standard folder that contains layouts), _posts (the standard folder that contains posts), assets (contains css and images), index.html, posts.html and the config file _config.yml. See <a href="http://net.tutsplus.com/tutorials/other/building-static-sites-with-jekyll/">nettut's jekyll intro</a> for details about creating this and content.</p>
+		<p>My _config.yml file has just a line specifying pygments for code highlighting.</p>
 		<p>{% highlight yaml %}
-			pygments: true
-			pagination: 20
-		{% endhighlight %}</p>
-		<p>I migrated my posterous posts using the posterous migrator at that came with Jekyll.</p>
-		<p>{% highlight %}
-		$ ~
-		{% endhighlight %}</p>
+pygments: true
+{% endhighlight %}</p>
+		<p>I migrated my posterous posts using the posterous migrator that came with jekyll.</p>
+		<p>{% highlight powershell %}
+$ ruby -rubygems -e 'require "/usr/lib/ruby/gems/1.8/gems/jekyll-0.12.0/lib/jekyll/migrators/posterous"; Jekyll::Posterous.process(<my_email>, <my_pass>, <api_token>)'
+{% endhighlight %}</p>
+		<p>I had to edit code sections for syntax highlight, fix image urls and "intra-blog" links within the post pages though.</p>
 	</li>
-</ul>
-<p>Thanks to @dpencilpusher, @damilare and @mcrpt for suggestions of blog alternatives.</p>
-
-Create github pages
-Clone
-Install jekyll
-Setup site
-Push
+	<li>
+		<p><strong>Test</strong></p>
+		<p>To be sure all is properly set, you can run jekyll locally.</p>
+		<p>{% highlight powershell %}
+$ jekyll --server --auto
+{% endhighlight %}</p>
+<p>--server runs a server on [default] port 4000 so you can preview your site via localhost:4000. --auto lets jekyll should pick up changes made to files so that you don't have to restart the server when you make any file change.</p>
+	</li>
+	<li>
+		<p><strong>Push up</strong></p>
+		<p>Once you are done just push up to github.</p><p>{% highlight powershell %}
+$ git add .
+$ git commit -m "--comment--"
+$ git push origin master
+{% endhighlight %}</p>
+		<p>Your site should be live at [your username].github.com in few minutes.</p>
+	</li>
+</ol>
+<p>So here (<a href="http://kehers.github.com">kehers.github.com</a>) is the new blog. I still don't know if to embed a commenting system or not. But whatever.</p>
+<p>Thanks to <a href="http://twitter.com/AFOketunji">@AFOketunji</a>, <a href="http://twitter.com/damilare">@damilare</a>, <a href="http://twitter.com/dpencilpusher">@dpencilpusher</a> and <a href="http://twitter.com/micrypt">@micrypt</a> for <a href="https://twitter.com/kehers/status/303099497226072064">suggestions of blog alternatives</a>.</p>

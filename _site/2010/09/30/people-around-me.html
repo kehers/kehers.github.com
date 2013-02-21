@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>People around me | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>People around me</h1>
+        <time>30 Sep 2010</time>
+    </header>
+    <article>
+      <p>I have been toying with location discovery on mobile of late. Geek wise, it is called location based services (lbs) - accessing and using the geographical position of a mobile device. Accessing the position is one part - the big part. How you use it is another part - where your creativity and ideas come in; the part I leave to you.</p>
+<p>Accessing is most generally done via GPS and cellids. While it may be well argued that GPS has a greater advantage over using cellids, precise location knowledge and accuracy as two, even the disadvantages of cellids can be interesting.</p>
+<p>Using cellids simply involves identifying the [unique] id of the nearest network tower broadcasting to the mobile device at that instant. But then network towers cover wide areas. A single tower may cover over a km radius. What's more, at a particular point, there can be reception from more than a tower. From experiments, I've experienced up to 5 at a single point. What this translates to is that cellids are only accurate to some few kilometers - a disadvantage useful as an advantage.</p>
+<p>Doesn't this mean that if you and I live some blocks apart, we will at some time have the same network tower broadcasting to our phones (if we run on the same network)? In other words, if the cellids of a large set of people are collated, it can be deduced that people having the same cellids with others are around each other. Where it gets interesting is that by following the sequence of cellid change, places close to other places can also be deduced. If the cellid on my phone for example changes from 'AZ' to 'BY', it can only mean area 'AZ' and 'BY' are <em>close</em>. Consequently someone in area 'AZ' is still not that far off from someone in area 'BY'.</p>
+<p>But even people discovery is just one of the many advantages that can be achieved with cellids. There are a whole lot of others.<br />LBS is fun and I think it is something every mobile developer should take time to build something on or at least play with, especially cellids. Not to forget, cellids has a wide range of support in many phones than does GPS.</p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>
