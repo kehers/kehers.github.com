@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ruby on rails, one month after | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>Ruby on rails, one month after</h1>
+        <time>28 Aug 2012</time>
+    </header>
+    <article>
+      <p>
+<p>I started learning ruby on rails this month and I must say I am really impressed by the language and architecture. I have been developing web apps in PHP for a long time and can't help but take a look at where RoR got it better.</p>
+<p><strong>MVC and Rest</strong></p>
+<p>Rails comes in a MVC architecture by default. If you are new to MVC and its advantages, take a look at <a href="http://www.codinghorror.com/blog/2008/05/understanding-model-view-controller.html">Jeff's article about it</a>. In PHP, building your app with the MVC architecture will require using a framework that will saddle your codes with extra unnecessary codes. Not like you can't without a framework though. It just takes a good knowledge of the language to.</p>
+<p>But good codes structure and organisation is not only it. Rails also allows clean REST urls like <em>products/new</em>, <em>products/12</em>. Plus it has a great support for the other "non common" HTTP methods you will rarely run into in PHP like DELETE, PUT and HEAD.</p>
+<p><strong>Easy Collaboration</strong></p>
+<p>Team collaboration is easy with RoR. And not only because of the MVC architecture. Rails offer migrations as a way of tracking (and reversing) database changes.</p>
+<p><strong>Helpers</strong></p>
+<p>I think this is a very strong part of the framework. Ruby on rails has a lot of helpers to make your coding easier. I can't think of a place you turn without finding helpers - form generation, error message handling through flash messages, form data validation, password hashing, and lots more. Beyond helpers, one of Rails principles is "Convention over configuration" meaning it makes assumptions about what you want to do and how you're going to do it rather than requiring you write all the code. Most times your models will only have few lines of codes. All the heavy work and database reads and writes automatically done for you.</p>
+<p><strong>Security</strong></p>
+<p>Rails is very conscious of security. It provides extra measures to block security holes. An example is that it generates and embeds an <em>authenticity_token</em> in html forms to prevent cross-site request forgery. It also provides encryption helpers for cookies, sessions and passwords.</p>
+<p>&nbsp;</p>
+<p>These are just the few. There are lots of others like integrated unit testing and asset pipline to concatenate, minify and manage JavaScript and CSS assets. Ruby on Rails is a great framework. I really see myself learning more about it. One of the cons though is that the learning curve is stepier especially if you have no programming experience. PHP on the other hand is a very simple language anyone can easily pick up.</p>
+<p>If you want to give it a shot, <a href="http://guides.rubyonrails.org/">Rails Guides</a> is a very good place to start. A lot of other tutorials I saw around were introducing other frameworks and made it even more complex. A good programming language tutorial/book should start by teaching you the core language and basics and not already start showing you the other ways by introducing you to other frameworks.</p>
+</p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

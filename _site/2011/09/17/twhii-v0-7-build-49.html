@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Twhii v0.7 build 49 | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>Twhii v0.7 build 49</h1>
+        <time>17 Sep 2011</time>
+    </header>
+    <article>
+      <p>Had few hours to toy with <a href="http://twhii.com">Twhii</a> tonight and finally decided to push it public. In case you missed the gist, Twhii is an experimental twitter client for java phones. Its still a long way from okay, but it works - you can read your timeline, mentions and tweets, send tweets, reply, quote, retweet, fav, delete and all those. I have shared the developer version with some friends on twitter and basically not much has really changed:</p>
+<ul>
+<li>No activity indicator in a lot of places. So many times you may not know if the app is working (busy pulling data) or just dozing off. The recommendation here is to be patient for a while when expecting a data pull or so.</li>
+<li>High data consumption. The app uses the raw json data from the twitter api. I MAY be introducing a proxy server that will minify data later.</li>
+<li>You can't view your sent DM. As I rarely check my sent DMs, this didn't come to my mind in time :/</li>
+<li>No new DM. To send a new DM, go Menu-&gt;Tweet: "d recipient_username Dm here" (no quotes though!). You can reply DMs and directly send a DM to a user from a tweet though. (Press your right direction key to see tweet options when on a tweet)</li>
+<li>List, Trends and Tags not available.</li>
+<li>The rendering attimes get wobbled especially with tweets containing some html entities.</li>
+<li>In user profile, the scrolling is still awkward. Will find time to fix that.</li>
+<li>The app is optimized for qwerty keypad (I use one :-P). For numeric keypads, turn on liveEdit, go to Menu-&gt;Settings-&gt;Live Edit. The plus with the application's own editor is username autocomplete. To switch from the applications editor to the phone's native editor, press * for half a minute when in the editor mode.</li>
+</ul>
+<p>For those that have tried the developer build, the changes to this build (49) include:</p>
+<ul>
+<li>Fixed oncancel error for 'Find Username'</li>
+<li>Save update interval</li>
+<li>Tweet not sending if location is set on but not available</li>
+</ul>
+<p>Here is the download link: <a href="http://cl.ly/ADvN">http://cl.ly/ADvN</a>. Alternatively, you can download the direct jar and jad file via <a href="http://twhii.devedgelabs.com/Twhii.jar">http://twhii.devedgelabs.com/Twhii.jar</a> and <a href="http://twhii.devedgelabs.com/Twhii.jad ">http://twhii.devedgelabs.com/Twhii.jad </a>respectively.<p />As usual, feedbacks via <a href="http://twitter.com/kehers">@kehers</a>.<p />Enjoy.</p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>
