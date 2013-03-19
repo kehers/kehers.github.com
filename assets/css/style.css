@@ -15,7 +15,8 @@ a:hover{
 .wrapper{
   width: 600px;
   margin: 0 auto;
-}a{
+}
+a{
   color: #407FBF;
   text-decoration: none;
 }
@@ -71,7 +72,6 @@ article img{
 }
 .post-list li a{
   float: left;
-  width: 400px
 }
 
 .highlight pre{
@@ -109,4 +109,19 @@ footer{
 }
 footer a{
   padding: 5px
+}
+
+
+/*
+Responsive
+*/
+@media (max-width : 600px) {
+	.wrapper{
+		width:100%
+	}
+}
+@media (max-width : 500px) {
+	.post-list time{
+	float:none
+	}
 }
