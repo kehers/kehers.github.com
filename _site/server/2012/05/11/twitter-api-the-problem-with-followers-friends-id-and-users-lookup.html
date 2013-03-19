@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Twitter API: The problem with followers[friends]/id and users/lookup | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>Twitter API: The problem with followers[friends]/id and users/lookup</h1>
+        <time>11 May 2012</time>
+    </header>
+    <article>
+      <p>Twitter is doing a little <a href="https://dev.twitter.com/blog/api-housekeeping" target="_blank">API housekeeping</a> and come 14th* (May, 2012) the changes will take effect and they plan on pulling the plugs on deprecated methods. I have gone through the changes and compared the deprecated API with new ones to see where it affects <a href="http://twhii.com/">Twhii</a>. As a client for low end java devices, there is a little hit here and there but it's not that bad. For example, I've had to remove public timeline but then who really cares that much about public timelines anyway. But beyond Twhii, I have noticed that the deprecation of <a href="https://dev.twitter.com/docs/api/1/get/statuses/followers" target="_blank">statuses/followers</a> (and statuses/friends) for the combination of <a href="https://dev.twitter.com/docs/api/1/get/followers/ids" target="_blank">followers[friends]/id</a> and <a href="https://dev.twitter.com/doc/get/users/lookup" target="_blank">users/lookup</a> has some downsides.<strong>&nbsp;</strong></p>
+<p><strong>1. The follow order</strong></p>
+<p><span style="text-decoration: underline;">Statuses/followers[friends]</span> return list of followers or friends in the order they follow or are followed by an account. When I check my followers, I want to know the people that just followed me since last check. <span style="text-decoration: underline;">followers/id + users/lookup</span> don't return in that order. Really, I don't even know in what order the ids are returned.</p>
+<p><strong>2. The number of returned values</strong></p>
+<p><span style="text-decoration: underline;">Statuses/followers[friends]</span> return about 100 results at a time and you can use the <span style="text-decoration: underline;">cursor</span> parameter to paginate. <span style="text-decoration: underline;">followers/id + users/lookup</span> return up to 5000 ids at a time. It may be well argued that the size of user profile returned by <span style="text-decoration: underline;">statuses'</span> 100 results and <span style="text-decoration: underline;">id's</span> 5000 will be of just slight difference but the data size is not the argument. Retrieving 5000 ids at once leaves the client the headache of having to split this into seperate chunks to retrieve user profiles because <span style="text-decoration: underline;">users/lookup </span>only supports just 100 ids per request. The API team will sure have their reasons for returning ids as large as 5000 and I'm not disputing that. I just think a parameter (say <span style="text-decoration: underline;">count</span>) should be available to limit the number of returned ids.</p>
+<p>I really hope the API team will look into this.</p>
+<p>&nbsp;</p>
+<p><em>* according to updates to the <a href="https://dev.twitter.com/blog/api-housekeeping">blogpost</a>, due to feedbacks, none of the currently scheduled changes will take effect on May 14th, 2012</em></p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

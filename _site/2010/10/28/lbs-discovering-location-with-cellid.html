@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>LBS - discovering location with cellid | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>LBS - discovering location with cellid</h1>
+        <time>28 Oct 2010</time>
+    </header>
+    <article>
+      <p>So here I am with the lbs (location based services) talks again. In <a href="http://opeyemi.posterous.com/people-around-me">my other post</a>, I did mention precise location knowledge as one of the plus of GPS. What this means is that with the availability of many <em>free</em> map systems like <a href="http://maps.google.com">Google maps</a> and <a href="http://maps.yahoo.com">Yahoo maps</a>, the geographical location (latitude/longitude) returned from the mobile device can be queried against any of these maps to get the name (street, area, town or whatever) of that location. Such fleet is however not possible with Cell ids.</p>
+<p>But here is the good news. There is a renowned workaround - quering cellids against open cellid + location database, <a href="http://www.opencellid.org/">openCellID</a> as a very popular one. But then sometimes it may be necessary to build your own cellid/location database for reasons ranging from customization to versatility. To do this, it will be necessary to read the GPS info alongside cellids in your mobile application. While your mobile application may use cellids exclusively for whatever function it performs, you can detect GPS support on the device alongside. If GPS is supported, you can then read it, query it against any of these open maps to get the location, tie the location to all cellids retrieved at that point and store it online in your own custom cellid/location database. This way, your application will be useful to all devices supporting cellid discovery and the ones with further support for GPS will help build your cellid/location database. Other devices that doesn't support GPS can then use cellids to read location from this database.</p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>
