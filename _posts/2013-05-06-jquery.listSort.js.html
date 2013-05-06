@@ -32,56 +32,56 @@ background-color:#f2f4fa
 	<li>
 		<p><b>customClone</b><br />
 		By default, the plugin clones the whole element. Sometimes, we want to clone just a part of the element. The plugin sends the element being dragged as an argument to this function. Simply return your custom clone object. At Prowork for example, the only thing I need is the task title.</p>
-		<p>{% highlight javascript %}
-		$('li.task').listSort({
-			'customClone': function ($obj) {
-				return $('<div>'+$('p.task-title', $obj).html()+'</div>');
-			}
-		});
-		{% endhighlight %}</p>
+<p>{% highlight javascript %}
+$('li.task').listSort({
+  'customClone': function ($obj) {
+    return $('<div>'+$('p.task-title', $obj).html()+'</div>');
+  }
+});
+{% endhighlight %}</p>
 	</li>
 	<li>
 		<p><b>onStartDrag</b><br />
 		If you need to do some things before the drag starts, here is your cue.
 		</p>
-		<p>{% highlight javascript %}
-		$('li.task').listSort({
-			'onStartDrag': function () {
-				// Collapse all 'opened' tasks
-				$('li.dropdown').each(function() {
-					$('.taskdrop', this).hide('fast');
-					$(this).removeClass('dropdown');
-				});
-			}
-		});
-		{% endhighlight %}</p>
+<p>{% highlight javascript %}
+$('li.task').listSort({
+  'onStartDrag': function () {
+    // Collapse all 'opened' tasks
+    $('li.dropdown').each(function() {
+      $('.taskdrop', this).hide('fast');
+      $(this).removeClass('dropdown');
+    });
+  }
+});
+{% endhighlight %}</p>
 	</li>
 	<li>
 		<p><b>onEndDrag</b><br />
 		Ok, we are done, what's next? Save the new order to db maybe?
 		</p>
-		<p>{% highlight javascript %}
-		$('li.task').listSort({
-			'onEndDrag': function (order) {
-				var data = $(order).map(function() { return $(this).attr('id').match(/task\-(.+)$/)[1]; }).get();
-				$.post("path/to/ajax/server/sort-list", { "ids[]": data });
-			}
-		});
-		{% endhighlight %}</p>
+<p>{% highlight javascript %}
+$('li.task').listSort({
+  'onEndDrag': function (order) {
+    var data = $(order).map(function() { return $(this).attr('id').match(/task\-(.+)$/)[1]; }).get();
+    $.post("path/to/ajax/server/sort-list", { "ids[]": data });
+  }
+});
+{% endhighlight %}</p>
 	</li>
 </ul>
 <p><b>Demo?</b></p>
 <p>Try re-sort the [plugin] options I mentioned above by dragging the title. Here is the setup:</p>
 <p>{% highlight javascript %}
 $(function() {
-	$('ul.sort li').listSort({
-		'dragElement':'b',
-		'dropClass':'hit',
-		'onEndDrag': function (order) {
-			var data = $(order).map(function() { return $('b', $(this)).text(); }).get();
-			console.log(data);
-		}
-	});
+  $('ul.sort li').listSort({
+    'dragElement':'b',
+    'dropClass':'hit',
+    'onEndDrag': function (order) {
+      var data = $(order).map(function() { return $('b', $(this)).text(); }).get();
+      console.log(data);
+    }
+  });
 });
 {% endhighlight %}</p>
 <p>On a final note, I removed and added a couple of things when converting to a jQuery plugin. If somethings don't work, or you have issues somewhere, submit an <a href="https://github.com/kehers/jquery.listSort.js/issues">issue</a> or <a href="http://twitter.com/kehers">let me know</a>. Plus be free to fork, iterate and pull.</p>
