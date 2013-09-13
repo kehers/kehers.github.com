@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Who called? | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>Who called?</h1>
+        <time>26 Nov 2012</time>
+    </header>
+    <article>
+      <p>One service I so enjoy on my Etisalat is the missed calls sms notification. I even once tried to build <a href="/2012/09/24/two-side-project-ideas.html">something similar</a> that cuts across networks and plans. I didn't finish work on it though. But now that something seem wrong with the service (I haven't been receiving notifications for like a month now), I decided to put together the system myself.</p>
+<p>The architecture is simple. Really simple.</p>
+<ol>
+<li>Get a number that can track incoming calls.</li>
+<li>Forward the calls you want notifications for (e.g busy, unavailable, all calls) to the number.</li>
+<li>Check the number logs for the calls forwarded to it.</li>
+</ol>
+<p>It is that simple. You can easily get #1 from any IVR company. <a href="http://twilio.com/">Twilio</a>, <a href="http://tropo.com/">Tropo</a>, <a href="http://plivio.com/">Plivio</a> are examples. I used Tropo because they offer a free developer account with free number. You will have to forward the number to the script that handles the calls though. You will find that (call-picker.php) in the library. #2 is the simplest part. You will find this in your phone's call settings. For #3, I simply store the call details (from the call-picker script) in a [MySQL] db. You can extend it to send you sms or mail. You will find a sample code to display notifications for the day in the index.php file.</p>
+<p>Important note: This only works on Etisalat for now. I am yet to test on Glo though. MTN and Airtel apparently do not allow you forward calls to an international number. My guess is because they want you to roam or so. MTN tells you the number does not exist, Airtel drops the call instantly.</p>
+<p>Here is a link to the library: <a href="https://github.com/kehers/who-called">https://github.com/kehers/who-called</a></p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Little places we fail - bad policies and TOS | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a>
+    </nav>
+    <header>
+        <h1>Little places we fail - bad policies and TOS</h1>
+        <time>04 Dec 2010</time>
+    </header>
+    <article>
+      <p>The penultimate version of <a href="http://mobile.ngbot.com">ngBot mobile</a> allows users send mobile items from the site to phones via MMS. To accomplish this we needed an sms provider that supported binary sms. And <a href="http://clickatell.com">clickatell</a> was it. So we made arrangements, got an account up, implemented the API and everyone lived happily thereafter.</p>
+<p>But with all stories, there is never truly a happy ending if you follow far enough. We redesigned ngBot mobile and killed support for sending items via MMS. For the normal SMS feature that allows users send SMS from the site to phone, we switched to a local gateway that was way cheaper to clickatell. For one, our new gateway support custom sender ids. And two, payment was much easier besides being cheaper. With clickatell you have to register all sender ids you want to use and as regards payment, the only supported payment method from Nigeria is direct bank transfer. Quite unfortunately though, we've used only a little of the purchased credit at clickatell. But then since it's not as if the credits are lost, we can always use clickatell as our backup gateway should we ever find the reason to urgently make a switch. That scenerio, however, never happened.</p>
+<p>Long months away, there is the need to go back to the clickatell. For our latest project, <a href="http://mycontactsapp.com">myContacts</a>, there is the need to send syncronization settings to users. Since clickatell has a good binary sms support and we already have an account, I rushed back. The first blow came when I had problems signing in. After much attempts and failed 'recover my password' attempts, I finally decided to talk to the support. The support is great. I got a quick response that my account has been deactivated but then now reactivated. What however came as a shock was that all the credits in the account were gone. I quickly complained to the support about this and the response was fast to tell me it is part of their policy and is there in their terms. And true the terms says you must use up purchased credits within 120 days.</p>
+<p><strong>Now, my number one rant is: it is a bad policy!</strong></p>
+<p>If you run free open forums, communities and similar sites, you can go ahead deactivating accounts. But for a service a user paid for? Deactivating accounts because of inactivity is utter dumbness. While that is forgiveable, zeroing users' credit is not. And here comes the big question, why would you even want to zero a user's credit if not for selfish gain? How many database bytes does the credit count cost that it has to be removed/zeroed when the account is deactivated?</p>
+<p><strong>Two, nobody reads your f* terms of service</strong></p>
+<p>Ok some people actually care to, but 80% of your users don't care to read your terms of service. In other words, if you have any information as sensitive as account deactivation or credit cancelling to let users know of, the TOS is the wrongest place to share that information. Find better spots in users' dashboard or just somewhere beside signup to tell them that.</p>
+<p>While this post seems more of a rant against clickatell (hell yeah, it is), it is more of a pointer to upcoming startups and enterpreneurs. Always build your business on a very customer friendly policy. Clickatell is a big company with lots of big customers. Loosing a low end customer like me and this rant will definitely have no effect on their purse. But you may not be that lucky and big. So once again, avoid bad policies and communicate better with customers.</p>
+
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>
