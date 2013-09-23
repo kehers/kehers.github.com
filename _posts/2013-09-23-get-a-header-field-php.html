@@ -1,0 +1,18 @@
+--- 
+published: true
+title: Get a header field #PHP
+layout: post
+---
+<p>I'm surprised PHP has <a href="http://php.net/manual/en/function.getallheaders.php">getallheaders()</a> and <a href="http://www.php.net/manual/en/function.headers-list.php">headers_list</a> to retrieve ALL headers but no function for retrieving a single header.</p>
+<p>Here is a quick one using <i>headers_list()</i></p>
+<p>{% highlight php linenos %}
+// echo get_header('X-HTTP-Method-Override');
+function get_header($field) {
+    $headers = headers_list();
+    foreach ($headers as $header) {
+        list($key, $value) = preg_split('/:\s*/u', $header);
+        if ($key == $field)
+            return $value;
+    }
+}
+{% endhighlight %}</p>
