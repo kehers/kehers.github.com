@@ -11,7 +11,7 @@ layout: post
 function get_header($field) {
     $headers = headers_list();
     foreach ($headers as $header) {
-        list($key, $value) = preg_split('/:\s*/u', $header);
+        list($key, $value) = preg_split('/:\s*/', $header);
         if ($key == $field)
             return $value;
     }
