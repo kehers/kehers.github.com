@@ -55,6 +55,9 @@ article img{
   max-width: 570px;
   text-align: center;
 }
+blockquote{
+font-style:italic
+}
 .post-list{
   list-style: none;
   margin: 0;
