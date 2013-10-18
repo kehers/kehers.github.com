@@ -5,58 +5,58 @@ layout: post
 ---
 <p>This is a walk-through of a quick nodeJs server setup. The "server" OS is Ubuntu but it's pretty much the same steps on any other linux OS.</p>
 <ol>
-    <li>
-        <p><b>Install nodeJs</b></p>
-        <p>This should be as easy as <em>apt-get install nodejs</em>. The default repo may have an old version of node though. To install the version 0.10.x, you need to add the <a href="http://www.ubuntuupdates.org/ppa/chris_lea_nodejs">chris-lea repository</a>.</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] apt-get install software-properties-common python-software-properties python g++ make
-        $ [sudo] add-apt-repository ppa:chris-lea/node.js
-        {% endhighlight %}</p>
-        <p>...then update and install nodejs</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] apt-get update
-        $ [sudo] apt-get install nodejs
-        {% endhighlight %}</p>
-        <p>Alternatively, just download the <a href="http://nodejs.org/download">nodeJs source</a> (via wget) and build it yourself.</p>
-    </li> 
-    <li>
-        <p><b>Install NPM</b></p>
-        <p>NPM is the node package manager that helps you install node modules.</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] apt-get install npm
-        {% endhighlight %}</p>
-    </li> 
-    <li>
-        <p><b>Create source directory</b></p>
-        <p>Next we create the home directory for our source files. Let's assume <em>/var/www</em>.</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] mkdir /var/www/
-        $ cd /var/www
-        {% endhighlight %}</p>
-    </li> 
-    <li>
-        <p><b>Install needed modules</b></p>
-        <p>In the source directory, we install the needed node modules for our nodeJs application. Assuming, our app uses <a href="http://expressjs.com/">express</a> and <a href="http://socket.io/">socket.io</a> for example, we will have.</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] npm install express
-        $ [sudo] npm install socket.io
-        {% endhighlight %}</p>
-    </li>
-    <li>
-        <p><b>Install forever</b></p>
-        <p><a href="https://github.com/nodejitsu/forever">Forever</a> keeps your node script running continuosly.</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] npm install forever -g
-        {% endhighlight %}</p>
-        <p>Note the -g (global mode) switch.</p>
-    </li>
-    <li>
-        <p><b>Upload and start your application</b></p>
-        <p>Upload your node application to the source directory you created (/var/www). I am assuming you have FTP setup already. If not, you can just use <a href="http://http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> (add your server details to your fav FTP client and set the connection type/security to SFTP). Next, start your app via forever.</p>
-        <p>{% highlight console linenos %}
-        $ [sudo] forever start start /var/www/app.js
-        {% endhighlight %}</p>
-    </li>
+<li>
+<p><b>Install nodeJs</b></p>
+<p>This should be as easy as <em>apt-get install nodejs</em>. The default repo may have an old version of node though. To install the version 0.10.x, you need to add the <a href="http://www.ubuntuupdates.org/ppa/chris_lea_nodejs">chris-lea repository</a>.</p>
+<p>{% highlight console linenos %}
+$ [sudo] apt-get install software-properties-common python-software-properties python g++ make
+$ [sudo] add-apt-repository ppa:chris-lea/node.js
+{% endhighlight %}</p>
+<p>...then update and install nodejs</p>
+<p>{% highlight console linenos %}
+$ [sudo] apt-get update
+$ [sudo] apt-get install nodejs
+{% endhighlight %}</p>
+<p>Alternatively, just download the <a href="http://nodejs.org/download">nodeJs source</a> (via wget) and build it yourself.</p>
+</li> 
+<li>
+<p><b>Install NPM</b></p>
+<p>NPM is the node package manager that helps you install node modules.</p>
+<p>{% highlight console linenos %}
+$ [sudo] apt-get install npm
+{% endhighlight %}</p>
+</li> 
+<li>
+<p><b>Create source directory</b></p>
+<p>Next we create the home directory for our source files. Let's assume <em>/var/www</em>.</p>
+<p>{% highlight console linenos %}
+$ [sudo] mkdir /var/www/
+$ cd /var/www
+{% endhighlight %}</p>
+</li> 
+<li>
+<p><b>Install needed modules</b></p>
+<p>In the source directory, we install the needed node modules for our nodeJs application. Assuming, our app uses <a href="http://expressjs.com/">express</a> and <a href="http://socket.io/">socket.io</a> for example, we will have.</p>
+<p>{% highlight console linenos %}
+$ [sudo] npm install express
+$ [sudo] npm install socket.io
+{% endhighlight %}</p>
+</li>
+<li>
+<p><b>Install forever</b></p>
+<p><a href="https://github.com/nodejitsu/forever">Forever</a> keeps your node script running continuosly.</p>
+<p>{% highlight console linenos %}
+$ [sudo] npm install forever -g
+{% endhighlight %}</p>
+<p>Note the -g (global mode) switch.</p>
+</li>
+<li>
+<p><b>Upload and start your application</b></p>
+<p>Upload your node application to the source directory you created (/var/www). I am assuming you have FTP setup already. If not, you can just use <a href="http://http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> (add your server details to your fav FTP client and set the connection type/security to SFTP). Next, start your app via forever.</p>
+<p>{% highlight console linenos %}
+$ [sudo] forever start start /var/www/app.js
+{% endhighlight %}</p>
+</li>
 </ol>
 <p>Just by the way, if you need your application to listen on port 80, <em>server.listen(80);</em> won't work. There are a couple of ways to do this. the famous one is using nginx as a proxy. Except you need nginx for something else though, that's not necessary. You can do a simple port forwarding like this</p>
 <p>{% highlight console linenos %}
