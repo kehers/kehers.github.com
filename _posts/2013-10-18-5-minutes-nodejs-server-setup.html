@@ -44,7 +44,7 @@ $ [sudo] npm install socket.io
 </li>
 <li>
 <p><b>Install forever</b></p>
-<p><a href="https://github.com/nodejitsu/forever">Forever</a> keeps your node script running continuosly.</p>
+<p><a href="https://github.com/nodejitsu/forever">Forever</a> keeps your node script running continuosly. This means, once you exit the terminal, your application will not terminate as expected of a command like <em>node app.js</em></p>
 <p>{% highlight console linenos %}
 $ [sudo] npm install forever -g
 {% endhighlight %}</p>
@@ -54,7 +54,7 @@ $ [sudo] npm install forever -g
 <p><b>Upload and start your application</b></p>
 <p>Upload your node application to the source directory you created (/var/www). I am assuming you have FTP setup already. If not, you can just use <a href="http://http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> (add your server details to your fav FTP client and set the connection type/security to SFTP). Next, start your app via forever.</p>
 <p>{% highlight console linenos %}
-$ [sudo] forever start start /var/www/app.js
+$ [sudo] forever start /var/www/app.js
 {% endhighlight %}</p>
 </li>
 </ol>
