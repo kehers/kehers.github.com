@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Twitter oAuth and the net.oauth.j2me library | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Twitter oAuth and the net.oauth.j2me library</h1>
+        <time>19 Aug 2011</time>
+    </header>
+    <article>
+        <p>So I have been toying with a twitter mobile client in Java. I'm using the <a href="https://github.com/simonpk/j2me-oauth">j2me-oauth library</a> to perform authentication, sign requests and the all the oAuth ish. Everything seems to be working perfectly except that tweeting fails occasionally, returning 401 Unauthorized error. It's clear from the <a href="https://dev.twitter.com/docs/error-codes-responses">dev docs</a> that it is an authentication credential problem and most likely has to do with the oauth signature. I spent some time debugging how the library performs the oauth signing and noticed the encoding of some characters are skipped. The encoding should actually include all non-alphanumeric characters except -_. with ~ converted to %7E.</p>
+<p>My simple workaround is replacing the <tt>unreservedCharacters</tt> in <tt>net.oauth.j2me.OAuthParameterEncoder</tt> with</p>
+<p><div class="highlight"><pre><code class="java"><span class="lineno">1</span> <span class="c1">//private String unreservedCharacters = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~&quot;;&lt;br /&gt;private String unreservedCharacters = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._&quot;;</span>
+</code></pre></div></p>
+<p>and comment out some lines in <tt>net.oauth.j2me.Util</tt></p>
+<p><div class="highlight"><pre><code class="java"><span class="lineno"> 1</span>     <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span>
+<span class="lineno"> 2</span>         <span class="c1">// safe characters</span>
+<span class="lineno"> 3</span>         <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span>
+<span class="lineno"> 4</span>         <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span>
+<span class="lineno"> 5</span>         <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span>
+<span class="lineno"> 6</span>         <span class="c1">//|| c == &#39;!&#39;</span>
+<span class="lineno"> 7</span>         <span class="c1">//|| c == &#39;~&#39;</span>
+<span class="lineno"> 8</span>         <span class="c1">//|| c == &#39;*&#39;</span>
+<span class="lineno"> 9</span>         <span class="c1">//|| c == &#39;\&#39;&#39;</span>
+<span class="lineno">10</span>         <span class="c1">//|| c == &#39;(&#39;</span>
+<span class="lineno">11</span>         <span class="c1">//|| c == &#39;)&#39;</span>
+<span class="lineno">12</span>         <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="sc">&#39;A&#39;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;=</span> <span class="sc">&#39;Z&#39;</span><span class="o">)</span>
+<span class="lineno">13</span>         <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="sc">&#39;a&#39;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;=</span> <span class="sc">&#39;z&#39;</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
+</code></pre></div></p>
+
+<p>Here is a zip of both files: <a href="http://cl.ly/9RNJ">http://cl.ly/9RNJ</a></p>
+
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

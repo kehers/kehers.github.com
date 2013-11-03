@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>5 minutes nodeJs server setup | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>5 minutes nodeJs server setup</h1>
+        <time>18 Oct 2013</time>
+    </header>
+    <article>
+        <p>This is a walk-through of a quick nodeJs server setup. The "server" OS is Ubuntu but it's pretty much the same steps on any other linux OS.</p>
+<ol>
+<li>
+<p><b>Install nodeJs</b></p>
+<p>This should be as easy as <em>apt-get install nodejs</em>. The default repo may have an old version of node though. To install the version 0.10.x, you need to add the <a href="http://www.ubuntuupdates.org/ppa/chris_lea_nodejs">chris-lea repository</a>.</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> apt-get install software-properties-common python-software-properties python g++ make
+<span class="lineno">2</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> add-apt-repository ppa:chris-lea/node.js
+</code></pre></div></p>
+<p>...then update and install nodejs</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> apt-get update
+<span class="lineno">2</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> apt-get install nodejs
+</code></pre></div></p>
+<p>Alternatively, just download the <a href="http://nodejs.org/download">nodeJs source</a> (via wget) and build it yourself.</p>
+</li> 
+<li>
+<p><b>Install NPM</b></p>
+<p>NPM is the node package manager that helps you install node modules.</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> apt-get install npm
+</code></pre></div></p>
+</li> 
+<li>
+<p><b>Create source directory</b></p>
+<p>Next we create the home directory for our source files. Let's assume <em>/var/www</em>.</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> mkdir /var/www/
+<span class="lineno">2</span> <span class="gp">$</span> <span class="nb">cd</span> /var/www
+</code></pre></div></p>
+</li> 
+<li>
+<p><b>Install needed modules</b></p>
+<p>In the source directory, we install the needed node modules for our nodeJs application. Assuming, our app uses <a href="http://expressjs.com/">express</a> and <a href="http://socket.io/">socket.io</a> for example, we will have.</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> npm install express
+<span class="lineno">2</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> npm install socket.io
+</code></pre></div></p>
+</li>
+<li>
+<p><b>Install forever</b></p>
+<p><a href="https://github.com/nodejitsu/forever">Forever</a> keeps your node script running continuosly. This means, once you exit the terminal, your application will not terminate as expected of a command like <em>node app.js</em></p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> npm install forever -g
+</code></pre></div></p>
+<p>Note the -g (global mode) switch.</p>
+</li>
+<li>
+<p><b>Upload and start your application</b></p>
+<p>Upload your node application to the source directory you created (/var/www). I am assuming you have FTP setup already. If not, you can just use <a href="http://http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> (add your server details to your fav FTP client and set the connection type/security to SFTP). Next, start your app via forever.</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> forever start /var/www/app.js
+</code></pre></div></p>
+</li>
+</ol>
+<p>Just by the way, if you need your application to listen on port 80, <em>server.listen(80);</em> won't work. There are a couple of ways to do this. the famous one is using nginx as a proxy. Except you need nginx for something else though, that's not necessary. You can do a simple port forwarding like this</p>
+<p><div class="highlight"><pre><code class="console"><span class="lineno">1</span> <span class="gp">$</span> <span class="o">[</span>sudo<span class="o">]</span> iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+</code></pre></div></p>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

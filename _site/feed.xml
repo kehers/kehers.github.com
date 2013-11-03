@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title></title>
+		<description></description>
+		<link></link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>So I checked out Ghost</title>
+				<description>&lt;p&gt;In case you missed it, &lt;a href=&quot;http://ghost.org&quot;&gt;Ghost&lt;/a&gt; is a new open source blogging platform. The hosted service is not yet available so you will have to download (&lt;a href=&quot;https://github.com/TryGhost/Ghost&quot;&gt;github.com/TryGhost/Ghost&lt;/a&gt;) and set it up yourself. It is written in NodeJs. I downloaded it a while ago and decided to give it a spin this morning.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Setup&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Download, unzip to your choice directory and follow the install instructions in the README.md file. My set up was on &lt;a href=&quot;/2013/10/04/my-web-dev-platforms-and-tools.html&quot;&gt;Ubuntu&lt;/a&gt;. (I don't do Node things on Windows. It can be problematic). So the steps are:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;&lt;p&gt;Open your terminal and change directory to the root of the Ghost application&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;Run &lt;code&gt;sudo npm install --production&lt;/code&gt; to install the node dependencies. You have to be patient here. Ghost has a lot of dependencies. Also notice the &lt;code&gt;sudo&lt;/code&gt;. It takes care of the privilege issues.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;Create a config.js file from the config.example.js file and update the url and mail part (I'm using gmail) of the development section:&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// ### Development **(default)**&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;development&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://localhost&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;          &lt;span class=&quot;nx&quot;&gt;mail&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;              &lt;span class=&quot;nx&quot;&gt;transport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SMTP&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;              &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;                  &lt;span class=&quot;nx&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;                      &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;your_gmail_addy@gmail.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;                      &lt;span class=&quot;nx&quot;&gt;pass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;                  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;              &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;          &lt;span class=&quot;c1&quot;&gt;// the other things remain&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;      
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;Once done, save and run &lt;code&gt;npm start&lt;/code&gt; to start Ghost.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;Visit http://localhost:2368/ in your web browser.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You should be welcomed with a screen similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/ghost_index.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;To access the admin panel, visit &lt;a href=&quot;http://localhost:2368/ghost&quot;&gt;http://localhost:2368/ghost&lt;/a&gt;. there you get to signup and access the admin console:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/signup.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The admin console:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/admin.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Edit post (Ghost uses Markdown by the way):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/edit-post.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/post-settings-2.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Settings page:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/settings.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;User profile/settings:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/user-settings.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Published post page:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/post-page.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;That basically is everything. Really, it's just blogging afterall. For now it only comes with a theme - Casper. I think more will come later. They should consider a simpler editor too. It's &lt;a href=&quot;https://twitter.com/_onyeka/status/396934716890562560&quot;&gt;not everyone that is comfortable with Markdown&lt;/a&gt; commands. An editor with formatting buttons (even though they still generate the Markdown output) will be better.&lt;/p&gt;
+&lt;p&gt;I can't deny I love Ghost's simplicity and minimalism. However, I don't see myself using Ghost as my primary blogging platform. I have all the flexibility I want with &lt;a href=&quot;/2013/02/20/moved.html&quot;&gt;Jekyll/GP&lt;/a&gt;. Where Ghost comes useful is if I want to setup a self hosted blog for a new project or service. But then again, why self hosted? Why not just use Tumblr?&lt;/p&gt;</description>
+				<pubDate>Sat, 02 Nov 2013 00:00:00 +0100</pubDate>
+				<link>/2013/11/02/so-i-checked-out-ghost.html</link>
+				<guid isPermaLink="true">/2013/11/02/so-i-checked-out-ghost.html</guid>
+			</item>
+		
+			<item>
+				<title>Why BBM when there is Whatsapp?</title>
+				<description>&lt;p&gt;Comparing BBM to Whatsapp is like comparing apples to oranges (whichever is apple or orange and whatever that means). Even though the instant messaging features are the same, they are simply not the same thing.&lt;/p&gt;
+
+&lt;p&gt;Whatsapp is tied to your number. I don't like this. Anyone with your number can just hit you up and that's it. (Yea, yeah, I know you can block and all that, but that's another layer of friction). I can't count the number of times I use Whatsapp for snooping. Call from an unfamiliar number? Number you stumbled on somewhere? Just add the number to your contact, refresh your Whatsapp contact list and view profile.&lt;/p&gt;
+
+&lt;p&gt;BBM answers this via the pin feature. I don't need to give you my number before we can chat.&lt;/p&gt;
+
+&lt;p&gt;And two, I hate that Whatsapp last seen feature. That's the real snitch there. On BBM I can ignore your chat by not opening the conversation thread. You don't get the &lt;b&gt;R&lt;/b&gt; notification. On Whatsapp, last seen tells you I've been ignoring you and chatting with other people.&lt;/p&gt;
+
+&lt;p&gt;I got BBM yesterday and I see myself using it more. Eventually, I may even uninstall my Whatsapp. Whatsapp is a great platform. The cross support across different OS is just awesome. Personally, I think it's the best messaging platform out there. If you have Whatsapp, you really may not need BBM. But that's not an assumption to generalize. Take it or not, this BBM4All thing is a serious shit.&lt;/p&gt;</description>
+				<pubDate>Sun, 27 Oct 2013 00:00:00 +0100</pubDate>
+				<link>/2013/10/27/why-bbm-when-there-is-whatsapp.html</link>
+				<guid isPermaLink="true">/2013/10/27/why-bbm-when-there-is-whatsapp.html</guid>
+			</item>
+		
+			<item>
+				<title>5 minutes nodeJs server setup</title>
+				<description>&lt;p&gt;This is a walk-through of a quick nodeJs server setup. The &quot;server&quot; OS is Ubuntu but it's pretty much the same steps on any other linux OS.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Install nodeJs&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;This should be as easy as &lt;em&gt;apt-get install nodejs&lt;/em&gt;. The default repo may have an old version of node though. To install the version 0.10.x, you need to add the &lt;a href=&quot;http://www.ubuntuupdates.org/ppa/chris_lea_nodejs&quot;&gt;chris-lea repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get install software-properties-common python-software-properties python g++ make
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; add-apt-repository ppa:chris-lea/node.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;...then update and install nodejs&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get update
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get install nodejs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Alternatively, just download the &lt;a href=&quot;http://nodejs.org/download&quot;&gt;nodeJs source&lt;/a&gt; (via wget) and build it yourself.&lt;/p&gt;
+&lt;/li&gt; 
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Install NPM&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;NPM is the node package manager that helps you install node modules.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get install npm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt; 
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Create source directory&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Next we create the home directory for our source files. Let's assume &lt;em&gt;/var/www&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; mkdir /var/www/
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt; 
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Install needed modules&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;In the source directory, we install the needed node modules for our nodeJs application. Assuming, our app uses &lt;a href=&quot;http://expressjs.com/&quot;&gt;express&lt;/a&gt; and &lt;a href=&quot;http://socket.io/&quot;&gt;socket.io&lt;/a&gt; for example, we will have.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; npm install express
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; npm install socket.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Install forever&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/nodejitsu/forever&quot;&gt;Forever&lt;/a&gt; keeps your node script running continuosly. This means, once you exit the terminal, your application will not terminate as expected of a command like &lt;em&gt;node app.js&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; npm install forever -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Note the -g (global mode) switch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Upload and start your application&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Upload your node application to the source directory you created (/var/www). I am assuming you have FTP setup already. If not, you can just use &lt;a href=&quot;http://http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol&quot;&gt;SFTP&lt;/a&gt; (add your server details to your fav FTP client and set the connection type/security to SFTP). Next, start your app via forever.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; forever start /var/www/app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Just by the way, if you need your application to listen on port 80, &lt;em&gt;server.listen(80);&lt;/em&gt; won't work. There are a couple of ways to do this. the famous one is using nginx as a proxy. Except you need nginx for something else though, that's not necessary. You can do a simple port forwarding like this&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description>
+				<pubDate>Fri, 18 Oct 2013 00:00:00 +0100</pubDate>
+				<link>/2013/10/18/5-minutes-nodejs-server-setup.html</link>
+				<guid isPermaLink="true">/2013/10/18/5-minutes-nodejs-server-setup.html</guid>
+			</item>
+		
+			<item>
+				<title>Books and Covers</title>
+				<description>&lt;blockquote&gt;&quot;...no matter what the proverb tells us, we judge books by their covers. Not only is it much faster than actually having to read the whole thing, but it's what covers are made for in the first place.&quot; - &lt;a href=&quot;http://twitter.com/sachagreif&quot;&gt;@sachagrief&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Lovely quote I pulled from the article &lt;a href=&quot;https://medium.com/p/862d9dbc8d07&quot;&gt;Why Dribbble Isn't That Horibbble&lt;/a&gt;. It's a very deep one and applies to every aspect of life. Don't just put up a poor appearance and expect people to take time to dig beyond the look. Writing a book? Designing an app? Launching a product? Try put some time into the look and appeal.&lt;/p&gt;
+
+&lt;p&gt;Seriously, I need to start taking some design lessons myself.&lt;/p&gt;</description>
+				<pubDate>Fri, 11 Oct 2013 00:00:00 +0100</pubDate>
+				<link>/2013/10/11/books-and-covers.html</link>
+				<guid isPermaLink="true">/2013/10/11/books-and-covers.html</guid>
+			</item>
+		
+			<item>
+				<title>My web dev platforms and tools</title>
+				<description>&lt;p&gt;Here are my web dev platforms and tools&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Hosting&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;p&gt;VPS&lt;br /&gt;
+		&lt;a href=&quot;http://rackspace.com&quot;&gt;Rackspace&lt;/a&gt; mainly. I tried &lt;a href=&quot;http://digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; recently and I really love the simplicity of the admin console and cheap price. Ok, the cheap price really. I'm probably using them for my next stuff.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;Shared&lt;br /&gt;
+		I don't do much of shared hosting stuff these days. When I do, it's &lt;a href=&quot;http://gigalayer.com/&quot;&gt;gigalayer&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Domain name&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;I started domain name management with &lt;a href=&quot;http://007names.com&quot;&gt;007names&lt;/a&gt; a long time ago. I even still have a couple of domain names there. But I have since moved to &lt;a href=&quot;http://namecheap.com&quot;&gt;namecheap&lt;/a&gt;. Why not &lt;a href=&quot;http://name.com&quot;&gt;name.com&lt;/a&gt;? Well, they don't accept any of my cards.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Managing emails and mailbox&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;It used to be Google apps. Now I use &lt;a href=&quot;http://mailgun.com&quot;&gt;mailgun&lt;/a&gt; (comes with 50,000/month free emails for Rackspace users). &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Sending emails&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://aws.amazon.com/ses/‎&quot;&gt;Amazon SES&lt;/a&gt;. I have used MailChimp's &lt;a href=&quot;http://mandrillapp.com&quot;&gt;Mandrill&lt;/a&gt; of late and I prefer the interface and analytics. It will be my default now.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;CDN&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Since most of my stuffs are on Rackspace, I use &lt;a href=&quot;http://www.rackspace.com/cloud/files/&quot;&gt;Rackspace's cloud files&lt;/a&gt;. Now that I am planning to have my next thing on DigitalOcean, I may get to use Amazon &lt;a href=&quot;http://aws.amazon.com/cloudfront/‎&quot;&gt;cloudfront&lt;/a&gt; or &lt;a href=&quot;http://aws.amazon.com/s3/‎&quot;&gt;s3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Analytics&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Old &lt;a href=&quot;http://analytics.google.com&quot;&gt;google analytics&lt;/a&gt;. I use &lt;a href=&quot;http://segment.io/&quot;&gt;segment.io&lt;/a&gt; for &lt;a href=&quot;http://twhii.com/&quot;&gt;Twhii&lt;/a&gt; and it's really cool too.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Versioning&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://github.com/kehers&quot;&gt;Github&lt;/a&gt; and &lt;a href=&quot;http://bitbucket.org&quot;&gt;Bitbucket&lt;/a&gt;. You should see that coming.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;OS&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Windows (7) and Ubuntu (12.04). Dual boot.&lt;/p&gt;
+&lt;p&gt;On my servers, CentOs or Ubuntu.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Editor&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://notepad-plus-plus.org/‎&quot;&gt;Notepad++&lt;/a&gt; on Windows. &lt;a href=&quot;http://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; on Ubuntu.&lt;/p&gt;
+&lt;p&gt;I think that is basically it. At least, the ones I can remember.&lt;/p&gt;</description>
+				<pubDate>Fri, 04 Oct 2013 00:00:00 +0100</pubDate>
+				<link>/2013/10/04/my-web-dev-platforms-and-tools.html</link>
+				<guid isPermaLink="true">/2013/10/04/my-web-dev-platforms-and-tools.html</guid>
+			</item>
+		
+			<item>
+				<title>saved.io</title>
+				<description>&lt;p&gt;I found this new bookmark site &lt;a href=&quot;http://saved.io/&quot;&gt;saved.io&lt;/a&gt;. It's very simple and easy to use. You just prefix the url you want to bookmark with saved.io (e.g, &lt;a href=&quot;http://saved.io/kehers.github.io/posts.html&quot;&gt;saved.io/kehers.github.io/posts.html&lt;/a&gt;) and that's all. You can also create lists by adding the list name as a subdomain like this: &lt;a href=&quot;http://misc.saved.io/kehers.github.io/posts.html&quot;&gt;misc.saved.io/kehers.github.io/posts.html&lt;/a&gt;. That adds the url to the list: &lt;em&gt;misc&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;One big missing feature though is editing. Most importantly, I want to be able to move my bookmarks between lists. I have sent in a tweet to the &lt;a href=&quot;http://twitter.com/savedio&quot;&gt;app account&lt;/a&gt; and hope that feature gets added.&lt;/p&gt;</description>
+				<pubDate>Thu, 03 Oct 2013 00:00:00 +0100</pubDate>
+				<link>/2013/10/03/saved.io.html</link>
+				<guid isPermaLink="true">/2013/10/03/saved.io.html</guid>
+			</item>
+		
+			<item>
+				<title>Email validation with Mailgun's API [PHP]</title>
+				<description>&lt;p&gt;I wrote this quick email validation class using &lt;a href=&quot;http://documentation.mailgun.com/api-email-validation.html&quot;&gt;Mailgun's API&lt;/a&gt; like a month ago. You can get it on github here: &lt;a href=&quot;https://github.com/kehers/MG_Email&quot;&gt;github.com/kehers/MG_Email&lt;/a&gt;. You will need a public API key from Mailgun though. Simply &lt;a href=&quot;http://maigun.com/signup&quot;&gt;signup&lt;/a&gt; to get one.&lt;/p&gt;
+&lt;p&gt;What makes it interesting are the checks:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Syntax checks (RFC defined grammar)&lt;/li&gt;
+    &lt;li&gt;DNS validation&lt;/li&gt;
+    &lt;li&gt;Spell checks (gives you a &lt;em&gt;did you mean&lt;/em&gt; suggestion)&lt;/li&gt;
+    &lt;li&gt;Email Service Provider (ESP) specific local-part grammar (if available).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Usage is simple:&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include_once&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;MG_Email.php&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$mailgun_public_api_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;your_mailgun_public_key&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MG_Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mailgun_public_api_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;someemail@yhoo.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;is_valid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; is valid&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; is invalid.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;spell_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; Do you mean &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;spell_check&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;?&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description>
+				<pubDate>Mon, 30 Sep 2013 00:00:00 +0100</pubDate>
+				<link>/2013/09/30/email-validation-with-mailgun-api-php.html</link>
+				<guid isPermaLink="true">/2013/09/30/email-validation-with-mailgun-api-php.html</guid>
+			</item>
+		
+			<item>
+				<title>Get a header field [PHP]</title>
+				<description>&lt;p&gt;I'm surprised PHP has &lt;a href=&quot;http://php.net/manual/en/function.getallheaders.php&quot;&gt;getallheaders()&lt;/a&gt; and &lt;a href=&quot;http://www.php.net/manual/en/function.headers-list.php&quot;&gt;headers_list&lt;/a&gt; to retrieve ALL headers but no function for retrieving a single header.&lt;/p&gt;
+&lt;p&gt;Here is a quick one using &lt;i&gt;headers_list()&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// echo get_header(&amp;#39;X-HTTP-Method-Override&amp;#39;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;headers_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;preg_split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/:\s*/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description>
+				<pubDate>Mon, 23 Sep 2013 00:00:00 +0100</pubDate>
+				<link>/2013/09/23/get-a-header-field-php.html</link>
+				<guid isPermaLink="true">/2013/09/23/get-a-header-field-php.html</guid>
+			</item>
+		
+			<item>
+				<title>Charity idea</title>
+				<description>&lt;p&gt;Every now and then, stuffs I use get obsolete. These are majorly clothing items - shirts, tees, kicks, etc. It is not always that they get spoilt or damaged. Most times it is that I grow out of them or I need a change. Or a size issue. Or after a few use, I stopped liking it. Even when it is from damage, it is rarely ever one that will render it completely useless.&lt;/p&gt;
+
+&lt;p&gt;To many of us, disposing these stuffs means throwing them away. There are no people around us we can easily give. We want to be able to give this out to people in need of it. It is however just easier to burn/shred/trash them than spend the next long hours looking for a welfare home and getting it to it.&lt;/p&gt;
+
+&lt;p&gt;What if there is an easier channel to do this? Let's say a charity that collates these items and distributes them to welfare homes. The tricky part is the collection must be done in a way that all possible friction is reduced. One idea is to have collection points in strategic locations where people can just bring [good] clothing stuffs they don't use again. The con of this is that there is still a level of friction - many will still find it hard going to collection points especially if far from their comfort zones.&lt;/p&gt;
+
+&lt;p&gt;Another idea is to schedule pickups around different zones. This will require more resources though but has the least friction. Another silly one is to have people request return-paid boxes they can put these stuffs and send back. There are even more problems with this though. Ignoring our poor postal service, running cost is a very big one here.&lt;/p&gt;
+
+&lt;p&gt;From whatever angle it is approached, it is an idea that will require resources to pull. But I think it will be a good one to see work.&lt;/p&gt;</description>
+				<pubDate>Mon, 23 Sep 2013 00:00:00 +0100</pubDate>
+				<link>/2013/09/23/charity-idea.html</link>
+				<guid isPermaLink="true">/2013/09/23/charity-idea.html</guid>
+			</item>
+		
+			<item>
+				<title>Date bookmark. Ignore</title>
+				<description>&lt;p&gt;This is a bookmark for today Friday, September 20, 2013. I want to be able to look back in the nearest future and remember today for an interesting opportunity I got. I am yet to make up my mind. I may not get the chance again. I don't even know how this will turn out yet. Hopefully, I want to look back and smile, knowing I didn't make the wrong decision.&lt;/p&gt;</description>
+				<pubDate>Fri, 20 Sep 2013 00:00:00 +0100</pubDate>
+				<link>/2013/09/20/date-bookmark-ignore.html</link>
+				<guid isPermaLink="true">/2013/09/20/date-bookmark-ignore.html</guid>
+			</item>
+		
+	</channel>
+</rss>

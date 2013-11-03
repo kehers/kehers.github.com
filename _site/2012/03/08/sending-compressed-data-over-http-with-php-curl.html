@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Sending compressed data over http with PHP curl | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Sending compressed data over http with PHP curl</h1>
+        <time>08 Mar 2012</time>
+    </header>
+    <article>
+        <p>There are times applications need to sync across multiple servers by data transfer via http. This data could at times be bulky, taking up to tenths of megs. Instead of sending that large volume, a better way would be to compress first, send, and decompress at the other end. This will not only reduce the consumption of bandwidth but as well make the transfer faster.</p>
+<p>Here is a the way to do it in PHP using the <a href="http://php.net/manual/en/book.curl.php">CURL</a> library:</p>
+<ol>
+<li>Compress the data
+<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
+<span class="lineno">2</span> <span class="nv">$compressed_data</span> <span class="o">=</span> <span class="nb">gzdeflate</span><span class="p">(</span><span class="nv">$raw_data</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li>Send
+<p><div class="highlight"><pre><code class="php"><span class="lineno"> 1</span> <span class="cp">&lt;?php</span>
+<span class="lineno"> 2</span> <span class="nv">$url</span> <span class="o">=</span> <span class="s2">&quot;http://some_site_or_ip.com/reciever.php&quot;</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="c1">//open connection</span>
+<span class="lineno"> 4</span> <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="lineno"> 5</span> <span class="c1">//set the url and POST data</span>
+<span class="lineno"> 6</span> <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$url</span><span class="p">);</span>
+<span class="lineno"> 7</span> <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="lineno"> 8</span> <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="nv">$compressed_data</span><span class="p">);</span>
+<span class="lineno"> 9</span> <span class="c1">//execute post</span>
+<span class="lineno">10</span> <span class="nv">$result</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<span class="lineno">11</span> <span class="c1">//echo curl_error($ch);</span>
+<span class="lineno">12</span> <span class="c1">//close connection</span>
+<span class="lineno">13</span> <span class="nb">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li>Decompress (at the other end i.e reciever.php)
+<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
+<span class="lineno">2</span> <span class="nv">$input</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">&#39;php://input&#39;</span><span class="p">);</span>
+<span class="lineno">3</span> <span class="nv">$output</span> <span class="o">=</span> <span class="nb">gzinflate</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="c1">// You have ur data back as $output</span>
+</code></pre></div></p>
+</li>
+</ol>
+
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

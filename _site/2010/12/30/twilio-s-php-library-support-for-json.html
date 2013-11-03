@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Twilio's PHP library support for JSON | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Twilio's PHP library support for JSON</h1>
+        <time>30 Dec 2010</time>
+    </header>
+    <article>
+        <p>I have been hacking <a href="http://twilio.com/">Twilio</a> for some days now and it's been fun.</p>
+<p>The  Twilio API supports XML and JSON as response formats, XML being the  default. Twilio has also been generous to include sample libraries in  various languages to play around the API. Thing however is that the PHP  library has support for only XML as the response type. Being a fan of  JSON (the reduction in data transfer as compared to XML among other  things), I added a little hack to the response class in the library.</p>
+<p>So here is my new constructor of the <strong>TwilioRestResponse</strong> class:</p>
+<p><div class="highlight"><pre><code class="php"><span class="lineno"> 1</span> <span class="cp">&lt;?php</span>
+<span class="lineno"> 2</span> <span class="c1">// ...</span>
+<span class="lineno"> 3</span>          <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$url</span><span class="p">,</span> <span class="nv">$text</span><span class="p">,</span> <span class="nv">$status</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>              <span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/([^?]+)\??(.*)/&#39;</span><span class="p">,</span> <span class="nv">$url</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">);</span>
+<span class="lineno"> 5</span>              <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Url</span> <span class="o">=</span> <span class="nv">$matches</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="lineno"> 6</span>              <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">QueryString</span> <span class="o">=</span> <span class="nv">$matches</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="lineno"> 7</span>              <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ResponseText</span> <span class="o">=</span> <span class="nv">$text</span><span class="p">;</span>
+<span class="lineno"> 8</span>              <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">HttpStatus</span> <span class="o">=</span> <span class="nv">$status</span><span class="p">;</span>
+<span class="lineno"> 9</span>              <span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">HttpStatus</span> <span class="o">!=</span> <span class="mi">204</span><span class="p">)</span> <span class="c1">// HTTP 204 =&gt; No content</span>
+<span class="lineno">10</span>                  <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ResponseJson</span> <span class="o">=</span> <span class="o">@</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
+<span class="lineno">11</span>              
+<span class="lineno">12</span>              <span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">IsError</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$status</span> <span class="o">&gt;=</span> <span class="mi">400</span><span class="p">))</span>
+<span class="lineno">13</span>                  <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ErrorMessage</span> <span class="o">=</span>
+<span class="lineno">14</span>                      <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ResponseJson</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">;</span>
+<span class="lineno">15</span>  
+<span class="lineno">16</span>              <span class="cm">/*if($this-&gt;HttpStatus != 204)</span>
+<span class="lineno">17</span> <span class="cm">                 $this-&gt;ResponseXml = @simplexml_load_string($text);</span>
+<span class="lineno">18</span> <span class="cm">             </span>
+<span class="lineno">19</span> <span class="cm">             if($this-&gt;IsError = ($status &gt;= 400))</span>
+<span class="lineno">20</span> <span class="cm">                 $this-&gt;ErrorMessage =</span>
+<span class="lineno">21</span> <span class="cm">                     (string)$this-&gt;ResponseXml-&gt;RestException-&gt;Message;</span>
+<span class="lineno">22</span> <span class="cm">             //*/</span>
+<span class="lineno">23</span>          <span class="p">}</span>
+</code></pre></div></p>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>jquery.listSort.js | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>jquery.listSort.js</h1>
+        <time>06 May 2013</time>
+    </header>
+    <article>
+        <style>
+.sort b{
+cursor:move
+}
+.hit{
+background-color:#f2f4fa
+}
+</style>
+<p>We have been revamping <a href="http://prowork.me">Prowork</a>. While doing some <i>housekeep</i> over the weekend, I noticed I wrote the [task] drag and sort feature on the current version from scratch. So as part of the housekeep, I converted it to a jQuery plugin - <a href="https://github.com/kehers/jquery.listSort.js">jquery.listSort.js</a></p>
+<p><b>Why another drag and sort (drop, whatever) plugin?</b></p>
+<p>Back then, I searched for existing plugins (not based on jQuery UI) for the purpose. I found some really good ones but most didn't work for the task list mainly becase the list element contains other collapsible elements (notes, members, dates, etc). Many also break when the list is sorted (by status or created/due dates as we have) or filtered (my task, a team member's task or all tasks). And there is always position issues as most plugins miss the fact that the dragged element may be contained in a parent with a relative position. So using an offset relative to the document (instead of the relative parent) as the absolute position for the clone will always fail. Another one - what happens when you are dragging an element to a position far below the window? Does the window scroll automatically or you are just left hanging there at the bottom of the current view?</p>
+<p>Long story short, I had to write one.</p>
+<p>The plugin has the following options (all optional):</p>
+<ul class="sort">
+	<li>
+		<p><b>dragElement</b><br />
+		You may want to have an element within the list as your drag anchor. Don't forget to set the CSS property for the element though <i>(cursor: move)</i>. The plugin doesn't do that for you. If this is not set, it means you can drag the whole element.</p>
+	</li>
+	<li>
+		<p><b>cloneClass</b><br />
+		CSS class to add to the cloned copy of the element.</p>
+	</li>
+	<li>
+		<p><b>dropClass</b><br />
+		CSS class to add to the element at the location the currently dragged element can be dropped.</p>
+	</li>
+	<li>
+		<p><b>customClone</b><br />
+		By default, the plugin clones the whole element. Sometimes, we want to clone just a part of the element. The plugin sends the element being dragged as an argument to this function. Simply return your custom clone object. At Prowork for example, the only thing I need is the task title.</p>
+<p><div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.task&#39;</span><span class="p">).</span><span class="nx">listSort</span><span class="p">({</span>
+  <span class="s1">&#39;customClone&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">$obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;p.task-title&#39;</span><span class="p">,</span> <span class="nx">$obj</span><span class="p">).</span><span class="nx">html</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></p>
+	</li>
+	<li>
+		<p><b>onStartDrag</b><br />
+		If you need to do some things before the drag starts, here is your cue.
+		</p>
+<p><div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.task&#39;</span><span class="p">).</span><span class="nx">listSort</span><span class="p">({</span>
+  <span class="s1">&#39;onStartDrag&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Collapse all &#39;opened&#39; tasks</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.dropdown&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.taskdrop&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">).</span><span class="nx">hide</span><span class="p">(</span><span class="s1">&#39;fast&#39;</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;dropdown&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></p>
+	</li>
+	<li>
+		<p><b>onEndDrag</b><br />
+		Ok, we are done, what's next? Save the new order to db maybe?
+		</p>
+<p><div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.task&#39;</span><span class="p">).</span><span class="nx">listSort</span><span class="p">({</span>
+  <span class="s1">&#39;onEndDrag&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">order</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">order</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="sr">/task\-(.+)$/</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+	<span class="p">}).</span><span class="nx">get</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;path/to/ajax/server/sort-list&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&quot;ids[]&quot;</span><span class="o">:</span> <span class="nx">data</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></p>
+	</li>
+</ul>
+<p><b>Demo?</b></p>
+<p>Try re-sort the [plugin] options I mentioned above by dragging the title. Here is the setup:</p>
+<p><div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul.sort li&#39;</span><span class="p">).</span><span class="nx">listSort</span><span class="p">({</span>
+    <span class="s1">&#39;dragElement&#39;</span><span class="o">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dropClass&#39;</span><span class="o">:</span><span class="s1">&#39;hit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;onEndDrag&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">order</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">order</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)).</span><span class="nx">text</span><span class="p">();</span>
+	  <span class="p">}).</span><span class="nx">get</span><span class="p">();</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></p>
+<p>On a final note, I removed and added a couple of things when converting to a jQuery plugin. If somethings don't work, or you have issues somewhere, submit an <a href="https://github.com/kehers/jquery.listSort.js/issues">issue</a> or <a href="http://twitter.com/kehers">let me know</a>. Plus be free to fork, iterate and pull.</p>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://prowork.me/js/jquery.list-sort.js"></script>
+<script>
+	$(function() {
+		$('ul.sort li').listSort({
+			'dragElement':'b',
+			'dropClass':'hit',
+			'onEndDrag': function (order) {
+				var data = $(order).map(function() { return $('b', $(this)).text(); }).get();
+				console.log(data);
+			}
+		});
+	});
+</script>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

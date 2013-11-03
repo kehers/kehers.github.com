@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Email validation with Mailgun's API [PHP] | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Email validation with Mailgun's API [PHP]</h1>
+        <time>30 Sep 2013</time>
+    </header>
+    <article>
+        <p>I wrote this quick email validation class using <a href="http://documentation.mailgun.com/api-email-validation.html">Mailgun's API</a> like a month ago. You can get it on github here: <a href="https://github.com/kehers/MG_Email">github.com/kehers/MG_Email</a>. You will need a public API key from Mailgun though. Simply <a href="http://maigun.com/signup">signup</a> to get one.</p>
+<p>What makes it interesting are the checks:</p>
+<ul>
+    <li>Syntax checks (RFC defined grammar)</li>
+    <li>DNS validation</li>
+    <li>Spell checks (gives you a <em>did you mean</em> suggestion)</li>
+    <li>Email Service Provider (ESP) specific local-part grammar (if available).</li>
+</ul>
+<p>Usage is simple:</p>
+<p><div class="highlight"><pre><code class="php"><span class="lineno"> 1</span> <span class="cp">&lt;?php</span>
+<span class="lineno"> 2</span> <span class="k">include_once</span> <span class="s1">&#39;MG_Email.php&#39;</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="nv">$mailgun_public_api_key</span> <span class="o">=</span> <span class="s1">&#39;your_mailgun_public_key&#39;</span><span class="p">;</span>
+<span class="lineno"> 4</span> <span class="nv">$mg_email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MG_Email</span><span class="p">(</span><span class="nv">$mailgun_public_api_key</span><span class="p">);</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span> <span class="nv">$email</span> <span class="o">=</span> <span class="s1">&#39;someemail@yhoo.com&#39;</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">is_valid</span><span class="p">(</span><span class="nv">$email</span><span class="p">))</span> <span class="p">{</span>
+<span class="lineno"> 8</span>     <span class="k">echo</span> <span class="nv">$email</span><span class="o">.</span><span class="s1">&#39; is valid&#39;</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="p">}</span>
+<span class="lineno">10</span> <span class="k">else</span> <span class="p">{</span>
+<span class="lineno">11</span>     <span class="k">echo</span> <span class="nv">$email</span><span class="o">.</span><span class="s1">&#39; is invalid.&#39;</span><span class="p">;</span>
+<span class="lineno">12</span>     <span class="k">if</span> <span class="p">(</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">spell_check</span><span class="p">)</span>
+<span class="lineno">13</span>         <span class="k">echo</span> <span class="s1">&#39; Do you mean &#39;</span><span class="o">.</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">spell_check</span><span class="o">.</span><span class="s1">&#39;?&#39;</span><span class="p">;</span>
+<span class="lineno">14</span> <span class="p">}</span>
+<span class="lineno">15</span> <span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div></p>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

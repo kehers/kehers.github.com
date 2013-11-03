@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Split a string into array by a character delimiter [Java] | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Split a string into array by a character delimiter [Java]</h1>
+        <time>10 Mar 2012</time>
+    </header>
+    <article>
+        <p>JavaME actually as there could be a string method to do this in Java (which I doubt though). Anyways, the objective is to split a string into array by a character delimiter, like the <a href="http://php.net/manual/en/function.explode.php">explode function in php</a>.</p>
+<p>Here:</p>
+<p><div class="highlight"><pre><code class="java"><span class="lineno"> 1</span> <span class="kd">private</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">charSplit</span><span class="o">(</span><span class="kt">char</span> <span class="n">delimiter</span><span class="o">,</span> <span class="n">String</span> <span class="n">subject</span><span class="o">)</span>
+<span class="lineno"> 2</span> <span class="o">{</span>
+<span class="lineno"> 3</span>     <span class="n">Vector</span> <span class="n">chunkStore</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">();</span>
+<span class="lineno"> 4</span>     <span class="n">String</span> <span class="n">chunk</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+<span class="lineno"> 5</span>     <span class="kt">char</span> <span class="o">[]</span> <span class="n">subjectChars</span> <span class="o">=</span> <span class="n">subject</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">subjectChars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+<span class="lineno"> 8</span>     <span class="o">{</span>
+<span class="lineno"> 9</span>         <span class="k">if</span> <span class="o">(</span><span class="n">subjectChars</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">delimiter</span><span class="o">)</span>
+<span class="lineno">10</span>         <span class="o">{</span>
+<span class="lineno">11</span>             <span class="n">chunkStore</span><span class="o">.</span><span class="na">addElement</span><span class="o">(</span><span class="n">chunk</span><span class="o">);</span>
+<span class="lineno">12</span>             <span class="n">chunk</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+<span class="lineno">13</span>         <span class="o">}</span>
+<span class="lineno">14</span>         <span class="k">else</span>
+<span class="lineno">15</span>             <span class="n">chunk</span> <span class="o">+=</span> <span class="n">subjectChars</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="lineno">16</span>     <span class="o">}</span>
+<span class="lineno">17</span>     <span class="n">chunkStore</span><span class="o">.</span><span class="na">addElement</span><span class="o">(</span><span class="n">chunk</span><span class="o">);</span>
+<span class="lineno">18</span>     
+<span class="lineno">19</span>     <span class="n">String</span> <span class="o">[]</span> <span class="n">pieces</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">chunkStore</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
+<span class="lineno">20</span>     <span class="n">chunkStore</span><span class="o">.</span><span class="na">copyInto</span><span class="o">(</span><span class="n">pieces</span><span class="o">);</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span>     <span class="k">return</span> <span class="n">pieces</span><span class="o">;</span>
+<span class="lineno">23</span> <span class="o">}</span>
+</code></pre></div></p>
+<p><strong>Example</strong></p>
+<p>Working on the <a href="http://prowork.me/">Prowork</a> mobile app, I have to convert a date field (from the due date for a new task) to mysql format for the (unofficial) api. Unfortunately the string representation of date from the datefield in J2ME is <em>dow mon dd hh:mm:ss zzz yyyy</em> and to convert this mysql's <em>yyyy-mm-dd hh:mm:ss</em> I need to split this string by space and join together the pieces in the wanted order.</p>
+<p><div class="highlight"><pre><code class="java"><span class="lineno"> 1</span> <span class="c1">// Return date in mysql format: yyyy-mm-dd hh:mm:ss</span>
+<span class="lineno"> 2</span> <span class="kd">private</span> <span class="n">String</span> <span class="nf">formatDate</span><span class="o">(</span><span class="n">Date</span> <span class="n">date</span><span class="o">)</span>
+<span class="lineno"> 3</span> <span class="o">{</span>
+<span class="lineno"> 4</span>     <span class="c1">// Convert the date to string:</span>
+<span class="lineno"> 5</span>     <span class="c1">// i.e dow mon dd hh:mm:ss zzz yyyy</span>
+<span class="lineno"> 6</span>     <span class="n">String</span> <span class="n">dateString</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="lineno"> 7</span>     <span class="c1">// Split by space</span>
+<span class="lineno"> 8</span>     <span class="n">String</span> <span class="o">[]</span> <span class="n">dateObjects</span> <span class="o">=</span> <span class="n">charSplit</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">dateString</span><span class="o">);</span>
+<span class="lineno"> 9</span>     <span class="c1">// so we have [0] = dow, [1] = mon, [2] = dd, [3] hh:mm:ss, etc</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="c1">// Get month index from month (dateObjects[1])</span>
+<span class="lineno">12</span>     <span class="c1">// --&gt; We need to convert the returned mnt from say Dec to 12</span>
+<span class="lineno">13</span>     <span class="c1">// There are/should be better ways to do this</span>
+<span class="lineno">14</span>     <span class="n">String</span> <span class="o">[]</span> <span class="n">months</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;Jan&quot;</span><span class="o">,</span><span class="s">&quot;Feb&quot;</span><span class="o">,</span><span class="s">&quot;Mar&quot;</span><span class="o">,</span><span class="s">&quot;Apr&quot;</span><span class="o">,</span><span class="s">&quot;May&quot;</span><span class="o">,</span><span class="s">&quot;Jun&quot;</span><span class="o">,</span><span class="s">&quot;Jul&quot;</span><span class="o">,</span><span class="s">&quot;Aug&quot;</span><span class="o">,</span><span class="s">&quot;Sep&quot;</span><span class="o">,</span><span class="s">&quot;Oct&quot;</span><span class="o">,</span><span class="s">&quot;Nov&quot;</span><span class="o">,</span><span class="s">&quot;Dec&quot;</span><span class="o">};</span>
+<span class="lineno">15</span>     <span class="kt">int</span> <span class="n">monthIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="lineno">16</span>     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">months</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+<span class="lineno">17</span>     <span class="o">{</span>
+<span class="lineno">18</span>         <span class="k">if</span> <span class="o">(</span><span class="n">dateObjects</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">months</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span>
+<span class="lineno">19</span>         <span class="o">{</span>
+<span class="lineno">20</span>             <span class="n">monthIndex</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
+<span class="lineno">21</span>             <span class="k">break</span><span class="o">;</span>
+<span class="lineno">22</span>         <span class="o">}</span>
+<span class="lineno">23</span>     <span class="o">}</span>
+<span class="lineno">24</span>     <span class="c1">// Put the preceeding 0 (for 01 to 09) if need be </span>
+<span class="lineno">25</span>     <span class="n">String</span> <span class="n">month</span> <span class="o">=</span> <span class="n">monthIndex</span> <span class="o">&gt;</span> <span class="mi">9</span> <span class="o">?</span> <span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">monthIndex</span> <span class="o">:</span> <span class="s">&quot;0&quot;</span><span class="o">+</span><span class="n">monthIndex</span><span class="o">;</span>
+<span class="lineno">26</span>     
+<span class="lineno">27</span>     <span class="n">String</span> <span class="n">formattedDate</span> <span class="o">=</span> <span class="n">dateObjects</span><span class="o">[</span><span class="mi">5</span><span class="o">]+</span><span class="s">&quot;-&quot;</span><span class="o">+</span><span class="n">month</span><span class="o">+</span><span class="s">&quot;-&quot;</span><span class="o">+</span><span class="n">dateObjects</span><span class="o">[</span><span class="mi">2</span><span class="o">]+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">dateObjects</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+<span class="lineno">28</span>     <span class="c1">//System.out.println(formattedDate);</span>
+<span class="lineno">29</span>     <span class="k">return</span> <span class="n">formattedDate</span><span class="o">;</span>
+<span class="lineno">30</span> <span class="o">}</span>
+</code></pre></div></p>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

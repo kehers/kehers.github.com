@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>The Twitter API changes BS | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>The Twitter API changes BS</h1>
+        <time>16 Aug 2012</time>
+    </header>
+    <article>
+        <p>In case you missed <a href="https://dev.twitter.com/blog/changes-coming-to-twitter-api">the gist</a>, Twitter has a new set of API rules for developers. The changes are divided into three, and I will brief through them.</p>
+<p><strong>1. Required Authentication</strong></p>
+<p>All Twitter API endpoints now require authentication. Before now, endpoints like search and public timeline are available without authentication. Now authentication will be needed for ALL endpoints. Seriously, this is not a big deal.</p>
+<p><strong>2. Rate limiting</strong></p>
+<p>Twitter allows a max of a total of 350 calls per hour per user to its API. The new idea is to have a max of 60 per hour <strong>per endpoint</strong> per user to the API and up to 720 per hour for APIs having to do with <em>"Tweet display, profile display, user lookup and user search"</em>. Again, not bad.</p>
+<p><strong>3. The BS - Rules of the road</strong></p>
+<p>There are three new set of developer rules. The first is the <a href="https://dev.twitter.com/terms/display-guidelines">display guideline</a> which literally enforces how tweets are displayed in a client. Basically, the client must display the avatar, user's name, username, timestamp and tweet entities at an exact specified position. The display guideline is damn too strict and in the end, all twitter clients will look the same.</p>
+<p>Secondly, pre-installed clients must have their application certified by twitter. Well, I can only hope the certification won't be more difficult than having a client for pre-install on a consumer electronic device in the first place. One thing that won't be fair though is Twitter rejecting apps based on competition on the platform and not <em>"to make sure that the developer is providing the best Twitter experience possible &mdash; before the application ships"</em>. If for example I get a deal to have <a href="http://twhii.com/">Twhii</a> pre-installed on some Nokia feature phones (lets say some S40 devices), Twitter may refuse certification because they already have their own <a href="http://store.ovi.com/content/256340">client for the platform</a>&nbsp;and mine may pose great competitor.</p>
+<p>Finally, if your application will require more than 100,000 user tokens (i.e basically deals with more than 100,000 users), you will need an exclusive permission from Twitter. Basically, what this means is there is a limit your client can grow. This should also explain why many apps, Instagram as an example, have been having <a href="http://gigaom.com/2012/07/26/twitter-blocks-instagram-from-find-friends-feature-through-api/">issues with the platform</a>.</p>
+<p><strong>My two kobo</strong></p>
+<p>Twitter is a great social media tool but increasingly making it hard for developers to build on the system. In fact, I think they want to cut out as many traditional clients as possible. What good does traditional clients offer anyway than to use up available resources and compete with their own clients on the platform?</p>
+<p><img src="/assets/image/2012/08/43763269-dev_chart.png" /></p>
+<p>I see Twitter focusing more on the left hand side (the business side) of the eccosystem quadrant and honestly, I see more choking rules especially for the top right (client apps) side in time to come. Who knows, they may even say no integration of ads in clients.</p>
+<p>How will developers react to this? What are the alternatives?</p>
+
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

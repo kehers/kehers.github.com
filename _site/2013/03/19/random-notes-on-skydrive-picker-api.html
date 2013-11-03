@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Random notes on SkyDrive Picker API | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Random notes on SkyDrive Picker API</h1>
+        <time>19 Mar 2013</time>
+    </header>
+    <article>
+        <p>I have spent the last couple of days integrating <a href="http://dropbox.com/">Dropbox</a>, <a href="http://drive.google.com/">Google Drive</a> and <a href="http://skydrive.com/">SkyDrive</a> to <a href="http://prowork.me/">Prowork</a>. Of the three, I must say Dropbox has the most "charming" file picking API. Simple, straight, works. I guess this has to do with the simplicity of the service because really GDrive and SkyDrive are more complex products. But that's just that about that. Unlike Dropbox where all you need is in a single page, you have to jump through pages to get the full picture of how to fix everything together for Sky Drive. Here are notes on how to get it with.</p>
+
+<p>Note that this is a simple file picker architecture. There are many stunts you can pull with the Sky Drive API. And in many languages too. What we are however trying to do is to let users add their files from the service. We simply link to the file. We don't download and store. The language of use is Javascript.</p>
+
+<p>That said...</p>
+
+<ol>
+<li><p><b>Include the js library</b><br />
+I am surprised the examples on the <a href="http://msdn.microsoft.com/en-us/library/live/jj219328.aspx">picker api page</a> did not mention including the js library. If you just go ahead and do copy and paste, it won't work. You have to include the js library to start with. See <a href="http://msdn.microsoft.com/en-us/library/live/hh550837.aspx">Using the JavaScript library (Live Connect)</a> for more.</p>
+<p><div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://js.live.net/v5.0/wl.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></p>
+</li>
+
+<li><p><b>WL.init()</b><br />
+You have to <a href="http://msdn.microsoft.com/en-us/library/live/hh550844.aspx">initialize the javascript library</a>. This is missing from the picker page documentation too.</p>
+<p><div class="highlight"><pre><code class="html"><span class="nt">&lt;script&gt;</span>
+	<span class="nx">WL</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span> 
+		<span class="nx">client_id</span><span class="o">:</span> <span class="nx">YOUR_CLIENT_ID</span><span class="p">,</span> 
+		<span class="nx">redirect_uri</span><span class="o">:</span> <span class="nx">YOUR_REDIRECT_URL</span>	
+	<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></p>
+</li>
+<li><p><b>Client ID, redirect url and localhost</b><br />
+Where is my CLIENT_ID and REDIRECT_URL? If you are familiar with APIs you will know what these are already. You won't however find a link to where you can get/set these parameters in the WL.init() doc page. You can do this from "<a href="https://manage.dev.live.com/?mkt=en-us">My Apps</a>". Where it however gets interesting is that you can't add localhost as your redirect url. <i>"...you must map your domain to the Internet Protocol (IP) address of your local web server"</i> <a href="http://msdn.microsoft.com/en-us/library/live/hh826547.aspx">[source]</a> by editing some file somewhere in the System32 folder. I didn't do that though. (I hate things like that). I pushed up a test file and tested live on the server.</p>
+</li>
+<li><p><b>Callback</b><br />
+And when I thought everything was set, something else happened. When I click the SkyDrive button, a popup opens, everything works, then I pick a file then the popup itself redirects to Prowork (I actually set the redirect url to <i>http://prowork.me</i>) instead of closing and calling the callback function in my code. Turns out I have to create a seperate callback file for my redirect url. It is nothing big. This is all it needs to contain.</p>
+<p><div class="highlight"><pre><code class="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://js.live.net/v5.0/wl.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></p>
+<p>I saved that as <i>callback.htm</i> and edited my redirect url</p>
+<p><div class="highlight"><pre><code class="javascript"><span class="nx">WL</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+	<span class="nx">client_id</span><span class="o">:</span> <span class="nx">MY_CLIENT_ID</span><span class="p">,</span> 
+	<span class="nx">redirect_uri</span><span class="o">:</span> <span class="s2">&quot;http://prowork.me/callback.htm&quot;</span>
+<span class="p">});</span>
+</code></pre></div></p>
+<p>And that's all.<p>
+</li>
+</ol>
+<p>I hope this saves someone some time. By the way, the three services are live on <a href="http://prowork.me/">Prowork</a> already. Take some time to check them out.</p>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

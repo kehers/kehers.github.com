@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Naming and Design - Revisiting Topup Genie | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Naming and Design - Revisiting Topup Genie</h1>
+        <time>30 Oct 2012</time>
+    </header>
+    <article>
+        <p>So <a href="http://topupgenie.com/">TopupGenie</a> got across to me on twitter to know what problems I was having with the site. Mentioning I couldn't register seem strange to them so I decided to give it another patient spin this morning. But I still couldn't find any other fields except the pin field in the signup page.</p>
+<p><img src="/assets/image/2012/10/45449053-topup_genie.png" /></p>
+<p>I mentioned it to <a href="http://twitter.com/namzo">Namzo</a> and he suggested I turn off ad-block (Yeah, I have ad-block *devil smiley*). That sounded strange. How could ad-block possibly affect the fields? So I checked the source code and yeah, there were other fields, hidden.</p>
+<p><img src="/assets/image/2012/10/45449047-source.png" /></p>
+<p>The reason doesn't seem far fetched. The elements have ids (<strong>adj</strong>) similar to the word "<strong>ad</strong>". Truly, when I turned off ad-block, viola, the fields were back.</p>
+<p><img src="/assets/image/2012/10/45449041-topup_genie_2.png" /></p>
+<p>While Topup Genie can't be blamed for the naming, I guess I can't be blamed for using ad-block as well :) Many others do and will. I think the lesson is we should be careful of how we name design elements and attributes.</p>
+<p>I have notified Topup Genie about this and sure they will fix it pretty soon.</p>
+
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

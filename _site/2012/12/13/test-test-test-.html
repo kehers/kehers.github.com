@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Test, Test, Test! | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Test, Test, Test!</h1>
+        <time>13 Dec 2012</time>
+    </header>
+    <article>
+        <p>I was working through a fork of <a href="http://prowork.me/">Prowork</a> with <a href="http://twitter.com/digitalcraft">Francis</a> today when we noticed a database query wasn't executing. The cause? A simple comma character concatenated at the wrong place. We quickly checked the main source that is live and found out the same bug. Awkwardly, the query is a very important one and this bug has been on for a few days without our knowledge.</p>
+<p><strong>But this used to work!</strong></p>
+<p>We sure test when we assume we've finished work on a product or at least ready to share it with others. We also assume we are as well testing when we use from time to time. But even that is not enough. While it is easy to assume because your app works perfectly when launched and no one is complaining about anything, don't. For one, with iteration comes the possibility of new bugs. And no, iteration is not the bad thing. It is necessary for improving your app and consequently your code base. But how well do we test after each round of iteration? And by the way, that you use the app regularly doesn't mean you will easily notice bugs. You possibly will, but not always. The craziest bugs hide in <a href="http://opeyemi.posterous.com/naming-and-design-revisiting-topup-genie">sign ups</a>. This, you will never know because you have long signed up and why should you again? PS: someone who can't sign up on your site will find it easier to rant on twitter or even write an annoying blog post than look all over your site for a feedback form to get back at you. (Okay, okay, confession, <a href="http://opeyemi.posterous.com/on-user-experience-ux-simplicity-usability-an">I do that too</a> :/). And that's even if you are lucky. Many will just hiss, and close the tab.</p>
+<p><strong>The test schedule</strong></p>
+<p>So we were thinking about it and came up with the plan.</p>
+<ol>
+<li>List out the working process of the app right from the very first step - signup, email confirmation (if you have one. We don't), login, the app use (for us that is creating projects, tasks, managing project members, etc. All these clearly listed out), down to settings update, logout, recover password, even payment, account cancelation and all.</li>
+<li>Work through this at a certain number of days interval. This could be daily, every 3 days or weekly - depending on how you can.</li>
+</ol>
+<p>This way, you get to be able to test the whole part of the application regularly, in a way totally different from how you might have been assuming to test from normal use. If the list from 1 is pretty long, you can decide to share the steps between members of the team or schedule a different member for every walk through. If you have the luxury, you can outsource this as well.</p>
+<p>Things can easily go crazy somewhere deep within codes. A simple dot at a wrong place can break your app. Regular testing ensures things work as they should.</p>
+
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

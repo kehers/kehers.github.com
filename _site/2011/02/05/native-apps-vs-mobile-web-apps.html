@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Native apps vs Mobile web apps | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Native apps vs Mobile web apps</h1>
+        <time>05 Feb 2011</time>
+    </header>
+    <article>
+        <p>Something stirred up a discussion on <a href="http://twitter.com/kehers">my twitter timeline</a> about the choice of native mobile apps or mobile web apps for developers. Both have their pros and cons and here is my two cent about it.<strong></strong></p>
+<p><strong>Native apps</strong></p>
+<ul>
+<li>Native apps have access to native phone features like SMS, contacts, location data and file system. Mobile web is limited in this area.</li>
+</ul>
+<ul>
+<li>They are faster because they don't depend on server 'refresh' for most UI/UX interactions. Then they are scalable. Data consumption is zero or low as compared to similar mobile web apps. Especially in apps internet connectivity is not needed, you have no worries about server issues. No load balancing, server maintenance, bandwidth bills, etc.</li>
+</ul>
+<ul>
+<li>And just as you already know, if the app doesn't transfer data via the internet, they are not constrained to its availability. Even when you are in remote areas without any internet availability via moble, your app still works.</li>
+</ul>
+<ul>
+<li>Data storage is local. Any data as related to the app can be stored there on the phone. This can be a plus or a minus actually. Plus in the sense that the user carries the data everywhere he goes. He can fiddle with it without internet connectivity. I shouldn't have to retrieve my stored location reminders for <strong><em>Cue</em></strong> from the internet. I can perform a lot of mail activities offline on the already downloaded mails in my gmail app. The disadvantage of the local storage however is that if anything happens to the phone, data could as well be lost. With mobile web apps, data is mostly stored on the server and the user can connect to it from any device.</li>
+</ul>
+<ul>
+<li>Native apps are constrained to a lot of web technologies, <a href="http://oauth.net">oAuth</a> as one. These constraints further differ from platforms to platforms. As an example, I noticed that the "<a href="http://tools.ietf.org/html/rfc2617">www-authenticate</a>" header from an api I'm working on is filtered on my nokia E5. Now I don't have access to the full auth digest. As another example, many devices only support GET and POST http headers leaving out others like PUT and DELETE.</li>
+</ul>
+<p><strong>Mobile web</strong></p>
+<ul>
+<li>Write once, run anywhere. Your application is available on any device via a url. The worst scenerio is you having three versions - wml for low end phones, xHTML (MP) for high end ones and a webkit version for even more advanced phones. Compatibility is more difficult with native apps. You have to write differnt versions for different platforms - Java, Symbian, Blackberry, Android, iOS, WinMo, etc. Well, it is possible to port between a couple of the platforms, but even that has its issues. Even at that, there are other things like screen size, implementation of the needed feature on the platform/device and things like that to worry about.</li>
+</ul>
+<ul>
+<li>Updates are easier. Because you are distributing via just one channel, that is the mobile web site, all you have to do is make necessary changes to the source and every connecting device picks it up from there. On native apps, you have to update the source of the different app versions for different platforms and redistribute. In many cases there is a high chance that the majority won't even get the update.</li>
+</ul>
+<p>In the end, the choice boils down to what you are building. Will you be needing native phone features like SMS, contacts, location data, etc? Are you building an IM or LBS app? The next foursquare, nimbuzz or Google map maybe? Then a native mobile app it is. Are you just trying to provide a mobile version of your web application? If your application is a simple one that doesn't require native phone features, then mobile web it is.</p>
+<p>In conclusion, you may want to check out <a href="http://37signals.com/svn/posts/2761-launch-basecamp-mobile">why 37 signals opted for a web app</a> and not a native app for the new Basecamp mobile.</p>
+
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>

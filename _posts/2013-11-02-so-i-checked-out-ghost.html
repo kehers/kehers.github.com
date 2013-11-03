@@ -1,0 +1,50 @@
+--- 
+published: true
+title: So I checked out Ghost
+layout: post
+---
+<p>In case you missed it, <a href="http://ghost.org">Ghost</a> is a new open source blogging platform. The hosted service is not yet available so you will have to download (<a href="https://github.com/TryGhost/Ghost">github.com/TryGhost/Ghost</a>) and set it up yourself. It is written in NodeJs. I downloaded it a while ago and decided to give it a spin this morning.</p>
+
+<p><b>Setup</b></p>
+<p>Download, unzip to your choice directory and follow the install instructions in the README.md file. My set up was on <a href="{% post_url 2013-10-04-my-web-dev-platforms-and-tools %}">Ubuntu</a>. (I don't do Node things on Windows. It can be problematic). So the steps are:</p>
+<ol>
+	<li><p>Open your terminal and change directory to the root of the Ghost application</p></li>
+	<li><p>Run <code>sudo npm install --production</code> to install the node dependencies. You have to be patient here. Ghost has a lot of dependencies. Also notice the <code>sudo</code>. It takes care of the privilege issues.</p></li>
+	<li><p>Create a config.js file from the config.example.js file and update the url and mail part (I'm using gmail) of the development section:</p>
+<p>{% highlight javascript linenos %}
+config = {
+    // ### Development **(default)**
+    development: {
+        url: 'http://localhost',
+         mail: {
+             transport: 'SMTP',
+             options: {
+                 auth: {
+                     user: 'your_gmail_addy@gmail.com',
+                     pass: 'password'
+                 }
+             }
+         },
+         // the other things remain
+     {% endhighlight %}</p>
+	</li>
+	<li><p>Once done, save and run <code>npm start</code> to start Ghost.</p></li>
+	<li><p>Visit http://localhost:2368/ in your web browser.</p></li>
+</ol>
+<p>You should be welcomed with a screen similar to this:</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/ghost_index.png" /></p>
+<p>To access the admin panel, visit <a href="http://localhost:2368/ghost">http://localhost:2368/ghost</a>. there you get to signup and access the admin console:</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/signup.png" /></p>
+<p>The admin console:</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/admin.png" /></p>
+<p>Edit post (Ghost uses Markdown by the way):</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/edit-post.png" /></p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/post-settings-2.png" /></p>
+<p>Settings page:</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/settings.png" /></p>
+<p>User profile/settings:</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/user-settings.png" /></p>
+<p>Published post page:</p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/post-page.png" /></p>
+<p>That basically is everything. Really, it's just blogging afterall. For now it only comes with a theme - Casper. I think more will come later. They should consider a simpler editor too. It's <a href="https://twitter.com/_onyeka/status/396934716890562560">not everyone that is comfortable with Markdown</a> commands. An editor with formatting buttons (even though they still generate the Markdown output) will be better.</p>
+<p>I can't deny I love Ghost's simplicity and minimalism. However, I don't see myself using Ghost as my primary blogging platform. I have all the flexibility I want with <a href="{% post_url 2013-02-20-moved %}">Jekyll/GP</a>. Where Ghost comes useful is if I want to setup a self hosted blog for a new project or service. But then again, why self hosted? Why not just use Tumblr?</p>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Code indention: it is this simple | Opeyemi's BS</title>
+  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
+    </nav>
+    <header>
+        <h1>Code indention: it is this simple</h1>
+        <time>29 Sep 2012</time>
+    </header>
+    <article>
+        <p>Codes should be sexy. They should be beautiful. One great ingredient of this is code indention. And you should do it. It makes your code neat and easy to go through. Most <a href="/2012/04/19/the-minimalistic-editor.html">good editors</a> automatically indent your code. But it is really not difficult doing it yourself. Code indention is just about identifying nested blocks within your code and spacing them from the left appropriately. This separates the block from the nesting parent.</p>
+<p>Let's look at a markup example.</p>
+<p>In HTML, it is obvious a code block is a container block tag. Just prefix containing elements with few spaces (I use tabs). If it contains another container tag, indent again. Repeat this for all container tags.</p>
+<p><div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;footer&gt;</span>
+<span class="lineno">2</span>   <span class="nt">&lt;div&gt;</span>
+<span class="lineno">3</span>     <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;&quot;</span> <span class="nt">/&gt;</span>
+<span class="lineno">4</span>     <span class="nt">&lt;p&gt;</span>
+<span class="lineno">5</span>       <span class="ni">&amp;amp;</span>copy; Year
+<span class="lineno">6</span>     <span class="nt">&lt;/p&gt;</span>
+<span class="lineno">7</span>   <span class="nt">&lt;/div&gt;</span>
+<span class="lineno">8</span> <span class="nt">&lt;/footer&gt;</span>
+</code></pre></div></p>
+<p>If the content of the container tag is just a one-liner, no need indenting. An example is the P tag above.</p>
+<p><div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;footer&gt;</span>
+<span class="lineno">2</span>   <span class="nt">&lt;div&gt;</span>
+<span class="lineno">3</span>     <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;&quot;</span> <span class="nt">/&gt;</span>
+<span class="lineno">4</span>     <span class="nt">&lt;p&gt;</span><span class="ni">&amp;amp;</span>copy; Year<span class="nt">&lt;/p&gt;</span>
+<span class="lineno">5</span>   <span class="nt">&lt;/div&gt;</span>
+<span class="lineno">6</span> <span class="nt">&lt;/footer&gt;</span>
+</code></pre></div></p>
+<p>In core programming, it is simple as indenting contents of conditional statements, loops and method declarations. One easy way to spot the block is the curly brackets {}.</p>
+<p>Here is a javascript (node) example:</p>
+<p><div class="highlight"><pre><code class="javascript"><span class="lineno">1</span> <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="lineno">2</span>   <span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongodb</span><span class="p">.</span><span class="nx">Collection</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span> <span class="s1">&#39;keywords&#39;</span><span class="p">);</span>
+<span class="lineno">3</span>   <span class="nx">collection</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">_id</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">keyword</span><span class="p">},</span> <span class="p">{</span><span class="nx">safe</span><span class="o">:</span> <span class="kc">true</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">records</span><span class="p">){</span>
+<span class="lineno">4</span>     <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">keyword</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">keyword</span><span class="p">;</span>
+<span class="lineno">5</span>     <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">keyword</span><span class="p">));</span>
+<span class="lineno">6</span>   <span class="p">});</span>
+<span class="lineno">7</span> <span class="p">});</span>
+</code></pre></div></p>
+<p>...and PHP</p>
+<p><div class="highlight"><pre><code class="php"><span class="lineno"> 1</span> <span class="cp">&lt;?php</span>
+<span class="lineno"> 2</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$query</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">])</span> <span class="p">{</span>
+<span class="lineno"> 3</span>   <span class="nv">$aid</span> <span class="o">=</span> <span class="nv">$query</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">];</span>
+<span class="lineno"> 4</span>   <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$target_members</span><span class="p">))</span>
+<span class="lineno"> 5</span>     <span class="nv">$members</span> <span class="o">=</span> <span class="nv">$target_members</span><span class="p">;</span>
+<span class="lineno"> 6</span>   <span class="k">else</span>
+<span class="lineno"> 7</span>     <span class="nv">$members</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMembers</span><span class="p">();</span>
+<span class="lineno"> 8</span>     
+<span class="lineno"> 9</span>   <span class="nv">$q</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+<span class="lineno">10</span>   <span class="k">foreach</span> <span class="p">(</span><span class="nv">$members</span> <span class="k">as</span> <span class="nv">$v</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">11</span>     <span class="c1">// ...</span>
+<span class="lineno">12</span>   <span class="p">}</span>
+<span class="lineno">13</span> <span class="p">}</span>
+</code></pre></div></p>
+<p>Sometimes though, indenting doesn't only apply to code blocks. Since the primary idea is to make your code neat, you can use it for long-lined statements as well. An example of this is array declaration.</p>
+<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
+<span class="lineno">2</span> <span class="nv">$query</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="lineno">3</span>   <span class="s1">&#39;ts&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">MongoDate</span><span class="p">(),</span>
+<span class="lineno">4</span>   <span class="s1">&#39;member_id&#39;</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$member_id</span><span class="p">,</span>
+<span class="lineno">5</span>   <span class="s1">&#39;object&#39;</span> <span class="o">=&gt;</span> <span class="nv">$object</span>
+<span class="lineno">6</span> <span class="p">);</span>
+</code></pre></div></p>
+<p>...JSON as well</p>
+<p><div class="highlight"><pre><code class="json"><span class="lineno"> 1</span> <span class="p">{</span>
+<span class="lineno"> 2</span>   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;prowork-notifications&quot;</span><span class="p">,</span> 
+<span class="lineno"> 3</span>   <span class="nt">&quot;fullName&quot;</span><span class="p">:</span> <span class="s2">&quot;Prowork Notifications&quot;</span><span class="p">,</span> 
+<span class="lineno"> 4</span>   <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Prowork Notifications Addon for Firefox&quot;</span>
+<span class="lineno"> 5</span>   <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Opeyemi Obembe (http://twitter.com/kehers)&quot;</span><span class="p">,</span> 
+<span class="lineno"> 6</span>   <span class="nt">&quot;homepage&quot;</span><span class="p">:</span> <span class="s2">&quot;http://prowork.me/&quot;</span><span class="p">,</span> 
+<span class="lineno"> 7</span>   <span class="nt">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;data/icon.png&quot;</span><span class="p">,</span>
+<span class="lineno"> 8</span>   <span class="nt">&quot;icon64&quot;</span><span class="p">:</span> <span class="s2">&quot;data/icon64.png&quot;</span><span class="p">,</span>
+<span class="lineno"> 9</span>   <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;MPL 2.0&quot;</span><span class="p">,</span> 
+<span class="lineno">10</span>   <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> 
+<span class="lineno">11</span>   <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.2&quot;</span><span class="p">,</span>
+<span class="lineno">12</span> <span class="p">}</span>
+</code></pre></div></p>
+<p>Remember, good code is not just about writing codes that work. Making your code easy to understand and work on is important too.</p>
+        <p></p>
+        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
+    </article>
+
+    <footer>
+      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
+    </footer>
+  </div>
+</body>
+</html>
