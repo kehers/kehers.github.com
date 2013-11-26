@@ -1,0 +1,17 @@
+--- 
+published: true
+title: Gumroad for subscriptions
+layout: post
+---
+<p><a href="http://gumroad.com/">Gumroad</a> is a lovely product - simple, easy way to sell digital products. Beyond <a href="https://gumroad.com/lordbanks">uploading digital products and selling on Gumroad</a> however, another interesting mostly overlooked feature is using it to collect payments outside uploaded digital contents. What this means is that you can use it for your app subscription, one-time fee to sign up for a web app and similar cases. By combining Gumroad's <a href="https://gumroad.com/overlay">overlay</a> and <a href="https://gumroad.com/ping">ping</a> features, something close to a perfect payment solution for your web app can be achieved.</p>
+<p><b>The overlay</b></p>
+<p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/gumroad.png" /></p>
+<p>By adding <a href="https://gumroad.com/overlay">few lines of Javascript</a> to your code, a click on a button or link within your web app can bring up the Gumroad modal window for your product. The whole payment process can then be done within the window.</p>
+<p><b>The Ping</b></p>
+<p>From your Gumroad <a href="https://gumroad.com/settings/developer">developer settings</a>, you can set a ping endpoint (a url) where Gumroad sends details of every purchase. (You can see details of the parameters that are sent at <a href="https://gumroad.com/ping">gumroad.com/ping</a>). You can then match the payment email with that in your database and upgrade the user as necessary. As Gumroad allows you request additional data in the payment form, another way is to request the payer's username within the payment form. Once the ping is sent, you can then match that against your db.</p>
+<p><b>Cons</b></p>
+<ul>
+<li>This doesn't count as a con, but so you know, you should be SSL enabled to use Gumroad overlay</li>
+<li>Gumroad pays out via paypal. So you should have a paypal account or a friend who does and can easily transfer the money to you.</li>
+<li>You must keep your ping endpoint confidential and unguessable to prevent fake pings from different source. I'd expect Gumroad to give devs a unique token that is then sent along ping parameters. Devs can use that to verify the authenticity of pings at their ends.</li>
+</ul>
