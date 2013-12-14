@@ -2,7 +2,7 @@ body{
   line-height: 1.5em;
   font-family: arial;
   color: #444;
-  padding-top: 20px
+  padding-top: 20px;
 }
 a{
   color: #407FBF;
@@ -40,7 +40,7 @@ header h1{
   line-height: 1.2em;
 }
 .home{
-  margin-top: 70px
+  margin-top: 30px
 }
 time{
   padding-left: 20px;

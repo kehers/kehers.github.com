@@ -1,23 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>Opeyemi Obembe</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="assets/css/style.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+	<title>Opeyemi Obembe</title>
+	<link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <div class="wrapper home">
-    <header>
-        <h1>Opeyemi Obembe</h1>
-    </header>
-    <article class="center">
-      <p>Web/Mobile Developer<br />(personal: <a href="http://prowork.me/">prowork.me</a>, <a href="http://stallls.com/">stallls.com</a>, <a href="http://twhii.com/">twhii.com</a>)</p>
-      <p><a href="http://twitter.com/kehers">twitter</a> &middot; <a href="http://github.com/kehers">github</a> &middot; <a href="posts.html">blog posts</a><br />
-        <span class="fade">Other places, username: kehers</span>
-      </p>
-    </article>
-  </div>
+	<div class="wrapper home">
+		<h2>Opeyemi Obembe.</h2>
+		<h2>Web and Mobile applications developer.</h2>
+		<h4 style="margin-top:40px">Startups</h4>
+		<ul>
+			<li><a href="http://prowork.me/">Prowork</a> - Project management app for team collaboration</li>
+			<li><a href="http://fonenode.com/">Fonenode</a> - Telephony API for Nigeria</li>
+		</ul>
+		<h4>Projects</h4>
+		<ul>
+			<li><a href="http://stallls.com/">Stallls</a> - a service that allows sellers create their own local (Nigerian) ecommerce store.</li>
+			<li><a href="http://twhii.com/">Twhii</a> (sold) - a twitter client for feature phones.</li>
+			<li><a href="http://livelikes.in/">Livelikes</a> - a beautiful live wallpaper of your Instagram likes</li>
+		</ul>
+		<h4>Posts</h4>		
+		<ul>
+		{% for post in site.posts limit:5 %}
+			<li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}
+			<li><a href="posts.html"><em>more &raquo;</em></a></li>
+		</ul>
+		<p class="center" style="padding:20px 0"><a href="http://github.com/kehers">Github</a> &middot; <a href="http://twitter.com/kehers">Twitter</a> &middot; <a href="http://instagram.com/kehers">Instagram</a> &middot; <a href="http://soundcloud.com/kehers">Soundcloud</a></p>
+	</div>
 </body>
 </html>
