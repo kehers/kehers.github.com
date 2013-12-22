@@ -12,8 +12,7 @@ layout: none
 </head>
 <body>
 	<div class="wrapper home">
-		<h2>Opeyemi Obembe.</h2>
-		<h2>Web and Mobile applications developer.</h2>
+		<h3>My name is Opeyemi Obembe. I build things for web and mobile.</h3>
 		<h4 style="margin-top:40px">Startups</h4>
 		<ul>
 			<li><a href="http://prowork.me/">Prowork</a> - Project management app for team collaboration</li>
@@ -27,7 +26,7 @@ layout: none
 		</ul>
 		<h4>Posts</h4>		
 		<ul>
-		{% for post in site.posts limit:5 %}
+		{% for post in site.posts limit:3 %}
 			<li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
 		{% endfor %}
 			<li><a href="posts.html"><em>more &raquo;</em></a></li>
