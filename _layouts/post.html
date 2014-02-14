@@ -25,22 +25,20 @@
   		<p></p>
       
         {% for post in site.posts %}
-          {% if post.url == page.url %}
-            {% assign post_index = forloop.index %}                        
-          {% endif %}
-       {% endfor %}
-      
+            {% if post.url == page.url %}
+                {% assign post_index = forloop.index %}                        
+            {% endif %}
+        {% endfor %}
         {% for post in site.posts %}
-          {% if post_index == forloop.index0 %}
-            {% assign next_url = post.url %}
-            {% assign next_title = post.title %}
-          {% endif %}
-       {% endfor %}
-      
-        {% if page.next %}
+            {% if post_index == forloop.index0 %}
+                {% assign next.url = post.url %}
+                {% assign next.title = post.title %}
+            {% endif %}
+        {% endfor %}
+        {% if next %}
         <aside>
             <p><strong>next:</strong><br />
-              <a href="{{ page.next.url }}">{{ page.next.title }}</a></p>
+            <a href="{{ next.url }}">{{ next.title }}</a></p>
         </aside>
         {% endif %}
     </article>
