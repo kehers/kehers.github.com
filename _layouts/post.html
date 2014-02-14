@@ -26,21 +26,21 @@
       
         {% for post in site.posts %}
           {% if post.url == page.url %}
-            {% assign post_index = forloop.index0 %}                        
+            {% assign post_index = forloop.index %}                        
           {% endif %}
        {% endfor %}
       
         {% for post in site.posts %}
-          {% if post_index == forloop.index %}
+          {% if post_index == forloop.index0 %}
             {% assign next_url = post.url %}
             {% assign next_title = post.title %}
           {% endif %}
        {% endfor %}
       
-        {% if next_url %}
+        {% if post.next %}
         <aside>
             <p><strong>next:</strong><br />
-              <a href="{{ next_url }}">{{ next_title }}</a></p>
+              <a href="{{ post.next.url }}">{{ post.next.title }}</a></p>
         </aside>
         {% endif %}
     </article>
