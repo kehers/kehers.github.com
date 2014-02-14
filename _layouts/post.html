@@ -37,10 +37,10 @@
           {% endif %}
        {% endfor %}
       
-        {% if post.next %}
+        {% if page.next %}
         <aside>
             <p><strong>next:</strong><br />
-              <a href="{{ post.next.url }}">{{ post.next.title }}</a></p>
+              <a href="{{ page.next.url }}">{{ page.next.title }}</a></p>
         </aside>
         {% endif %}
     </article>
