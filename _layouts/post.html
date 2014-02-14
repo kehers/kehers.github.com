@@ -25,14 +25,18 @@
   		<p></p>
       
         {% for post in site.posts %}
-            {% if post.url == page.url %}
-                {% assign post_index = forloop.index0 %}                        
-            {% endif %}
-            {% if post_index == forloop.index %}
-                {% assign next_url = post.url %}
-                {% assign next_title = post.title %}
-            {% endif %}
+          {% if post.url == page.url %}
+            {% assign post_index = forloop.index0 %}                        
+          {% endif %}
        {% endfor %}
+      
+        {% for post in site.posts %}
+          {% if post_index == forloop.index %}
+            {% assign next_url = post.url %}
+            {% assign next_title = post.title %}
+          {% endif %}
+       {% endfor %}
+      
         {% if next_url %}
         <aside>
             <p><strong>next:</strong><br />
