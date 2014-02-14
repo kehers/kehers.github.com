@@ -32,7 +32,7 @@
                 {% assign next.url = post.url %}
                 {% assign next.title = post.title %}
             {% endif %}
-        {% if next %}
+        {% if next.url %}
         <aside>
             <p><strong>next:</strong><br />
             <a href="{% next.url %}">{% next.title %}</a></p>
