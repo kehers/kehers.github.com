@@ -23,11 +23,10 @@
         <p></p>
         <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
   		<p></p>
-        {% assign next = page.next %}
-        {% if next %}
+        {% if page.next %}
         <aside>
             <p><strong>next:</strong><br />
-            <a href="{% next.url %}">{% next.title %}</a></p>
+            <a href="{% page.next.url %}">{% page.next.title %}</a></p>
         </aside>
         {% endif %}
     </article>
