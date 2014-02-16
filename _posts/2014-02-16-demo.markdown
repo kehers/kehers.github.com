@@ -1,0 +1,6 @@
+---
+published: true
+title: demo
+layout: post
+---
+demo
