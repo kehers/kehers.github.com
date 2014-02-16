@@ -1,0 +1,6 @@
+---
+published: true
+title: Demo post
+layout: post
+---
+Demo. Ignore.
