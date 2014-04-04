@@ -7,17 +7,17 @@ I have been up since around 2:00am. 20 hours later, I can't really say I have ac
 
 Some days you just wake up and it is like all your tools met the previous night to make the day crazy for you. Sometimes I try to imagine what the meeting would be like. "Code" will be the chairperson. Your [online] server will be at the right; your computer at the left. Editor will be the spokesperson. You can guess the others that will be in attendance - browsers, databases, package managers, dev/design softwares, git, app clients...
 
-"I have been working two straight days" - the computer.
-"Dude, like seriously? I have been on for 107 consecutive days", the server will reply. 
-"We deserve better working conditions. Can you imagine this dude opens like 40+ tabs in my window" - Editor. "Let's frustrate him tomorrow. It's being a while."
-Chrome to CSS, "Is he doing box model sizing?".
-"Hmm..let me see....nope".
-"Gotcha! Firefox, we render differently! Plus make sure you return a different value for that $('.panel-wrapper').height() js line".
-Computer to server, "What version of MongoDb does he have installed on you?"
-"1.3.x"
-"He runs 1.2.x locally. We got him there. Break his update and upsert syntax"
-"You bet! By the way, what OS does he run on you?"
-"Windows"
+"I have been working two straight days" - the computer.    
+"Dude, like seriously? I have been on for 107 consecutive days", the server will reply.     
+"We deserve better working conditions. Can you imagine this dude opens like 40+ tabs in my window" - Editor. "Let's frustrate him tomorrow. It's being a while."    
+Chrome to CSS, "Is he doing box model sizing?".    
+"Hmm..let me see....nope".    
+"Gotcha! Firefox, we render differently! Plus make sure you return a different value for that $('.panel-wrapper').height() js line".    
+Computer to server, "What version of MongoDb does he have installed on you?"    
+"1.3.x"    
+"He runs 1.2.x locally. We got him there. Break his update and upsert syntax"    
+"You bet! By the way, what OS does he run on you?"    
+"Windows"    
 "Windows?!", laughs hysterically. "Let's see how he will get Redis up."
 
 I am just fooling around. But I figured that's what it would look like. Really, that's what it feels like. Something works the previous day and today it stops working. And you can't figure out why. For me, 
