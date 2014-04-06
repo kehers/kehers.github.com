@@ -27,7 +27,6 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_exec($ch);
 curl_close($ch);
 {% endhighlight %}
@@ -40,7 +39,7 @@ var server = http.createServer(app).listen(3000);
 app.use(express.bodyParser());
 
 app.post('/post-endpoint', function(req, res){
-    console.dir(req.body); <!-- nothing!
+    console.dir(req.body); // <-- nothing!
     res.end();
 });
 {% endhighlight %}
