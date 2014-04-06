@@ -1,3 +1,4 @@
 pygments: true
 excerpt_separator: ""
 paginate: 5
+markdown: kramdown
