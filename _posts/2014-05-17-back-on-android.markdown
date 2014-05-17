@@ -73,7 +73,7 @@ Simple bluetooth. To non-iOS devices. And it is pretty much the same with
 receiving as well.
 
 I don't like that I can't easily "install" an app on my iPhone directly
-from the iTunes website. I would have imagined a login in, download button
+from the iTunes website. I would have imagined a login, download button
 on an app page and a push of the app to my device. I shouldn't have to
 install iTunes for this. Same with transferring music or videos. I
 literally messed up and overwrote the stuffs on my phone the second time I
