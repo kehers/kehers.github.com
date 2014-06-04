@@ -3,8 +3,6 @@ published: true
 title: SIP on Android
 layout: post
 ---
-#SIP on Android
-
 What's cool about [Callbase](https://callbase.co/) is allowing businesses manage their calls right there on the browser. Just a sign up; available anywhere; no installs. But what about extending this flexibility to mobile devices? What about giving agents the flexibility of receiving and making calls on their mobile device anywhere, anytime? Since Callbase is built on the SIP protocol, platform portability should be an easy one. The Android platform is one I have been working on for some days now.
 
 ## The Android SIP stack
