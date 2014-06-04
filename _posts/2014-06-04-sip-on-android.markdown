@@ -457,7 +457,7 @@ public class CallStateReceiver extends BroadcastReceiver {
 }
 {% endhighlight %}
 
-Before we can call send a registeration request, we need to set necessary SIP configuration details. The NGN stack has a configuration utility for this.
+Before we can send a registeration request, we need to set necessary SIP configuration details. The NGN stack has a configuration utility for this.
 
 {% highlight java %}
 NgnEngine mEngine = NgnEngine.getInstance();
