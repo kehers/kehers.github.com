@@ -14,10 +14,10 @@ Here is a sample .htaccess rewrite that "masks" the URL ```[domain]/showposts.ph
 
 {% highlight text %}
 RewriteEngine on
-RewriteRule ^tags/(.*)$ showposts.php?tags=$1
+RewriteRule ^tag/(.*)$ showposts.php?tag=$1
 {% endhighlight %}
 
-The user types ```[domain]/tag/php``` (or clicks a similar link) and that shows in the address bar. However, under the hood, the url is converted to ```showposts.php?tags=php```.
+The user types ```[domain]/tag/php``` (or clicks a similar link) and that shows in the address bar. However, under the hood, the url is converted to ```showposts.php?tag=php```.
 
 Our ```showposts.php``` script will then look something like this.
 
