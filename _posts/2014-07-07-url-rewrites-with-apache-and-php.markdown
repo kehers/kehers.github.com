@@ -38,7 +38,7 @@ It is that simple for few rewrites but can get quite complex and messy when you 
 
 While it may not be a big deal to write rewrites for 16 endpoints, it is not scalable. As your resources/endpoints grow, it becomes more complex.
 
-## Rewrite with MultiViews
+## Option 2 - Rewrite with MultiViews
 
 One simpler way to achieve rewrite is using the **MultiView** option. ([mod_negotiation](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html) must be enabled for this). It is still not an elaborate solution but you can easily use it to
 
@@ -64,7 +64,7 @@ $tag = trim($tag, '/');
 ?>
 {% endhighlight %}
 
-## One step further - using a route file
+## Option 3 - using a route file
 
 A completely different approach is to redirect all traffic to a file and that file takes care of routing by matching the intended URL and using switch/if case to include the necessary file. This is more flexible.
 
