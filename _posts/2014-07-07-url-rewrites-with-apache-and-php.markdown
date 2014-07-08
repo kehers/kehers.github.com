@@ -51,7 +51,7 @@ If we replace out htaccess with this
 Options +MultiViews
 {% endhighlight %}
 
-and create a file ```tags.php```, we can visit ```[domain]/tags``` instead of ```[domain]/tags.php``` and everything will work as should (as 1 above). If we visit ```[domain]/tags/php```, Apache serves the ```tags.php``` file i.e redirects to the base file (2 above). The full path is accessible via the ```$\_SERVER['PATH_INFO']``` variable and you can use that inside your base script.
+and create a file ```tags.php```, we can visit ```[domain]/tags``` instead of ```[domain]/tags.php``` and everything will work as should (as 1 above). If we visit ```[domain]/tags/php```, Apache serves the ```tags.php``` file i.e redirects to the base file (2 above). The full path is accessible via the ```$_SERVER['PATH_INFO']``` variable and you can use that inside your base script.
 
 So in ```tags.php```, we can have
 
