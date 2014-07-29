@@ -41,10 +41,10 @@ While this is a supposed web flow, it is not a hard thing to replicate in an And
 
 {% highlight java %}
 public void githubBtnClicked(View v) {
-    setContentView(R.layout.webview);
-    final WebView webview = (WebView) findViewById(R.id.webview);
-    // Load Github's auth URL
-    webview.loadUrl("https://github.com/login/oauth/authorize");
+  setContentView(R.layout.webview);
+  final WebView webview = (WebView) findViewById(R.id.webview);
+  // Load Github's auth URL
+  webview.loadUrl("https://github.com/login/oauth/authorize");
 }
 {% endhighlight %}
 
@@ -54,22 +54,22 @@ However, since this is a mobile application and not a web application, the callb
 
 {% highlight java %}
 public void githubBtnClicked(View v) {
-    setContentView(R.layout.webview);
-    final WebView webview = (WebView) findViewById(R.id.webview);
-    webview.loadUrl("https://github.com/login/oauth/authorize");
-    webview.setWebViewClient(new WebViewClient() {
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            // Is this the callback url?
-            String fragment = "?code=";
-            int start = url.indexOf(fragment);
-            if (start > -1) {
-                // Yeah, stop loading then
-                webview.stopLoading();
-                // And get the code parameter
-                String code = url.substring(start+fragment.length(), url.length());
-            }
-        }
-    });
+  setContentView(R.layout.webview);
+  final WebView webview = (WebView) findViewById(R.id.webview);
+  webview.loadUrl("https://github.com/login/oauth/authorize");
+  webview.setWebViewClient(new WebViewClient() {
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+      // Is this the callback url?
+      String fragment = "?code=";
+      int start = url.indexOf(fragment);
+      if (start > -1) {
+        // Yeah, stop loading then
+        webview.stopLoading();
+        // And get the code parameter
+        String code = url.substring(start+fragment.length(), url.length());
+      }
+    }
+  });
 }
 {% endhighlight %}
 
@@ -77,104 +77,104 @@ Now we have our code, step 3, send it to Github in exchange for an access token.
 
 {% highlight java %}
 public void githubBtnClicked(View v) {
-    setContentView(R.layout.webview);
-    final WebView webview = (WebView) findViewById(R.id.webview);
-    webview.loadUrl("https://github.com/login/oauth/authorize");
-    webview.setWebViewClient(new WebViewClient() {
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            String fragment = "?code=";
-            int start = url.indexOf(fragment);
-            if (start > -1) {
-                webview.stopLoading();
-                final String code = url.substring(start+fragment.length(), url.length());
-                // Remember, never run network processes within UI threads
-                // ...so we use asynctask instead
-                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(Void... p) {
-                        try {
-                            // Create the JSON parameters to send to Github
-                            JSONObject params = new JSONObject();
-                            params.put("client_id", "UR_GITHUB_CLIENT_ID");
-                            params.put("client_secret", "UR_GITHUB_CLIENT_SECRET");
-                            params.put("code", code);
-                            
-                            // Post
-                            String data = null;
-                            URL url = new URL("https://github.com/login/oauth/access_token");
-                            String body = params.toString();  byte[] bytes = body.getBytes();
-                            HttpURLConnection conn = null;
-                            try {
-                                conn = (HttpURLConnection) url.openConnection();
-                                conn.setDoOutput(true);
-                                conn.setUseCaches(false);
-                                conn.setFixedLengthStreamingMode(bytes.length);
-                                conn.setRequestMethod("POST");
-                                conn.setRequestProperty("Content-Type", "application/json");
-                                conn.setRequestProperty("Accept", "application/json");
-                                // Github requires a user agent header
-                                conn.setRequestProperty("User-Agent", "My Oauth app");
-                                
-                                OutputStream out = conn.getOutputStream();
-                                out.write(bytes);
-                                out.close();            
+  setContentView(R.layout.webview);
+  final WebView webview = (WebView) findViewById(R.id.webview);
+  webview.loadUrl("https://github.com/login/oauth/authorize");
+  webview.setWebViewClient(new WebViewClient() {
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+      String fragment = "?code=";
+      int start = url.indexOf(fragment);
+      if (start > -1) {
+        webview.stopLoading();
+        final String code = url.substring(start+fragment.length(), url.length());
+        // Remember, never run network processes within UI threads
+        // ...so we use asynctask instead
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... p) {
+            try {
+              // Create the JSON parameters to send to Github
+              JSONObject params = new JSONObject();
+              params.put("client_id", "UR_GITHUB_CLIENT_ID");
+              params.put("client_secret", "UR_GITHUB_CLIENT_SECRET");
+              params.put("code", code);
+              
+              // Post
+              String data = null;
+              URL url = new URL("https://github.com/login/oauth/access_token");
+              String body = params.toString();  byte[] bytes = body.getBytes();
+              HttpURLConnection conn = null;
+              try {
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setUseCaches(false);
+                conn.setFixedLengthStreamingMode(bytes.length);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("Accept", "application/json");
+                // Github requires a user agent header
+                conn.setRequestProperty("User-Agent", "My Oauth app");
+                
+                OutputStream out = conn.getOutputStream();
+                out.write(bytes);
+                out.close();      
 
-                                InputStream is = null;
-                                try {
-                                    is = conn.getInputStream();
-                                }
-                                catch (IOException e) {
-                                    //e.printStackTrace();
-                                    // Hack for 4xx http headers
-                                    is = conn.getErrorStream();
-                                }
-                                
-                                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-                                StringBuffer response = new StringBuffer();
-                                String line;
-                                while((line = rd.readLine()) != null) {
-                                  response.append(line).append("\n");;
-                                }
-                                rd.close();	
-                                data = response.toString();
-                            } finally {
-                                if (conn != null) {
-                                    conn.disconnect();
-                                }
-                            }                              
-                            
-                            try {
-                                JSONObject json = new JSONObject(data);
-                                String token = json.getString("access_token");
-                                
-                                // Now we have the token
-                                // Probably save it for subsequent API calls here
-                                
-                                return null;
-                            } catch (JSONException e) {
-                                // Log.e(TAG, e.getMessage());
-                            }
-                        }
-                        catch (IOException e) {
-                            // Log.e(TAG, e.getMessage());
-                        } 
-                        catch (JSONException e) {
-                            // Log.e(TAG, e.getMessage());
-                        }
-                        
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void result) {
-                        // We are done and back to the UI thread
-                        // Show status or a screen here
-                    }
-                };
-                task.execute();
+                InputStream is = null;
+                try {
+                  is = conn.getInputStream();
+                }
+                catch (IOException e) {
+                  //e.printStackTrace();
+                  // Hack for 4xx http headers
+                  is = conn.getErrorStream();
+                }
+                
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuffer response = new StringBuffer();
+                String line;
+                while((line = rd.readLine()) != null) {
+                  response.append(line).append("\n");;
+                }
+                rd.close();	
+                data = response.toString();
+              } finally {
+                if (conn != null) {
+                  conn.disconnect();
+                }
+              }                
+              
+              try {
+                JSONObject json = new JSONObject(data);
+                String token = json.getString("access_token");
+                
+                // Now we have the token
+                // Probably save it for subsequent API calls here
+                
+                return null;
+              } catch (JSONException e) {
+                // Log.e(TAG, e.getMessage());
+              }
             }
-        }
-    });
+            catch (IOException e) {
+              // Log.e(TAG, e.getMessage());
+            } 
+            catch (JSONException e) {
+              // Log.e(TAG, e.getMessage());
+            }
+            
+            return null;
+          }
+
+          @Override
+          protected void onPostExecute(Void result) {
+            // We are done and back to the UI thread
+            // Show status or a screen here
+          }
+        };
+        task.execute();
+      }
+    }
+  });
 }
 {% endhighlight %}
 
