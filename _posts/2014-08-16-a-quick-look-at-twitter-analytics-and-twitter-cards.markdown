@@ -3,7 +3,7 @@ published: true
 title: A quick look at Twitter analytics [and Twitter cards]
 layout: post
 ---
-[Twitter analytics](https://analytics.twitter.com/) gives you insight into your twitter impact. Needless to say, this is a useful social media marketing tool. It answers the questions: how many times was your tweet displayed? The engagement[1]? Link clicks?
+[Twitter analytics](https://analytics.twitter.com/) gives you insight into your twitter impact. Needless to say, this is a useful social media marketing tool. It answers the questions: how many times was your tweet displayed? The engagement[^1]? Link clicks?
 
 ## Getting in
 
@@ -71,4 +71,4 @@ Another thing you can deduce from this is: when is the best time for high reach?
 
 The good news is Twitter analytics allows you export your [analytics] data. I will see what I can build when I have some free time.
 
-[1]\: Twitter defines engagement as the total number of times a user has interacted with the tweet. This includes all clicks anywhere on the tweet (hashtags, links, usernames, avatar and tweet expansion), retweets, replies, follows and favs.
+[^1]: Twitter defines engagement as the total number of times a user has interacted with the tweet. This includes all clicks anywhere on the tweet (hashtags, links, usernames, avatar and tweet expansion), retweets, replies, follows and favs.
