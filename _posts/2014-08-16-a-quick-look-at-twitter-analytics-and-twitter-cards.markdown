@@ -28,8 +28,7 @@ So how is this done?
 <meta name="twitter:site" content="@kehers">
 <meta name="twitter:title" content="{{ "{{ page.title " }}}}">
 <meta name="twitter:description" content="{{ "{{ content | strip_html | truncate: 200 " }}}}">
-<meta name="twitter:creator" content="@kehers">
-{% endhighlight %}
+<meta name="twitter:creator" content="@kehers">{% endhighlight %}
 5. Once you have embedded the code, validate your card and be sure you didn't get things wrong.    
 ![](http://i.imgur.com/qgVQYoP.png)
 
@@ -58,7 +57,7 @@ Here is what my reach rate is like. I am not a "brand" or social media person of
 
 ![](http://i.imgur.com/LG5Q8O6.png)
 
-It has 91 impressions and as at then I have around 1085 followers. This means the reach rate is 8.4%. I would have loved to calculate my average for like a month but it's hard to filter through the data for that period.
+It has 91 impressions and then I had around 1085 followers. This means the reach rate is 8.4%. I would have loved to calculate my average for like a month but it's hard to filter through the data for that period.
 
 Let's consider links on the other hand. What's the click-through rate?
 
