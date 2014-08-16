@@ -30,7 +30,6 @@ So how is this done?
 <meta name="twitter:description" content="{{ "{{ content | strip_html | truncate: 200 " }}}}">
 <meta name="twitter:creator" content="@kehers">
 {% endhighlight %}
-
 5. Once you have embedded the code, validate your card and be sure you didn't get things wrong.    
 ![](http://i.imgur.com/qgVQYoP.png)
 
