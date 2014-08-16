@@ -26,8 +26,8 @@ So how is this done?
 {% highlight html %}
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@kehers">
-<meta name="twitter:title" content="{{ page.title }}">
-<meta name="twitter:description" content="{{ content | strip_html | truncate: 200 }}">
+<meta name="twitter:title" content="{{ "{{ page.title " }}}}">
+<meta name="twitter:description" content="{{ "{{ content | strip_html | truncate: 200 " }}}}">
 <meta name="twitter:creator" content="@kehers">
 {% endhighlight %}
 
