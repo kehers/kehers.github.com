@@ -40,7 +40,7 @@ That is it. After few days, you should have access to Twitter analytics. I recom
 
 I can't possibly share all the screenshots but I will mention a few of the things you'd see. (I placed some screenshots side by side).
 
-1. Graphs - tweet impressions, engagement rate (impression/engagement x 100), link clicks, retweets, favs and replies.    
+1. Graphs - tweet impressions, engagement rate (engagement/impression x 100), link clicks, retweets, favs and replies.    
 ![](http://i.imgur.com/uSc38n2.png)
 2. Follower breakdown by interest, gender and follower.   
 ![](http://i.imgur.com/bkjNwyl.png)
