@@ -29,19 +29,15 @@ What about we detect spam SMS a similar way to how emails do it? We can use a si
 Naive Bayes uses [conditional probabilities](http://en.wikipedia.org/wiki/Conditional_probability) to detect the likelihood that a word (or group of) belong to a category. In simple form, let's assume the word "**now**" appears 3 times out of 84 spam words and just once out of 250 non-spam words (let's call this ham). What is the probability that a message with **now** is a spam or ham? Well we can say, the probabilty that it is spam is 3/84 = 0.0357 and the probability that it is ham (not spam) is 1/250 = 0.004. Obviously, 0.0357 is more than 0.004, so we can say it is spam. 
 
 But it is not that straightforward. Here we are assuming many things. The real formula is
-
-``` 
-P(spam/now) = P(now/spam) * P(spam) / (P(now/spam) * P(spam) + P(now/ham) * P(ham))
-P(ham/now) = P(now/ham) * P(ham) / (P(now/ham) * P(ham) + P(now/spam) * P(spam))
-```
+ 
+    P(spam/now) = P(now/spam) * P(spam) / (P(now/spam) * P(spam) + P(now/ham) * P(ham))
+    P(ham/now) = P(now/ham) * P(ham) / (P(now/ham) * P(ham) + P(now/spam) * P(spam))
 
 For our example, we are assuming equal probabilities that a message is spam or ham, i.e for every 2 messages, 1 is spam and the other is ham. This means P(spam) = P(ham) = 1/2.
 Then again, both denominators (called evidence) are the same. They are constants so we can ignore them. This therefore reduces the formula to 
 
-```
-P(spam/now) = P(now/spam)
-P(ham/now) = P(now/ham)
-```
+    P(spam/now) = P(now/spam)
+    P(ham/now) = P(now/ham)
 
 Again, this is because we have just two categories - spam and ham and assuming equal probabilities of both.
 
