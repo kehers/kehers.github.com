@@ -46,7 +46,7 @@ By using this algorithm, we can [combine the probabilties](http://en.wikipedia.o
 
 There are other slight modifications here and there. One is ignoring words that are less than 3 characters in length. I still need to test if this is really necessary though. In SMS, every word seem to count - even stop words like **a**,**at**,**be**.
 
-Another thing I am taking into consideration is case sensitivity of words. Therefore, the words *free* and **FREE** are considered different words and not the same. Spam messages use **FREE** (uppercase) a lot. A friend sending you a text with **free** will likely send it in lower case. This seem to improve the filter. (Still have to test extensively too).
+Another thing I am taking into consideration is case sensitivity of words. Therefore, the words **free** and **FREE** are considered different words and not the same. Spam messages use **FREE** (uppercase) a lot. A friend sending you a text with **free** will likely send it in lower case. This seem to improve the filter. (Still have to test extensively too).
 
 ##Getting training data
 We need an existing set of data to train (get words and occurrence counts for) our filter. I synced my device to my PC and copied some of the spam messages I have received. I also created a [Google doc](https://docs.google.com/document/d/1TldaHwtLwuAq8paUyjLLUuJqthjYvymOMk5Op8gtR4Y/edit) anyone can add to. I shared this on Twitter and the awesome people there have added to it.
