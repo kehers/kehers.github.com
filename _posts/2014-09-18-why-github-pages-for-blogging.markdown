@@ -17,7 +17,7 @@ You get the best control over your content on Github pages. Every post on your b
 Really, Github pages is more than just a blog. It can be anything you want it to be. You can use it to create a portfolio, a web app landing page or even a full website site. 
 
 ###Open Collaboration
-Unless you choose otherwise, your blog content is available on your public repo and anyone can collaborate with you on post and content editing. 
+Unless you choose otherwise, your blog content is available on your public repo and anyone can collaborate with you on post and content editing. The source of this blog for example is available at [github.com/kehers/kehers.github.com](http://github.com/kehers/kehers.github.com). To contribute or make corrections, you just make a copy (fork), do what you want to and notify me of the changes to accept or not (do a pull request).
 
 ###Versioning
 Changes made to your posts and files are tracked and you can always roll back should you mess things up. Think of this as an undo for everything you do. In other words, you are free to make mistakes and experiment as much as you like because you can always revert to the last stable version.
