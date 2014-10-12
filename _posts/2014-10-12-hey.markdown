@@ -1,6 +1,0 @@
----
-published: true
-title: Hey :/
-layout: post
----
-Works now :)
