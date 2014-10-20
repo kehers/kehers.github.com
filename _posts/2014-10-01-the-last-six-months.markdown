@@ -9,7 +9,7 @@ I have experimented with telephony a while ago so when the [Fonenode](https://fo
 
 With Fonenode out, it was a matter of time before people started asking for something elaborate. That was how [Callbase](https://calbase.co) came about. From the end of the year till February, I worked on it. Building has never been a problem. Development is like art to me. It is art actually. I enjoy every bit of it. 
 
-My new co on the other was busy with the business development side of things. One fateful morning, not even 6am yet, he came screaming from the next room that we have been invited for an interview by a renowned incubator in the US. From that moment till I was sitting next to him, there in Silicon Valley, in front of a four-man judge, everything was like magic. Everything happened fast. I even got my visa in a week. 
+My new Co on the other was busy with the business development side of things. One fateful morning, not even 6am yet, he came screaming from the next room that we have been invited for an interview by a renowned incubator in the US. From that moment till I was sitting next to him, there in Silicon Valley, in front of a four-man judge, everything was like magic. Everything happened fast. I even got my visa in a week. 
 
 My rent in Ibadan was to end May. There was no point planning a renewal. I sold everything I had; went minimal that all that was left could fit in my brown barrel bag. That, my laptop and laptop bag and I was ready for the next journey; wherever it would lead. 
 
@@ -19,7 +19,7 @@ It was an interesting experience. We moved around a lot and met lots of people. 
 
 We spent two weeks with Tuyen and Tom and the place was like home. They enjoyed our rice and stew. And we'd ask them who is the better cook between both of us. A section in the living room [was like a mini studio](http://instagram.com/p/pX0ZXPv7aJ) - a piano, an electric drum set, an electric guitar, a classical guitar, an ukulele, and one other guitar. I did [Soul Take](https://soundcloud.com/kehers/soul-take-1) on the electric guitar. Some evenings, Tuyen and I would talk music and he'd teach me new things. Tuyen was the outdoor guy. Had we stayed longer, he promise taking us mountain climbing, hiking or camping. 
 
-We spent two weeks with Julia, a radio presenter/producer. She was like a sister. We'd spend the evenings talking about everything. And I'd end up leaving she and co still talking. When co was sick, she drove us all the way to the clinic. She was like a superwoman. She'd go for long bike rides every morning. And on weekends, if it's not camping, it is swimming or some other interesting activity. 
+We spent two weeks with Julia, a radio presenter/producer. She was like a sister. We'd spend the evenings talking about everything. And I'd end up leaving Co and her still talking. When co was sick, she drove us all the way to the clinic. She was like a superwoman. She'd go for long bike rides every morning. And on weekends, if it's not camping, it is swimming or some other interesting activity. 
 
 We made friends at Stanford and met interesting Nigerians working at awesome places - Mozilla, Facebook, Intel. We were at Facebook and met awesome engineers at Twitter. We met Edwin during one of our Airbnb moves and he invited us to his African Mix program on [KALW](http://kalw.org). 
 
