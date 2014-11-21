@@ -9,9 +9,9 @@ My ([our, actually](http://fonebaselabs.com)) two interns leave by the end of th
 
 Oo (my Co) has always been on the lookout for good developers and designers, even when he doesn't need them for anything. It was the same way he reached out to me some years ago, far before we tried any project together.
 
-One day, end of last year, we were talking about getting young developers to join the team and then the other, he copied me in a mail and introduced 5 young developers from UNN (University of Nigeria, Nsuka) to me. I don't even know how he got them. (He does have the talent for scouting people :D).
+One day, end of last year, we were talking about getting young developers to join the team and then the other, he copied me in a mail and introduced 5 young developers from UNN (University of Nigeria, Nsuka) to me.
 
-As interesting as that was, testing was the next challenge. How do we test their technical skills and be sure of what they can do? (Recruiting developers is a hard work. That is a post on it's own). And we were only really interested in keeping just 2. Maybe 3 max. In the end, we settled on telling them to build a simple application using the [Fonenode API](https://fonenode.com/docs). They are to do this within the target time frame, push to a git repo, invite me to the repo and I review. After a couple of back and forth, minor issues here and there, Zim and Godswill finally joined the team early this year.
+As interesting as that was, testing was the next challenge. How do we test their technical skills and be sure of what they can do? (Recruiting developers is a hard work. That is a post on it's own). And we were only really interested in keeping just 2. Maybe 3 max. In the end, we settled on telling them to build a simple application using the [Fonenode API](https://fonenode.com/docs). They were to do this within the target time frame, push to a git repo, invite me to the repo and I review. After a couple of back and forth, minor issues here and there, Zim and Godswill finally joined the team early this year.
 
 ## A change in everything
 
@@ -33,7 +33,7 @@ To work remotely and efficiently, proper communication had to come in place. One
 
 ### Versioning
 
-Collaborating on source files wasn't very easy at first. It took some failed trials and mistakes to finally settle for the process we are using now. One that didn't work well was allowing direct modification of the master source. Having members create their own branch on the master repo and work on that was a good option but wasn't flexible enough as I want it to be. Eventually, what I did was to enable only read rights to the master repo and let members make a fork. So you work on your fork, do whatever you want with it. Once well tested, you send a pull request to the master repo. I review then decide if to merge or decline. Then it goes to a staging server and can eventually move to live.
+Collaborating on source files wasn't very easy at first. It took some failed trials and mistakes to finally settle for the process we are using now. One that didn't work well was allowing direct modification of the master source. Having members create their own branch on the master repo and work on that was a good option but wasn't flexible enough as I want it to be. Eventually, what I did was to enable only read rights to the master repo and let members make a fork. You work on your fork, do whatever you want with it. Once well tested, you send a pull request to the master repo. I review then decide if to merge or decline. Then it goes to a staging server and can eventually move to live.
 
 ## What I have learnt
 
