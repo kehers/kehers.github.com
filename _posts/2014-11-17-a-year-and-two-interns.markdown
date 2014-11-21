@@ -53,6 +53,6 @@ It would have been impossible doing all this alone.
 
 ## From here
 
-Even though I'd love to keep them, they have to move on to other things. I hope in the nearest feature, they can look back and see this time as one that helped shape their future.
+Even though I'd love to keep them, they have to move on to other things. I hope in the nearest feature, they can look back and see this time as one that helped shape their future. And they can in turn develop others too.
 
 *PS: We are always on the look out for young developers that are good and passionate about what they do, focused and open to learning. if you are one or know one, kindly hit me up via kehers at gmail.com*
