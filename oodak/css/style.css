@@ -9525,6 +9525,10 @@ ul.contact-list p{
 
 }
 
+.services-list-style3 .service-icon{
+  padding-top:0;
+}
+
 
 
 .dark-gray-bg .service-icon{
@@ -28009,7 +28013,23 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 15px auto 22px;
 }
 .services-list-style1{
-  background-color: #faf5f0;
+  background-color: #225f6f;
+}
+.services-list-style3 .service .service-icon{
+  color: #db732c;
+  font-size: 35px;
+  line-height: 100px;
+  background: none;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+  -webkit-transition: all 0.5s ease-in-out, 0.5s;
+  -webkit-transition-delay: 0s, 0s;
+  -moz-transition: all 0.5s ease-in-out 0s, 0.5s;
+  -o-transition: all 0.5s ease-in-out 0s, 0.5s;
+  transition: all 0.5s ease-in-out 0s, 0.5s;
 }
 .services-list-style2 .service .service-icon{
   color: #dd6356;
@@ -28034,10 +28054,12 @@ input[type=number]::-webkit-outer-spin-button {
   background: #dd6356;
   color: white;
 }
-.services-list-style2 .service .service-description{
+.services-list-style2 .service .service-description,
+.services-list-style3 .service .service-description{
   margin-top: 30px;
 }
-.services-list-style2 .service .service-description h4{
+.services-list-style2 .service .service-description h4,
+.services-list-style3 .service .service-description h4{
   color: #000;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-weight: 700;
@@ -28045,11 +28067,13 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 22px;
   font-size: 16px;
 }
-.services-list-style2 .service .service-description p{
+.services-list-style2 .service .service-description p,
+.services-list-style3 .service .service-description p{
   color: #808080;
   font-size: 15px;
   line-height: 1.8;
 }
+.accordion-style2 .accordion-header,
 .accordion-style2 .accordion-header{
   border: 1px solid #e1e1e1;
   position: relative;
@@ -28351,11 +28375,14 @@ input[type=number]::-webkit-outer-spin-button {
 .min-height300{
   min-height: 300px;
 }
+.min-height100{
+  min-height: 120px;
+}
 .parallax-area1{
-  background-image: url(https://placehold.it/2560x1000);
+  background-image: url(../images/b.jpg);
 }
 .parallax-area2{
-  background-image: url(https://placehold.it/2560x1001);
+  background-image: url(../images/b.jpg);
 }
 .parallax-area3{
   background-image: url(https://placehold.it/2560x1002);
