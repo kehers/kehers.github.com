@@ -104,6 +104,15 @@ font-style:italic
   color: #aca899;
 }
 
+table {
+  border-collapse: collapse
+}
+table thead {
+  border-bottom: 1px solid #ddd;
+}
+table td {
+  padding: 5px;
+}
 
 footer{
   font-size: 80%;
