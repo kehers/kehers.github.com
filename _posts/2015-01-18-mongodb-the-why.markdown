@@ -204,4 +204,4 @@ Because the expected data from the user is not predefined and the same, using a 
 ]
 {% endhighlight %}
 
-In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both types of database for a single project. You can store your core data in MySQL and have your logs and events in MongoDB.
+In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both types of database for a single project. You can store your core data in MySQL and have your logs and events in MongoDB. And sometimes, the project is a small one and all you need is a simple way to store few data like app configuration settings.
