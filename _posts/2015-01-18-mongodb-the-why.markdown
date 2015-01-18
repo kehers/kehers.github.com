@@ -3,33 +3,35 @@ published: true
 title: MongoDB; the why
 layout: post
 ---
+
 I have heard lots of arguments against MongoDB (NoSQL generally). One wrong assumption that generates this is that MongoDB is a SQL database replacement. It is not. However, there are certain data types and structures that are perfect for a NoSQL database. But even before you jump into making it your choice database for a project, you have to look at your data and be sure it is what you really need.
 
 In MySQL, you can have three tables with one-to-one or one-to-many relationship.
 
 **articles**
 
-id | author_user_id | title | body | hash | date
---- | ------------------------- | ----- | -------- | -------- | -------
-1 | 1 | MongoDB; the why | I have heard lots of arguments... | 98eb20e8733c0d5d52f88c1de2f34e19 | 2015-01-01 18:01:01
+id | author_user_id | title | body | date
+--- | ------------------------- | ----- | -------- | -------
+1 | 1 | MongoDB; the why | I have heard lots of arguments... | 2015-01-01 18:01:01
 
 
 **users**
 
 id | username | password | avatar
 -- | ----------------- | --------------- | -----------
-1 | kehers | $2a$08$Lg5XF1Tt.X5TGyfb... | https://avatars.githubusercontent.com/u/213649?v=3
+1 | kehers | $2a$08$Lg5XF1Tt.X5TGyfb... | u/213649?v=3
 
 
 **comments**
 
-id | article_id | user_id | body | hash | date
---- | -------------- | ------------ | -------- | -------- | -------
-1 | 1 | 3 | I disagree. Here is what I think... | daa2e4ed6ea7c4863b48b265fd4e26df | 2015-01-02 18:01:01
+id | article_id | user_id | body | date
+--- | -------------- | ------------ | -------- | -------
+1 | 1 | 3 | I disagree. Here is what I think... | 2015-01-02 18:01:01
 
 
 {% highlight sql %}
-select u.username, u.avatar, c.body from comments c, users u where c.article_id={id} and c.user_id=u.id order by c.date desc
+select u.username, u.avatar, c.body from comments c, users u
+where c.article_id={id} and c.user_id=u.id order by c.date desc
 {% endhighlight %}
 
 This is a luxury you can't afford in MongoDB. If you will be doing table relationships here and there, MongoDB is not for the project. For simple joins with few tables, say two, maybe. But if you will be doing lots of table joins, no.
@@ -37,17 +39,21 @@ This is a luxury you can't afford in MongoDB. If you will be doing table relatio
 What MongoDB is great for is a data structure where you have entities that can contain every property they need on their own. Combine that with it's great write speed, it is perfect for things like logs, events, stats and similar data.
 
 {% highlight json %}
-// crawler_logs
+/*
+* crawler_logs
+*/
 {
     title: "HTTP error",
-    content: "Failed to access the site: example.com. Curl returns a 400 error.",
+    content: "Failed to access example.com. Curl returns a 400 error.",
     stack: "pinger.js, line 45"
     date: "Sun Jan 11 2015 00:10:16 GMT+0100 (WAT)"
 }
 {% endhighlight %}
 
 {% highlight json %}
-// user_events
+/*
+* user_events
+*/
 {
     event: "Login",
     ip: "192.168.2.2",
@@ -79,8 +85,8 @@ id | name | ..
 
 id | contact_id | number
 --- | ---------------- | -------------
-1 | 1 | 08181019_
-2 | 1 | 08069018_
+1 | 1 | 08181019
+2 | 1 | 08069018
 
 **emails**
 
@@ -95,7 +101,7 @@ Well, we can argue it can as well be represented in a single table like this:
 
 id | name | numebrs | emails
 --- | --------- | -------------- | ----------
-1 | Opeyemi O. | 08181019_,08069018_ | kehers@gmail.com,ope@fonebaselabs.com
+1 | Opeyemi O. | 08181019,08069018 | kehers@gmail.com,ope@fonebaselabs.com
 
 (CRUD operations will not be as easy as with the one-to-many model but [find\_in\_set](http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_find-in-set) can really be a helper). However, if we throw in one more contact property - organisations, with title and position columns, a single table with find_in_set won't save us now. We will have to go back to our one to many relationship.
 
@@ -109,8 +115,8 @@ id | name | ..
 
 id | contact_id | number
 --- | ---------------- | -------------
-1 | 1 | 08181019_
-2 | 1 | 08069018_
+1 | 1 | 08181019
+2 | 1 | 08069018
 
 **emails**
 
@@ -129,11 +135,13 @@ id | contact_id | title | position
 There, we have another data type we can introduce MongoDB to. With MongoDB, we can represent the model in one collection:
 
 {% highlight json %}
-//contacts
+/*
+* contacts
+*/
 {
   name: "Opeyemi O",
   email: ["kehers@gmail.com", "ope@fonebaselabs.com"],
-  numbers: ["08181019_", "08069018_"],
+  numbers: ["08181019", "08069018"],
   organisations: [
      { title: "Fonebase Labs", position: "Co-founder"},
      { title: "Life", position: "Learner"}
@@ -145,28 +153,30 @@ Let's look at one more instance where using MongoDB makes sense. Imagine you are
 
 User A may have the following data:
 
-- mailgun_key: pubkey-02iismi5n5xozcmeyu3-ymqe3f9-0da9
-- ses_id: AKIAIJAZC3A2OYRSUGVA
-- ses_key: aXTd5VlLfremkG5UyoB76tnTTo2jB9FrZVywFz
+- **mailgun_key**: pubkey-02iismi5n5xozcmeyu3-ymqe3f9-0da9
+- **ses_id**: AKIAIJAZC3A2OYRSUGVA
+- **ses_key**: aXTd5VlLfremkG5UyoB76tnTTo2jB9FrZVywFz
 
 User B may have this:
 
-- app_key: pGX1NjfDEUV5i60vvKRjeA
-- oauth
-  - token: 16110519-JOpMUsEWcAVSr2ft4jYKrbD2o6K
-  - secret: B1yH5DPHZ3qHe9y29Ugoa0Dz7iDpWyvuNoMNYJ
+- **app_key**: pGX1NjfDEUV5i60vvKRjeA
+- **oauth**
+  - **token**: 16110519-JOpMUsEWcAVSr2ft4jYKrbD2o6K
+  - **secret**: B1yH5DPHZ3qHe9y29Ugoa0Dz7iDpWyvuNoMNYJ
 
 And User C this:
 
-- title: Callbase
-- description: Set up a call center in 5 minutes
-- author: Fonebase labs
-- keywords: call center, telephony, customer care
+- **title**: Callbase
+- **description**: Set up a call center in 5 minutes
+- **author**: Fonebase labs
+- **keywords**: call center, telephony, customer care
 
 Because the expected data from the user is not predefined and the same, using a SQL database for storage will be complex. You can't just go ahead creating columns for a data structure you have no idea of. With MongoDB however, this fits just perfectly as data down table (collection) rows do not need to have the same columns (name, data type or length). 
 
 {% highlight json %}
-// metadata
+/*
+* metadata
+*/
 [
   {
     mailgun_key: "pubkey-02iismi5n5xozcmeyu3-ymqe3f9-0da9",
