@@ -6,7 +6,7 @@ layout: post
 
 I have heard lots of arguments against MongoDB (NoSQL generally). One wrong assumption that generates this is that MongoDB is a SQL database replacement. It is not. However, there are certain data types and structures that are perfect for a NoSQL database. But even before you jump into making it your choice database for a project, you have to look at your data and be sure it is what you really need.
 
-In MySQL, you can have three tables with one-to-one or one-to-many relationship.
+In MySQL, you can have multiple tables with one-to-many relationship.
 
 **articles**
 
@@ -34,9 +34,9 @@ select u.username, u.avatar, c.body from comments c, users u
 where c.article_id={id} and c.user_id=u.id order by c.date desc
 {% endhighlight %}
 
-This is a luxury you can't afford in MongoDB. If you will be doing table relationships here and there, MongoDB is not for the project. For simple joins with few tables, say two, maybe. But if you will be doing lots of table joins, no.
+This is a luxury you can't afford in MongoDB. If you will be doing lots of table relationships, MongoDB is not for the project. For simple joins with few tables, say two, maybe. But anything more than that is a no.
 
-What MongoDB is great for is a data structure where you have entities that can contain every property they need on their own. Combine that with it's great write speed, it is perfect for things like logs, events, stats and similar data.
+What MongoDB is great for is a data structure where you have entities that can contain every property they need on their own. Combine that with its great write speed, it is perfect for things like logs, events, stats and similar data.
 
 {% highlight json %}
 /*
@@ -149,6 +149,8 @@ There, we have another data type we can introduce MongoDB to. With MongoDB, we c
 }
 {% endhighlight %}
 
+This simplifies the data structure and makes things a lot easier.
+
 Let's look at one more instance where using MongoDB makes sense. Imagine you are creating a platform as a service (PaaS) product and users can store data sets or metadata that can be anything - strings, arrays, e.t.c. 
 
 User A may have the following data:
@@ -202,4 +204,4 @@ Because the expected data from the user is not predefined and the same, using a 
 ]
 {% endhighlight %}
 
-In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both type of database for a single project. You can store your main data in MySQL and have your logs and events in MongoDB.
+In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both types of database for a single project. You can store your core data in MySQL and have your logs and events in MongoDB.
