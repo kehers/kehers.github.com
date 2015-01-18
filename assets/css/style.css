@@ -105,13 +105,15 @@ font-style:italic
 }
 
 table {
-  border-collapse: collapse
+  border-collapse: collapse;
+  width: 100%
 }
 table thead {
   border-bottom: 1px solid #ddd;
 }
 table td {
   padding: 5px;
+  text-align: center
 }
 
 footer{
