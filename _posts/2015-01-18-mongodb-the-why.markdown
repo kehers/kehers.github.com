@@ -6,7 +6,7 @@ layout: post
 
 I have heard lots of arguments against MongoDB (NoSQL generally). One wrong assumption that generates this is that MongoDB is a SQL database replacement. It is not. However, there are certain data types and structures that are perfect for a NoSQL database. But even before you jump into making it your choice database for a project, you have to look at your data and be sure it is what you really need.
 
-In MySQL, you can have three tables with one-to-one or one-to-many relationship.
+In MySQL, you can have multiple tables with one-to-many relationship.
 
 **articles**
 
@@ -28,15 +28,16 @@ id | article_id | user_id | body | date
 --- | -------------- | ------------ | -------- | -------
 1 | 1 | 3 | I disagree. Here is what I think... | 2015-01-02 18:01:01
 
+A query to get comments will require a join of the **comments** and **users** table:
 
 {% highlight sql %}
 select u.username, u.avatar, c.body from comments c, users u
 where c.article_id={id} and c.user_id=u.id order by c.date desc
 {% endhighlight %}
 
-This is a luxury you can't afford in MongoDB. If you will be doing table relationships here and there, MongoDB is not for the project. For simple joins with few tables, say two, maybe. But if you will be doing lots of table joins, no.
+This is a luxury you can't afford in MongoDB. If you will be doing lots of table relationships, MongoDB is not for the project. For simple joins with few tables, say two, you may. But anything more than that will lead to complications.
 
-What MongoDB is great for is a data structure where you have entities that can contain every property they need on their own. Combine that with it's great write speed, it is perfect for things like logs, events, stats and similar data.
+What MongoDB is great for is a data structure where you have entities that can contain every property they need on their own. Combine that with its great write speed and you get a perfect store for things like logs, events, stats and similar data.
 
 {% highlight json %}
 /*
@@ -103,7 +104,7 @@ id | name | numebrs | emails
 --- | --------- | -------------- | ----------
 1 | Opeyemi O. | 08181019,08069018 | kehers@gmail.com,ope@fonebaselabs.com
 
-(CRUD operations will not be as easy as with the one-to-many model but [find\_in\_set](http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_find-in-set) can really be a helper). However, if we throw in one more contact property - organisations, with title and position columns, a single table with find_in_set won't save us now. We will have to go back to our one to many relationship.
+(CRUD operations will not be as easy as with the one-to-many model but [find\_in\_set](http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_find-in-set) can really be a helper). However, if we throw in one more contact property - organisations, with title and position columns, a single table with find_in_set won't save us now. We will have to go back to our one-to-many relationship.
 
 **contacts**
 
@@ -132,7 +133,7 @@ id | contact_id | title | position
 1 | 1 | Fonebase Labs | Co-founder
 2 | 1 | Life | Learner
 
-There, we have another data type we can introduce MongoDB to. With MongoDB, we can represent the model in one collection:
+There, we have another data structure we can use MongoDB for. With MongoDB, we can represent the model in one collection:
 
 {% highlight json %}
 /*
@@ -148,6 +149,8 @@ There, we have another data type we can introduce MongoDB to. With MongoDB, we c
   ]
 }
 {% endhighlight %}
+
+This simplifies the data structure and makes things a lot easier.
 
 Let's look at one more instance where using MongoDB makes sense. Imagine you are creating a platform as a service (PaaS) product and users can store data sets or metadata that can be anything - strings, arrays, e.t.c. 
 
@@ -202,4 +205,6 @@ Because the expected data from the user is not predefined and the same, using a 
 ]
 {% endhighlight %}
 
-In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both type of database for a single project. You can store your main data in MySQL and have your logs and events in MongoDB.
+As you can see, we can have a single collection (table) with totally different fields (columns).
+
+In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both types of database for a single project. You can store your core data in MySQL and have your logs and events in MongoDB. And sometimes, the project is a small one and all you need is a simple way to store few data like app configuration settings.
