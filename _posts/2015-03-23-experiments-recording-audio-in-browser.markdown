@@ -43,4 +43,4 @@ There are 2 minor issues with the [final working script](https://github.com/nuso
 
 If you want to visualise the audio input live, check out the Microphone plugin of [wavesurfer](http://wavesurfer.fm): [wavesurfer.fm/example/microphone](http://www.wavesurfer.fm/example/microphone/). If you want to delve deeper, check out the [MDN Web Audio API docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
 
-If you are interested in where this experiment leads, follow me on Twitter ([@kehers](https://twitter.com/kehers)) to follow what I am working on. I promise you will love it.
+If you are interested in where this experiment leads, follow me on Twitter ([@kehers](https://twitter.com/kehers)) to follow what I am working on. I promise you will love it :)
