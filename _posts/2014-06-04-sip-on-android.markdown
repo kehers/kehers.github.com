@@ -318,7 +318,7 @@ With the Android SIP API out, what are the alternatives? Well, there are a coupl
 - [PjSIP](http://www.pjsip.org/)
 - [Doubango](http://www.doubango.org/)
 
-Now another problem - chosing. After a full day of experimenting and digging, I finally settled for Doubango. But why Doubango? Two reasons:
+Now another problem - choosing. After a full day of experimenting and digging, I finally settled for Doubango. But why Doubango? Two reasons:
 
 1. High level API    
 Some of the stacks offer only low level APIs. They require you to have a good knowledge of the SIP protocol. Nothing is handed to you on a platter of gold. You must know what headers, what messages, what requests to send at the right time. There is nothing like calling a simple **register()** method to help you handle SIP server registration.    
