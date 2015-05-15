@@ -1,0 +1,17 @@
+.top-bar .logo {
+  max-width: 240px;
+  position: relative;
+  bottom: 7px;
+}
+.logo.logo-wide {
+  max-width: 240px;
+  bottom: 12px;
+  margin-bottom: -6px;
+}
+.simple-bar .logo {
+  width: 220px;
+  bottom: 12px;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  transition: all .3s ease;
+}
