@@ -7,7 +7,7 @@ I really love [good code indentation](http://obem.be/2012/09/29/code-indention-i
 
 In its simplest form, you create an "**.editorconfig**" file that will contain the rules in your source directory. (This means you can have different rules for different projects/directory). Here is the EditorConfig file for a [sample project](https://github.com/kehers/fave):
 
-{% highlight javascript %}
+{% highlight text %}
 root = true
 
 [*]
