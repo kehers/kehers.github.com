@@ -1,5 +1,5 @@
 html {
-  font-family: 'Muli', sans-serif;
+  font-family: 'Bitter', serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-size: 16px;
@@ -9,6 +9,9 @@ html {
   padding: 0;
 }
 
+header {
+  background-color: #fff;
+}
 body {
   background-color: #fafafa;
 }
