@@ -21,13 +21,13 @@ h1, h2, h3, h4, p{
 }
 h1 {
   font-size: 2.2rem;
-  color: #fff;
   line-height: 1.2em;
   font-family: 'Bitter', serif;
 }
 h2 {
   font-family: 'Bitter', serif;
   font-size: 1.414rem;
+  color: #390;
 }
 h3 {
   font-size: 1.155rem;
@@ -45,10 +45,8 @@ h4 {
   width: 920px;
 }
 
-nav, header {
-  background-color: #b93423;
-}
 nav {
+  background-color: #b93423;
   border-top: 1px solid #a52a19;
   border-bottom: 1px solid #a52a19;
 }
@@ -136,15 +134,12 @@ nav ul li a:hover {
 }
 
 .banner {
-  background: #71b66b url('../imgs/green.png') repeat center;
+  background: #fff;
   height: 400px;
 }
 .banner-b {
   background: url('../img/knowledge.png') no-repeat center;
   height: 400px;
-}
-.banner {
-  color: #e9f4e8
 }
 
 .more {
@@ -153,7 +148,7 @@ nav ul li a:hover {
   margin: 10px 0;
   font-size: 1.2rem;
   font-family: 'Bitter', serif;
-  color: #fcf621;
+  color: #b93423;
   font-weight: bold;
   /*
   border-radius: 10px;
