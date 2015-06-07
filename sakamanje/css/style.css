@@ -14,6 +14,8 @@ html {
 
 header {
   background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-bottom:10px
 }
 body {
   background-color: #fafafa;
@@ -96,10 +98,13 @@ nav ul li a.active {
   color: #fff;
   background-color: #df3918
 }
+p {
+  font-size: 0.85rem;
+}
 
 .logo {
   margin: 0;
-  padding: 40px 0;
+  padding: 40px 0 40px;
   float: left
 }
 .panel {
@@ -112,7 +117,7 @@ nav ul li a.active {
   background-color: #fff;
 }
 .green-bg {
-  height: 235px;
+  height: 200px;
   background-color: #459208;
   color: #fff;
 }
@@ -120,7 +125,7 @@ nav ul li a.active {
   color: #fff !important;
 }
 .red-bg {
-  height: 235px;
+  height: 200px;
   background-color: #b93423;
   color: #fff;
 }
@@ -128,7 +133,7 @@ nav ul li a.active {
   color: #fff !important
 }
 .yellow-bg {
-  height: 235px;
+  height: 200px;
   background-color: #fcd333;
 }
 .yellow-bg h2 {
@@ -172,7 +177,6 @@ nav ul li a.active {
 }
 
 .banner {
-  background: #fff;
   height: 450px;
 }
 .banner .row {
