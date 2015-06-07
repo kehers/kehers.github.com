@@ -179,11 +179,7 @@ p {
   height: 450px;
 }
 .banner .row {
-  background: url('../img/knowledge.png') no-repeat center right
-}
-.banner-b {
-  background: url('../img/knowledge.png') no-repeat center;
-  height: 400px;
+  background: #df3918 url('../img/knowledge.png') no-repeat center right
 }
 
 .more {
