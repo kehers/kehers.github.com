@@ -7,11 +7,12 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Sakamanje | Home</title>
+        <title>Web Chat | Sakamanje</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/rome.min.css" rel="stylesheet" type="text/css" media="all"/>
         <!--[if gte IE 9]>
         	<link rel="stylesheet" type="text/css" href="css/ie9.css" />
 		    <![endif]-->
@@ -27,7 +28,7 @@
           <h2 class="logo"><img src="img/logo-dark.png" width="250"></h2>
           <nav>
             <ul class="menu">
-              <li><a href="/" class="active">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li class="has-dropdown"><a href="about.html">About Us</a>
                 <ul class="subnav">
                   <li><a href="case-studies.html">Case Studies</a></li>
@@ -35,7 +36,7 @@
                   <li><a href="history.html">Our History</a></li>
                 </ul>
               </li>
-              <li class="has-dropdown"><a href="#">Students</a>
+              <li class="has-dropdown"><a href="students.html">Students</a>
                 <ul class="subnav">
                   <li><a href="#">New Students</a></li>
                   <li><a href="#">Register</a></li>
@@ -46,7 +47,7 @@
                 </ul>
               </li>
               <li><a href="news.html">News and Events</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
           </nav>
           <div style="clear:both"></div>
@@ -59,52 +60,72 @@
             <div class="row">
               <div class="one-two columns">
                 <div class="pad-20" style="color:#fff;margin-top:20px">
-                  <h1>Tools and support for achieving career aspirations</h1>
-                  <h3>Sakamanje engage all stakeholders in the education industry to enable the cultural shift towards more informed career decision.</h3>
-                  <a href="about.html" class="more">Read More &raquo;</a>
+                  <h1>Web Chat</h1>
+                  <a href="contacts.html" class="more">&laquo; Back</a>
                 </div>
-              </div>
-              <div class="one-two columns">
-                <!--img src="img/knowledge.png"-->
               </div>
             </div>
           </div>
         </div>
         <div class="wrapper">
-          <div class="panel white-bg" style="border-bottom: 1px solid #ddd">
-            <div class="row right-bordered">
-              <div class="one-third columns">
-                <div class="pad-20">
-                  <h2>High School Students</h2>
-                  <p>We work with the parents of students as young as 14 and begin having the ‘what do you want to do with your life’ conversation.</p>
-                </div>
-              </div>
-              <div class="one-third columns">
-                  <div class="pad-20">
-                    <h2>School Leavers</h2>
-                    <p>Sakamanje works with this group to advise, guide and nurture their decisions based on facts, skills, experience and market demans.</p>
-                  </div>
-              </div>
-              <div class="one-third columns">
-                  <div class="pad-20">
-                    <h2>University Students</h2>
-                    <p>It is important that the investment that you have made to educate yourselves to this level sees a return.</p>
-                  </div>
-              </div>
-            </div>
-          </div>
           <div class="panel white-bg">
-            <div class="row">
-              <div class="one-two columns">
-                <div class="pad-20">
-                  <h2>News and Events</h2>
+            <div class="pad-40">
+            <p>Thank you for contacting us.</p>
+            <p>Please fill in the information below, then submit the form and an advisor will be with you shortly.</p>
+
+              <form method="post">
+              <div class="row">
+                <div class="one-two columns">
+                  <p>
+                    <label>First name</label>
+                    <input type="text" placeholder="">
+                  </p>
+                </div>
+                <div class="one-two columns">
+                  <p>
+                    <label>Surname</label>
+                    <input type="text" placeholder="">
+                  </p>
                 </div>
               </div>
-              <div class="one-two columns">
-                  <div class="pad-20">
-                    <h2>Sakamanje on twitter</h2>
-                  </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p>
+                    <label>Gender</label>
+                    <select name="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select></p>
+                </div>
+                <div class="one-two columns">
+                  <p><label>Schedule date & time for chat</label>
+                  <input type="text" id="date" placeholder=""></p>
+                </div>
               </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p>
+                    <label>Email Address</label>
+                    <input type="text" placeholder="Email Address"></p>
+                </div>
+                <div class="one-two columns">
+                  <p>
+                    <label>Confirm Email Address</label>
+                    <input type="text" placeholder="Confirm Email Address"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p><button>Submit</button></p>
+                </div>
+              </div>
+              </form>
+
+              <h3>How it works</h3>
+              <p>You will receive an email confirming chat time and date shortly after you have submitted your enquiry.</p>
+              <p>Please ensure you are available that the proposed time and date.</p>
+              <p>When you begin a session a new browser window will open. At the end of the session, click the 'exit' button in the bottom right hand corner to end the webchat.</p>
+              <p>Advisers only handle one contact at a time so you always have their full attention.</p>
             </div>
         </div>
       </section>
@@ -154,6 +175,12 @@
             <img src="img/sakamanje.png" style="width:80px">
             <div class="clear"></div>
           </div>
+
+          <script src='js/moment.js'></script>
+          <script src='js/rome.standalone.min.js'></script>
+          <script type="text/javascript">
+          rome(date, {max: '2015-06-21'});
+          </script>
 
         </div>
       </footer>

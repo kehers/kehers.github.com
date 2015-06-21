@@ -7,14 +7,14 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Sakamanje | Home</title>
+        <title>Feedback | Sakamanje</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
         <!--[if gte IE 9]>
-        	<link rel="stylesheet" type="text/css" href="css/ie9.css" />
-		    <![endif]-->
+          <link rel="stylesheet" type="text/css" href="css/ie9.css" />
+        <![endif]-->
         <!-- <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'> -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
@@ -22,12 +22,12 @@
     <body>
         <!--div class="wrapper">
         </div-->
-  		<header>
+      <header>
         <div class="wrapper" style="border-bottom:1px solid #ddd;background-color:#fff">
           <h2 class="logo"><img src="img/logo-dark.png" width="250"></h2>
           <nav>
             <ul class="menu">
-              <li><a href="/" class="active">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li class="has-dropdown"><a href="about.html">About Us</a>
                 <ul class="subnav">
                   <li><a href="case-studies.html">Case Studies</a></li>
@@ -35,7 +35,7 @@
                   <li><a href="history.html">Our History</a></li>
                 </ul>
               </li>
-              <li class="has-dropdown"><a href="#">Students</a>
+              <li class="has-dropdown"><a href="students.html">Students</a>
                 <ul class="subnav">
                   <li><a href="#">New Students</a></li>
                   <li><a href="#">Register</a></li>
@@ -46,7 +46,7 @@
                 </ul>
               </li>
               <li><a href="news.html">News and Events</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
           </nav>
           <div style="clear:both"></div>
@@ -59,52 +59,84 @@
             <div class="row">
               <div class="one-two columns">
                 <div class="pad-20" style="color:#fff;margin-top:20px">
-                  <h1>Tools and support for achieving career aspirations</h1>
-                  <h3>Sakamanje engage all stakeholders in the education industry to enable the cultural shift towards more informed career decision.</h3>
-                  <a href="about.html" class="more">Read More &raquo;</a>
+                  <h1>Feedback</h1>
+                  <a href="contacts.html" class="more">&laquo; Back</a>
                 </div>
-              </div>
-              <div class="one-two columns">
-                <!--img src="img/knowledge.png"-->
               </div>
             </div>
           </div>
         </div>
         <div class="wrapper">
-          <div class="panel white-bg" style="border-bottom: 1px solid #ddd">
-            <div class="row right-bordered">
-              <div class="one-third columns">
-                <div class="pad-20">
-                  <h2>High School Students</h2>
-                  <p>We work with the parents of students as young as 14 and begin having the ‘what do you want to do with your life’ conversation.</p>
-                </div>
-              </div>
-              <div class="one-third columns">
-                  <div class="pad-20">
-                    <h2>School Leavers</h2>
-                    <p>Sakamanje works with this group to advise, guide and nurture their decisions based on facts, skills, experience and market demans.</p>
-                  </div>
-              </div>
-              <div class="one-third columns">
-                  <div class="pad-20">
-                    <h2>University Students</h2>
-                    <p>It is important that the investment that you have made to educate yourselves to this level sees a return.</p>
-                  </div>
-              </div>
-            </div>
-          </div>
           <div class="panel white-bg">
-            <div class="row">
-              <div class="one-two columns">
-                <div class="pad-20">
-                  <h2>News and Events</h2>
+            <div class="pad-40">
+              <p>We value your feedback because it will help us improve the service we provide. If you'd like to tell us what you think about the content on this site, or the service you’ve received from our advisers, please complete the form below.</p>
+              <form method="post">
+              <h3>Personal Details</h3>
+              <div class="row">
+                <div class="one-third columns">
+                  <p>
+                    <label>Title</label>
+                    <select name="title">
+                      <option>Mr</option>
+                      <option>Miss</option>
+                      <option>Mrs</option>
+                      <option>Ms</option>
+                    </select>
+                  </p>
                 </div>
               </div>
-              <div class="one-two columns">
-                  <div class="pad-20">
-                    <h2>Sakamanje on twitter</h2>
-                  </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p>
+                    <label>First name</label>
+                    <input type="text" placeholder="">
+                  </p>
+                </div>
+                <div class="one-two columns">
+                  <p>
+                    <label>Surname</label>
+                    <input type="text" placeholder="">
+                  </p>
+                </div>
               </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p>
+                    <label>Email Address</label>
+                    <input type="text" placeholder=""></p>
+                </div>
+                <div class="one-two columns">
+                  <p>
+                    <label>Confirm Email Address</label>
+                    <input type="text" placeholder=""></p>
+                </div>
+              </div>
+              <h3>What do you want to tell us?</h3>
+              <div class="row">
+                <div class="one-two columns">
+                  <p><label>What would you like to provide feedback on?</label>
+                  <select>
+                  <option>General</option>
+                  <option>Qualifications</option>
+                  <option>Course Search</option>
+                  <option>Technical Support</option>
+                  <option>Website</option>
+                  <option>Customer Service</option>
+                  </select></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p><label>Please enter your feedback in the box below</label>
+                  <textarea name="query"></textarea></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="one-two columns">
+                  <p><button>Submit</button></p>
+                </div>
+              </div>
+              </form>
             </div>
         </div>
       </section>
