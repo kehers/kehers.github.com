@@ -29,15 +29,15 @@ h1, h2, h3, h4, p{
 h1 {
   font-size: 2.2rem;
   line-height: 1.2em;
-  font-family: 'Bitter', serif;
+  /*font-family: 'Bitter', serif;*/
 }
 h2 {
-  font-family: 'Bitter', serif;
+  /*font-family: 'Bitter', serif;*/
   font-size: 1.414rem;
   color: #390;
 }
 h3 {
-  font-family: 'Bitter', serif;
+  /*font-family: 'Bitter', serif;*/
   font-size: 1.155rem;
 }
 h4 {
@@ -190,6 +190,8 @@ input, select, textarea {
   padding: 7px;
   font-size: 100%;
   width: 100%;
+  border-radius: 5px;
+  border: 1px solid #aca899;
 }
 textarea {
   padding: 10px;
