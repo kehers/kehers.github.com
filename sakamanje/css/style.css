@@ -113,7 +113,7 @@ ol.numbered {
 .search {
   float: right;
   width: 400px;
-  padding: 50px 0 20px;
+  padding: 20px 0 20px;
 }
 .search form {
   padding: 0;
@@ -168,14 +168,25 @@ ol.numbered {
 .contact-icons .columns{
   border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  height: 130px;
+  height: 200px;
 }
 .contact-icons a {
   display: block;
   padding: 30px 10px;
+  font-size: 1.155rem;
+  color: #df3918;
 }
 .contact-icons a:hover {
   color: #df3918;
+}
+
+.grid .columns {
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+.grid h3 {
+  background-color: #f2f2f2
 }
 
 form {
