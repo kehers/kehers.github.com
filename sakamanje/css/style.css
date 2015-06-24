@@ -110,6 +110,14 @@ ol.numbered {
   padding: 40px 0 30px;
   float: left
 }
+.search {
+  float: right;
+  width: 400px;
+  padding: 50px 0 20px;
+}
+.search form {
+  padding: 0;
+}
 .panel {
   /*border: 1px solid #eee;*/
 }
@@ -160,6 +168,7 @@ ol.numbered {
 .contact-icons .columns{
   border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+  height: 130px;
 }
 .contact-icons a {
   display: block;
@@ -261,7 +270,6 @@ button {
   padding: 10px;
   margin: 10px 0;
   font-size: 1.2rem;
-  font-family: 'Bitter', serif;
   color: #fcd333;
   font-weight: bold;
   /*
