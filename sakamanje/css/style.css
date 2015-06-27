@@ -161,13 +161,21 @@ ol.numbered {
   color: #df3918;
 }
 
+.yaxis {
+  float:left;
+  width: 35px;
+}
+.xaxis {
+  border-bottom: 1px solid #ccc;
+  float:left;
+  padding-bottom: 20px;
+}
+
 .contact-icons {
   text-align: center;
   margin: 20px 0;
 }
 .contact-icons .columns{
-  border-left: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
   height: 200px;
 }
 .contact-icons a {
@@ -187,6 +195,9 @@ ol.numbered {
 }
 .grid h3 {
   background-color: #f2f2f2
+}
+.center {
+  text-align: center;
 }
 
 form {
