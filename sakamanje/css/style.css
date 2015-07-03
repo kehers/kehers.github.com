@@ -208,11 +208,9 @@ ol.numbered {
   margin: 20px 0;
 }
 .gridb .columns {
-  border-right: 1px solid #ddd;
   min-height: 350px
 }
 .gridb h4 {
-  border-bottom: 1px solid #ddd;
   margin-bottom: 10px
 }
 .gridb p {
