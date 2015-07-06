@@ -20,7 +20,7 @@ db.collection('products').findOne({url : link}, function(err, doc) {
 });
 {% endhighlight %}
 
-There are a lot of ways to do log application errors from file to sending an email. I have even used Mixpanel (in cases where I am already using Mixpanel for other events). Another trick is using Twitter. Register a twitter account, make it private, 'tweet' the logs and follow the account. Or send the logs to yourself as DM. Another interesting way I recently discovered is using [Pushover](http://pushover.net/).
+There are a lot of ways to log application errors from file to sending an email. I have even used Mixpanel (in cases where I am already using Mixpanel for other events). Another trick is using Twitter. Register a twitter account, make it private, 'tweet' the logs and follow the account. Or send the logs to yourself as DM. Another interesting way I recently discovered is using [Pushover](http://pushover.net/).
 
 Pushover works in two simple steps.
 
