@@ -198,6 +198,7 @@ ol.numbered {
 }
 .contact-icons img{
   padding-bottom:20px;
+  opacity: 0.7
 }
 .contact-icons span {
   border-radius: 500px;
