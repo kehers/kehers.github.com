@@ -104,26 +104,29 @@ ol.numbered {
   float: left
 }
 .search {
-  float: right;
   width: 300px;
   padding: 20px 0 20px;
+  float: right;
 }
 .search form {
-  width: 300px;
-  padding: 0;
   float: right;
-  background: url(../img/search.png) right center no-repeat;
-  display: inline;
   font-size: 100%;
-  border-radius: 5px;
-  padding: 3px 25px 3px 3px;
-  border: 1px solid #aca899;
-}
-.search input {
-  border: 0;
-  width: 250px;
   padding: 0;
-  outline: none;
+  border-radius: 5px;
+}
+.search input[type=text] {
+  width: 250px;
+  padding: 5px;
+}
+.search input[type=image] {
+  top: 9px;
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ddd
+}
+.search input[type=image]:hover {
+  background-color: #df3918
 }
 .search input:focus,
 .search input:hover
@@ -251,7 +254,7 @@ form label {
 form div {
   padding: 5px 0;
 }
-input, select, textarea {
+input[type=text], select, textarea {
   padding: 7px;
   font-size: 100%;
   width: 100%;
@@ -426,4 +429,39 @@ footer a:hover {
 .price div {
   color: #fff;
   padding: 10px;
+}
+
+.bubbles {
+border-radius:50%;
+position: absolute;
+width:300px;
+text-align: center;
+padding:40px;
+}
+.bubbles h3 {
+  color: #fff;
+}
+.bubbles1 {
+  background-color: rgba(113,187,198,0.8);
+  top:5px;
+  left:100px;
+  padding:100px 50px;
+  width:400px;
+}
+.bubbles2 {
+  background-color: rgba(252,212,84,0.8);
+  top:90px;
+  right:0px;
+  width:300px;
+}
+.bubbles3 {
+  background-color: rgba(178,135,182,0.8);
+  top:300px;
+  left:50px;
+}
+.bubbles4 {
+  background-color: rgba(240,72,117,0.8);
+  top:340px;
+  width: 320px;
+  right:200px;
 }
