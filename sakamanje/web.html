@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-        <link href="css/rome.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css">
         <!--[if gte IE 9]>
         	<link rel="stylesheet" type="text/css" href="css/ie9.css" />
 		    <![endif]-->
@@ -42,7 +42,7 @@
                   <li><a href="#">Register</a></li>
                   <li><a href="#">Login</a></li>
                   <li><a href="services.html">Services</a></li>
-<li><a href="packages.html">Packages</a></li>
+                  <li><a href="packages.html">Packages</a></li>
                   <li><a href="payment.html">Payment</a></li>
                   <li><a href="faq.html">Forum &amp; FAQ</a></li>
                 </ul>
@@ -182,10 +182,16 @@
             <div class="clear"></div>
           </div>
 
-          <script src='js/moment.js'></script>
-          <script src='js/rome.standalone.min.js'></script>
+          <script src="js/jquery.js"></script>
+          <script src="js/jquery.datetimepicker.js"></script>
           <script type="text/javascript">
-          rome(date, {max: '2015-06-21'});
+          $('#date').datetimepicker({
+            formatTime:'H:i',
+            formatDate:'d.m.Y',
+            defaultDate:'+03.01.1970',
+            defaultTime:'10:00',
+            timepickerScrollbar:false
+          });
           </script>
 
         </div>

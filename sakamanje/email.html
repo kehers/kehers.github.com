@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-        <link href="css/rome.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css">
         <!--[if gte IE 9]>
         	<link rel="stylesheet" type="text/css" href="css/ie9.css" />
 		    <![endif]-->
@@ -184,7 +184,7 @@
                 <li><a href="#">Register</a></li>
                 <li><a href="#">Login</a></li>
                 <li><a href="services.html">Services</a></li>
-<li><a href="packages.html">Packages</a></li>
+                <li><a href="packages.html">Packages</a></li>
                 <li><a href="payment.html">Payment</a></li>
                 <li><a href="faq.html">Forum &amp; FAQ</a></li>
               </ul>
@@ -205,13 +205,20 @@
             <p>&copy; 2015, Sakamanje Consulting</p>
             <div class="clear"></div>
           </div>
-
         </div>
-        <script src='js/moment.js'></script>
-        <script src='js/rome.standalone.min.js'></script>
-        <script type="text/javascript">
-        rome(dob, {time: false, initialValue: '1980-01-01', max: '2002-01-01'});
-        </script>
+
+          <script src="js/jquery.js"></script>
+          <script src="js/jquery.datetimepicker.js"></script>
+          <script type="text/javascript">
+          $('#dob').datetimepicker({
+            timepicker:false,
+            format:'d/m/Y',
+            formatDate:'Y/m/d',
+            minDate:'-1970/01/02', // yesterday is minimum date
+            maxDate:'+2005/01/02' // and tommorow is maximum date calendar
+          });
+          </script>
+
       </footer>
     </body>
 </html>
