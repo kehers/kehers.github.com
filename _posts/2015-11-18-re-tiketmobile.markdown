@@ -1,6 +1,6 @@
 ---
 published: true
-title: re: Tiketmobile
+title: re - Tiketmobile
 layout: post
 ---
 I had to travel to Abuja some weeks ago. Knowing that Tiketmobile has since re-launched as an airport cab booking platform, I decided to give it a shot.
