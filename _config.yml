@@ -1,4 +1,5 @@
-pygments: true
+gems: [jekyll-paginate]
+highlighter: rouge
 excerpt_separator: ""
 paginate: 5
 markdown: kramdown

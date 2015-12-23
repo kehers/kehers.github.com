@@ -1,24 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>Email validation with Mailgun's API [PHP] | Opeyemi's BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="Email validation with Mailgun's API [PHP]">
+  <meta name="twitter:description" content="I wrote this quick email validation class using Mailgun's API like a month ago. You can get it on github here: github.com/kehers/MG_Email. You will need a public API key from Mailgun though. Simply...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>Email validation with Mailgun's API [PHP]</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/zenburn.css" />
-  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>Email validation with Mailgun's API [PHP]</h1>
-        <time>30 Sep 2013</time>
-    </header>
-    <article>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>30 Sep 2013</date>
+        <h1 class="title">Email validation with Mailgun's API [PHP]</h1>
         <p>I wrote this quick email validation class using <a href="http://documentation.mailgun.com/api-email-validation.html">Mailgun's API</a> like a month ago. You can get it on github here: <a href="https://github.com/kehers/MG_Email">github.com/kehers/MG_Email</a>. You will need a public API key from Mailgun though. Simply <a href="http://maigun.com/signup">signup</a> to get one.</p>
 <p>What makes it interesting are the checks:</p>
 <ul>
@@ -28,29 +51,94 @@
     <li>Email Service Provider (ESP) specific local-part grammar (if available).</li>
 </ul>
 <p>Usage is simple:</p>
-<p><div class="highlight"><pre><code class="php"><span class="lineno"> 1</span> <span class="cp">&lt;?php</span>
-<span class="lineno"> 2</span> <span class="k">include_once</span> <span class="s1">&#39;MG_Email.php&#39;</span><span class="p">;</span>
-<span class="lineno"> 3</span> <span class="nv">$mailgun_public_api_key</span> <span class="o">=</span> <span class="s1">&#39;your_mailgun_public_key&#39;</span><span class="p">;</span>
-<span class="lineno"> 4</span> <span class="nv">$mg_email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MG_Email</span><span class="p">(</span><span class="nv">$mailgun_public_api_key</span><span class="p">);</span>
-<span class="lineno"> 5</span> 
-<span class="lineno"> 6</span> <span class="nv">$email</span> <span class="o">=</span> <span class="s1">&#39;someemail@yhoo.com&#39;</span><span class="p">;</span>
-<span class="lineno"> 7</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">is_valid</span><span class="p">(</span><span class="nv">$email</span><span class="p">))</span> <span class="p">{</span>
-<span class="lineno"> 8</span>     <span class="k">echo</span> <span class="nv">$email</span><span class="o">.</span><span class="s1">&#39; is valid&#39;</span><span class="p">;</span>
-<span class="lineno"> 9</span> <span class="p">}</span>
-<span class="lineno">10</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">11</span>     <span class="k">echo</span> <span class="nv">$email</span><span class="o">.</span><span class="s1">&#39; is invalid.&#39;</span><span class="p">;</span>
-<span class="lineno">12</span>     <span class="k">if</span> <span class="p">(</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">spell_check</span><span class="p">)</span>
-<span class="lineno">13</span>         <span class="k">echo</span> <span class="s1">&#39; Do you mean &#39;</span><span class="o">.</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">spell_check</span><span class="o">.</span><span class="s1">&#39;?&#39;</span><span class="p">;</span>
-<span class="lineno">14</span> <span class="p">}</span>
-<span class="lineno">15</span> <span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div></p>
-        <p></p>
-        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
-    </article>
+<p><figure class="highlight"><pre><code class="language-php" data-lang="php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">include_once</span> <span class="s1">'MG_Email.php'</span><span class="p">;</span>
+<span class="nv">$mailgun_public_api_key</span> <span class="o">=</span> <span class="s1">'your_mailgun_public_key'</span><span class="p">;</span>
+<span class="nv">$mg_email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MG_Email</span><span class="p">(</span><span class="nv">$mailgun_public_api_key</span><span class="p">);</span>
 
-    <footer>
-      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+<span class="nv">$email</span> <span class="o">=</span> <span class="s1">'someemail@yhoo.com'</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">is_valid</span><span class="p">(</span><span class="nv">$email</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$email</span><span class="o">.</span><span class="s1">' is valid'</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$email</span><span class="o">.</span><span class="s1">' is invalid.'</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">spell_check</span><span class="p">)</span>
+        <span class="k">echo</span> <span class="s1">' Do you mean '</span><span class="o">.</span><span class="nv">$mg_email</span><span class="o">-&gt;</span><span class="na">spell_check</span><span class="o">.</span><span class="s1">'?'</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
+      </article>
+    </div>
   </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2013/09/23/get-a-header-field-php.html">Get a header field [PHP]</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
 </body>
 </html>

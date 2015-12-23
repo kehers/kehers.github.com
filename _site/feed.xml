@@ -7,259 +7,796 @@
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>So I checked out Ghost</title>
-				<description>&lt;p&gt;In case you missed it, &lt;a href=&quot;http://ghost.org&quot;&gt;Ghost&lt;/a&gt; is a new open source blogging platform. The hosted service is not yet available so you will have to download (&lt;a href=&quot;https://github.com/TryGhost/Ghost&quot;&gt;github.com/TryGhost/Ghost&lt;/a&gt;) and set it up yourself. It is written in NodeJs. I downloaded it a while ago and decided to give it a spin this morning.&lt;/p&gt;
+				<title>4 little open source projects</title>
+				<description>&lt;p&gt;Here are 4 small open source projects I have created this year.&lt;/p&gt;
 
-&lt;p&gt;&lt;b&gt;Setup&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Download, unzip to your choice directory and follow the install instructions in the README.md file. My set up was on &lt;a href=&quot;/2013/10/04/my-web-dev-platforms-and-tools.html&quot;&gt;Ubuntu&lt;/a&gt;. (I don't do Node things on Windows. It can be problematic). So the steps are:&lt;/p&gt;
-&lt;ol&gt;
-	&lt;li&gt;&lt;p&gt;Open your terminal and change directory to the root of the Ghost application&lt;/p&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;p&gt;Run &lt;code&gt;sudo npm install --production&lt;/code&gt; to install the node dependencies. You have to be patient here. Ghost has a lot of dependencies. Also notice the &lt;code&gt;sudo&lt;/code&gt;. It takes care of the privilege issues.&lt;/p&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;p&gt;Create a config.js file from the config.example.js file and update the url and mail part (I'm using gmail) of the development section:&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// ### Development **(default)**&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;development&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://localhost&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;          &lt;span class=&quot;nx&quot;&gt;mail&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;              &lt;span class=&quot;nx&quot;&gt;transport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SMTP&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;              &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;                  &lt;span class=&quot;nx&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;                      &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;your_gmail_addy@gmail.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;                      &lt;span class=&quot;nx&quot;&gt;pass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;                  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;              &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;          &lt;span class=&quot;c1&quot;&gt;// the other things remain&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;      
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-	&lt;/li&gt;
-	&lt;li&gt;&lt;p&gt;Once done, save and run &lt;code&gt;npm start&lt;/code&gt; to start Ghost.&lt;/p&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;p&gt;Visit http://localhost:2368/ in your web browser.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;You should be welcomed with a screen similar to this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/ghost_index.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;To access the admin panel, visit &lt;a href=&quot;http://localhost:2368/ghost&quot;&gt;http://localhost:2368/ghost&lt;/a&gt;. there you get to signup and access the admin console:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/signup.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The admin console:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/admin.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Edit post (Ghost uses Markdown by the way):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/edit-post.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/post-settings-2.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Settings page:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/settings.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;User profile/settings:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/user-settings.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Published post page:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image/2013/11/post-page.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;That basically is everything. Really, it's just blogging afterall. For now it only comes with a theme - Casper. I think more will come later. They should consider a simpler editor too. It's &lt;a href=&quot;https://twitter.com/_onyeka/status/396934716890562560&quot;&gt;not everyone that is comfortable with Markdown&lt;/a&gt; commands. An editor with formatting buttons (even though they still generate the Markdown output) will be better.&lt;/p&gt;
-&lt;p&gt;I can't deny I love Ghost's simplicity and minimalism. However, I don't see myself using Ghost as my primary blogging platform. I have all the flexibility I want with &lt;a href=&quot;/2013/02/20/moved.html&quot;&gt;Jekyll/GP&lt;/a&gt;. Where Ghost comes useful is if I want to setup a self hosted blog for a new project or service. But then again, why self hosted? Why not just use Tumblr?&lt;/p&gt;</description>
-				<pubDate>Sat, 02 Nov 2013 00:00:00 +0100</pubDate>
-				<link>/2013/11/02/so-i-checked-out-ghost.html</link>
-				<guid isPermaLink="true">/2013/11/02/so-i-checked-out-ghost.html</guid>
+&lt;h2 id=&quot;ubercodes&quot;&gt;1. Ubercodes&lt;/h2&gt;
+
+&lt;p&gt;This was an experiment with &lt;a href=&quot;https://dev.twitter.com/streaming/overview&quot;&gt;Twitter Streaming API&lt;/a&gt;. How do you connect to the stream of Twitter public tweets to get tweets containing specific terms?&lt;/p&gt;
+
+&lt;p&gt;Ubercodes listens to Twitter for the words “&lt;strong&gt;uber code&lt;/strong&gt;”. The search words can be anything. At that moment, I was just interested in seeing the number of people tweeting Uber codes per minute.&lt;/p&gt;
+
+&lt;p&gt;The code is written in Node.js which makes sense because of the streaming connection and sending matched tweets from the server to the front end via web socket.&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;https://github.com/kehers/Ubercodes&quot;&gt;github.com/kehers/Ubercodes&lt;/a&gt;  &lt;br /&gt;
+Language: Node.js&lt;/p&gt;
+
+&lt;h2 id=&quot;cabbie&quot;&gt;2. Cabbie&lt;/h2&gt;
+
+&lt;p&gt;We added &lt;a href=&quot;https://fonenode.com/docs#sms&quot;&gt;two-way SMS to Fonenode&lt;/a&gt; and to showcase it, I built Cabbie. Cabbie allows you interact with the &lt;a href=&quot;https://developer.uber.com/&quot;&gt;Uber API&lt;/a&gt; via SMS. Don’t judge my sudden interest in Uber :D. The API was new and I wanted to check it out.&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;https://github.com/fonenode/Cabbie&quot;&gt;github.com/fonenode/Cabbie&lt;/a&gt;  &lt;br /&gt;
+Language: PHP&lt;/p&gt;
+
+&lt;h2 id=&quot;fave&quot;&gt;3. Fave&lt;/h2&gt;
+
+&lt;p&gt;I use IFTTT to push links in tweets I fav to Pocket. But many times, the links end up broken and the original tweet is not attached in Pocket (Pocket API allows you attach a tweet to an item by specifying the tweet id). So I created Fave. Simple idea - use the Twitter API to pull the user’s faved tweets, check for URLs and push through the Pocket API to Pocket. There are other plans, but it’s that simple for now.&lt;/p&gt;
+
+&lt;p&gt;By the way, the 2 minute cron that checks for favs is not scalable. I will probably move it to &lt;a href=&quot;http://www.iron.io/worker/&quot;&gt;IronWorker&lt;/a&gt; when I have the time.&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;https://github.com/kehers/fave&quot;&gt;github.com/kehers/fave&lt;/a&gt; &lt;br /&gt;
+Language: Node.js &lt;br /&gt;
+Hosted version: &lt;a href=&quot;http://fave.ninja/&quot;&gt;fave.ninja&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;billtab&quot;&gt;4. Billtab&lt;/h2&gt;
+
+&lt;p&gt;My friends and I have a money pool for house expenses - fuel, food, power, cable TV, internet, etc. I tried using Google sheets to manage it but didn’t work quite well. So I created a shared expense/earning tracker - Billtab.&lt;/p&gt;
+
+&lt;p&gt;Billtab should allow any member of the team manage the earnings and expenses and display detailed monthly reports based on tags and user. But it doesn’t work like that yet. For now it’s just a simple expenses/earnings tracker that works offline.&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;https://github.com/kehers/billtab&quot;&gt;github.com/kehers/billtab&lt;/a&gt; &lt;br /&gt;
+Language: HTML5, CSS3, Javascript (Backbone.js) &lt;br /&gt;
+Hosted version: &lt;a href=&quot;http://billtab.co/&quot;&gt;billtab.co&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;/p&gt;
+
+&lt;p&gt;I am writing an ebook on Consuming REST APIs. Follow the progress here: &lt;a href=&quot;https://gumroad.com/kehers&quot;&gt;gumroad.com/kehers&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 19 Nov 2015 00:00:00 +0100</pubDate>
+				<link>/2015/11/19/4-little-open-source-projects.html</link>
+				<guid isPermaLink="true">/2015/11/19/4-little-open-source-projects.html</guid>
 			</item>
 		
 			<item>
-				<title>Why BBM when there is Whatsapp?</title>
-				<description>&lt;p&gt;Comparing BBM to Whatsapp is like comparing apples to oranges (whichever is apple or orange and whatever that means). Even though the instant messaging features are the same, they are simply not the same thing.&lt;/p&gt;
+				<title>re - Tiketmobile</title>
+				<description>&lt;p&gt;I had to travel to Abuja some weeks ago. Knowing that Tiketmobile has since re-launched as an airport cab booking platform, I decided to give it a shot.&lt;/p&gt;
 
-&lt;p&gt;Whatsapp is tied to your number. I don't like this. Anyone with your number can just hit you up and that's it. (Yea, yeah, I know you can block and all that, but that's another layer of friction). I can't count the number of times I use Whatsapp for snooping. Call from an unfamiliar number? Number you stumbled on somewhere? Just add the number to your contact, refresh your Whatsapp contact list and view profile.&lt;/p&gt;
+&lt;p&gt;Interestingly, the process was quick and straight to the point. I selected the arrival airport, destination area and arrival time; then signed up and made [online] payment. My driver called me just as I switched on my phone on arrival. He was already waiting outside by the time I cleared my bags. The long ride was smooth and we chatted about random stuff.&lt;/p&gt;
 
-&lt;p&gt;BBM answers this via the pin feature. I don't need to give you my number before we can chat.&lt;/p&gt;
-
-&lt;p&gt;And two, I hate that Whatsapp last seen feature. That's the real snitch there. On BBM I can ignore your chat by not opening the conversation thread. You don't get the &lt;b&gt;R&lt;/b&gt; notification. On Whatsapp, last seen tells you I've been ignoring you and chatting with other people.&lt;/p&gt;
-
-&lt;p&gt;I got BBM yesterday and I see myself using it more. Eventually, I may even uninstall my Whatsapp. Whatsapp is a great platform. The cross support across different OS is just awesome. Personally, I think it's the best messaging platform out there. If you have Whatsapp, you really may not need BBM. But that's not an assumption to generalize. Take it or not, this BBM4All thing is a serious shit.&lt;/p&gt;</description>
-				<pubDate>Sun, 27 Oct 2013 00:00:00 +0100</pubDate>
-				<link>/2013/10/27/why-bbm-when-there-is-whatsapp.html</link>
-				<guid isPermaLink="true">/2013/10/27/why-bbm-when-there-is-whatsapp.html</guid>
+&lt;p&gt;I must say I’m really impressed by the service. It saved me the wait time and the hassle of negotiating with the numerous drivers there at the airport. It is only available in Abuja and Port-Harcourt though. I’d like to see more airports - Lagos as one. Getting cabs from that Lagos airport can be tricky. Plus there is the part of worrying about security.&lt;/p&gt;
+</description>
+				<pubDate>Wed, 18 Nov 2015 00:00:00 +0100</pubDate>
+				<link>/2015/11/18/re-tiketmobile.html</link>
+				<guid isPermaLink="true">/2015/11/18/re-tiketmobile.html</guid>
 			</item>
 		
 			<item>
-				<title>5 minutes nodeJs server setup</title>
-				<description>&lt;p&gt;This is a walk-through of a quick nodeJs server setup. The &quot;server&quot; OS is Ubuntu but it's pretty much the same steps on any other linux OS.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;b&gt;Install nodeJs&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;This should be as easy as &lt;em&gt;apt-get install nodejs&lt;/em&gt;. The default repo may have an old version of node though. To install the version 0.10.x, you need to add the &lt;a href=&quot;http://www.ubuntuupdates.org/ppa/chris_lea_nodejs&quot;&gt;chris-lea repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get install software-properties-common python-software-properties python g++ make
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; add-apt-repository ppa:chris-lea/node.js
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;...then update and install nodejs&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get update
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get install nodejs
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;Alternatively, just download the &lt;a href=&quot;http://nodejs.org/download&quot;&gt;nodeJs source&lt;/a&gt; (via wget) and build it yourself.&lt;/p&gt;
-&lt;/li&gt; 
-&lt;li&gt;
-&lt;p&gt;&lt;b&gt;Install NPM&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;NPM is the node package manager that helps you install node modules.&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; apt-get install npm
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;/li&gt; 
-&lt;li&gt;
-&lt;p&gt;&lt;b&gt;Create source directory&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Next we create the home directory for our source files. Let's assume &lt;em&gt;/var/www&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; mkdir /var/www/
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;/li&gt; 
-&lt;li&gt;
-&lt;p&gt;&lt;b&gt;Install needed modules&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;In the source directory, we install the needed node modules for our nodeJs application. Assuming, our app uses &lt;a href=&quot;http://expressjs.com/&quot;&gt;express&lt;/a&gt; and &lt;a href=&quot;http://socket.io/&quot;&gt;socket.io&lt;/a&gt; for example, we will have.&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; npm install express
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; npm install socket.io
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;b&gt;Install forever&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/nodejitsu/forever&quot;&gt;Forever&lt;/a&gt; keeps your node script running continuosly. This means, once you exit the terminal, your application will not terminate as expected of a command like &lt;em&gt;node app.js&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; npm install forever -g
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;Note the -g (global mode) switch.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;b&gt;Upload and start your application&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Upload your node application to the source directory you created (/var/www). I am assuming you have FTP setup already. If not, you can just use &lt;a href=&quot;http://http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol&quot;&gt;SFTP&lt;/a&gt; (add your server details to your fav FTP client and set the connection type/security to SFTP). Next, start your app via forever.&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; forever start /var/www/app.js
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Just by the way, if you need your application to listen on port 80, &lt;em&gt;server.listen(80);&lt;/em&gt; won't work. There are a couple of ways to do this. the famous one is using nginx as a proxy. Except you need nginx for something else though, that's not necessary. You can do a simple port forwarding like this&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description>
-				<pubDate>Fri, 18 Oct 2013 00:00:00 +0100</pubDate>
-				<link>/2013/10/18/5-minutes-nodejs-server-setup.html</link>
-				<guid isPermaLink="true">/2013/10/18/5-minutes-nodejs-server-setup.html</guid>
-			</item>
-		
-			<item>
-				<title>Books and Covers</title>
-				<description>&lt;blockquote&gt;&quot;...no matter what the proverb tells us, we judge books by their covers. Not only is it much faster than actually having to read the whole thing, but it's what covers are made for in the first place.&quot; - &lt;a href=&quot;http://twitter.com/sachagreif&quot;&gt;@sachagrief&lt;/a&gt;&lt;/blockquote&gt;
+				<title>A quick note on .editorconfig</title>
+				<description>&lt;p&gt;I really love &lt;a href=&quot;http://obem.be/2012/09/29/code-indention-it-is-this-simple.html&quot;&gt;good code indentation&lt;/a&gt;. And writing a good code starts from a good indentation. While this is a conscious effort, your editor can make it very easy. And that is where &lt;a href=&quot;http://editorconfig.org/&quot;&gt;EditorConfig&lt;/a&gt; comes in. EditorConfig allows you define style rules an editor should adhere to. This makes it easy to have a consistent style even across editors.&lt;/p&gt;
 
-&lt;p&gt;Lovely quote I pulled from the article &lt;a href=&quot;https://medium.com/p/862d9dbc8d07&quot;&gt;Why Dribbble Isn't That Horibbble&lt;/a&gt;. It's a very deep one and applies to every aspect of life. Don't just put up a poor appearance and expect people to take time to dig beyond the look. Writing a book? Designing an app? Launching a product? Try put some time into the look and appeal.&lt;/p&gt;
+&lt;p&gt;In its simplest form, you create an “&lt;strong&gt;.editorconfig&lt;/strong&gt;” file that will contain the rules in your source directory. (This means you can have different rules for different projects/directory). Here is the EditorConfig file for a &lt;a href=&quot;https://github.com/kehers/fave&quot;&gt;sample project&lt;/a&gt;:&lt;/p&gt;
 
-&lt;p&gt;Seriously, I need to start taking some design lessons myself.&lt;/p&gt;</description>
-				<pubDate>Fri, 11 Oct 2013 00:00:00 +0100</pubDate>
-				<link>/2013/10/11/books-and-covers.html</link>
-				<guid isPermaLink="true">/2013/10/11/books-and-covers.html</guid>
-			</item>
-		
-			<item>
-				<title>My web dev platforms and tools</title>
-				<description>&lt;p&gt;Here are my web dev platforms and tools&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Hosting&lt;/b&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you will notice, the syntax is simple and self-explanatory. The rule simply says - for all file types (&lt;strong&gt;*&lt;/strong&gt;), use 2 spaces for indentation, remove trailing spaces and end the file with a new line. For &lt;strong&gt;.md&lt;/strong&gt; (markdown) files, don’t remove trailing spaces. (Remember, trailing spaces in markdown is used to differentiate line breaks and paragraphs). Here is a &lt;a href=&quot;https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties&quot;&gt;complete list of EditorConfig properties&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note however that not all editors have inbuilt support for these rules. Yet. But there are plugins you can install to enable it. For Sublime text (my editor on Mac), you can install &lt;code class=&quot;highlighter-rouge&quot;&gt;EditorConfig&lt;/code&gt; via Package control. If you don’t have Package control, see &lt;a href=&quot;https://packagecontrol.io/installation&quot;&gt;installation details here&lt;/a&gt;. For Notepad++ (my editor on Windows), see installation details &lt;a href=&quot;https://github.com/editorconfig/editorconfig-notepad-plus-plus#readme&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The real beauty of EditorConfig comes when you work in a team. Because individuals have their own indentation style, it is easy to have a mix of different styles. Some will use tabs for indentation, others spaces. (I recommend spaces). Even for spaces, some will use 2 spaces, others 4. Editorconfig can help achieve a unique style across shared codes. A style can be agreed on, the EditorConfig file created based on that style and everyone ensures his/her editor is enabled for EditorConfig.&lt;/p&gt;
+
+&lt;p&gt;Notes:&lt;/p&gt;
+
 &lt;ul&gt;
-	&lt;li&gt;&lt;p&gt;VPS&lt;br /&gt;
-		&lt;a href=&quot;http://rackspace.com&quot;&gt;Rackspace&lt;/a&gt; mainly. I tried &lt;a href=&quot;http://digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; recently and I really love the simplicity of the admin console and cheap price. Ok, the cheap price really. I'm probably using them for my next stuff.&lt;/p&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;p&gt;Shared&lt;br /&gt;
-		I don't do much of shared hosting stuff these days. When I do, it's &lt;a href=&quot;http://gigalayer.com/&quot;&gt;gigalayer&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;While EditorConfig aims at allowing setting a consistent code “style”, I emphasized “indentation” in this post. Code style is a broader term. This include things like how brackets, arguments, control structures, keywords and closures are written, in what case (lower, upper, sentence) and how spaces should come in. EditorConfig won’t take care of this for you. That is something a developer or a team should agree on. If you are using PHP for example, the &lt;a href=&quot;http://www.php-fig.org/psr/psr-2/&quot;&gt;PSR2 coding style&lt;/a&gt; is a good guide.&lt;/li&gt;
+  &lt;li&gt;My use of the term “editors” in this post also include IDEs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;b&gt;Domain name&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;I started domain name management with &lt;a href=&quot;http://007names.com&quot;&gt;007names&lt;/a&gt; a long time ago. I even still have a couple of domain names there. But I have since moved to &lt;a href=&quot;http://namecheap.com&quot;&gt;namecheap&lt;/a&gt;. Why not &lt;a href=&quot;http://name.com&quot;&gt;name.com&lt;/a&gt;? Well, they don't accept any of my cards.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Managing emails and mailbox&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;It used to be Google apps. Now I use &lt;a href=&quot;http://mailgun.com&quot;&gt;mailgun&lt;/a&gt; (comes with 50,000/month free emails for Rackspace users). &lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Sending emails&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://aws.amazon.com/ses/‎&quot;&gt;Amazon SES&lt;/a&gt;. I have used MailChimp's &lt;a href=&quot;http://mandrillapp.com&quot;&gt;Mandrill&lt;/a&gt; of late and I prefer the interface and analytics. It will be my default now.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;CDN&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Since most of my stuffs are on Rackspace, I use &lt;a href=&quot;http://www.rackspace.com/cloud/files/&quot;&gt;Rackspace's cloud files&lt;/a&gt;. Now that I am planning to have my next thing on DigitalOcean, I may get to use Amazon &lt;a href=&quot;http://aws.amazon.com/cloudfront/‎&quot;&gt;cloudfront&lt;/a&gt; or &lt;a href=&quot;http://aws.amazon.com/s3/‎&quot;&gt;s3&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Analytics&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Old &lt;a href=&quot;http://analytics.google.com&quot;&gt;google analytics&lt;/a&gt;. I use &lt;a href=&quot;http://segment.io/&quot;&gt;segment.io&lt;/a&gt; for &lt;a href=&quot;http://twhii.com/&quot;&gt;Twhii&lt;/a&gt; and it's really cool too.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Versioning&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://github.com/kehers&quot;&gt;Github&lt;/a&gt; and &lt;a href=&quot;http://bitbucket.org&quot;&gt;Bitbucket&lt;/a&gt;. You should see that coming.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;OS&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Windows (7) and Ubuntu (12.04). Dual boot.&lt;/p&gt;
-&lt;p&gt;On my servers, CentOs or Ubuntu.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Editor&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://notepad-plus-plus.org/‎&quot;&gt;Notepad++&lt;/a&gt; on Windows. &lt;a href=&quot;http://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; on Ubuntu.&lt;/p&gt;
-&lt;p&gt;I think that is basically it. At least, the ones I can remember.&lt;/p&gt;</description>
-				<pubDate>Fri, 04 Oct 2013 00:00:00 +0100</pubDate>
-				<link>/2013/10/04/my-web-dev-platforms-and-tools.html</link>
-				<guid isPermaLink="true">/2013/10/04/my-web-dev-platforms-and-tools.html</guid>
+</description>
+				<pubDate>Mon, 01 Jun 2015 00:00:00 +0100</pubDate>
+				<link>/2015/06/01/a-quick-note-on-editorconfig.html</link>
+				<guid isPermaLink="true">/2015/06/01/a-quick-note-on-editorconfig.html</guid>
 			</item>
 		
 			<item>
-				<title>saved.io</title>
-				<description>&lt;p&gt;I found this new bookmark site &lt;a href=&quot;http://saved.io/&quot;&gt;saved.io&lt;/a&gt;. It's very simple and easy to use. You just prefix the url you want to bookmark with saved.io (e.g, &lt;a href=&quot;http://saved.io/kehers.github.io/posts.html&quot;&gt;saved.io/kehers.github.io/posts.html&lt;/a&gt;) and that's all. You can also create lists by adding the list name as a subdomain like this: &lt;a href=&quot;http://misc.saved.io/kehers.github.io/posts.html&quot;&gt;misc.saved.io/kehers.github.io/posts.html&lt;/a&gt;. That adds the url to the list: &lt;em&gt;misc&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;One big missing feature though is editing. Most importantly, I want to be able to move my bookmarks between lists. I have sent in a tweet to the &lt;a href=&quot;http://twitter.com/savedio&quot;&gt;app account&lt;/a&gt; and hope that feature gets added.&lt;/p&gt;</description>
-				<pubDate>Thu, 03 Oct 2013 00:00:00 +0100</pubDate>
-				<link>/2013/10/03/saved.io.html</link>
-				<guid isPermaLink="true">/2013/10/03/saved.io.html</guid>
+				<title>Recording audio in browser</title>
+				<description>&lt;p&gt;With advancements in HTML5, audio recording in browser is now easier than before. Even though the underlying technologies, Web Audio API + WebRTC, is &lt;a href=&quot;http://caniuse.com/#search=webrtc&quot;&gt;not fully supported across browsers&lt;/a&gt;, it is a better alternative to having users install addons or download extensions to enable audio recording in browser.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-how&quot;&gt;The how&lt;/h2&gt;
+
+&lt;p&gt;In it’s simplest form, &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia&quot;&gt;getUserMedia&lt;/a&gt; is used to capture audio for &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API&quot;&gt;Web Audio&lt;/a&gt; to then record. But of course, you know it’s more complicated than that. Good news is &lt;a href=&quot;https://github.com/mattdiamond/Recorderjs&quot;&gt;RecorderJs&lt;/a&gt; has done all the necessary work.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// include recorder.js script
+&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;recorder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AudioContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AudioContext&lt;/span&gt; 
+                  &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;webkitAudioContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getUserMedia&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getUserMedia&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
+               &lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;webkitGetUserMedia&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
+               &lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mozGetUserMedia&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
+               &lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msGetUserMedia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;audioContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AudioContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getUserMedia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;audio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mediaStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;audioContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createMediaStreamSource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mediaStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;recorder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Recorder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;numChannels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// No live audio input
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;optimizing&quot;&gt;Optimizing&lt;/h2&gt;
+
+&lt;p&gt;The audio is recorded in uncompressed wav format. If you will be uploading the recorded data, the size can be an issue. A one minute, 2 channels recording is around 10mb (one minute mono is around 5mb). What is the possible workaround? Compressing to mp3 - on the client! Don’t fret yet, &lt;a href=&quot;https://github.com/akrennmair/libmp3lame-js&quot;&gt;libmp3lame.js&lt;/a&gt; got you covered. There is a good article on implementing libmp3lame.js with Recorderjs here: &lt;a href=&quot;https://nusofthq.com/blog/recording-mp3-using-only-html5-and-javascript-recordmp3-js/&quot;&gt;nusofthq.com/blog/recording-mp3-using-only-html5-and-javascript-recordmp3-js/&lt;/a&gt;. Converting to mp3 reduces the size by about 97%. A converted mp3 file of one minute is about 300kb.&lt;/p&gt;
+
+&lt;p&gt;There are 2 minor issues with the &lt;a href=&quot;https://github.com/nusofthq/Recordmp3js&quot;&gt;final working script&lt;/a&gt; in that article though. One, it uses an old version of Recorderjs and hard-coded the channel as 1 in several parts of the source. The other issue is with libmp3lame. The converted mp3 file is twice the length of the original recording, with the other half blank. I created a fork that fixed both. I actually didn’t do anything super. I just recreated using a newer version of Recorderjs, commented out a line causing audio feedback and made a tiny tweak in the libmp3lame source as recommended in a comment. You can check out the fork here: &lt;a href=&quot;https://github.com/kehers/Recordmp3js&quot;&gt;github.com/kehers/Recordmp3js&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualisation&quot;&gt;Visualisation&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/BA0uza4.png?1&quot; alt=&quot;Visualisation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to visualise the audio input live, check out the Microphone plugin of &lt;a href=&quot;http://wavesurfer.fm&quot;&gt;wavesurfer&lt;/a&gt;: &lt;a href=&quot;http://www.wavesurfer.fm/example/microphone/&quot;&gt;wavesurfer.fm/example/microphone&lt;/a&gt;. If you want to delve deeper, check out the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API&quot;&gt;MDN Web Audio API docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you are interested in where this experiment leads, follow me on Twitter (&lt;a href=&quot;https://twitter.com/kehers&quot;&gt;@kehers&lt;/a&gt;) to follow what I am working on. I promise you will love it :)&lt;/p&gt;
+</description>
+				<pubDate>Mon, 23 Mar 2015 00:00:00 +0100</pubDate>
+				<link>/2015/03/23/experiments-recording-audio-in-browser.html</link>
+				<guid isPermaLink="true">/2015/03/23/experiments-recording-audio-in-browser.html</guid>
 			</item>
 		
 			<item>
-				<title>Email validation with Mailgun's API [PHP]</title>
-				<description>&lt;p&gt;I wrote this quick email validation class using &lt;a href=&quot;http://documentation.mailgun.com/api-email-validation.html&quot;&gt;Mailgun's API&lt;/a&gt; like a month ago. You can get it on github here: &lt;a href=&quot;https://github.com/kehers/MG_Email&quot;&gt;github.com/kehers/MG_Email&lt;/a&gt;. You will need a public API key from Mailgun though. Simply &lt;a href=&quot;http://maigun.com/signup&quot;&gt;signup&lt;/a&gt; to get one.&lt;/p&gt;
-&lt;p&gt;What makes it interesting are the checks:&lt;/p&gt;
+				<title>Using Pushover for issue logging and notifications</title>
+				<description>&lt;p&gt;Things go wrong within applications, in production. A good thing to do is to build a way to automatically capture and log the issue and related data. This way, these issues don’t just go unnoticed. And the location of the issue is known too, which is like half problem solved.&lt;/p&gt;
+
+&lt;p&gt;Here is an example source:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;products&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;findOne&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Some unexpected error here. What could it be?
+&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Log it!
+&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;There are a lot of ways to log application errors from file to sending an email. I have even used Mixpanel (in cases where I am already using Mixpanel for other events). Another trick is using Twitter. Register a twitter account, make it private, ‘tweet’ the logs and follow the account. Or send the logs to yourself as DM. Another interesting way I recently discovered is using &lt;a href=&quot;http://pushover.net/&quot;&gt;Pushover&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pushover works in two simple steps.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You &lt;del&gt;create&lt;/del&gt; register an application (and get an API key). You can start sending notifications via the &lt;a href=&quot;https://pushover.net/api&quot;&gt;API&lt;/a&gt; or any of the &lt;a href=&quot;https://pushover.com/clients&quot;&gt;apps and plugins&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;You add a device to receive notifications on. This can be any of the &lt;a href=&quot;https://pushover.com/clients&quot;&gt;Android, iOS and desktop clients&lt;/a&gt;. Costs a one time $5 fee that is absolutely worth it. Once there is a notification for any of your app, the device gets the notification via push. You can also create groups and allow multiple people receive notifications for any of your applications.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Back to our example source, we can use Pushover to log the issue and send a notification. For NodeJs, I use the module &lt;a href=&quot;https://github.com/qbit/node-pushover&quot;&gt;Pushover Notifications&lt;/a&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;pushover-notifications&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+   &lt;span class=&quot;c1&quot;&gt;// other modules here
+&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// My PushOver tokens (set in my environment)
+&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pusher&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;PUSHOVER_USER&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;PUSHOVER_TOKEN&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;products&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;findOne&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pusher&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;DB error&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Link: &#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;; Error: &#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Once there is an error, this will send a push notification to my device (I am using the Android app). Easy and works.&lt;/p&gt;
+
+&lt;p&gt;PS: If you are looking for a logging class for PHP, check out &lt;a href=&quot;https://github.com/Seldaek/monolog&quot;&gt;Monolog&lt;/a&gt;.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 12 Mar 2015 00:00:00 +0100</pubDate>
+				<link>/2015/03/12/using-pushover-for-issue-logging-and-notifications.html</link>
+				<guid isPermaLink="true">/2015/03/12/using-pushover-for-issue-logging-and-notifications.html</guid>
+			</item>
+		
+			<item>
+				<title>MongoDB; the why</title>
+				<description>&lt;p&gt;I have heard lots of arguments against MongoDB (NoSQL generally). One wrong assumption that generates this is that MongoDB is a SQL database replacement. It is not. However, there are certain data types and structures that are perfect for a NoSQL database. But even before you jump into making it your choice database for a project, you have to look at your data and be sure it is what you really need.&lt;/p&gt;
+
+&lt;p&gt;In MySQL, you can have multiple tables with one-to-many relationship.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;articles&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;author_user_id&lt;/th&gt;
+      &lt;th&gt;title&lt;/th&gt;
+      &lt;th&gt;body&lt;/th&gt;
+      &lt;th&gt;date&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;MongoDB; the why&lt;/td&gt;
+      &lt;td&gt;I have heard lots of arguments…&lt;/td&gt;
+      &lt;td&gt;2015-01-01 18:01:01&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;users&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;username&lt;/th&gt;
+      &lt;th&gt;password&lt;/th&gt;
+      &lt;th&gt;avatar&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;kehers&lt;/td&gt;
+      &lt;td&gt;$2a$08$Lg5XF1Tt.X5TGyfb…&lt;/td&gt;
+      &lt;td&gt;u/213649?v=3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;comments&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;article_id&lt;/th&gt;
+      &lt;th&gt;user_id&lt;/th&gt;
+      &lt;th&gt;body&lt;/th&gt;
+      &lt;th&gt;date&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;I disagree. Here is what I think…&lt;/td&gt;
+      &lt;td&gt;2015-01-02 18:01:01&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A query to get comments will require a join of the &lt;strong&gt;comments&lt;/strong&gt; and &lt;strong&gt;users&lt;/strong&gt; table:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;avatar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;comments&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;article_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;desc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is a luxury you can’t afford in MongoDB. If you will be doing lots of table relationships, MongoDB is not for the project. For simple joins with few tables, say two, you may. But anything more than that will lead to complications.&lt;/p&gt;
+
+&lt;p&gt;What MongoDB is great for is a data structure where you have entities that can contain every property they need on their own. Combine that with its great write speed and you get a perfect store for things like logs, events, stats and similar data.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;crawler_logs&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;title:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;HTTP error&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Failed to access example.com. Curl returns a 400 error.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pinger.js, line 45&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;date:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Sun Jan 11 2015 00:10:16 GMT+0100 (WAT)&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;user_events&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;event:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Login&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;192.168.2.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;id:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;525e3fb3b218980d35000001,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;username:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;opeyemi&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Sun Jan 11 2015 00:12:42 GMT+0100 (WAT)&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, each of the entries above contain all I need about the entry. I don’t need to pull an additional data from a different collection (what tables are called in MongoDB) to make sense of the entry or make it complete. (I will be representing MongoDB entries as JSON objects because it closely represents how they are stored).&lt;/p&gt;
+
+&lt;p&gt;But MongoDB is not only good for logs. Consider a simple contact entity with the properties:&lt;/p&gt;
+
 &lt;ul&gt;
-    &lt;li&gt;Syntax checks (RFC defined grammar)&lt;/li&gt;
-    &lt;li&gt;DNS validation&lt;/li&gt;
-    &lt;li&gt;Spell checks (gives you a &lt;em&gt;did you mean&lt;/em&gt; suggestion)&lt;/li&gt;
-    &lt;li&gt;Email Service Provider (ESP) specific local-part grammar (if available).&lt;/li&gt;
+  &lt;li&gt;Name&lt;/li&gt;
+  &lt;li&gt;Numbers&lt;/li&gt;
+  &lt;li&gt;Emails&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Usage is simple:&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include_once&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;MG_Email.php&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$mailgun_public_api_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;your_mailgun_public_key&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MG_Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mailgun_public_api_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;someemail@yhoo.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;is_valid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; is valid&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; is invalid.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;spell_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; Do you mean &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$mg_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;spell_check&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;?&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description>
-				<pubDate>Mon, 30 Sep 2013 00:00:00 +0100</pubDate>
-				<link>/2013/09/30/email-validation-with-mailgun-api-php.html</link>
-				<guid isPermaLink="true">/2013/09/30/email-validation-with-mailgun-api-php.html</guid>
+
+&lt;p&gt;A contact may contain multiple numbers and emails. We can represent this in MySQL with a one-to-many relationship model like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;contacts&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;..&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Opeyemi O.&lt;/td&gt;
+      &lt;td&gt;..&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;numbers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;contact_id&lt;/th&gt;
+      &lt;th&gt;number&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;08181019&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;08069018&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;emails&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;contact_id&lt;/th&gt;
+      &lt;th&gt;email&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;kehers@gmail.com&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;ope@fonebaselabs.com&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Well, we can argue it can as well be represented in a single table like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;contacts&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;numebrs&lt;/th&gt;
+      &lt;th&gt;emails&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Opeyemi O.&lt;/td&gt;
+      &lt;td&gt;08181019,08069018&lt;/td&gt;
+      &lt;td&gt;kehers@gmail.com,ope@fonebaselabs.com&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;(CRUD operations will not be as easy as with the one-to-many model but &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_find-in-set&quot;&gt;find_in_set&lt;/a&gt; can really be a helper). However, if we throw in one more contact property - organisations, with title and position columns, a single table with find_in_set won’t save us now. We will have to go back to our one-to-many relationship.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;contacts&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;..&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Opeyemi O.&lt;/td&gt;
+      &lt;td&gt;..&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;numbers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;contact_id&lt;/th&gt;
+      &lt;th&gt;number&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;08181019&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;08069018&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;emails&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;contact_id&lt;/th&gt;
+      &lt;th&gt;email&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;kehers@gmail.com&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;ope@fonebaselabs.com&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;organisations&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;contact_id&lt;/th&gt;
+      &lt;th&gt;title&lt;/th&gt;
+      &lt;th&gt;position&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Fonebase Labs&lt;/td&gt;
+      &lt;td&gt;Co-founder&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Life&lt;/td&gt;
+      &lt;td&gt;Learner&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;There, we have another data structure we can use MongoDB for. With MongoDB, we can represent the model in one collection:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;contacts&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;name:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Opeyemi O&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kehers@gmail.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ope@fonebaselabs.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;08181019&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;08069018&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;organisations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;title:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Fonebase Labs&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Co-founder&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;title:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Life&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Learner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This simplifies the data structure and makes things a lot easier.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at one more instance where using MongoDB makes sense. Imagine you are creating a platform as a service (PaaS) product and users can store data sets or metadata that can be anything - strings, arrays, e.t.c.&lt;/p&gt;
+
+&lt;p&gt;User A may have the following data:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;mailgun_key&lt;/strong&gt;: pubkey-02iismi5n5xozcmeyu3-ymqe3f9-0da9&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ses_id&lt;/strong&gt;: AKIAIJAZC3A2OYRSUGVA&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ses_key&lt;/strong&gt;: aXTd5VlLfremkG5UyoB76tnTTo2jB9FrZVywFz&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;User B may have this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;app_key&lt;/strong&gt;: pGX1NjfDEUV5i60vvKRjeA&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;oauth&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;token&lt;/strong&gt;: 16110519-JOpMUsEWcAVSr2ft4jYKrbD2o6K&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;secret&lt;/strong&gt;: B1yH5DPHZ3qHe9y29Ugoa0Dz7iDpWyvuNoMNYJ&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And User C this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;title&lt;/strong&gt;: Callbase&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;description&lt;/strong&gt;: Set up a call center in 5 minutes&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;author&lt;/strong&gt;: Fonebase labs&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;keywords&lt;/strong&gt;: call center, telephony, customer care&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because the expected data from the user is not predefined and the same, using a SQL database for storage will be complex. You can’t just go ahead creating columns for a data structure you have no idea of. With MongoDB however, this fits just perfectly as data down table (collection) rows do not need to have the same columns (name, data type or length).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;mailgun_key:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;pubkey-02iismi5n5xozcmeyu3-ymqe3f9-0da9&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ses_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;AKIAIJAZC3A2OYRSUGVA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ses_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aXTd5VlLfremkG5UyoB76tnTTo2jB9FrZVywFz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ObjectId(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;167&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;95699&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;af&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;944000001&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;app_key:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;pGX1NjfDEUV5i60vvKRjeA&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;oauth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;token:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;16110519-JOpMUsEWcAVSr2ft4jYKrbD2o6K&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;B1yH5DPHZ3qHe9y29Ugoa0Dz7iDpWyvuNoMNYJ&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ObjectId(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;525&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;fb&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;218980&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;35000001&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;title:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Callbase&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Set up a call center in 5 minutes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Fonebase labs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;call center&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;telephony&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;customer care&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ObjectId(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;526&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;fb&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;fa&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4432&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;000004&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, we can have a single collection (table) with totally different fields (columns).&lt;/p&gt;
+
+&lt;p&gt;In conclusion, the key is to understand your data structure and the most efficient way to store it. Where it gets interesting is that you can even use both types of database for a single project. You can store your core data in MySQL and have your logs and events in MongoDB. And sometimes, the project is a small one and all you need is a simple way to store few data like app configuration settings.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 18 Jan 2015 00:00:00 +0100</pubDate>
+				<link>/2015/01/18/mongodb-the-why.html</link>
+				<guid isPermaLink="true">/2015/01/18/mongodb-the-why.html</guid>
 			</item>
 		
 			<item>
-				<title>Get a header field [PHP]</title>
-				<description>&lt;p&gt;I'm surprised PHP has &lt;a href=&quot;http://php.net/manual/en/function.getallheaders.php&quot;&gt;getallheaders()&lt;/a&gt; and &lt;a href=&quot;http://www.php.net/manual/en/function.headers-list.php&quot;&gt;headers_list&lt;/a&gt; to retrieve ALL headers but no function for retrieving a single header.&lt;/p&gt;
-&lt;p&gt;Here is a quick one using &lt;i&gt;headers_list()&lt;/i&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// echo get_header(&amp;#39;X-HTTP-Method-Override&amp;#39;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;headers_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;preg_split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/:\s*/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description>
-				<pubDate>Mon, 23 Sep 2013 00:00:00 +0100</pubDate>
-				<link>/2013/09/23/get-a-header-field-php.html</link>
-				<guid isPermaLink="true">/2013/09/23/get-a-header-field-php.html</guid>
+				<title>A year and two interns</title>
+				<description>&lt;p&gt;My (&lt;a href=&quot;http://fonebaselabs.com&quot;&gt;our, actually&lt;/a&gt;) two interns leave by the end of the month. I will miss them. It’s been an interesting and rough couple of months. But I am proud of what we’ve achieved together. I am proud to say I have made them better than they were. And I am better than I was before them as well.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-beginning&quot;&gt;The beginning&lt;/h2&gt;
+
+&lt;p&gt;Oo (my Co) has always been on the lookout for good developers and designers, even when he doesn’t need them for anything. It was the same way he reached out to me some years ago, far before we tried any project together.&lt;/p&gt;
+
+&lt;p&gt;One day, end of last year, we were talking about getting young developers to join the team and then the other, he copied me in a mail and introduced 5 young developers from UNN (University of Nigeria, Nsuka) to me.&lt;/p&gt;
+
+&lt;p&gt;As interesting as that was, testing was the next challenge. How do we test their technical skills and be sure of what they can do? (Recruiting developers is a hard work. That is a post on it’s own). And we were only really interested in keeping just 2. Maybe 3 max. In the end, we settled on telling them to build a simple application using the &lt;a href=&quot;https://fonenode.com/docs&quot;&gt;Fonenode API&lt;/a&gt;. They were to do this within the target time frame, push to a git repo, invite me to the repo and I review. After a couple of back and forth, minor issues here and there, Zim and Godswill finally joined the team early this year.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-change-in-everything&quot;&gt;A change in everything&lt;/h2&gt;
+
+&lt;p&gt;I was the only one doing development work on &lt;a href=&quot;https://fonenode.com&quot;&gt;Fonenode&lt;/a&gt; and &lt;a href=&quot;https://callbase.co/&quot;&gt;Callbase&lt;/a&gt; before Zim and Godswill joined. Everything revolved round me - server administration, database management, development. No complex team management setups or solutions. Oo and I just exchange emails, phone calls, chat (any closest channel - BBM, Twitter, Skype, etc), and that was it. Versioning was only for backup and not for collaboration. The addition to the team changed everything about how we work. We had to structure everything one small step after another.&lt;/p&gt;
+
+&lt;p&gt;So, two guys. Students. 10 hours a week. Working remotely. Unfamiliar with a code base of two apps with crazy architecture. Where do we start from?&lt;/p&gt;
+
+&lt;h3 id=&quot;documentation-and-introduction-damn&quot;&gt;Documentation and introduction. Damn!&lt;/h3&gt;
+
+&lt;p&gt;I had to start with introducing the code architecture and documenting a lot of things. This to me was a crazy curve from my normal code schedule. And it was difficult. Especially the documentation part. I didn’t know the architecture and codes were that complex till I started explaining them and documenting. In the end, I was able to get something they could easily start with. Trying to explain and document everything didn’t work. It came as a gradual process that spanned long months. Even now, every now and then, I still get to explain minor details in some parts of the apps.&lt;/p&gt;
+
+&lt;h3 id=&quot;understanding-skills-and-limitations&quot;&gt;Understanding skills and limitations&lt;/h3&gt;
+
+&lt;p&gt;Fonenode is built on NodeJs and MongoDB; Callbase on NodeJS, MySQL and PHP. To effectively delegate tasks, I had to understand the individual skills and limitations of the boys (what I call them). But it wasn’t a conscious effort. It took a while to figure. Eventually, I knew who to push JS stuff (Node, Mongo, Backbone) to and who to handle PHP and testing.&lt;/p&gt;
+
+&lt;h3 id=&quot;communication&quot;&gt;Communication&lt;/h3&gt;
+
+&lt;p&gt;To work remotely and efficiently, proper communication had to come in place. One thing that helped was to set up a Hipchat chat room where all general communication can take place. I also have to nudge the team every now and then (eventually, I settled for every Monday morning) about their tasks, current status and expected time of delivery. The email CCs everyone. And when you want to reply, you hit the “Reply All”. Everyone knows what everyone else is to do, doing and up to. That keeps things well defined.&lt;/p&gt;
+
+&lt;h3 id=&quot;versioning&quot;&gt;Versioning&lt;/h3&gt;
+
+&lt;p&gt;Collaborating on source files wasn’t very easy at first. It took some failed trials and mistakes to finally settle for the process we are using now. One that didn’t work well was allowing direct modification of the master source. Having members create their own branch on the master repo and work on that was a good option but wasn’t flexible enough as I want it to be. Eventually, what I did was to enable only read rights to the master repo and let members make a fork. You work on your fork, do whatever you want with it. Once well tested, you send a pull request to the master repo. I review then decide if to merge or decline. Then it goes to a staging server and can eventually move to live.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-i-have-learnt&quot;&gt;What I have learnt&lt;/h2&gt;
+
+&lt;p&gt;I have been forced to take on project and people management. It is a totally different experience. It used to be about just managing the technology and ensuring the codes work perfectly. Now it is about managing other people and their codes too. Some days, I just answer emails and chats all day long, explain processes, break down architecture and do pull request reviews. I rarely do long solo code sprints as I used to do anymore. Which isn’t a bad thing though.&lt;/p&gt;
+
+&lt;p&gt;Initially I was reserved with assigning tasks to them. “Can they do this? Hope they won’t break things and mess up everything? (They did break things by the way). Will they even get this logic? Ok, let me give them this other simpler ones”. But eventually, I was able to break that fear. Now I purposely throw them complex tasks. Surprisingly, they get to figure it out many times. Other times, I come in later to break it down and put them through. I learnt to be able to trust their decisions and give them the freedom to do things their own way.&lt;/p&gt;
+
+&lt;p&gt;I learnt there are good young developers everywhere - even outside the usual places people look to. Inexperienced? Rough? Yes, probably. But with some mentoring and guidance, they can be very good at what they do. And they can in turn develop others too. I’ve finally got Co’s philosophy. It is really about developing others.&lt;/p&gt;
+
+&lt;p&gt;Another big lesson was that remote working is actually not rocket science. And it works. For like 8 months, I never met the boys in person. Communication was simply via chat, email and on very few occasions, calls. What really helped was that goals and tasks were made as clear as possible. And even though I gave them lots of flexibility, I ensured they were communicating progress and made myself available for every possible question.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-we-have-achieved&quot;&gt;What we have achieved&lt;/h2&gt;
+
+&lt;p&gt;I can proudly look back and say we’ve achieved a lot. We’ve done a lot of work on both Callbase and Fonenode. And &lt;a href=&quot;http://writerack.com/&quot;&gt;Writerack&lt;/a&gt;. The boys did the majority of work on the Callbase Call button. They implemented the design of the new &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.writerack.android&quot;&gt;Writerack android app&lt;/a&gt;. I only did the web and initial version of the android app.&lt;/p&gt;
+
+&lt;p&gt;It would have been impossible doing all this alone.&lt;/p&gt;
+
+&lt;h2 id=&quot;from-here&quot;&gt;From here&lt;/h2&gt;
+
+&lt;p&gt;Even though I’d love to keep them, they have to move on to other things. I hope in the nearest feature, they can look back and see this time as one that helped shape their future. And they can in turn develop others too.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;PS: We are always on the look out for young developers that are good and passionate about what they do, focused and open to learning. if you are one or know one, kindly hit me up via kehers at gmail.com&lt;/em&gt;&lt;/p&gt;
+</description>
+				<pubDate>Mon, 17 Nov 2014 00:00:00 +0100</pubDate>
+				<link>/2014/11/17/a-year-and-two-interns.html</link>
+				<guid isPermaLink="true">/2014/11/17/a-year-and-two-interns.html</guid>
 			</item>
 		
 			<item>
-				<title>Charity idea</title>
-				<description>&lt;p&gt;Every now and then, stuffs I use get obsolete. These are majorly clothing items - shirts, tees, kicks, etc. It is not always that they get spoilt or damaged. Most times it is that I grow out of them or I need a change. Or a size issue. Or after a few use, I stopped liking it. Even when it is from damage, it is rarely ever one that will render it completely useless.&lt;/p&gt;
+				<title>The last six months</title>
+				<description>&lt;p&gt;I remember laying there on the bed waiting for the call. It was the call that would change everything - change our lives forever. We’ve worked for it. We’ve fought for it. All we could do at that point was wait.&lt;/p&gt;
 
-&lt;p&gt;To many of us, disposing these stuffs means throwing them away. There are no people around us we can easily give. We want to be able to give this out to people in need of it. It is however just easier to burn/shred/trash them than spend the next long hours looking for a welfare home and getting it to it.&lt;/p&gt;
+&lt;p&gt;I have experimented with telephony a while ago so when the &lt;a href=&quot;https://fonenode.com/&quot;&gt;Fonenode&lt;/a&gt; idea came up, it easily got my attention. It wasn’t supposed to be a full commitment at first. I had moved to Lagos from my quiet life in Ibadan to focus on &lt;a href=&quot;http://prowork.me&quot;&gt;Prowork&lt;/a&gt; under the &lt;a href=&quot;http://techlaunchpad.com.ng/&quot;&gt;Tech Launchpad incubation&lt;/a&gt; program. Things got interesting for a bit. Then somewhere along the line I lost it. And after three years, it was time for me to move on to something different. Later in October, I picked what was left and returned to Ibadan.&lt;/p&gt;
 
-&lt;p&gt;What if there is an easier channel to do this? Let's say a charity that collates these items and distributes them to welfare homes. The tricky part is the collection must be done in a way that all possible friction is reduced. One idea is to have collection points in strategic locations where people can just bring [good] clothing stuffs they don't use again. The con of this is that there is still a level of friction - many will still find it hard going to collection points especially if far from their comfort zones.&lt;/p&gt;
+&lt;p&gt;With Fonenode out, it was a matter of time before people started asking for something elaborate. That was how &lt;a href=&quot;https://calbase.co&quot;&gt;Callbase&lt;/a&gt; came about. From the end of the year till February, I worked on it. Building has never been a problem. Development is like art to me. It is art actually. I enjoy every bit of it.&lt;/p&gt;
 
-&lt;p&gt;Another idea is to schedule pickups around different zones. This will require more resources though but has the least friction. Another silly one is to have people request return-paid boxes they can put these stuffs and send back. There are even more problems with this though. Ignoring our poor postal service, running cost is a very big one here.&lt;/p&gt;
+&lt;p&gt;My new Co on the other was busy with the business development side of things. One fateful morning, not even 6am yet, he came screaming from the next room that we have been invited for an interview by a renowned incubator in the US. From that moment till I was sitting next to him, there in Silicon Valley, in front of a four-man judge, everything was like magic. Everything happened fast. I even got my visa in a week.&lt;/p&gt;
 
-&lt;p&gt;From whatever angle it is approached, it is an idea that will require resources to pull. But I think it will be a good one to see work.&lt;/p&gt;</description>
-				<pubDate>Mon, 23 Sep 2013 00:00:00 +0100</pubDate>
-				<link>/2013/09/23/charity-idea.html</link>
-				<guid isPermaLink="true">/2013/09/23/charity-idea.html</guid>
+&lt;p&gt;My rent in Ibadan was to end May. There was no point planning a renewal. I sold everything I had; went minimal that all that was left could fit in my brown barrel bag. That, my laptop and laptop bag and I was ready for the next journey; wherever it would lead.&lt;/p&gt;
+
+&lt;p&gt;Our first home for the first few days was Hacklantis - a “hacker hostel” we found on Airbnb. There we met like minds from different parts of the world - India, Russia, Asia, Africa. The mornings allowed me long walks to clear my brain and enjoy the new atmosphere. I’d walk &lt;a href=&quot;http://instagram.com/p/nZdVaYv7S2&quot;&gt;Fairchild Drive&lt;/a&gt; to &lt;a href=&quot;http://www.hackerdojo.com&quot;&gt;Hacker dojo&lt;/a&gt;. And then back in the evening. And some days we’d ride Google employee bicycles to get groceries.&lt;/p&gt;
+
+&lt;p&gt;It was an interesting experience. We moved around a lot and met lots of people. We stayed at 6 Airbnb places in all. And yes, people are inherently good. We spent a month with Vicky, a lovely performer and meditation instructor and her dog &lt;a href=&quot;http://instagram.com/p/oSI8f1P7YM&quot;&gt;Jambo&lt;/a&gt;. She cared about us. She was always keen on how we were doing.&lt;/p&gt;
+
+&lt;p&gt;We spent two weeks with Tuyen and Tom and the place was like home. They enjoyed our rice and stew. And we’d ask them who is the better cook between both of us. A section in the living room &lt;a href=&quot;http://instagram.com/p/pX0ZXPv7aJ&quot;&gt;was like a mini studio&lt;/a&gt; - a piano, an electric drum set, an electric guitar, a classical guitar, an ukulele, and one other guitar. I did &lt;a href=&quot;https://soundcloud.com/kehers/soul-take-1&quot;&gt;Soul Take&lt;/a&gt; on the electric guitar. Some evenings, Tuyen and I would talk music and he’d teach me new things. Tuyen was the outdoor guy. Had we stayed longer, he promised taking us mountain climbing, hiking or camping.&lt;/p&gt;
+
+&lt;p&gt;We spent two weeks with Julia, a radio presenter/producer. She was like a sister. We’d spend the evenings talking about everything. And I’d end up leaving Co and her still talking. When Co was sick, she drove us all the way to the clinic. She was like a superwoman. She’d go for long bike rides every morning. And on weekends, if it’s not camping, it is swimming or some other interesting activity.&lt;/p&gt;
+
+&lt;p&gt;We made friends at Stanford and met interesting Nigerians working at awesome places - Mozilla, Facebook, Intel. We were at Facebook and met awesome engineers at Twitter. We met Edwin during one of our Airbnb moves and he invited us to his African Mix program on &lt;a href=&quot;http://kalw.org&quot;&gt;KALW&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We were in &lt;a href=&quot;http://instagram.com/p/oltXquP7Y_&quot;&gt;Las Vegas&lt;/a&gt; for two days for another interview and it was a different world entirely. That’s one place I’d love to go back anytime soon. The city, the lights, the people, the machines. For a moment, everything was simply black and white.&lt;/p&gt;
+
+&lt;p&gt;The call never came. After four months, we had to return. But we made valuable contacts, relationships and partnerships. I returned to Ghana later in July and back to Nigeria a week after. It was mixed feelings. I missed the people I care for. But it was like coming back to chaos. And to no home I can be naked all day or play guitar at 3am in the morning.&lt;/p&gt;
+
+&lt;p&gt;It’s been 2 months and I am used to the system once again. The first one, two weeks were crazy though. Everything felt wrong. But now I even know when to expect electricity and not.&lt;/p&gt;
+
+&lt;p&gt;The walk to making this work continues. It is what we wake up to. It’s a long walk (it always is) and someday it will be worth it.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Some people I can’t mention their names were angels in the last few months. They made a lot of impossibilities possible. I pray they find fulfillment in all their endeavors.&lt;/em&gt;&lt;/p&gt;
+</description>
+				<pubDate>Wed, 01 Oct 2014 00:00:00 +0100</pubDate>
+				<link>/2014/10/01/the-last-six-months.html</link>
+				<guid isPermaLink="true">/2014/10/01/the-last-six-months.html</guid>
 			</item>
 		
 			<item>
-				<title>Date bookmark. Ignore</title>
-				<description>&lt;p&gt;This is a bookmark for today Friday, September 20, 2013. I want to be able to look back in the nearest future and remember today for an interesting opportunity I got. I am yet to make up my mind. I may not get the chance again. I don't even know how this will turn out yet. Hopefully, I want to look back and smile, knowing I didn't make the wrong decision.&lt;/p&gt;</description>
-				<pubDate>Fri, 20 Sep 2013 00:00:00 +0100</pubDate>
-				<link>/2013/09/20/date-bookmark-ignore.html</link>
-				<guid isPermaLink="true">/2013/09/20/date-bookmark-ignore.html</guid>
+				<title>Building an SMS spam filter II</title>
+				<description>&lt;p&gt;I started an experiment on spam filtering for SMS the other week. I called it &lt;strong&gt;Snag&lt;/strong&gt;. You can read about it here already: &lt;a href=&quot;https://kehers.github.com/2014/09/07/building-an-sms-spam-filter.html&quot;&gt;https://kehers.github.com/2014/09/07/building-an-sms-spam-filter.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The way Snag should work is&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Intercept incoming SMS&lt;/li&gt;
+  &lt;li&gt;Match against trained data&lt;/li&gt;
+  &lt;li&gt;If spam, save in a separate db and block from reaching the phone’s message inbox (or any other message app)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;1 and 2 work already. 3 works on Android versions below 4.4. From Android 4.4 (Kitkat), you can no longer block SMS from other messaging apps. &lt;a href=&quot;http://android-developers.blogspot.com/2013/10/getting-your-sms-apps-ready-for-kitkat.html&quot;&gt;More details about this here&lt;/a&gt;. In other words, while Snag will intercept an incoming message and detect if it is spam or not, it won’t be able to stop it from reaching the phone’s inbox in Android versions from 4.4. The workaround is to develop a full SMS application. Unfortunately, that is a time I don’t have now so I have to halt development and opensource it. You can find it on Github here: &lt;a href=&quot;http://github.com/kehers/snag-android&quot;&gt;http://github.com/kehers/snag-android&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-good-is-that-then&quot;&gt;What good is that then?&lt;/h2&gt;
+&lt;p&gt;If you are interested in finishing it for &amp;lt; 4.4, the source is a good headstart for you. I have done some views, the interception and spam detection work already. The only things left to do are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create the single message view. (The list view for all messages done)&lt;/li&gt;
+  &lt;li&gt;Allow users add a message to the training data (using the + icon)&lt;/li&gt;
+  &lt;li&gt;Let users delete and “un-spam” a message&lt;/li&gt;
+  &lt;li&gt;Add boring static content - about, feedback, rate&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Another thing you can use this for is to create an app that listens to incoming messages to perform an action - OTP verification for example. Just strip away the spam classification part and use the SMSListener part.&lt;/p&gt;
+
+&lt;h2 id=&quot;db-schema&quot;&gt;DB Schema&lt;/h2&gt;
+&lt;p&gt;Snag contains an existing database of words based on spam data from &lt;a href=&quot;https://docs.google.com/document/d/1TldaHwtLwuAq8paUyjLLUuJqthjYvymOMk5Op8gtR4Y/edit&quot;&gt;https://docs.google.com/document/d/1TldaHwtLwuAq8paUyjLLUuJqthjYvymOMk5Op8gtR4Y/edit&lt;/a&gt; and non-spam from my phone. The &lt;code class=&quot;highlighter-rouge&quot;&gt;words&lt;/code&gt; table contains the columns &lt;code class=&quot;highlighter-rouge&quot;&gt;word&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ham_count&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;spam_count&lt;/code&gt;. There is also a &lt;code class=&quot;highlighter-rouge&quot;&gt;likely_spam&lt;/code&gt; table where detected spam messages are stored. It has the columns &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sender_id&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;body&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You will find the database in &lt;code class=&quot;highlighter-rouge&quot;&gt;/assets/snag.db&lt;/code&gt;. It includes the training data. If you don’t have an SQLite client and you run on Firefox, you can download the &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/&quot;&gt;SQLite Manager addon&lt;/a&gt; to explore the data.&lt;/p&gt;
+
+&lt;p&gt;If you need to ask me anything, even non-related to the project, be free to send me a mail on kehers@gmail.com or to &lt;a href=&quot;https://twitter.com/kehers&quot;&gt;@kehers&lt;/a&gt; on twitter.&lt;/p&gt;
+</description>
+				<pubDate>Wed, 24 Sep 2014 00:00:00 +0100</pubDate>
+				<link>/2014/09/24/building-an-sms-spam-filter-ii.html</link>
+				<guid isPermaLink="true">/2014/09/24/building-an-sms-spam-filter-ii.html</guid>
+			</item>
+		
+			<item>
+				<title>Why Github pages for blogging?</title>
+				<description>&lt;p&gt;&lt;a href=&quot;http://kehers.github.io/2013/02/20/moved.html&quot;&gt;I moved my blog&lt;/a&gt; to [Jekyll on] Github pages a while ago and I’ve enjoyed every bit of it. Then it was because it felt like a geeky thing to do. But now I can list a couple of reasons it was the right move. And this should help others that need conviction too.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-new-cool&quot;&gt;The new cool&lt;/h3&gt;
+&lt;p&gt;When was the last time you tried something geeky; something different and more adventurous than your average blogging platform? If you want to try something totally different or test your geekiness, Jekyll on Github pages is the way to go. I highly recommend this if you are new to file version control with Git. You will learn the basics of file versioning and may even get to do some things via command line.&lt;/p&gt;
+
+&lt;h3 id=&quot;fast&quot;&gt;Fast&lt;/h3&gt;
+&lt;p&gt;Your content is hosted on the powerful servers of Github - as static files. No server processing at each page request. This makes your site very fast.&lt;/p&gt;
+
+&lt;h3 id=&quot;flexible&quot;&gt;Flexible&lt;/h3&gt;
+&lt;p&gt;You get the best control over your content on Github pages. Every post on your blog can be an experiment on it’s own. You can embed scripts, forms or even make the post page totally different.&lt;/p&gt;
+
+&lt;p&gt;Really, Github pages is more than just a blog. It can be anything you want it to be. You can use it to create a portfolio, a web app landing page or even a full website site.&lt;/p&gt;
+
+&lt;h3 id=&quot;open-collaboration&quot;&gt;Open Collaboration&lt;/h3&gt;
+&lt;p&gt;Unless you choose otherwise, your blog content is available on your public repo and anyone can collaborate with you on post and content editing. The source of this blog for example is available at &lt;a href=&quot;http://github.com/kehers/kehers.github.com&quot;&gt;github.com/kehers/kehers.github.com&lt;/a&gt;. To contribute or make corrections, you just make a copy (fork), do what you want to and notify me of the changes to accept or not (do a pull request).&lt;/p&gt;
+
+&lt;h3 id=&quot;versioning&quot;&gt;Versioning&lt;/h3&gt;
+&lt;p&gt;Changes made to your posts and files are tracked and you can always roll back should you mess things up. Think of this as an undo for everything you do. In other words, you are free to make mistakes and experiment as much as you like because you can always revert to the last stable version.&lt;/p&gt;
+
+&lt;h3 id=&quot;your-content-your-domain-name&quot;&gt;Your content, your domain name&lt;/h3&gt;
+&lt;p&gt;You own your files. You can sync them to any device you have a git client on and play with them locally. If tomorrow you don’t feel comfortable with Github, you can decide to host your content elsewhere.  And yes, you can use your own domain or sub domain name.&lt;/p&gt;
+
+&lt;h3 id=&quot;simple-and-secure&quot;&gt;Simple and Secure&lt;/h3&gt;
+&lt;p&gt;On Github pages, you don’t have to worry about your blog getting hacked. Or having to upgrade to the latest software release. Or a new security vulnerability somewhere. Or complex admin dashboards, security options and plugins. Remember, your blog is made up of static files - even your posts. And can be synced to your devices; plus you can always roll back to previous versions.&lt;/p&gt;
+
+&lt;h2 id=&quot;cons&quot;&gt;Cons&lt;/h2&gt;
+&lt;p&gt;This doesn’t mean everything is perfect with Github pages. Here are some of things that can be discouraging.&lt;/p&gt;
+
+&lt;h3 id=&quot;geeky-setup&quot;&gt;Geeky setup&lt;/h3&gt;
+&lt;p&gt;Yeah, I know I mentioned the geeky setup nature can be fun, but if you are not really up for it, it can be a push off. It can get more tiring when you have to setup or customize your own template. What many people want is to just login and start blogging immediately.&lt;/p&gt;
+
+&lt;h3 id=&quot;missing-dashboard&quot;&gt;Missing dashboard&lt;/h3&gt;
+&lt;p&gt;There is no dashaboard to manage post or tweak things. And this is always a shocker to first timers. Having to locally create a file for a post and push back to the Github page repo can sometimes be a long way to go.&lt;/p&gt;
+
+&lt;h3 id=&quot;automation&quot;&gt;Automation&lt;/h3&gt;
+&lt;p&gt;Many blogging platform come with automation tools like &lt;strong&gt;post later&lt;/strong&gt;, &lt;strong&gt;auto post to Twitter, Facebook&lt;/strong&gt;, &lt;strong&gt;post via email&lt;/strong&gt; and many more. Unfortunately, you won’t find this on Github pages.&lt;/p&gt;
+
+&lt;h3 id=&quot;commenting&quot;&gt;Commenting&lt;/h3&gt;
+&lt;p&gt;There is no inbuilt commenting system like Wordpress or Blogger. But you can always use embeddable commenting systems like &lt;a href=&quot;http://disqus.com/&quot;&gt;Disqus&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-good-news&quot;&gt;The good news&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://tinypress.co&quot;&gt;Tinypress&lt;/a&gt; solves most of these. Instead of the geeky setup, you can simply login, select a theme and you are good to go. You are given a subtle inteface to create, edit and delete posts. There is also a growing list of tools to make your blogging experience better.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Blogging on Github pages is a big yes. If you are looking for a platform for your blog or next project, give it a shot.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 18 Sep 2014 00:00:00 +0100</pubDate>
+				<link>/2014/09/18/why-github-pages-for-blogging.html</link>
+				<guid isPermaLink="true">/2014/09/18/why-github-pages-for-blogging.html</guid>
 			</item>
 		
 	</channel>

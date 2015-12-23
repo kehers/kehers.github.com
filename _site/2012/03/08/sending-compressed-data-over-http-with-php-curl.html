@@ -1,64 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>Sending compressed data over http with PHP curl | Opeyemi's BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="Sending compressed data over http with PHP curl">
+  <meta name="twitter:description" content="There are times applications need to sync across multiple servers by data transfer via http. This data could at times be bulky, taking up to tenths of megs. Instead of sending that large volume, a ...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>Sending compressed data over http with PHP curl</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/zenburn.css" />
-  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>Sending compressed data over http with PHP curl</h1>
-        <time>08 Mar 2012</time>
-    </header>
-    <article>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>08 Mar 2012</date>
+        <h1 class="title">Sending compressed data over http with PHP curl</h1>
         <p>There are times applications need to sync across multiple servers by data transfer via http. This data could at times be bulky, taking up to tenths of megs. Instead of sending that large volume, a better way would be to compress first, send, and decompress at the other end. This will not only reduce the consumption of bandwidth but as well make the transfer faster.</p>
 <p>Here is a the way to do it in PHP using the <a href="http://php.net/manual/en/book.curl.php">CURL</a> library:</p>
 <ol>
 <li>Compress the data
-<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
-<span class="lineno">2</span> <span class="nv">$compressed_data</span> <span class="o">=</span> <span class="nb">gzdeflate</span><span class="p">(</span><span class="nv">$raw_data</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-php" data-lang="php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$compressed_data</span> <span class="o">=</span> <span class="nb">gzdeflate</span><span class="p">(</span><span class="nv">$raw_data</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 </li>
 <li>Send
-<p><div class="highlight"><pre><code class="php"><span class="lineno"> 1</span> <span class="cp">&lt;?php</span>
-<span class="lineno"> 2</span> <span class="nv">$url</span> <span class="o">=</span> <span class="s2">&quot;http://some_site_or_ip.com/reciever.php&quot;</span><span class="p">;</span>
-<span class="lineno"> 3</span> <span class="c1">//open connection</span>
-<span class="lineno"> 4</span> <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-<span class="lineno"> 5</span> <span class="c1">//set the url and POST data</span>
-<span class="lineno"> 6</span> <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$url</span><span class="p">);</span>
-<span class="lineno"> 7</span> <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-<span class="lineno"> 8</span> <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="nv">$compressed_data</span><span class="p">);</span>
-<span class="lineno"> 9</span> <span class="c1">//execute post</span>
-<span class="lineno">10</span> <span class="nv">$result</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-<span class="lineno">11</span> <span class="c1">//echo curl_error($ch);</span>
-<span class="lineno">12</span> <span class="c1">//close connection</span>
-<span class="lineno">13</span> <span class="nb">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-php" data-lang="php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="s2">"http://some_site_or_ip.com/reciever.php"</span><span class="p">;</span>
+<span class="c1">//open connection
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="c1">//set the url and POST data
+</span><span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$url</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span><span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="nv">$compressed_data</span><span class="p">);</span>
+<span class="c1">//execute post
+</span><span class="nv">$result</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<span class="c1">//echo curl_error($ch);
+//close connection
+</span><span class="nb">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 </li>
 <li>Decompress (at the other end i.e reciever.php)
-<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
-<span class="lineno">2</span> <span class="nv">$input</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">&#39;php://input&#39;</span><span class="p">);</span>
-<span class="lineno">3</span> <span class="nv">$output</span> <span class="o">=</span> <span class="nb">gzinflate</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
-<span class="lineno">4</span> <span class="c1">// You have ur data back as $output</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-php" data-lang="php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$input</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
+<span class="nv">$output</span> <span class="o">=</span> <span class="nb">gzinflate</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+<span class="o">//</span> <span class="nx">You</span> <span class="nx">have</span> <span class="nx">ur</span> <span class="nx">data</span> <span class="nx">back</span> <span class="k">as</span> <span class="nv">$output</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 </li>
 </ol>
 
-        <p></p>
-        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
-    </article>
-
-    <footer>
-      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+      </article>
+    </div>
   </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2012/03/06/freemium-when-the-number-doesn-t-matter.html">Freemium - when the number doesn't matter</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
 </body>
 </html>

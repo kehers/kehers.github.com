@@ -1,0 +1,66 @@
+---
+layout: none
+published: true
+---
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+   <meta name="twitter:site" content="@kehers">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+	<title>Opeyemi Obembe</title>
+	<link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+</head>
+<body>
+	<div class="wrapper home">
+		<h3>My name is Opeyemi Obembe. I build things for web and mobile.</h3>
+		<h4 style="margin-top:40px">Startups</h4>
+		<ul>
+			<li><a href="http://callbase.co/">Callbase</a> - The perfect Call Center for distributed teams</li>
+			<li><a href="http://fonenode.com/">Fonenode</a> - Telephony API for Nigeria</li>
+			<li><a href="http://prowork.me/">Prowork</a> - Project management app for team collaboration</li>
+		</ul>
+		<h4>Projects</h4>
+		<ul>
+          <li><a href="http://gum.co/Sxoj">Consuming REST APIs - a soft introduction</a> (ebook) - A soft introduction to consuming REST APIs.</li>
+          <li><a href="http://billtab.co/">Billtab</a> (web) - Expense/Earning tracker (WIP). (<a href="http://github.com/kehers/billtab">Opensource</a>)</li>
+          <li><a href="http://fave.ninja/">Fave</a> (web) - Send links in tweets you fav to your Pocket account. (<a href="http://github.com/kehers/fave">Opensource</a>)</li>
+			<li><a href="http://pricecrun.ch/">Pricecrunch</a> (web) - Track price changes of your favourite products
+across your favourite stores.</li>
+          <li><a href="https://github.com/kehers/tinypress">Tinypress</a> (web, Opensource) - Create and easily manage your blog on Github.</li>
+			<li><a href="https://play.google.com/store/apps/details?id=co.tinypress.android">Tinypress for Android</a> (Android) - Android client for Tinypress</li>
+			<li><a href="https://github.com/kehers/snag-android">Snag</a> (Android, Opensource) - An experimental spam filter for Android</li>
+			<li><a href="http://subcopy.tumblr.com/">Subcopy</a> (fun tumblog) - a tumblog of interesting copy across web and mobile apps</li>
+			<li>Payform (web, sold) - Simple payment forms for your site.</li>
+			<li>Twhii (JavaMe, sold) - a twitter client for feature phones.</li>
+		</ul>
+		<h4>Posts</h4>		
+		<ul>
+		{% for post in site.posts limit:3 %}
+			<li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}
+			<li><a href="/posts.html"><em>more &raquo;</em></a></li>
+		</ul>
+		<p class="center" style="padding:20px 0"><a href="http://github.com/kehers">Github</a> &middot; <a href="http://twitter.com/kehers">Twitter</a> &middot; <a href="http://instagram.com/kehers">Instagram</a> &middot; <a href="http://soundcloud.com/kehers">Soundcloud</a></p>
+	</div>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53373832-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

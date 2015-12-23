@@ -1,28 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>My log of BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
+
+  <meta charset="utf-8">
+  <title>Code, Thoughts, Ideas, Experiments and Rants</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
-  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>Code, Thoughts, Ideas, Experiments and Rants.</h1>
-    </header>
-    <article>
-      <ul class="post-list">
-        {{ content }}
 
-    <footer>
-      <a href="/">home</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html" class="active">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <h3 class="title">Code, Thoughts, Ideas, Experiments and Rants.</h3>
+        {{ content }}
+      </article>
+    </div>
   </div>
-</body>
-</html>
+
+{% include footer.html %}

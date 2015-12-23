@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="2013 dev/code recap">
+  <meta name="twitter:description" content="Here is my code/development (the ones I remember) related recap of 2013. 
+
+    
+        I moved this blog from Posterous to Jekyll on Github pages. The source is available at github.com/kehers/kehe...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>2013 dev/code recap</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>31 Dec 2013</date>
+        <h1 class="title">2013 dev/code recap</h1>
+        <p>Here is my code/development (the ones I remember) related recap of 2013. </p>
+<ul>
+    <li>
+        <p>I <a href="http://kehers.github.io/2013/02/20/moved.html">moved</a> this blog from Posterous to Jekyll on Github pages. The source is available at <a href="https://github.com/kehers/kehers.github.com">github.com/kehers/kehers.github.com</a></p>
+    </li>
+    <li>
+        <p><b><a href="https://github.com/kehers/analytics.php">Analytics.php</a></b><br />
+        Wrote a PHP wrapper for <a href="http://segment.io/">segment.io</a> and the awesome guys gave me a "free Segment.io server-side forever" for this. By the way, they now have an official PHP library.</p>
+    </li>
+    <li>
+        <p><b><a href="https://github.com/kehers/Prowork-Notifications">Prowork Notifications [android] + source</a></b><br />
+        Built an android notification app to demonstrate Prowork's push API and use of Google Cloud Messaging. The source is available at <a href="https://github.com/kehers/Prowork-Notifications">github.com/kehers/Prowork-Notifications</a>
+        </p>
+    </li>
+    <li>
+        <p><b><a href="http://blog.prowork.me/post/53190531304/brand-new-prowork-is-coming-june-18">Prowork v3</a></b><br />
+        Re-engineered Prowork's task page and some other parts with Backbone js for that realtime effect.
+        </p>
+    </li>
+    <li>
+        <p><b><a href="http://kehers.github.io/2013/09/30/email-validation-with-mailgun-api-php.html">Email validation with Mailgun API</a></b><br />
+        Wrote an email validation class in PHP using Mailgun's API. It does syntax checks (RFC defined grammar), DNS validation, Spell checks (gives you a did you mean suggestion) and Email Service Provider (ESP) specific local-part grammar (if available). It is available at <a href="https://github.com/kehers/MG_Email">github.com/kehers/MG_Email</a></p>
+    </li>
+    <li>
+        <p>I sold <a href="http://twhii.com/">Twhii</a>. I needed to cut out some things. (Or maybe just find new things to waste my time on)</p>
+    </li>
+    <li>
+        <p>I almost sold <a href="http://stallls.com/">Stallls</a>. The terms were just too hard for me.</p>
+    </li>
+    <li>
+        <p><b><a href="http://leanpub.com/consumingtheapi">Consuming the API</a></b><br />
+        I have always loved how APIs work and have built stuffs on a lot of them. <a href="http://twhii.com/">Twhii</a> is one example I ran for 2 years. I however noticed many developers don't really 'get' APIs. I started a book on API consumption 2012 but wasn't focused on it. When I started working on <a href="https://fonenode.com/">Fonenode</a>, I found the need and picked it up again. It is almost complete now. <a href="http://leanpub.com/consumingtheapi">Kindly subscribe</a> and get notified when it is. Plus I will send you the first sample draft already.
+        </p>
+    </li>
+    <li>
+        <p><b><a href="http://birthdays.im/">Birthdays.im</a></b><br />
+        An experiment and code example for my upcoming book - <a href="http://leanpub.com/consumingtheapi">Consuming the API</a>. It is a simple sms reminder for birthdays. The app pulls your friends' birthdays from Facebook and sends you daily reminders via SMS. Where it gets interesting is you can query birthdays for a particular day or a person by texting the day or name to a dedicated line. The idea is to show two way SMS interaction using the <a href="https://plivo.com/docs/">Plivo API</a> and <a href="https://developers.facebook.com/">Facebook API</a>. PS: I have disabled the SMS notification now though.
+        </p>
+    </li>
+    <li>
+        <p><b><a href="http://fonenode.com/">Fonenode</a></b><br />
+        I have been experimenting with telephony for quite a while and did some stuffs with <a href="http://twitter.com/oothenigerian">Oo</a> earlier in the year. We later launched <a href="http://fonenode.com/">Fonenode</a>, <a href="http://www.techcabal.com/fonenode-rolls-toll-free-call-button-websites/">the call button</a>, and I am already working on a new product we have up our sleeves. Do watch this space.
+        </p>
+    </li>
+</ul>
+      </article>
+    </div>
+  </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2013/12/22/transferbee-and-the-cellulant-cashout.html">TransferBee and the Cellulant cashout</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

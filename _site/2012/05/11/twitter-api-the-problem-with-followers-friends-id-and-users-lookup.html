@@ -1,24 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>Twitter API: The problem with followers[friends]/id and users/lookup | Opeyemi's BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="Twitter API: The problem with followers[friends]/id and users/lookup">
+  <meta name="twitter:description" content="Twitter is doing a little API housekeeping and come 14th* (May, 2012) the changes will take effect and they plan on pulling the plugs on deprecated methods. I have gone through the changes and comp...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>Twitter API: The problem with followers[friends]/id and users/lookup</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/zenburn.css" />
-  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>Twitter API: The problem with followers[friends]/id and users/lookup</h1>
-        <time>11 May 2012</time>
-    </header>
-    <article>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>11 May 2012</date>
+        <h1 class="title">Twitter API: The problem with followers[friends]/id and users/lookup</h1>
         <p>Twitter is doing a little <a href="https://dev.twitter.com/blog/api-housekeeping" target="_blank">API housekeeping</a> and come 14th* (May, 2012) the changes will take effect and they plan on pulling the plugs on deprecated methods. I have gone through the changes and compared the deprecated API with new ones to see where it affects <a href="http://twhii.com/">Twhii</a>. As a client for low end java devices, there is a little hit here and there but it's not that bad. For example, I've had to remove public timeline but then who really cares that much about public timelines anyway. But beyond Twhii, I have noticed that the deprecation of <a href="https://dev.twitter.com/docs/api/1/get/statuses/followers" target="_blank">statuses/followers</a> (and statuses/friends) for the combination of <a href="https://dev.twitter.com/docs/api/1/get/followers/ids" target="_blank">followers[friends]/id</a> and <a href="https://dev.twitter.com/doc/get/users/lookup" target="_blank">users/lookup</a> has some downsides.<strong>&nbsp;</strong></p>
 <p><strong>1. The follow order</strong></p>
 <p><span style="text-decoration: underline;">Statuses/followers[friends]</span> return list of followers or friends in the order they follow or are followed by an account. When I check my followers, I want to know the people that just followed me since last check. <span style="text-decoration: underline;">followers/id + users/lookup</span> don't return in that order. Really, I don't even know in what order the ids are returned.</p>
@@ -28,13 +51,64 @@
 <p>&nbsp;</p>
 <p><em>* according to updates to the <a href="https://dev.twitter.com/blog/api-housekeeping">blogpost</a>, due to feedbacks, none of the currently scheduled changes will take effect on May 14th, 2012</em></p>
 
-        <p></p>
-        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
-    </article>
-
-    <footer>
-      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+      </article>
+    </div>
   </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2012/04/19/the-minimalistic-editor.html">The minimalistic editor</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
 </body>
 </html>

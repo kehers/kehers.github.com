@@ -1,37 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>myContacts | Opeyemi's BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="myContacts">
+  <meta name="twitter:description" content="Phones are great! Bad news is: they can be unpredictable - data loss, corruption or even loss of the phone itself. myContacts, however, helps you backup and manage the most important item of your p...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>myContacts</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/zenburn.css" />
-  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>myContacts</h1>
-        <time>09 Oct 2010</time>
-    </header>
-    <article>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>09 Oct 2010</date>
+        <h1 class="title">myContacts</h1>
         <p>Phones are great! Bad news is: they can be unpredictable - data loss, corruption or even loss of the phone itself. <a href="http://mycontactsapp.com">myContacts</a>, however, helps you backup and manage the most important item of your phone - your contacts.</p>
 <p><strong>Gotcha, I've got a PC suite!</strong></p>
 <p>Don't we all? Well, I do too. In fact two. But then there is just one difference with myContacts - multiple channels to access and manage your contacts - web, mobile (site + app), and directly via the native syncronization feature on your phone.</p>
 <p><strong>Hmmm...ok, I want in</strong></p>
 <p>Great! *Happy smile*. Head out to <a href="http://mycontactsapp.com">mycontactsapp.com</a>, and drop your mobile number. Once we start dishing out the invites, we'll send yours to you via sms. Don't forget to follow the blog here: <a href="http://blog.mycontactsapp.com">blog.mycontactsapp.com</a> and the twitter account around here <a href="http://twitter.com/mycontactsapp">@mycontactsapp</a>.</p>
 
-        <p></p>
-        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
-    </article>
-
-    <footer>
-      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+      </article>
+    </div>
   </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2010/09/30/people-around-me.html">People around me</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
 </body>
 </html>

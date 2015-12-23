@@ -1,53 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>Twitter oAuth and the net.oauth.j2me library | Opeyemi's BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="Twitter oAuth and the net.oauth.j2me library">
+  <meta name="twitter:description" content="So I have been toying with a twitter mobile client in Java. I'm using the j2me-oauth library to perform authentication, sign requests and the all the oAuth ish. Everything seems to be working perfe...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>Twitter oAuth and the net.oauth.j2me library</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/zenburn.css" />
-  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>Twitter oAuth and the net.oauth.j2me library</h1>
-        <time>19 Aug 2011</time>
-    </header>
-    <article>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>19 Aug 2011</date>
+        <h1 class="title">Twitter oAuth and the net.oauth.j2me library</h1>
         <p>So I have been toying with a twitter mobile client in Java. I'm using the <a href="https://github.com/simonpk/j2me-oauth">j2me-oauth library</a> to perform authentication, sign requests and the all the oAuth ish. Everything seems to be working perfectly except that tweeting fails occasionally, returning 401 Unauthorized error. It's clear from the <a href="https://dev.twitter.com/docs/error-codes-responses">dev docs</a> that it is an authentication credential problem and most likely has to do with the oauth signature. I spent some time debugging how the library performs the oauth signing and noticed the encoding of some characters are skipped. The encoding should actually include all non-alphanumeric characters except -_. with ~ converted to %7E.</p>
 <p>My simple workaround is replacing the <tt>unreservedCharacters</tt> in <tt>net.oauth.j2me.OAuthParameterEncoder</tt> with</p>
-<p><div class="highlight"><pre><code class="java"><span class="lineno">1</span> <span class="c1">//private String unreservedCharacters = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~&quot;;&lt;br /&gt;private String unreservedCharacters = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._&quot;;</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-java" data-lang="java"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="c1">//private String unreservedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";&lt;br /&gt;private String unreservedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 <p>and comment out some lines in <tt>net.oauth.j2me.Util</tt></p>
-<p><div class="highlight"><pre><code class="java"><span class="lineno"> 1</span>     <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span>
-<span class="lineno"> 2</span>         <span class="c1">// safe characters</span>
-<span class="lineno"> 3</span>         <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span>
-<span class="lineno"> 4</span>         <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span>
-<span class="lineno"> 5</span>         <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span>
-<span class="lineno"> 6</span>         <span class="c1">//|| c == &#39;!&#39;</span>
-<span class="lineno"> 7</span>         <span class="c1">//|| c == &#39;~&#39;</span>
-<span class="lineno"> 8</span>         <span class="c1">//|| c == &#39;*&#39;</span>
-<span class="lineno"> 9</span>         <span class="c1">//|| c == &#39;\&#39;&#39;</span>
-<span class="lineno">10</span>         <span class="c1">//|| c == &#39;(&#39;</span>
-<span class="lineno">11</span>         <span class="c1">//|| c == &#39;)&#39;</span>
-<span class="lineno">12</span>         <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="sc">&#39;A&#39;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;=</span> <span class="sc">&#39;Z&#39;</span><span class="o">)</span>
-<span class="lineno">13</span>         <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="sc">&#39;a&#39;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;=</span> <span class="sc">&#39;z&#39;</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-java" data-lang="java"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td><td class="code"><pre>    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span>
+        <span class="c1">// safe characters</span>
+        <span class="n">c</span> <span class="o">==</span> <span class="sc">'-'</span>
+        <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">'_'</span>
+        <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">'.'</span>
+        <span class="c1">//|| c == '!'</span>
+        <span class="c1">//|| c == '~'</span>
+        <span class="c1">//|| c == '*'</span>
+        <span class="c1">//|| c == '\''</span>
+        <span class="c1">//|| c == '('</span>
+        <span class="c1">//|| c == ')'</span>
+        <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="sc">'A'</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;=</span> <span class="sc">'Z'</span><span class="o">)</span>
+        <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="sc">'a'</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;=</span> <span class="sc">'z'</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 
 <p>Here is a zip of both files: <a href="http://cl.ly/9RNJ">http://cl.ly/9RNJ</a></p>
 
-        <p></p>
-        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
-    </article>
-
-    <footer>
-      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+      </article>
+    </div>
   </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2011/07/30/twitter-and-the-dm-ish.html">Twitter and the DM ish</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
 </body>
 </html>

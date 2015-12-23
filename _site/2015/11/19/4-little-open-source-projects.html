@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="4 little open source projects">
+  <meta name="twitter:description" content="Here are 4 small open source projects I have created this year.
+
+1. Ubercodes
+
+This was an experiment with Twitter Streaming API. How do you connect to the stream of Twitter public tweets to get tw...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>4 little open source projects</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>19 Nov 2015</date>
+        <h1 class="title">4 little open source projects</h1>
+        <p>Here are 4 small open source projects I have created this year.</p>
+
+<h2 id="ubercodes">1. Ubercodes</h2>
+
+<p>This was an experiment with <a href="https://dev.twitter.com/streaming/overview">Twitter Streaming API</a>. How do you connect to the stream of Twitter public tweets to get tweets containing specific terms?</p>
+
+<p>Ubercodes listens to Twitter for the words “<strong>uber code</strong>”. The search words can be anything. At that moment, I was just interested in seeing the number of people tweeting Uber codes per minute.</p>
+
+<p>The code is written in Node.js which makes sense because of the streaming connection and sending matched tweets from the server to the front end via web socket.</p>
+
+<p>Source: <a href="https://github.com/kehers/Ubercodes">github.com/kehers/Ubercodes</a>  <br />
+Language: Node.js</p>
+
+<h2 id="cabbie">2. Cabbie</h2>
+
+<p>We added <a href="https://fonenode.com/docs#sms">two-way SMS to Fonenode</a> and to showcase it, I built Cabbie. Cabbie allows you interact with the <a href="https://developer.uber.com/">Uber API</a> via SMS. Don’t judge my sudden interest in Uber :D. The API was new and I wanted to check it out.</p>
+
+<p>Source: <a href="https://github.com/fonenode/Cabbie">github.com/fonenode/Cabbie</a>  <br />
+Language: PHP</p>
+
+<h2 id="fave">3. Fave</h2>
+
+<p>I use IFTTT to push links in tweets I fav to Pocket. But many times, the links end up broken and the original tweet is not attached in Pocket (Pocket API allows you attach a tweet to an item by specifying the tweet id). So I created Fave. Simple idea - use the Twitter API to pull the user’s faved tweets, check for URLs and push through the Pocket API to Pocket. There are other plans, but it’s that simple for now.</p>
+
+<p>By the way, the 2 minute cron that checks for favs is not scalable. I will probably move it to <a href="http://www.iron.io/worker/">IronWorker</a> when I have the time.</p>
+
+<p>Source: <a href="https://github.com/kehers/fave">github.com/kehers/fave</a> <br />
+Language: Node.js <br />
+Hosted version: <a href="http://fave.ninja/">fave.ninja</a></p>
+
+<h2 id="billtab">4. Billtab</h2>
+
+<p>My friends and I have a money pool for house expenses - fuel, food, power, cable TV, internet, etc. I tried using Google sheets to manage it but didn’t work quite well. So I created a shared expense/earning tracker - Billtab.</p>
+
+<p>Billtab should allow any member of the team manage the earnings and expenses and display detailed monthly reports based on tags and user. But it doesn’t work like that yet. For now it’s just a simple expenses/earnings tracker that works offline.</p>
+
+<p>Source: <a href="https://github.com/kehers/billtab">github.com/kehers/billtab</a> <br />
+Language: HTML5, CSS3, Javascript (Backbone.js) <br />
+Hosted version: <a href="http://billtab.co/">billtab.co</a></p>
+
+<p>PS:</p>
+
+<p>I am writing an ebook on Consuming REST APIs. Follow the progress here: <a href="https://gumroad.com/kehers">gumroad.com/kehers</a></p>
+
+      </article>
+    </div>
+  </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2015/11/18/re-tiketmobile.html">re - Tiketmobile</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

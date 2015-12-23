@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="Recording audio in browser">
+  <meta name="twitter:description" content="With advancements in HTML5, audio recording in browser is now easier than before. Even though the underlying technologies, Web Audio API + WebRTC, is not fully supported across browsers, it is a be...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>Recording audio in browser</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>23 Mar 2015</date>
+        <h1 class="title">Recording audio in browser</h1>
+        <p>With advancements in HTML5, audio recording in browser is now easier than before. Even though the underlying technologies, Web Audio API + WebRTC, is <a href="http://caniuse.com/#search=webrtc">not fully supported across browsers</a>, it is a better alternative to having users install addons or download extensions to enable audio recording in browser.</p>
+
+<h2 id="the-how">The how</h2>
+
+<p>In it’s simplest form, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia">getUserMedia</a> is used to capture audio for <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio</a> to then record. But of course, you know it’s more complicated than that. Good news is <a href="https://github.com/mattdiamond/Recorderjs">RecorderJs</a> has done all the necessary work.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// include recorder.js script
+</span>
+
+<span class="kd">var</span> <span class="nx">recorder</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">AudioContext</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">AudioContext</span> 
+                  <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">webkitAudioContext</span><span class="p">;</span>
+<span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span> <span class="o">=</span> <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span> <span class="o">||</span>
+               <span class="nx">navigator</span><span class="p">.</span><span class="nx">webkitGetUserMedia</span> <span class="o">||</span>
+               <span class="nx">navigator</span><span class="p">.</span><span class="nx">mozGetUserMedia</span> <span class="o">||</span>
+               <span class="nx">navigator</span><span class="p">.</span><span class="nx">msGetUserMedia</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">audioContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AudioContext</span><span class="p">;</span>
+
+<span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span><span class="na">audio</span><span class="p">:</span> <span class="kc">true</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mediaStream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">audioContext</span><span class="p">.</span><span class="nx">createMediaStreamSource</span><span class="p">(</span><span class="nx">mediaStream</span><span class="p">);</span>
+  <span class="nx">recorder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Recorder</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">numChannels</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">});</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// No live audio input
+</span>
+<span class="p">});</span></code></pre></figure>
+
+<h2 id="optimizing">Optimizing</h2>
+
+<p>The audio is recorded in uncompressed wav format. If you will be uploading the recorded data, the size can be an issue. A one minute, 2 channels recording is around 10mb (one minute mono is around 5mb). What is the possible workaround? Compressing to mp3 - on the client! Don’t fret yet, <a href="https://github.com/akrennmair/libmp3lame-js">libmp3lame.js</a> got you covered. There is a good article on implementing libmp3lame.js with Recorderjs here: <a href="https://nusofthq.com/blog/recording-mp3-using-only-html5-and-javascript-recordmp3-js/">nusofthq.com/blog/recording-mp3-using-only-html5-and-javascript-recordmp3-js/</a>. Converting to mp3 reduces the size by about 97%. A converted mp3 file of one minute is about 300kb.</p>
+
+<p>There are 2 minor issues with the <a href="https://github.com/nusofthq/Recordmp3js">final working script</a> in that article though. One, it uses an old version of Recorderjs and hard-coded the channel as 1 in several parts of the source. The other issue is with libmp3lame. The converted mp3 file is twice the length of the original recording, with the other half blank. I created a fork that fixed both. I actually didn’t do anything super. I just recreated using a newer version of Recorderjs, commented out a line causing audio feedback and made a tiny tweak in the libmp3lame source as recommended in a comment. You can check out the fork here: <a href="https://github.com/kehers/Recordmp3js">github.com/kehers/Recordmp3js</a></p>
+
+<h2 id="visualisation">Visualisation</h2>
+
+<p><img src="http://i.imgur.com/BA0uza4.png?1" alt="Visualisation" /></p>
+
+<p>If you want to visualise the audio input live, check out the Microphone plugin of <a href="http://wavesurfer.fm">wavesurfer</a>: <a href="http://www.wavesurfer.fm/example/microphone/">wavesurfer.fm/example/microphone</a>. If you want to delve deeper, check out the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">MDN Web Audio API docs</a>.</p>
+
+<p>If you are interested in where this experiment leads, follow me on Twitter (<a href="https://twitter.com/kehers">@kehers</a>) to follow what I am working on. I promise you will love it :)</p>
+
+      </article>
+    </div>
+  </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2015/03/12/using-pushover-for-issue-logging-and-notifications.html">Using Pushover for issue logging and notifications</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

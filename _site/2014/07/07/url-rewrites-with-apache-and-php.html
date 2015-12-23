@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="URL rewrites with Apache and PHP">
+  <meta name="twitter:description" content="We all love fancy URLs.
+
+
+  You get to hide your file extensions, e.g tinypress.co/about (no .html, .php or whatever)
+  You get to do interesting RESTful patterns, e.g twitter.com/[username]/status...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>URL rewrites with Apache and PHP</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>07 Jul 2014</date>
+        <h1 class="title">URL rewrites with Apache and PHP</h1>
+        <p>We all love fancy URLs.</p>
+
+<ol>
+  <li>You get to hide your file extensions, e.g <a href="https://tinypress.co/about">tinypress.co/about</a> (no .html, .php or whatever)</li>
+  <li>You get to do interesting RESTful patterns, e.g <code class="highlighter-rouge">twitter.com/[username]/status/[tweet id]</code> which are not only good for SEO but are beautiful and can easily be guessed by users.</li>
+</ol>
+
+<p>The common approach to URL rewrites in Apache is to use the popular <a href="http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html">mod_rewrite</a>. You simply create a .htaccess file where you turn on the rewrite engine (the rewrite mod must be enabled already) and add some rewrite rules.</p>
+
+<p>Here is a sample .htaccess rewrite that “masks” the URL <code class="highlighter-rouge">[domain]/showposts.php?tag=php</code> as <code class="highlighter-rouge">[domain]/tag/php</code></p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">RewriteEngine on
+RewriteRule ^tag/(.*)$ showposts.php?tag=$1</code></pre></figure>
+
+<p>The user types <code class="highlighter-rouge">[domain]/tag/php</code> (or clicks a similar link) and that shows in the address bar. However, under the hood, the url is converted to <code class="highlighter-rouge">showposts.php?tag=php</code>.</p>
+
+<p>Our <code class="highlighter-rouge">showposts.php</code> script will then look something like this.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$tag</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'tag'</span><span class="p">];</span>
+<span class="c1">// Rest of script goes here
+</span><span class="cp">?&gt;</span></code></pre></figure>
+
+<p>It is that simple for few rewrites but can get quite complex and messy when you have to handle a lot of rewrites. Let’s look at a scenerio. Consider the <a href="https://fonenode.com/docs">Fonenode API</a> for example. There are 5 resources (Response, Calls, Numbers, Groups and Billing) and over 16 methods in all. The endpoint for the methods are like these:</p>
+
+<ul>
+  <li>/v1/calls/</li>
+  <li>/v1/calls/quick</li>
+  <li>/v1/calls/[call id]</li>
+  <li>/v1/responses/</li>
+  <li>/v1/responses/[response id]</li>
+</ul>
+
+<p>While it may not be a big deal to write rewrites for 16 endpoints, it is not scalable. As your resources/endpoints grow, it becomes more complex.</p>
+
+<h2 id="option-2---rewrite-with-multiviews">Option 2 - Rewrite with MultiViews</h2>
+
+<p>One simpler way to achieve rewrite is using the <strong>MultiView</strong> option. (<a href="http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html">mod_negotiation</a> must be enabled for this). It is still not an elaborate solution but you can easily use it to</p>
+
+<ol>
+  <li>Hide URL extensions.</li>
+  <li>Redirect RESTful URLs to a base file</li>
+</ol>
+
+<p>If we replace out htaccess with this</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">Options +MultiViews</code></pre></figure>
+
+<p>and create a file <code class="highlighter-rouge">tags.php</code>, we can visit <code class="highlighter-rouge">[domain]/tags</code> instead of <code class="highlighter-rouge">[domain]/tags.php</code> and everything will work as should (as 1 above). If we visit <code class="highlighter-rouge">[domain]/tags/php</code>, Apache serves the <code class="highlighter-rouge">tags.php</code> file i.e redirects to the base file (2 above). The full path is accessible via the <code class="highlighter-rouge">$_SERVER['PATH_INFO']</code> variable and you can use that inside your base script.</p>
+
+<p>So in <code class="highlighter-rouge">tags.php</code>, we can have</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$tag</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'PATH_INFO'</span><span class="p">];</span> <span class="c1">// =&gt; /php
+// Remove preceding/trailing slash
+</span><span class="nv">$tag</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$tag</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">);</span>
+<span class="c1">// Rest of code here
+</span><span class="cp">?&gt;</span></code></pre></figure>
+
+<h2 id="option-3---using-a-route-file">Option 3 - using a route file</h2>
+
+<p>A completely different approach is to redirect all traffic to a file and that file takes care of routing by matching the intended URL and using switch/if case to include the necessary file. This is more flexible.</p>
+
+<p>Back to htaccess, we can have:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d    
+RewriteRule ^(.*)$ route.php/$1</code></pre></figure>
+
+<p>What that means is if the file or directory typed in the address bar doesn’t exist, redirect to <code class="highlighter-rouge">route.php?url/user/typed</code>. So say the user types <code class="highlighter-rouge">[domain]/about/company</code>, the URL is converted to <code class="highlighter-rouge">route.php?about/company</code> in the “background”.</p>
+
+<p>Our <code class="highlighter-rouge">route.php</code> file will then look like this</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$requested</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'REQUEST_URI'</span><span class="p">];</span> <span class="c1">// =&gt; /about/company
+</span>
+<span class="c1">// Formatting kungfu here
+// You may want to strip preceding/trailing slashes
+// Remove queries in url, etc
+</span>
+<span class="nv">$pages</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span> <span class="nv">$requested</span><span class="p">);</span>
+<span class="c1">// print_r($pages)
+</span><span class="k">switch</span> <span class="p">(</span><span class="nv">$pages</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">'about'</span><span class="o">:</span>
+        <span class="c1">// ...
+</span>    <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="c1">// include home page view
+</span>    <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span></code></pre></figure>
+
+<p>I try to keep that simple but you should get the idea. By using this method you have just one controller for your routes and you can easily manage lots of URL rewrites. Where it gets interesting is you can create even more elegant solutions using this technique.</p>
+
+      </article>
+    </div>
+  </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2014/06/04/sip-on-android.html">SIP on Android</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

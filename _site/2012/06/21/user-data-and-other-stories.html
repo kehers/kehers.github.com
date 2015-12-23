@@ -1,53 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0">
-  <title>User Data and other stories | Opeyemi's BS</title>
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="User Data and other stories">
+  <meta name="twitter:description" content="Rule 1. Never trust any data coming from the user. You should always sanitize before use. While mysql_real_escape_string protects against sql injection, it won't save you from Javascript XSS. The p...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>User Data and other stories</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/zenburn.css" />
-  <link rel="alternate" type="application/atom+xml" title="Feed for blog posts" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
-  <div class="wrapper">
-    <nav>
-      <a href="/">home</a> &middot; <a href="/posts.html">posts</a> &middot; <a href="/feed.xml">feed</a>
-    </nav>
-    <header>
-        <h1>User Data and other stories</h1>
-        <time>21 Jun 2012</time>
-    </header>
-    <article>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>21 Jun 2012</date>
+        <h1 class="title">User Data and other stories</h1>
         <p>Rule 1. Never trust any data coming from the user. You should always sanitize before use. While <a href="http://php.net/manual/en/function.mysql-real-escape-string.php">mysql_real_escape_string</a> protects against sql injection, it won't save you from Javascript XSS. The path for many [PHP] developers is to therefore</p>
 <ol>
 <li>Strip tags with <a href="http://php.net/manual/en/function.strip-tags.php">strip_tags</a></li>
 <li>mysql_real_escape_string</li>
 </ol>
 <p>Bad news though, <em>strip_tags</em> won't save you, and it is worse when you use the <em>allowable_tag </em>option. (Yeah, we are always tempted to allow some tags for minor formatting like b, i, u, em, and 'a' sail). As clearly stated in the manual, <em>strip_tags</em> does not modify the attributes of allowed tags or validate attribute values. This will pass then:</p>
-<p><div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:alert(document.cookie)&quot;</span><span class="nt">&gt;</span>Warido<span class="nt">&lt;/a&gt;</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-html" data-lang="html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:alert(document.cookie)"</span><span class="nt">&gt;</span>Warido<span class="nt">&lt;/a&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 <p><strong>Escape route</strong></p>
 <p>Rule 2. Only accept plain text whenever you can. Kill html, scripts and friends. Ok, just joking. We are in a real world afterall. But really, except you are doing heavy dom manipulation on the fly, htmlentities() is good enough. The function simply converts HTML characters into entities.</p>
-<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
-<span class="lineno">2</span> <span class="k">echo</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;javascript:alert(document.cookie)&quot;&gt;Warido&lt;/a&gt;&#39;</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
-<span class="lineno">3</span> <span class="c1">// Outputs:</span>
-<span class="lineno">4</span> <span class="c1">// &lt;a href=&amp;quot;js:alert(document.cookie)&amp;quot; &amp;quot;js:alert(document.cookie)&amp;quot;&gt;Warido&lt;/a&gt;</span>
-<span class="lineno">5</span> <span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-php" data-lang="php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">echo</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="s1">'&lt;a href="javascript:alert(document.cookie)"&gt;Warido&lt;/a&gt;'</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">'UTF-8'</span><span class="p">);</span>
+<span class="c1">// Outputs:
+// &lt;a href=&amp;quot;js:alert(document.cookie)&amp;quot; &amp;quot;js:alert(document.cookie)&amp;quot;&gt;Warido&lt;/a&gt;
+</span><span class="cp">?&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 <p><strong>Some HTML please</strong></p>
 <p>When you run <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a> on a string, the "HTMLness" is killed and it gets displayed as normal text (the html will not be interpreted). So really, your browser will simply display <a href=&quot;js:alert(document.cookie)&quot; &quot;js:alert(document.cookie)&quot;>Warido</a> in plain text as against a clickable link that displays a popup when clicked or moused over. To allow some HTML to pass,</p>
 <ol>
 <li>Run htmlentities on the string</li>
 <li>Use regular expression to match for the exact tag and allowed attribute and values and re-write appropraitely</li>
 </ol>
-<p><div class="highlight"><pre><code class="php"><span class="lineno">1</span> <span class="cp">&lt;?php</span>
-<span class="lineno">2</span> <span class="nv">$input</span> <span class="o">=</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nv">$input</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
-<span class="lineno">3</span> <span class="c1">// b</span>
-<span class="lineno">4</span> <span class="nv">$input</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">&#39;!&lt;b&gt;(.*?)&lt;/b&gt;!im&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;b&gt;$1&lt;/b&gt;&#39;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">);</span>
-<span class="lineno">5</span> <span class="c1">// a</span>
-<span class="lineno">6</span> <span class="nv">$input</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s2">&quot;!&lt;a +href=&amp;quot;((?:ht|f)tps?://.*?)&amp;quot;(?: +title=&amp;quot;(.*?)&amp;quot;)?(?: +rel=&amp;quot;(.*?)&amp;quot;)? *&gt;(.*?)&lt;/a&gt;!im&quot;</span><span class="p">,</span> <span class="s1">&#39;&lt;a href=&quot;$1&quot;&gt;$4&lt;/a&gt;&#39;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">);</span>
-</code></pre></div></p>
+<p><figure class="highlight"><pre><code class="language-php" data-lang="php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$input</span> <span class="o">=</span> <span class="nb">htmlentities</span><span class="p">(</span><span class="nv">$input</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">'UTF-8'</span><span class="p">);</span>
+<span class="c1">// b
+</span><span class="nv">$input</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">'!&lt;b&gt;(.*?)&lt;/b&gt;!im'</span><span class="p">,</span> <span class="s1">'&lt;b&gt;$1&lt;/b&gt;'</span><span class="p">,</span> <span class="nv">$input</span><span class="p">);</span>
+<span class="c1">// a
+</span><span class="nv">$input</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s2">"!&lt;a +href=&amp;quot;((?:ht|f)tps?://.*?)&amp;quot;(?: +title=&amp;quot;(.*?)&amp;quot;)?(?: +rel=&amp;quot;(.*?)&amp;quot;)? *&gt;(.*?)&lt;/a&gt;!im"</span><span class="p">,</span> <span class="s1">'&lt;a href="$1"&gt;$4&lt;/a&gt;'</span><span class="p">,</span> <span class="nv">$input</span><span class="p">);</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure></p>
 <p><strong>Client side considerations - javascript</strong></p>
 <p>So far we've been considering the server side. What about the client side of things? Dom manipulation in javascript?</p>
 <p>One of the techniques we use in <a href="http://prowork.me/">Prowork</a> to give users a quick feel is to immediately perform their wanted action while the actual processing runs in the background. Say adding notes to a task for instance. Once the user clicks 'Add note', the note is immediately added to the task (appended to the DOM) while the real submission to the server goes on in the background. While the submitted data ofcourse will be filtered in the server side, what about the one injected into the dom already?</p>
@@ -61,13 +93,64 @@
 <ul>
 </ul>
 
-        <p></p>
-        <em><a href="http://twitter.com/kehers">Discuss on twitter.</a></em>
-    </article>
-
-    <footer>
-      <a href="/">home</a> &middot; <a href="posts.html">posts</a> &middot; <a href="http://github.com/kehers/kehers.github.com">source</a> &middot; <a href="http://twitter.com/kehers">@kehers</a>
-    </footer>
+      </article>
+    </div>
   </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2012/05/28/how-to-name-a-mobile-app.html">How to name a [mobile] app</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
 </body>
 </html>

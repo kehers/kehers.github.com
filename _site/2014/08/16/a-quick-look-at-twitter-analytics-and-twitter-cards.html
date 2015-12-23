@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kehers">
+  <meta name="twitter:title" content="A quick look at Twitter analytics [and Twitter cards]">
+  <meta name="twitter:description" content="Twitter analytics gives you insight into your twitter impact. Needless to say, this is a useful social media marketing tool. It answers the questions: how many times was your tweet displayed? The e...">
+  <meta name="twitter:creator" content="@kehers">
+  <title>A quick look at Twitter analytics [and Twitter cards]</title>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/skeleton.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/zenburn.css" />
+  <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="row">
+      <div id="logo" class="three columns">
+      <div id="menu">☰</div>
+      <h3><a href="/">/opeyemi</a></h3>
+    </div>
+      <nav class="nine columns">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts.html">Posts</a></li>
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="six offset-by-three columns">
+      <article>
+        <date>16 Aug 2014</date>
+        <h1 class="title">A quick look at Twitter analytics [and Twitter cards]</h1>
+        <p><a href="https://analytics.twitter.com/">Twitter analytics</a> gives you insight into your twitter impact. Needless to say, this is a useful social media marketing tool. It answers the questions: how many times was your tweet displayed? The engagement<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>? Link clicks?</p>
+
+<h2 id="getting-in">Getting in</h2>
+
+<p>There are two ways to get in - ads and cards. The ad route means you advertise on Twitter. Once you advertise, you get access to Twitter analytics. I don’t know much about Twitter ads but if you are going that route, here is a link to get started: <a href="https://business.twitter.com/">business.twitter.com</a>.</p>
+
+<p>To get in through cards, you implement <a href="https://dev.twitter.com/cards">Twitter cards</a> in your webpages. Twitter cards let you “attach media experiences to Tweets that link to your content”. In other words, beyond just having a link to your article or site in a tweet, you can embed pictures, videos and other types of media from the link’s content.</p>
+
+<p><img src="http://i.imgur.com/rAcu17z.png" alt="" /></p>
+
+<p><em>As you can see, an excerpt from the link is embedded in the Twitter web client</em></p>
+
+<p>So how is this done?</p>
+
+<ol>
+  <li>Go to the <a href="https://dev.twitter.com/docs/cards/validation/validator">Card Validator</a>. (Use a webkit-based browser like Chrome)</li>
+  <li>Select your preferred card. I use <strong>summary</strong> because all I need to embed from the link is a short excerpt. <br />
+<img src="http://i.imgur.com/pnYFhHN.png" alt="" /></li>
+  <li>Fill in the standard tags form fields to generate the sample embed code.  <br />
+<img src="http://i.imgur.com/fVJXIcX.png" alt="" /></li>
+  <li>Copy the code to your webpage header. If you are using cards for automatically generated content (most definitely), you need to replace the <code class="highlighter-rouge">content</code> attribute of the <code class="highlighter-rouge">meta</code> tags with the necessary variables. Here is what <a href="https://github.com/kehers/kehers.github.com/blob/master/_layouts/post.html">mine (this blog on Github pages)</a> looks like (notice how content <code class="highlighter-rouge">twitter:title</code> and <code class="highlighter-rouge">twitter:description</code> are set to liquid variables that will be automatically generated/replaced):</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:card"</span> <span class="na">content=</span><span class="s">"summary"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:site"</span> <span class="na">content=</span><span class="s">"@kehers"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:title"</span> <span class="na">content=</span><span class="s">"{{ page.title }}"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:description"</span> <span class="na">content=</span><span class="s">"{{ content | strip_html | truncate: 200 }}"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:creator"</span> <span class="na">content=</span><span class="s">"@kehers"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<ol>
+  <li>Once you have embedded the code, validate your card and be sure you didn’t get things wrong.  <br />
+<img src="http://i.imgur.com/qgVQYoP.png" alt="" /></li>
+</ol>
+
+<p>That is it. After few days, you should have access to Twitter analytics. I recommend you share a link with your card when done though.</p>
+
+<h2 id="what-does-twitter-analytics-look-like">What does Twitter analytics look like?</h2>
+
+<p><img src="http://i.imgur.com/uFRSmMj.png" alt="" /></p>
+
+<p>I can’t possibly share all the screenshots but I will mention a few of the things you’d see. (I placed some screenshots side by side).</p>
+
+<ol>
+  <li>Graphs - tweet impressions, engagement rate (engagement/impression x 100), link clicks, retweets, favs and replies.  <br />
+<img src="http://i.imgur.com/uSc38n2.png" alt="" /></li>
+  <li>Follower breakdown by interest, gender and follower. <br />
+<img src="http://i.imgur.com/bkjNwyl.png" alt="" /></li>
+  <li>Twitter card performance and link click rate <br />
+<img src="http://i.imgur.com/z3Acy2N.png" alt="" /></li>
+</ol>
+
+<h2 id="extending-and-other-experiments">Extending and other experiments</h2>
+
+<p>There are more interesting stats that can be deduced from the data beyond what is available on the analytics web page. Unfortunately, there is no analytics API. Yet. One stat that would be interesting to see is <strong>reach</strong> rate.</p>
+
+<p>I define <strong>Reach rate</strong> as impressions/followers x 100%. What percentage of your followers saw your tweet? Do note that Twitter defines impression as “the number of times users saw the tweet <strong>on Twitter</strong>”. This probably means that impressions on third party clients do not count. I want to assume official Twitter clients on other devices count.</p>
+
+<p>Here is what my reach rate is like. I am not a “brand” or social media person of interest so my rate will obviously be low compared to well engaging brands. That said, here is an example tweet with no multiplier engagement like retweets.</p>
+
+<p><img src="http://i.imgur.com/LG5Q8O6.png" alt="" /></p>
+
+<p>It has 91 impressions and then I had around 1085 followers. This means the reach rate is 8.4%. I would have loved to calculate my average for like a month but it’s hard to filter through the data for that period.</p>
+
+<p>Let’s consider links on the other hand. What’s the click-through rate?</p>
+
+<p><img src="http://i.imgur.com/uvfOqYJ.png" alt="" /></p>
+
+<p>For the first link, the click-through is 9/191 x 100% = 4.7%. For the second, we have 2/30 x 100% = 6.7%. That gives an average of 5.7%.</p>
+
+<p>Will you consider the reach and click through rates a success compared to email marketing (another popular marketing tool)? I don’t have a mailing list, but it’d be interesting to compare email opens to tweet reach and click-through in email to Twitter. Which is a better marketing tool?</p>
+
+<p>Another thing you can deduce from this is: when is the best time for high reach? Or better click-throughs. What type of tweets interest (engage) your followers? What links are they interested in?</p>
+
+<p>The good news is Twitter analytics allows you export your [analytics] data. I will see what I can build when I have some free time.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Twitter defines engagement as the total number of times a user has interacted with the tweet. This includes all clicks anywhere on the tweet (hashtags, links, usernames, avatar and tweet expansion), retweets, replies, follows and favs. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </article>
+    </div>
+  </div>
+</div>
+<div class="colophon">
+  <div class="container">
+    <div class="row">
+      <div class="author six offset-by-three columns">
+        <img src="https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-15/e15/10617063_553407278119581_1973098870_n.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
+      </div>
+    </div>
+    <div class="row p-t-20">
+      <div class="six offset-by-three columns">
+        
+        
+        
+        <article class="m-t-20">
+          <h4 class="title m-b-20">Next post</h4>
+          <h5 class="libre no-margin"><a href="/2014/07/28/oauth-2-on-android.html">OAuth 2 on Android</a></h5>
+        </article>
+        
+        <h4 class="title">Comments</h4>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="three offset-by-three columns">
+        <a href="/">/opeyemi</a> · <a href="http://github.com/kehers/kehers.github.com">Source</a> · <a href="/feed.xml">RSS feed</a>
+      </div>
+      <div class="three columns">
+        <a href="http://twitter.com/kehers">Twitter</a> · <a href="http://github.com/kehers">Github</a> · <a href="http://instagram.com/kehers">Instagram</a> · <a href="http://500px.com/kehers">500px</a>
+    </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/menu.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53373832-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>
