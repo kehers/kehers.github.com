@@ -3,7 +3,7 @@ published: true
 title: 2015
 layout: post
 ---
-## The travel
+### The travel
 
 I traveled back to US end of June. I needed the holiday. But I had no plans about the *where*. I didn't want to do San Francisco. I wanted somewhere different. And it didn't take Kaya and Courtney much persuasion to narrow my options to Los Angeles. Kaya and Courtney, both from LA, were exchange students I made friends with at the University of Legon, Accra earlier this year. When LA came up, I looked up the tech scene (I didn't get to do anything tech in the end) and life style and figured it would be fun. I mean, it is Hollywood after all. So I packed up and did it.
 
@@ -12,13 +12,13 @@ I remember being delayed at the connecting airport at Atlanta for like 45 minute
 So there I was in a big beautiful city. No friends, no knowledge, vulnerable, just armed with apps and the internet. That feeling was beautiful. And like I imagined, LA was fun. I visited a couple of places and made some cool friends. I did a two day trip to San Diego with one. I wanted to go to Las Vegas again and visit the Grand Canyon but I blew my cash on other things and didn't. And again, I didn't get to Sky dive. The last two weeks I spent at Hermosa Beach was one to remember.
 
 
-## The burnout
+### The burnout
 
 I thought the holiday would make me feel refreshed. It did, but then I suffered massive burnout in the two months or so that followed. I guess it was the disconnect between both realities. In one, though brief, everything seemed perfect. I had met a guy doing a bicycle ride from Canada to Mexico; got invited to downtown LA by some girls we threw Frisbee with at the beach (my French friend ended up starting a party at the lounge); sat by the beach at 2am with friends and talk about everything; took a [29 miles, 4 hours bicycle ride](https://twitter.com/kehers/status/622880543399501825) along the coastal line to Santa Monica and back. In the other, I work hard to meet my responsibilities as a friend, a lover, a first child and a CTO.
 
 So I cut down on coding and started delegating more, disposed (sold) some side projects, started reading a lot and experimented on new technology. I also got some art materials to start experimenting with oil and water colour painting but never got to it.
 
-## The house
+### The house
 
 Fun fact: I have been homeless since March last year. 
 
@@ -27,7 +27,7 @@ When I travelled last year, I sold everything I had, left for what could fit a d
 The nomad life can be interesting. I was very flexible. I had just the things I needed. I wasn't tied by location or possession. But there is just how far you can continue with such life style. It's easier when you are younger. I started finding the need to get a place again later this year. Aj, my old time friend, got a place for us when I traveled. So when I got back July ending, there was [a place](https://www.instagram.com/p/7Z7za6v7Zk/?taken-by=kehers) waiting.
 
 
-## The book
+### The book
 
 I love APIs. 80% of everything I've ever built implemented an API one way or another. I've wanted to write about consuming REST APIs since like [2013](http://obem.be/2013/12/13/2013.html). But I didn't get to it. Writing a book wasn't just as easy as I thought. Committing to it daily was difficult. And writing takes a lot of thinking, validating, experimenting and testing. Or I just lacked the focus to. So after a chapter or two I stopped.
 
