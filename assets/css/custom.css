@@ -9,6 +9,9 @@ body {
 article {
   margin: 150px 0 50px;
 }
+article p a {
+  text-decoration: underline
+}
 code {
   border: none;
 }
