@@ -15,6 +15,10 @@ code {
 figure {
   margin: 0 0 0 -20px;
 }
+ul, ol {
+  margin-left: 40px;
+  list-style-position: outside;
+}
 
 .title {
   font-family: 'Libre Baskerville', serif;
