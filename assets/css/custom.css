@@ -46,7 +46,8 @@ nav {
   padding-top: 10px;
 }
 nav ul {
-  list-style: none
+  list-style: none;
+  margin: 0;
 }
 nav li {
   display: inline;
@@ -93,11 +94,12 @@ a:hover {
 }
 #menu {
   display: none;
-    float: right;
-    color: #7459c4;
-    font-size: 2em;
-    padding-left: 10px;
-    text-align: center;
+  cursor: pointer;
+  float: right;
+  color: #7459c4;
+  font-size: 2em;
+  padding-left: 10px;
+  text-align: center;
 }
 
 h2,h3,h4,h5,h6 {
