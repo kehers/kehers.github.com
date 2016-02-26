@@ -12,6 +12,9 @@ article {
 article p a {
   text-decoration: underline
 }
+article img {
+  max-width: 100%
+}
 code {
   border: none;
 }
