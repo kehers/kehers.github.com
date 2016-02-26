@@ -37,7 +37,7 @@ Bummer. No easy way to transfer droplets between accounts on Digitalocean. One o
     ![](http://i.imgur.com/uVwAKLP.png)
 - Enter the receipient's name
 
-Once done, you can delete the snapshot and destroy the droplet from your own account. Shameless plug: you can use my referral link https://m.do.co/c/921564962064 to create a new DigitalOcean account. You get $10 in credit.
+Once done, you can delete the snapshot and destroy the droplet from your own account. Shameless plug: you can use my referral link [m.do.co/c/921564962064](https://m.do.co/c/921564962064) to create a new DigitalOcean account. You get $10 in credit.
 
 ### Code (Bitbucket, Github)
 
@@ -133,7 +133,7 @@ You can just change the account's email details to that of the new user. [Stripe
 
 ### [Google] Play Store application
 
-You have to submit a request to transfer an application to another account on the Play store. There are some requirements that should be met before you do though. Full details available here: https://support.google.com/googleplay/android-developer/answer/6230247?hl=en
+You have to submit a request to transfer an application to another account on the Play store. There are some requirements that should be met before you do though. Full details available here: [https://support.google.com/googleplay/android-developer/answer/6230247?hl=en](https://support.google.com/googleplay/android-developer/answer/6230247?hl=en)
 
 ### OAuth Apps
 
@@ -153,7 +153,7 @@ Sorry, no way to transfer Instagram applications. The new user will have to recr
 
 **Twitter:**
 
-No direct way to transfer a Twitter application as well. But you can request a transfer by filling the form at https://support.twitter.com/forms/platform
+No direct way to transfer a Twitter application as well. But you can request a transfer by filling the form at [support.twitter.com/forms/platform](https://support.twitter.com/forms/platform)
 
 **LinkedIn:**
 
