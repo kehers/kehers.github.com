@@ -35,7 +35,7 @@ Bummer. No easy way to transfer droplets between accounts on Digitalocean. One o
     ![](http://i.imgur.com/8qBcrZD.png)
 - Click the `More` option by the snapshot and select `Change owner`
     ![](http://i.imgur.com/uVwAKLP.png)
-- Enter the receipient's name
+- Enter the recipient's email
 
 Once done, you can delete the snapshot and destroy the droplet from your own account. Shameless plug: you can use my referral link [m.do.co/c/921564962064](https://m.do.co/c/921564962064) to create a new DigitalOcean account. You get $10 in credit.
 
@@ -61,7 +61,7 @@ Github:
 
 ### Transactional email (Mailgun)
 
-[Mailgun](http://mailgun.com/) has a feature for adding new users to an account (availabile in `Account settings` for users that have their payment info on file) but the limitation is that the account owner, i.e you, cannot be removed. There are two options besides this.
+[Mailgun](http://mailgun.com/) has a feature for adding new users to an account (available in `Account settings` for users that have their payment info on file) but the limitation is that the account owner, i.e you, cannot be removed. There are two options besides this.
 
 ![](http://i.imgur.com/cji7Lv2.png)
 ![](http://i.imgur.com/kP0JwYv.png)
