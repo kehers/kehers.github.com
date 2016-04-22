@@ -1,11 +1,11 @@
 ---
 published: true
-title: now - realtime node.js deployments
+title: "now - realtime node.js deployments"
 layout: post
 ---
 [Now](http://now.sh/) allows you deploy nodejs applications in realtime, from your terminal. Think of this as a simpler Heroku for nodejs. You simply run `now` in your project directory and you get a unique URL similar to this: https://yo-smppqrgsbt.now.sh
 
-###Installation
+### Installation
 
 My fav thing about this is how easy it is setup and use. You only need to install the node module globally (the g flag).
 
@@ -13,7 +13,7 @@ My fav thing about this is how easy it is setup and use. You only need to instal
 $ sudo npm install -g now
 {% endhighlight %}
 
-###Usage
+### Usage
 
 To deploy, just run `now` in your project directory. Here is an example:
 
@@ -143,7 +143,7 @@ radio-one $ now
 
 If it's your first time, `now` requests for your email and sends you a verification link. Once deployed, your deployment url is returned. Here is mine [https://radio-one-yufyrttcin.now.sh](https://radio-one-yufyrttcin.now.sh). You can see the source here [https://radio-one-yufyrttcin.now.sh/_src/?f=index.js](https://radio-one-yufyrttcin.now.sh/_src/?f=index.js) (Just add `_src` behind the URL)
 
-###Takeaways
+### Takeaways
 
 Note: a lot of things I will mention will probably be due to the fact that it's a really new project. I mean, the latest version is 0.10.0. However, here are my takeaways:
 
