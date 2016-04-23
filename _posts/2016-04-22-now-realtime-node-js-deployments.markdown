@@ -37,7 +37,6 @@ This prompts some questions to generate the `package.json` file. I basically jus
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Opeyemi Obembe <kehers@gmail.com> (http://obem.be/opeyemi)",
