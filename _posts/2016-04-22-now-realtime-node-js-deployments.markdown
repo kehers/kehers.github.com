@@ -15,7 +15,7 @@ $ sudo npm install -g now
 
 ### Usage
 
-To deploy, just run `now` in your project directory. Here is an example:
+To deploy, just run `now` in your project directory. I will create a simple project as an example.
 
 {% highlight javascript %}
 $ mkdir radio-one
@@ -134,13 +134,15 @@ app.get('/', (req, res) => {
 app.listen(3000);
 {% endhighlight %}
 
-Ideally, you should use a template engine for the html. I am using es6 template literals here to keep things simple. Now that we have our code, all we need to do to deploy is to type `now` in the project directory in our terminal.
+(Ideally, you should use a template engine for the html. I am using es6 template literals here to keep things simple.)
+
+Now that we have our code, all we need to do to deploy is to type `now` in the project directory in our terminal.
 
 {% highlight javascript %}
 radio-one $ now
 {% endhighlight %}
 
-If it's your first time, `now` requests for your email and sends you a verification link. Once deployed, your deployment url is returned. Here is mine [https://radio-one-yufyrttcin.now.sh](https://radio-one-yufyrttcin.now.sh). You can see the source here [https://radio-one-yufyrttcin.now.sh/_src/?f=index.js](https://radio-one-yufyrttcin.now.sh/_src/?f=index.js) (Just add `_src` behind the URL)
+If it's your first time, `now` requests for your email and sends you a verification link. Once deployed, your deployment url is returned. Here is mine [https://radio-one-yufyrttcin.now.sh](https://radio-one-yufyrttcin.now.sh). You can see the source here [https://radio-one-yufyrttcin.now.sh/_src/?f=index.js](https://radio-one-yufyrttcin.now.sh/_src/?f=index.js) (Just add `_src` after the URL)
 
 ### Takeaways
 
@@ -154,7 +156,7 @@ I love how you can listen on any port. As you can see from my source, I used :30
 
 The free plan comes with 20 monthly deploys among other limitations like bandwidth, storage and filesize. I don't think deployments should count as a limiting factor. It's easy to blow 20 deploys on a single project in under an hour.
 
-`now` generates a unique URL for every new deploy. This means if you update a single character, it is treated as a new one and you get a new URL. (The old one will still work by the way). I should be able to consolidate my deployments to a single URL. Or/and delete deploys I no longer need.
+`now` generates a unique URL for every new deployment. This means if you update a single character, it is treated as a new one and you get a new URL. (The old one will still work by the way). I should be able to consolidate my deployments to a single URL. Or/and delete ones I no longer need.
 
 Still on pricing, there is no details about upgrading to the premium plan. I was also expecting to see custom domains somewhere [there](https://zeit.co/now/#pricing).
 
