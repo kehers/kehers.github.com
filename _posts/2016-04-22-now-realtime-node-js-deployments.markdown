@@ -156,7 +156,7 @@ I love how you can listen on any port. As you can see from my source, I used :30
 
 The free plan comes with 20 monthly deploys among other limitations like bandwidth, storage and filesize. I don't think deployments should count as a limiting factor. It's easy to blow 20 deploys on a single project in under an hour.
 
-`now` generates a unique URL for every new deployment. This means if you update a single character, it is treated as a new one and you get a new URL. (The old one will still work by the way). I should be able to consolidate my deployments to a single URL. Or/and delete ones I no longer need.
+`now` generates a unique URL for every new deployment. This means if you update a single character, it is treated as a new one and you get a new URL. (The old one will still work by the way). I should be able to consolidate my deployments to a single URL. ~~Or/and delete ones I no longer need.~~ (Update: From 0.11.0 you can delete deployments with [`now -rm`](https://zeit.co/blog/now-rm-is-here-and-more)
 
 Still on pricing, there is no details about upgrading to the premium plan. I was also expecting to see custom domains somewhere [there](https://zeit.co/now/#pricing).
 
