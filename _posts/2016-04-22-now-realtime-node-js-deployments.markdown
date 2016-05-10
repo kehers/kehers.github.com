@@ -158,7 +158,7 @@ The free plan comes with 20 monthly deploys among other limitations like bandwid
 
 `now` generates a unique URL for every new deployment. This means if you update a single character, it is treated as a new one and you get a new URL. (The old one will still work by the way). I should be able to consolidate my deployments to a single URL. ~~Or/and delete ones I no longer need.~~ (Update: From 0.11.0 you can delete deployments with [`now -rm`](https://zeit.co/blog/now-rm-is-here-and-more)
 
-Still on pricing, there is no details about upgrading to the premium plan. I was also expecting to see custom domains somewhere [there](https://zeit.co/now/#pricing).
+Still on pricing, ~~there is no details about upgrading to the premium plan.~~ (Update 2: You can now [login](https://zeit.co/login) to your account online, add your billing details and upgrade). I was also expecting to see custom domains somewhere [there](https://zeit.co/now/#pricing).
 
 **DB hosting**
 
