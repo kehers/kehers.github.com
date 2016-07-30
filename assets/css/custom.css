@@ -17,6 +17,7 @@ article img {
 }
 code {
   border: none;
+  background-color: transparent
 }
 figure {
   margin: 0 0 0 -20px;
