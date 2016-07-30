@@ -50,7 +50,7 @@ if ($stmt->fetchColumn())
 // If payment valid, go ahead and process order
 {% endhighlight %}
 
-What we want however is that if the customer has made payment once, he shouldn't have to enter his payment details again. We use his existing payment details to process the new charge. There is an [API for this](https://developers.paystack.co/docs/charging-returning-customers). But we need to have his `authorization code`. The `authorization code` is returned anytime we verify a payment like we did above. For reference, here is an example response from the [verify API](https://developers.paystack.co/docs/verifying-transactions):
+What we want however is that if the customer has made payment once, he shouldn't have to enter his payment details again. We use his existing payment details to process the new charge. This is where the [charge authorization API](https://developers.paystack.co/docs/charging-returning-customers) come in. But we need to have the customer's `authorization code` to do this. The `authorization code` is returned anytime we verify a payment like we did above. For reference, below is an example response from the [verify API](https://developers.paystack.co/docs/verifying-transactions). Notice the authorization code in there:
 
 {% highlight json %}
 {
@@ -82,7 +82,7 @@ What we want however is that if the customer has made payment once, he shouldn't
 }
 {% endhighlight %}
 
-So let's update our `process.php` script and save the `authorization code`. For identification purpose, we can also save the last 4 digits of the card, as returned from the API.
+So let's update our `process.php` script and save the `authorization code` so that we can use it for subsequent charges. For identification purpose, we can also save the last 4 digits of the card, as returned from the API.
 
 {% highlight php %}
 <?php
@@ -123,7 +123,7 @@ if ($json->status == true &&
 }
 {% endhighlight %}
 
-Now, let's update our payment form to reflect this.
+We will then update our payment form to check if we have saved an authorization code for the user. If he has, we show him a button he can click to make payment without having to enter his card details again.
 
 {% highlight php %}
 <!-- pay.html -->
