@@ -60,7 +60,7 @@ published: true
 			<h5 class="libre no-margin"><a href="http://subcopy.tumblr.com/">Subcopy</a></h5>
 			<p>A tumblog of interesting copy across web and mobile apps</p>
 
-		<h3 class="title p-t-20">Posts</h3>
+		<h3 class="title p-t-20">Posts (<a href="/posts.html">all</a>)</h3>
 			{% for post in site.posts limit:5 %}
 				<h5 class="libre no-margin"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h5>
 				<p>{{ post.date | date_to_string }}</p>
