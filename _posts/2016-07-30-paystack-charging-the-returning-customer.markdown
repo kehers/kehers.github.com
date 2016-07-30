@@ -3,7 +3,7 @@ published: true
 title: Paystack - charging the returning customer
 layout: post
 ---
-[Paystack](http://paystack.co) has an [API for charging returning customers](https://developers.paystack.co/docs/charging-returning-customers). You send the customer's email, amount and authorization code and that's it. (The authorization code is one of the parameters returned when you first charge the customer).
+[Paystack](http://paystack.co) has an [API for charging returning customers](https://developers.paystack.co/docs/charging-returning-customers). You send the customer's email, amount and authorization code and that's it. (The `authorization code` is one of the parameters returned when you first charge the customer. We will get to it).
 
 Note that this is totally different from [subscriptions and plans](https://developers.paystack.co/docs/create-subscription). Subscriptions are fixed charges that are automatically charged recurrently. My N9,500 monthly wifi.com.ng charge is an example. Charging a returning customer in the context of this post will mean charging a customer that has once used Paystack on your ecommerce site and is back again. Here, the charge is not fixed (he spent N15,000 the first time but now he is spending just N3,500) and does not happen at regular intervals.
 
@@ -50,7 +50,7 @@ if ($stmt->fetchColumn())
 // If payment valid, go ahead and process order
 {% endhighlight %}
 
-What we want however is that if the customer has made payment once, he shouldn't have to enter his payment details again. We use his existing payment details to process the new charge. There is an [API for this]. But we need to have his authorization code. The authorization code is returned anytime we verify a payment like we did above. For reference, here is an example response from the [verify API](https://developers.paystack.co/docs/verifying-transactions):
+What we want however is that if the customer has made payment once, he shouldn't have to enter his payment details again. We use his existing payment details to process the new charge. There is an [API for this](https://developers.paystack.co/docs/charging-returning-customers). But we need to have his `authorization code`. The `authorization code` is returned anytime we verify a payment like we did above. For reference, here is an example response from the [verify API](https://developers.paystack.co/docs/verifying-transactions):
 
 {% highlight json %}
 {
@@ -82,7 +82,7 @@ What we want however is that if the customer has made payment once, he shouldn't
 }
 {% endhighlight %}
 
-So let's update our `process.php` script and save the `auth code`. For identification purpose, we can also save the last 4 digits of the card, as returned from the API.
+So let's update our `process.php` script and save the `authorization code`. For identification purpose, we can also save the last 4 digits of the card, as returned from the API.
 
 {% highlight php %}
 <?php
@@ -94,7 +94,7 @@ $ref = some_filter_fn($_POST['ref']);
 $stmt = $db->prepare("select id from orders where ref=?");
 $stmt->execute([$ref]);
 if ($stmt->fetchColumn())
-  exit; 
+  exit;
 
 // Verify payment here
 $ch = curl_init();
@@ -206,7 +206,7 @@ unset($_SESSION['cart']['token']);
 
 ## Handling failed charges from authorization code
 
-So what happens when the customer's card expires? Paystack obviously won't be able to charge the customer from our auth code. Remember, the auth code is attached to the customer's card. Paystack currently doesn't have a way for users to update card details. One way to handle this is that on failed charge, we delete the saved auth code and card 4 digits so that this brings up the payment form again and we can get new payment details.
+So what happens when the customer's card expires? Paystack obviously won't be able to charge the customer from our authorization code. Remember, the authorization code is attached to the customer's card. Paystack currently doesn't have a way for users to update card details. One way to handle this is that on failed charge, we delete the saved authorization code and card 4 digits so that this brings up the payment form again and we can get new payment details.
 
 {% highlight php %}
 <?php
