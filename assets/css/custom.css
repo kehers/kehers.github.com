@@ -20,6 +20,9 @@ code {
   color: #ddd;
   background-color: transparent
 }
+pre > code {
+  color: #ddd;
+}
 figure {
   margin: 0 0 0 -20px;
 }
