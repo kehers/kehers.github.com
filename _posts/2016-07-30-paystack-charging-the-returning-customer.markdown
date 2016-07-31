@@ -45,12 +45,12 @@ $stmt->execute([$ref]);
 if ($stmt->fetchColumn())
   return false;
 
-// Verify payment here
+// todo: Verify payment here
 // [https://developers.paystack.co/docs/verifying-transactions]
 // If payment valid, go ahead and process order
 {% endhighlight %}
 
-What we want however is that if the customer has made payment once, he shouldn't have to enter his payment details again. We use his existing payment details to process the new charge. This is where the [charge authorization API](https://developers.paystack.co/docs/charging-returning-customers) come in. But we need to have the customer's `authorization code` to do this. The `authorization code` is returned anytime we verify a payment like we did above. For reference, below is an example response from the [verify API](https://developers.paystack.co/docs/verifying-transactions). Notice the authorization code in there:
+What we want however is that if the customer has made payment once, he shouldn't have to enter his payment details again. We use his existing payment details to process the new charge. This is where the [charge authorization API](https://developers.paystack.co/docs/charging-returning-customers) comes in. But we need to have the customer's `authorization code` to do this. The `authorization code` is returned anytime we verify a payment like we did above. For reference, below is an example response from the [verify API](https://developers.paystack.co/docs/verifying-transactions). Notice the authorization code in there:
 
 {% highlight json %}
 {
@@ -63,7 +63,7 @@ What we want however is that if the customer has made payment once, he shouldn't
     "reference": "7PVGX8MEk85tgeEpVDtD",
     "domain": "test",
     "authorization": {
-      "authorization_code": "AUTH_72btv547",
+      "authorization_code": "AUTH_72btv547", // <-- This guy here
       "card_type": "visa",
       "last4": "1381",
       "exp_month": "10",
@@ -82,7 +82,7 @@ What we want however is that if the customer has made payment once, he shouldn't
 }
 {% endhighlight %}
 
-So let's update our `process.php` script and save the `authorization code` so that we can use it for subsequent charges. For identification purpose, we can also save the last 4 digits of the card, as returned from the API.
+So let's update our `process.php` script and save the `authorization code` during verification so that we can use it for subsequent charges. For identification purpose, we can also save the last 4 digits of the card, as returned from the API.
 
 {% highlight php %}
 <?php
@@ -237,8 +237,7 @@ $r = curl_exec($ch);
 curl_close($ch);
 $json = json_decode($r);
 
-if ($json->status != true
-  || $json->data->amount/100 != $_SESSION['cart']['total']) {
+if ($json->status != true) {
 
   $stmt = $db->prepare("update users set card='', auth_code='' where user_id=?");
   $stmt->execute([$_SESSION['user']['id']]);
