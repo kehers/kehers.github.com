@@ -1,3 +1,22 @@
+/*
+Reset
+*/
+.container {
+  max-width: 1200px;
+}
+.grid .column,
+.grid .columns {
+  margin-left: 1%;
+}
+.grid .one-third.column {
+  background-color: #f2f2f2;
+  border: 1px solid #dedede;
+  width: 32.66%;
+}
+.grid .one-third.column:first-child,
+.grid .one-third.column:first-child {
+  margin-left: 0; }
+
 body {
   font-family: 'Open Sans', 'Muli', sans-serif;
   color: #444;
@@ -145,16 +164,21 @@ Content
 .grid img {
   max-width: 100%;
 }
-.grid img:hover {
-  -webkit-box-shadow: 0px 6px 9px 0px rgba(153,153,153,1);
-  -moz-box-shadow: 0px 6px 9px 0px rgba(153,153,153,1);
-  box-shadow: 0px 6px 9px 0px rgba(153,153,153,1);
+.grid .one-third:hover {
+  -webkit-box-shadow: 0px 6px 9px 0px rgba(153,153,153,0.5);
+  -moz-box-shadow: 0px 6px 9px 0px rgba(153,153,153,0.5);
+  box-shadow: 0px 6px 9px 0px rgba(153,153,153,0.5);
 }
 .item-title {
-  padding: 5px;
+  padding: 10px;
+  font-weight: bold
+}
+.grid a:hover {
+  color: #444;
+  text-decoration: none
 }
 .grid .column h5 {
-  padding: 0 5px;
+  padding: 0 10px 0 5px;
   color: #cd1c63;
   float: right
 }
@@ -197,22 +221,34 @@ Content
 }
 
 .header-title {
-  font-family: Lora, 'Libre Baskerville';
-  text-align: center;
-  padding: 10px 0 20px;
+  /*font-family: Lora, 'Libre Baskerville';
+  text-transform: uppercase
+  font-weight: bold;
+  text-align: center;*/
+  border-bottom: 1px solid #ccc;
   color: #0d3e3b;
+  padding: 10px 0px;
 }
-.header-title:after {
+.header-title span {
+  border-bottom: 3px solid #aaa;
+  padding: 10px 0px;
+}
+.sub-header {
+  color: #a5362b;
+  padding: 10px 0;
+}
+/*.header-title:after {
   content: "";
   display: block;
   margin: auto;
   width: 50px;
   padding-top: 20px;
   border-bottom: 2px solid #a3ebe6;
-}
+}*/
 .header-title-alt {
-  font-family: Lora, 'Libre Baskerville';
-  text-align: left;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
 }
 
 .nav {
@@ -263,7 +299,7 @@ a.link-alt {
 
 .brands img {
   max-height: 90px;
-  padding: 10px;
+  padding: 20px;
   -webkit-filter: grayscale(100%);
   -webkit-transition: .5s ease-in-out;
   -moz-filter: grayscale(100%);
@@ -293,6 +329,10 @@ a.link-alt {
 i {
   color: #ccc;
   margin-left: 10px;
+}
+.button i,
+button i {
+  color: #444;
 }
 i:hover {
   color: #aaa;
@@ -376,6 +416,27 @@ input[type="button"].button-primary:focus {
   background-color: #20928a;
   border-color: #20928a; }
 
+.button.button-default,
+button.button-default,
+input[type="submit"].button-default,
+input[type="reset"].button-default,
+input[type="button"].button-default {
+  color: #fff;
+  background-color: #5387c6;
+  border-color: #5387c6; }
+.button.button-default:hover,
+button.button-default:hover,
+input[type="submit"].button-default:hover,
+input[type="reset"].button-default:hover,
+input[type="button"].button-default:hover,
+.button.button-default:focus,
+button.button-default:focus,
+input[type="submit"].button-default:focus,
+input[type="reset"].button-default:focus,
+input[type="button"].button-default:focus {
+  text-decoration: none;
+  background-color: #396ead;
+  border-color: #396ead; }
 .button.button-secondary,
 button.button-secondary,
 input[type="submit"].button-secondary,

@@ -31,6 +31,7 @@
           <li><a href="brand.html">Brand Categories</a></li>
           <li><a href="cars.html" class="active">Cars</a></li>
           <li><a href="engines.html">Engines</a></li>
+          <li><a href="delivery.html">Delivery Locations</a></li>
           <li><a href="users.html">Customers</a></li>
           <li><a href="orders.html">Orders</a></li>
           <li><a href="index.html">Logout</a></li>
@@ -41,6 +42,7 @@
           <div class="container">
             <div class="breadcrumb">Products <i class="ion-chevron-right"></i> <a href="cars.html">Cars</a> <i class="ion-chevron-right"></i> New Car</div>
             <form class="top-pad">
+              <h5 class="sub-header">Details</h5>
               <div class="row">
                 <div class="six columns">
                   <label>Item ID</label>
@@ -49,6 +51,20 @@
                 <div class="six columns">
                   <label>Serial Number</label>
                   <input type="text" class="u-full-width">
+                </div>
+              </div>
+              <div class="row">
+                <div class="six columns">
+                  <label>Ebay Item Number</label>
+                  <input type="text" class="u-full-width">
+                </div>
+                <div class="three columns">
+                  <label>Featured Product?</label>
+                  <label for="ftrd"><input type="checkbox" id="ftrd"> (displays on homepage)</label>
+                </div>
+                <div class="three columns">
+                  <label>Banner Product?</label>
+                  <label for="bnr"><input type="checkbox" id="bnr"> (displays on banner)</label>
                 </div>
               </div>
               <div class="row">
@@ -87,9 +103,87 @@
                   <input type="text" class="u-full-width">
                 </div>
               </div>
-              <div class="row">
+              <div class="row top-pad">
                 <div class="six columns">
-                  <label for="file"><input id="file" type="file" multiple class="hide"><span class="button button-seecondary">Add Product Images</span></label> <button class="button button-primary">Create Product</button>
+                  <h5 class="sub-header">Delivery</h5>
+                  <table class="u-full-width">
+                    <tr>
+                      <td>Enabled</td>
+                      <td>Location</td>
+                      <td>Cost ($)</td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Alabama</td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Alaska </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Arizona </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Arkansas </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>California </td>
+                      <td><input type="text"></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="six columns">
+                  <h5 class="sub-header">&nbsp;</h5>
+                  <table class="u-full-width">
+                    <tr>
+                      <td>Enabled</td>
+                      <td>Location</td>
+                      <td>Cost ($)</td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Colorado</td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Connecticut</td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Delaware </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Florida </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Georgia </td>
+                      <td><input type="text"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="row top-pad">
+                <div class="six columns">
+                  <h5 class="sub-header">Product Images</h5>
+                  <label for="file"><input id="file" type="file" multiple class="hide"><span class="button button-seecondary">Add Product Images</span></label>
+                </div>
+              </div>
+              <div class="row top-pad">
+                <div class="six columns">
+                  <button class="button button-primary">Create Product</button>
                 </div>
               </div>
             </form>
