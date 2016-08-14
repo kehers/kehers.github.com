@@ -143,18 +143,6 @@ input[type=search]:-moz-placeholder {
   opacity:1;
 }
 
-.caption {
-  background: url(../images/banner.jpg) center no-repeat;
-  height: 450px;
-  color: #fff;
-}
-.caption h2 {
-  font-family: lora;
-}
-.caption .columns {
-  padding: 100px 0;
-}
-
 /*
 Content
 */

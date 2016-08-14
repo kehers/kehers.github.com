@@ -16,7 +16,61 @@
   <link rel="stylesheet" href="assets/css/ionicons.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 
+  <link rel="stylesheet" href="assets/css/swiper.min.css">
+
   <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+  <style>
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        font-size: 18px;
+        color: #fff;
+        width: 60%;
+        height: 450px;
+        background: linear-gradient(
+                     rgba(20,20,20, .5),
+                     rgba(20,20,20, .5)),
+                    url(assets/images/img2.jpg) no-repeat center center;
+        background-size: cover;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-pagination-bullet {
+      background-color: #eee;
+    }
+    .swiper-slide div {
+      margin: 0 auto;
+      width: 70%;
+    }
+    .swiper-slide p {
+      margin: 0 10px;
+    }
+    .swiper-slide .button-link {
+      margin: 15px 5px;
+    }
+    .swiper-slide h3 {
+      font-family: Lora, 'Libre Baskerville';
+      padding: 10px 0;
+      margin: 0
+    }
+    .swiper-slide h3 > a {
+      color: #f7f3bd;
+    }
+    </style>
+    </style>
 </head>
 <body>
 
@@ -55,7 +109,37 @@
       </div>
     </div>
   </header>
-  <div class="caption">
+
+  <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div>
+                <h3><a href="">1990 Enuos Roadster / Mazda M</a></h3>
+                <p>Fiberglass conversion done by Pit Crew Racing in Japan. It has only 86,000 miles, Tein Adjustable coilovers, Pit Crew Exhaust, and test pipe.</p>
+                <a href="product.htmll" class="button button-link">See more <i class="ion-chevron-right"></i></a>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image: linear-gradient(rgba(20,20,20, .5),rgba(20,20,20, .5)),url(assets/images/eng6.jpg)">
+              <div>
+                <h3><a href="">1986 Toyota MR2 AW11</a></h3>
+                <p>Completely stock and unmodified. With only 31,000 miles on the car this car is just broken in.</p>
+                <a href="product.htmll" class="button button-link">See more <i class="ion-chevron-right"></i></a>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image: linear-gradient(rgba(20,20,20, .5),rgba(20,20,20, .5)),url(assets/images/eng4.jpg)">
+              <div>
+                <h3><a href="">1986 Toyota MR2 AW11</a></h3>
+                <p>30 years old and still has beautiful factory paint. With only 37,000 miles on this car it rides just as good as it looks</p>
+                <a href="product.htmll" class="button button-link">See more <i class="ion-chevron-right"></i></a>
+              </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+  <!--div class="caption">
     <div class="container">
       <div class="row">
         <div class="offset-by-six six columns">
@@ -67,7 +151,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div-->
 
   <section class="grid">
     <div class="container">
@@ -195,6 +279,17 @@
       </div>
     </div>
   </div>
+
+  <script src="assets/js/swiper.min.js"></script>
+  <script>
+  var swiper = new Swiper('.swiper-container', {
+      pagination: '.swiper-pagination',
+      spaceBetween: 0,
+      autoplay: 8000,
+      slidesPerView: 'auto',
+      paginationClickable: true
+  });
+  </script>
 </body>
 </html>
 
