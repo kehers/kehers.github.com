@@ -76,7 +76,7 @@
         </div>
         <div class="one-half column">
           <h4 class="header-title-alt">1989 NISSAN SKYLINE GTR</h4>
-          <h5 class="price">$9,995</h5>
+          <h5 class="price center">$9,995</h5>
           <p>&nbsp;</p>
           <p>This 1989 Nissan Skyline GT-R is completely stock and unmodified. With only 31,000 miles on the car this car is just broken in. Engine and trans all ride smooth.</p>
           <p>&nbsp;</p>
@@ -89,11 +89,52 @@
             <tr><td><strong>Mileage</:</td><td>31000</td></tr>
           </table>
           <p>&nbsp;</p>
-          <button class="button button-secondary">Sold and Shipped</button>
+          <a href="#" class="button modal-button">Make Enquiry</a> <button class="button button-secondary">Sold and Shipped</button>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="modal" id="how-key">
+    <div class="container">
+      <div class="row">
+        <div class="six columns offset-by-three">
+          <div class="box">
+            <h4>Make Enquiry</h4>
+            <form class="top-pad">
+              <div class="row">
+                <div class="six columns">
+                  <label>Item Number</label>
+                  <input type="text" value="1345" readonly class="u-full-width">
+                </div>
+                <div class="six columns">
+                  <label>Product title</label>
+                  <input type="text" value="1990 Nissan GTR" readonly class="u-full-width">
+                </div>
+              </div>
+              <div class="row">
+                <div class="six columns">
+                  <label>Your Name</label>
+                  <input type="text" value="" class="u-full-width">
+                </div>
+                <div class="six columns">
+                  <label>Your Email</label>
+                  <input type="text" value="" class="u-full-width">
+                </div>
+                <div class="twelve columns">
+                  <label>Enquiry</label>
+                  <textarea class="u-full-width" style="height:100px"></textarea>
+                </div>
+                <div class="six columns">
+                  <button class="u-full-width button-primary">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
@@ -146,6 +187,24 @@
   $(function () {
     $('a').fluidbox();
   })
+  $('.close-modal').on('click', function(){
+    $('.modal').hide();
+    $(document).off('keyup');
+    return false;
+  });
+  $('.modal-button').on('click', function(){
+    $('.modal').show();
+
+    $(document).on('keyup',function(evt) {
+      if (evt.keyCode == 27) {
+        $('.modal').hide();
+        $(document).off('keyup');
+        return false;
+      }
+    });
+
+    return false;
+  });
   </script>
 
 </body>

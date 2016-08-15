@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Add Delivery Location - J Spec Autos</title>
+  <title>Edit Shipping Rate - J Spec Autos</title>
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,8 +31,8 @@
           <li><a href="brand.html">Brand Categories</a></li>
           <li><a href="cars.html">Cars</a></li>
           <li><a href="engines.html">Engines</a></li>
-          <li><a href="delivery.html" class="active">Shipping Locations</a></li>
-          <li><a href="rates.html">Shipping Rates</a></li>
+          <li><a href="delivery.html">Shipping Locations</a></li>
+          <li><a href="rates.html" class="active">Shipping Rates</a></li>
           <li><a href="users.html">Customers</a></li>
           <li><a href="orders.html">Orders</a></li>
           <li><a href="index.html">Logout</a></li>
@@ -41,38 +41,21 @@
       <div class="right-bar">
         <section class="">
           <div class="container">
-            <div class="breadcrumb"><a href="delivery.html">Delivery Locations</a> <i class="ion-chevron-right"></i> New Location</div>
+            <div class="breadcrumb"><a href="delivery.html">Shipping Rates</a> <i class="ion-chevron-right"></i> Edit Rate</div>
             <form class="top-pad">
               <div class="row">
-                <div class="six columns">
-                  <label>Location</label>
-                  <input type="text" value="" class="u-full-width">
-                </div>
-              </div>
-              <h5 class="sub-header">Rate Amount</h5>
-              <div class="row">
                 <div class="three columns">
-                  <label>0kg - 0.9kg ($)</label>
-                  <input type="text" value="" class="u-full-width">
+                  <label>Minimum size (kg)</label>
+                  <input type="text" value="0" class="u-full-width">
                 </div>
                 <div class="three columns">
-                  <label>1kg - 2.9kg ($)</label>
-                  <input type="text" value="" class="u-full-width">
-                </div>
-              </div>
-              <div class="row">
-                <div class="three columns">
-                  <label>3kg - 5.9kg ($)</label>
-                  <input type="text" value="" class="u-full-width">
-                </div>
-                <div class="three columns">
-                  <label>6kg - 9.9kg ($)</label>
-                  <input type="text" value="" class="u-full-width">
+                  <label>Maximum size (kg)</label>
+                  <input type="text" value="0.9" class="u-full-width">
                 </div>
               </div>
               <div class="row">
                 <div class="six columns">
-                  <button class="button button-primary">Add Location</button>
+                  <button class="button button-primary">Update Rate</button>
                 </div>
               </div>
             </form>

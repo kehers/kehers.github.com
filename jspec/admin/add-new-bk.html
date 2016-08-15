@@ -31,8 +31,7 @@
           <li><a href="brand.html">Brand Categories</a></li>
           <li><a href="cars.html" class="active">Cars</a></li>
           <li><a href="engines.html">Engines</a></li>
-          <li><a href="delivery.html">Shipping Locations</a></li>
-          <li><a href="rates.html">Shipping Rates</a></li>
+          <li><a href="delivery.html">Delivery Locations</a></li>
           <li><a href="users.html">Customers</a></li>
           <li><a href="orders.html">Orders</a></li>
           <li><a href="index.html">Logout</a></li>
@@ -45,15 +44,11 @@
             <form class="top-pad">
               <h5 class="sub-header">Details</h5>
               <div class="row">
-                <div class="four columns">
+                <div class="six columns">
                   <label>Item ID</label>
                   <input type="text" class="u-full-width">
                 </div>
-                <div class="four columns">
-                  <label>SKU Number</label>
-                  <input type="text" class="u-full-width">
-                </div>
-                <div class="four columns">
+                <div class="six columns">
                   <label>Serial Number</label>
                   <input type="text" class="u-full-width">
                 </div>
@@ -94,13 +89,13 @@
                   <input type="text" class="u-full-width">
                 </div>
                 <div class="six columns">
-                  <label>Mileage</label>
+                  <label>Warehouse</label>
                   <input type="text" class="u-full-width">
                 </div>
               </div>
               <div class="row">
                 <div class="six columns">
-                  <label>Warehouse</label>
+                  <label>Mileage</label>
                   <input type="text" class="u-full-width">
                 </div>
                 <div class="six columns">
@@ -108,25 +103,76 @@
                   <input type="text" class="u-full-width">
                 </div>
               </div>
-              <div class="row">
-                <div class="twelve columns">
-                  <label>Search keywords</label>
-                  <textarea class="u-full-width"></textarea>
-                </div>
-              </div>
               <div class="row top-pad">
-                <div class="twelve columns">
+                <div class="six columns">
                   <h5 class="sub-header">Delivery</h5>
-                  <div class="row">
-                    <div class="six columns">
-                      <label>Weight (kg. Shipping will be automatically calculated)</label>
-                      <input type="text" class="u-full-width">
-                    </div>
-                    <div class="six columns">
-                      <label>Local Pickup</label>
-                      <label for="pickup"><input type="checkbox" id="pickup" class=""> (Shipping will not be calculated)</label>
-                    </div>
-                  </div>
+                  <table class="u-full-width">
+                    <tr>
+                      <td>Enabled</td>
+                      <td>Location</td>
+                      <td>Cost ($)</td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Alabama</td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Alaska </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Arizona </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Arkansas </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>California </td>
+                      <td><input type="text"></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="six columns">
+                  <h5 class="sub-header">&nbsp;</h5>
+                  <table class="u-full-width">
+                    <tr>
+                      <td>Enabled</td>
+                      <td>Location</td>
+                      <td>Cost ($)</td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Colorado</td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Connecticut</td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Delaware </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Florida </td>
+                      <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><input type="checkbox" checked></td>
+                      <td>Georgia </td>
+                      <td><input type="text"></td>
+                    </tr>
+                  </table>
                 </div>
               </div>
               <div class="row top-pad">
