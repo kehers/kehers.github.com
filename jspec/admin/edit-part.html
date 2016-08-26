@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Delivery Locations - J Spec Autos</title>
+  <title>Edit Part - J Spec Autos</title>
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,10 +29,10 @@
         <ul>
           <li><a href="dashboard.html">Dashboard</a></li>
           <li><a href="brand.html">Brand Categories</a></li>
-          <li><a href="parts.html">Parts</a></li>
+          <li><a href="parts.html" class="active">Parts</a></li>
           <li><a href="cars.html">Cars</a></li>
           <li><a href="engines.html">Engines</a></li>
-          <li><a href="delivery.html" class="active">Shipping Locations</a></li>
+          <li><a href="delivery.html">Shipping Locations</a></li>
           <li><a href="rates.html">Shipping Rates</a></li>
           <li><a href="users.html">Customers</a></li>
           <li><a href="orders.html">Orders</a></li>
@@ -40,25 +40,27 @@
         </ul>
       </div>
       <div class="right-bar">
-        <div class="container">
-          <div class="float-right"><a href="new-delivery.html" class="button button-primary">Add New</a></div>
-          <div class="breadcrumb">Shipping Locations</div>
-          <div class="row top-pad">
-            <div class="twelve columns">
-              <table class="u-full-width">
-                <tr><td></td><td>0kg - 0.9kg</td><td>1kg - 2.9kg</td><td>3kg - 5.9kg</td><td>10kg - 19.9kg</td><td>20kg - 49.9kg</td><td></td></tr>
-                <tr><td>Alabama</td><td>$50</td><td>$60</td><td>$70</td><td>$80</td><td>$90</td><td><a href="edit-delivery.html" title="Edit"><i class="ion-edit"></i></a> <a href="" title="Delete"><i class="ion-trash-b"></i></a></td></tr>
-                <tr><td>California</td><td>$70</td><td>$80</td><td>$90</td><td>$80</td><td>$100</td><td><a href="edit-delivery.html" title="Edit"><i class="ion-edit"></i></a> <a href="" title="Delete"><i class="ion-trash-b"></i></a></td></tr>
-                <tr><td>Georgia</td><td>$50</td><td>$70</td><td>$70</td><td>$110</td><td>$120</td><td><a href="edit-delivery.html" title="Edit"><i class="ion-edit"></i></a> <a href="" title="Delete"><i class="ion-trash-b"></i></a></td></tr>
-              </table>
-            </div>
+        <section class="">
+          <div class="container">
+            <div class="breadcrumb"><a href="parts.html">Parts</a> <i class="ion-chevron-right"></i> Edit Part</div>
+            <form class="top-pad">
+              <div class="row">
+                <div class="six columns">
+                  <label>Part</label>
+                  <input type="text" value="Gear box" class="u-full-width">
+                </div>
+              </div>
+              <div class="row">
+                <div class="six columns">
+                  <button class="button button-primary">Update Part</button>
+                </div>
+              </div>
+            </form>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
 
 </body>
 </html>
-
-
