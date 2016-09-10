@@ -26,6 +26,6 @@ A better development approach would be to really separate some of these parts in
 - Image processing and storage
 - Background jobs
 
-Where it gets interesting is we can now abstract some of these components to services that are better at the job. Transactional emails can be handled by [Mailgun](http://mailgun.com/). We can use [Imgix](http://imgix.com/) and [Amazon S3](http://aws.amazon.com/s3) for our image conversion and storage. And [Iron.io](http://iron.io) can take care of the background jobs. If we don't want to even sweat about the database, we can hand it off to services like [MLab](http://mlab.com/) or [compose.io](http://compose.io/). This consequently translates to less coding time. What's more, most of these services have free tier limits.
+Where it gets interesting is we can now abstract some of these components to services that are better at the job. Transactional emails can be handled by [Mailgun](http://mailgun.com/). We can use [Imgix](http://imgix.com/) and [Amazon S3](http://aws.amazon.com/s3) for our image conversion and storage. And [Iron.io](http://iron.io) can take care of the background jobs. If we don't want to even sweat about the database, we can hand it off to services like [MLab](http://mlab.com/) or [compose.io](http://compose.io/). This consequently translates to less coding time.
 
-In summary, microservices make it easier to manage code, make deployment faster and help scale better.
+In reality, it's a little more but this is just a simple breakdown. The core idea is to break down a monolithic architecture into many separate parts that can stand on their own. The end game is easier to manage codebase, faster deployment and better scalability.
