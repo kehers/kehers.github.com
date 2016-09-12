@@ -20,7 +20,7 @@ p {
 	margin: 0;
 }
 hr {
-	margin: 2rem 0;
+	margin-bottom: 5px;
 	border-top: 1px solid #fed4d4;
 }
 input[type=range] {
