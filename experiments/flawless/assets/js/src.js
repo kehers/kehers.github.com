@@ -24,7 +24,8 @@
           left: left,
           top: top,
           scaleX: 0.6,
-          scaleY: 0.6
+          scaleY: 0.6,
+          hasBorders: false
         });
       canvas.add(stamp);
     }
@@ -130,12 +131,16 @@
     $('#fl-w').on('click', function(){
       if (!black_stamped) return false;
 
+      $('img').removeClass('active');
+      $(this).addClass('active');
       addStamp(whiteImgEl);
       black_stamped = false;
     });
     $('#fl-b').on('click', function(){
       if (black_stamped) return false;
 
+      $('img').removeClass('active');
+      $(this).addClass('active');
       addStamp(blackImgEl);
       black_stamped = true;
     });
@@ -163,7 +168,7 @@
 
       $(this).attr({
         href: canvas.toDataURL("image/png"),
-        download: 'red.png'
+        download: 'flawless.png'
       });
 
       // Show lines and frame
@@ -194,19 +199,22 @@
         }
     });
 
-    /*function resizeCanvas() {
+    function resizeCanvas() {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-      if (width < 640) {
+      if (width < 960) {
         var scaleRatio = width/640;
         var dim = 640*scaleRatio;
-        $('.container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
+        $('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
+        $('.canvas-wrp, .logo-wrp').css({float: 'none'});
+        $('.logo-wrp').css({marginTop: 0, textAlign: 'center'});
         //$('.add').css({top: '20px', right: '20px', marginLeft: '0'});
+        console.log(dim);
         canvas.setWidth(dim);
         canvas.setHeight(dim);
         canvas.setZoom(scaleRatio);
       }
-    }*/
+    }
     // Responsive scaling
-    //resizeCanvas();
-    //window.addEventListener('resize', resizeCanvas, false);
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, false);
 })();

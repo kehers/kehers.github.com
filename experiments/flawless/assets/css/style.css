@@ -36,11 +36,22 @@ a:hover {
 .container {
 	margin: 20px auto 0;
 	width: 960px;
+	/*width: 100%;*/
 	padding: 0;
 	position: relative;
 }
 .canvas-wrp, .logo-wrp {
 	float: left;
+}
+.logo-wrp {
+	padding: 20px;
+	box-sizing: border-box;
+}
+.logo-wrp img{
+	border: 5px solid transparent;
+}
+.logo-wrp img.active {
+	border-color: #390;
 }
 .canvas-wrp {
 	width: 640px
