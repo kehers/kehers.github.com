@@ -49,6 +49,7 @@ a:hover {
 }
 .logo-wrp img{
 	border: 5px solid transparent;
+	width: 100%
 }
 .logo-wrp img.active {
 	border-color: #390;

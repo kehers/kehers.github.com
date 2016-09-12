@@ -4,8 +4,8 @@
     var canvas = this.__canvas = new fabric.Canvas('c');
     var added_photo = false;
     var black_stamped = true;
-    var blackImgEl = document.getElementById('fl-b');
-    var whiteImgEl = document.getElementById('fl-w');
+    var blackImgEl = document.getElementById('fl-b-o');
+    var whiteImgEl = document.getElementById('fl-w-o');
     var stamp;
 
     function addStamp(imgElement, left, top) {
@@ -206,9 +206,9 @@
         var dim = 640*scaleRatio;
         $('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
         $('.canvas-wrp, .logo-wrp').css({float: 'none'});
-        $('.logo-wrp').css({marginTop: 0, textAlign: 'center'});
+        $('.logo-wrp').css({marginTop: 0, textAlign: 'center', width: '100%'});
+        $('.logo-wrp img').css({width: '45%'});
         //$('.add').css({top: '20px', right: '20px', marginLeft: '0'});
-        console.log(dim);
         canvas.setWidth(dim);
         canvas.setHeight(dim);
         canvas.setZoom(scaleRatio);
