@@ -17,6 +17,7 @@
 <body>
 
   <div class="container">
+    <input type="file" id="file-input" class="hide">
     <p class="center create"><button class="add button">Create your #flawless image</button></p>
     <div class="canvas hide">
       <div class="row">
@@ -28,8 +29,12 @@
           <div class="hide"><img src="assets/images/flawless-white.png" id="fl-w-o"> <img src="assets/images/flawless-black.png" id="fl-b-o"></div>
         </div>
       </div>
-      <hr><p class="center"><a href="#" class="button" id="download">Download</a> <a href="?" class="button">Restart</a></p>
-      <input type="file" id="file-input" class="hide">
+      <p class="center btn-container"><a href="#" class="button" id="download">Download</a> <a href="?" class="button">Restart</a></p>
+    </div>
+  </div>
+    <div class="image-wrp" style="text-align:center;display:none">
+      <img id="image" download="flawless.png">
+      <p style="box-sizing:border-box;padding:10px;font-size:140%">Long press image and select "Save Image" to download the image</p>
     </div>
 
   <script type="text/javascript">

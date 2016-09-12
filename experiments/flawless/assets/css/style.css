@@ -8,7 +8,7 @@
 body {
 	color: #fff;
 	font-family: montserrat;
-	background: linear-gradient(270deg, #222, #444);
+	background-color: #777;
 	background-size: 400% 400%;
 }
 h1, h2, h3, h4 {
@@ -53,6 +53,9 @@ a:hover {
 }
 .logo-wrp img.active {
 	border-color: #390;
+}
+.image-wrp img {
+	width: 100%;
 }
 .canvas-wrp {
 	width: 640px

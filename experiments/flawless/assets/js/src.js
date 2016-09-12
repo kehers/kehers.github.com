@@ -7,6 +7,7 @@
     var blackImgEl = document.getElementById('fl-b-o');
     var whiteImgEl = document.getElementById('fl-w-o');
     var stamp;
+    var wdt = 640;
 
     function addStamp(imgElement, left, top) {
       if (!left) {
@@ -28,6 +29,15 @@
           hasBorders: false
         });
       canvas.add(stamp);
+    }
+
+    function dataURLtoBlob(dataurl) {
+      var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while(n--){
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], {type:mime});
     }
 
     // Gradient
@@ -110,7 +120,7 @@
               });
 
               // Add black
-              addStamp(blackImgEl, 10, 490);
+              addStamp(blackImgEl, 10, 450);
 
               canvas.add(image);
               // index of 1
@@ -166,10 +176,34 @@
           obj.set({opacity: 0});
       });
 
-      $(this).attr({
-        href: canvas.toDataURL("image/png"),
-        download: 'flawless.png'
-      });
+      // Zoom in to download
+      canvas.setWidth(1080);
+      canvas.setHeight(1080);
+      canvas.setZoom(1080/640);
+
+      var ios = /iPad|iPhone|iPod/.test(navigator.platform);
+      if (ios) {
+        // Save as image and to another page
+        $('#image').attr({
+          src: canvas.toDataURL("image/png")
+        });
+        $('.image-wrp').show();
+        $('.container, .btn-container').hide();
+      }
+      else {
+        var blob = dataURLtoBlob(canvas.toDataURL("image/png"));
+
+        $(this).attr({
+          href: URL.createObjectURL(blob),
+          download: 'flawless.png'
+        });
+      }
+
+      // Revert zoom
+      canvas.setWidth(640);
+      canvas.setHeight(640);
+      canvas.setZoom(1);
+      resizeCanvas();
 
       // Show lines and frame
       canvas.forEachObject(function(obj){
