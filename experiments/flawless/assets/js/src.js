@@ -6,8 +6,8 @@
     var black_stamped = true;
     var blackImgEl = document.getElementById('fl-b-o');
     var whiteImgEl = document.getElementById('fl-w-o');
-    var stamp;
-    var wdt = 640;
+    var stamp, cropper, image, frame;
+    var wdt = 640, scale, scaleRatio = 1;
 
     function addStamp(imgElement, left, top) {
       if (!left) {
@@ -51,7 +51,7 @@
     });
 
     // Border
-    canvas.add(new fabric.Rect({
+    frame = new fabric.Rect({
       id: 'frame',
       top: 0,
       left: 0,
@@ -62,7 +62,8 @@
       strokeWidth: 2,
       selectable: false,
       evented: false
-    }));
+    });
+    canvas.add(frame);
 
     // Upload image
 
@@ -85,7 +86,7 @@
             }
 
             added_photo = true;
-            var image = new fabric.Image(imgObj);
+            image = new fabric.Image(imgObj);
             EXIF.getData(imgObj, function() {
               switch(EXIF.getTag(this, 'Orientation')){
                  case 8:
@@ -99,7 +100,7 @@
                    break;
               }
 
-              var scale = 1;
+              scale = 1;
               if (image.width < image.height)
                 scale = 640/image.width;
               else if (image.height < image.width ||
@@ -119,13 +120,34 @@
                 evented: false
               });
 
-              // Add black
-              addStamp(blackImgEl, 10, 450);
-
               canvas.add(image);
               // index of 1
               canvas.sendToBack(image);
               canvas.bringForward(image);
+
+              // Add cropper
+              // Border
+              cropper = new fabric.Rect({
+                id: 'cropper',
+                top: 120,
+                left: 120,
+                width: 400,
+                height: 400,
+                fill: 'transparent',
+                stroke: '#248ff4',
+                strokeWidth: 2,
+                strokeDashArray: [5, 5],
+                selectable: true,
+                lockUniScaling: true,
+                hasBorders: false,
+                hasRotatingPoint: false,
+                cornerColor: '#248ff4',
+                transparentCorners: false,
+                evented: true
+              });
+              canvas.add(cropper);
+              canvas.setActiveObject(cropper);
+
               canvas.renderAll();
 
               // Show slider and download button
@@ -158,23 +180,68 @@
     $('button.add').on('click', function(){
       $('#file-input').trigger('click');
     });
-    $('#restart').on('click', function(){
+    $('#crop').on('click', function(){
+      canvas.remove(cropper);
+      frame.visible = false;
+
+      var cropped = new Image();
+      cropped.src = canvas.toDataURL({
+          left: cropper.left * scaleRatio,
+          top: cropper.top * scaleRatio,
+          width: cropper.getWidth() * scaleRatio,
+          height: cropper.getHeight() * scaleRatio
+      });
+      cropped.onload = function() {
+        //canvas.clear();
+        canvas.remove(image);
+        frame.visible = true;
+        image = new fabric.Image(cropped);
+        scale = 640/image.getHeight();
+        image.set({
+          id: 'image',
+          originX: "center",
+          originY: "center",
+          scaleX: scale,
+          scaleY: scale,
+          top: 320,
+          left: 320,
+          hasControls: false,
+          selectable: false,
+          evented: false
+        });
+        image.setCoords();
+        canvas.add(image);
+        canvas.sendToBack(image);
+        canvas.bringForward(image);
+
+        // Add black
+        addStamp(blackImgEl, 10, 450);
+
+        canvas.renderAll();
+
+        $('.crop-wrp').hide();
+        $('.dwn-wrp').show();
+        $('.logo-wrp').show();
+      };
+    });
+    /*$('#restart').on('click', function(){
       // Remove photo.
       if (added_photo) {
         canvas.item(1).remove();
         added_photo = false;
       }
       canvas.renderAll();
-    });
+    });//*/
     $('#download').on('click', function(){
 
       ga('send', 'event', 'Image', 'download');
 
       // Hide frame
-      canvas.forEachObject(function(obj){
+      /*canvas.forEachObject(function(obj){
         if (obj.id && obj.id.indexOf('frame') > -1)
           obj.set({opacity: 0});
-      });
+      });*/
+      frame.visible = false;
 
       // Zoom in to download
       canvas.setWidth(1080);
@@ -206,20 +273,23 @@
       resizeCanvas();
 
       // Show lines and frame
-      canvas.forEachObject(function(obj){
+      /*canvas.forEachObject(function(obj){
         if (obj.id && obj.id.indexOf('frame') > -1)
           obj.set({opacity: 1});
-      });
+      });*/
+      frame.visible = true;
 
       canvas.renderAll();
     });
 
     // Set image boundaries
-    var bounds = {top: 320, left: 320};
+    /*var bounds = {top: 320, left: 320};
     canvas.on("object:moving", function(e){
-        if (e.target.id && e.target.id.indexOf('image') > -1) {
+        if (e.target.id && e.target.id.indexOf('cropper') > -1) {
           var obj = e.target;
           obj.setCoords();
+          console.log(obj.top);
+          console.log(obj.left);
           if (obj.getBoundingRect().top > 0 ||
               obj.getBoundingRect().top + obj.getBoundingRect().height < 640)
             obj.top = bounds.top;
@@ -231,16 +301,17 @@
           else
             bounds.left = obj.left;
         }
-    });
+    });//*/
 
     function resizeCanvas() {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       if (width < 960) {
-        var scaleRatio = width/640;
+        scaleRatio = width/640;
         var dim = 640*scaleRatio;
         $('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
         $('.canvas-wrp, .logo-wrp').css({float: 'none'});
         $('.logo-wrp').css({marginTop: 0, textAlign: 'center', width: '100%'});
+        $('.btn-container').css({width: dim+'px'});
         $('.logo-wrp img').css({width: '45%'});
         //$('.add').css({top: '20px', right: '20px', marginLeft: '0'});
         canvas.setWidth(dim);
