@@ -58,6 +58,8 @@
 
 //(function() {
     var canvas = this.__canvas = new fabric.Canvas('c');
+    alert(canvas);
+
     var added_photo = false;
     var black_stamped = true;
     var blackImgEl = document.getElementById('fl-b-o');
@@ -282,84 +284,6 @@
         $('.logo-wrp').show();
       };
     });
-    /*$('#restart').on('click', function(){
-      // Remove photo.
-      if (added_photo) {
-        canvas.item(1).remove();
-        added_photo = false;
-      }
-      canvas.renderAll();
-    });//*/
-    $('#download').on('click', function(){
-
-      ga('send', 'event', 'Image', 'download');
-
-      // Hide frame
-      /*canvas.forEachObject(function(obj){
-        if (obj.id && obj.id.indexOf('frame') > -1)
-          obj.set({opacity: 0});
-      });*/
-      frame.visible = false;
-
-      // Zoom in to download
-      canvas.setWidth(1080);
-      canvas.setHeight(1080);
-      canvas.setZoom(1080/640);
-
-      var ios = /iPad|iPhone|iPod/.test(navigator.platform);
-      if (ios) {
-        // Save as image and to another page
-        $('#image').attr({
-          src: canvas.toDataURL("image/png")
-        });
-        $('.image-wrp').show();
-        $('.container, .btn-container').hide();
-      }
-      else {
-        var blob = dataURLtoBlob(canvas.toDataURL("image/png"));
-
-        $(this).attr({
-          href: URL.createObjectURL(blob),
-          download: 'flawless.png'
-        });
-      }
-
-      // Revert zoom
-      canvas.setWidth(640);
-      canvas.setHeight(640);
-      canvas.setZoom(1);
-      resizeCanvas();
-
-      // Show lines and frame
-      /*canvas.forEachObject(function(obj){
-        if (obj.id && obj.id.indexOf('frame') > -1)
-          obj.set({opacity: 1});
-      });*/
-      frame.visible = true;
-
-      canvas.renderAll();
-    });
-
-    // Set image boundaries
-    /*var bounds = {top: 320, left: 320};
-    canvas.on("object:moving", function(e){
-        if (e.target.id && e.target.id.indexOf('cropper') > -1) {
-          var obj = e.target;
-          obj.setCoords();
-          console.log(obj.top);
-          console.log(obj.left);
-          if (obj.getBoundingRect().top > 0 ||
-              obj.getBoundingRect().top + obj.getBoundingRect().height < 640)
-            obj.top = bounds.top;
-          else
-            bounds.top = obj.top
-          if (obj.getBoundingRect().left > 0 ||
-              obj.getBoundingRect().left  + obj.getBoundingRect().width < 640)
-            obj.left = bounds.left;
-          else
-            bounds.left = obj.left;
-        }
-    });//*/
 
     function resizeCanvas() {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
