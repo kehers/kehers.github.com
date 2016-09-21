@@ -1,6 +1,6 @@
 // Opeyemi Obembe (@kehers)
 
-(function() {
+//(function() {
     var canvas = this.__canvas = new fabric.Canvas('c');
     var added_photo = false;
     var black_stamped = true;
@@ -319,9 +319,11 @@
         canvas.setWidth(dim);
         canvas.setHeight(dim);
         canvas.setZoom(scaleRatio);
+
+        alert("reseize");
       }
     }
     // Responsive scaling
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, false);
-})();
+//})();
