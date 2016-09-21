@@ -1,0 +1,130 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+*:focus {
+    outline: none;
+}
+body {
+	color: #fff;
+	font-family: montserrat;
+	background: linear-gradient(270deg, #cf0404, #180101);
+	background-size: 400% 400%;
+}
+h1, h2, h3, h4 {
+	font-family: 'Oswald',sans-serif;
+	font-weight: 700;
+	text-shadow: 1px 1px 1px #000
+}
+p {
+	margin: 0;
+}
+hr {
+	margin: 2rem 0;
+	border-top: 1px solid #fed4d4;
+}
+input[type=range] {
+	width: 70%;
+	margin: 10px 20px;
+}
+a {
+	color: #f1e695;
+}
+a:hover {
+	color: #e9d859;
+}
+.container {
+	margin: 20px auto 0;
+	width: 640px;
+	padding: 0;
+	position: relative;
+}
+.hide {
+	display: none;
+}
+p {
+	margin: 10px 0;
+}
+.center {
+	text-align: center;
+}
+
+.add {
+	position: absolute;
+	top: 90px;
+	right: 20px;
+}
+.dd {
+	background-color:#fff;
+	padding:10px;
+	display:inline-block;
+	border-radius:40px;
+	position: absolute;
+	right:200px
+}
+.image-grid img {
+	display: block;
+	float:left;
+	width: 25%;
+}
+.button,
+button,
+button:focus {
+	display: inline-block;
+	background-color: white;
+	text-decoration: none;
+	border: 1px solid #fff;
+	line-height: 38px;
+	padding: 5px 30px;
+	border-radius: 5px;
+}
+.button,
+button:hover {
+	background-color: #fff;
+	color: #444;
+}
+.autocomplete-suggestions {
+	border: 1px solid #999;
+	background: #FFF;
+	color: #444;
+	position:absolute;
+	display: none;
+	z-index: 9999;
+	width:320px;
+	max-height: 200px;
+	height: 200px;
+	left:80px;
+	overflow: auto;
+}
+.autocomplete-suggestion { padding: 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-suggestion:hover { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; }
+.autocomplete-title {
+	font-weight: bold;
+	padding: 10px 10px 10px 5px;
+	background-color: #f2f4fa;
+	color: #000;
+ }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+textarea,
+textarea:active,
+textarea:hover,
+textarea:focus {
+	width: 2px;
+	outline: none;
+	outline: 0 !important;
+	outline-width: 0;
+	outline-style: none;
+    border: none;
+    overflow: auto;
+    border-style: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+	outline-color: transparent;
+	-webkit-appearance:none;
+    -moz-appearance: none;
+	box-shadow:none;
+	border:none;
+}

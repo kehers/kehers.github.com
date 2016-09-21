@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>#IamRED ­- The RED Album From Tiwa Savage</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/skeleton.css">
+  <link rel="stylesheet" href="assets/css/mobile.css?3">
+
+  <script type="text/javascript" src="assets/js/jquery-2.1.3.min.js"></script>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <h5 style="font-family:montserrat;margin:20px 0 0;text-align:center" class="getalbum">Get Tiwa Savage's RED album <a href="http://comeseesumting.com/redalbum/" target="_blank">here</a></h5>
+  <div class="container photo" style="width:100%;max-width:640px;padding:0">
+    <div class="row">
+      <div class="twelve columns frame">
+        <div>
+          <input type="file" id="file-input" class="hide">
+          <button class="button" style="float:right;line-height:30px;padding:5px 10px">Add Image</button>
+          <form method="post" action="image.php">
+            <input type="hidden" name="src">
+            <h1 style="font-size:6rem">I Am</h1>
+            <h1 class="text-red">R<input type="text" name="r" id="r" autocomplete="off"> <a href="#" class="recommended" data-id="r"><img src="assets/images/arr.png" class="dd"></a></h1>
+            <h1 class="text-red">E<input type="text" name="e" id="e" autocomplete="off"> <a href="#" class="recommended" data-id="e"><img src="assets/images/arr.png" class="dd"></a></h1>
+            <h1 class="text-red">D<input type="text" name="d" id="d" autocomplete="off"> <a href="#" class="recommended" data-id="d"><img src="assets/images/arr.png" class="dd"></a></h1>
+          </form>
+          <p style="font-size:90%;line-height:1.2em">i­-am-­red.com #IamRED</p>
+          <hr>
+            <div class="bg-white" style="width:100px;height:100px;margin-right:10px"><img src="assets/images/cover.jpg" width="100" height="100"></div>
+            <p style="font-size:70%;line-height:1.2em;position:static;margin:0">Tiwa Savage has released her brand new album ‘R.E.D’ which is an acronym that defines the album and stands for ‘Romance, Expression and Dance’. To celebrate this, Tiwa invites you all, ­ especially her fans, to join her and define yourselves and things that you are passionate about in R.E.D by visiting i­am­red.com</p>
+          <div style="clear:both"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-wrp">
+      <h5 style="font-family:montserrat;margin:20px 0;text-align:center">Examples</h5>
+      <div class="image-grid">
+        <img src="assets/images/1.png">
+        <img src="assets/images/2.png">
+        <img src="assets/images/3.png">
+        <img src="assets/images/4.png">
+      </div>
+    </div>
+    <p>&nbsp;</p>
+  </div>
+
+  <div class="loader" style="display:none;margin-bottom:60px">
+    <img src="assets/images/loading-bubbles.svg" alt="Loading icon" />
+    <h4>Processing...</h4>
+  </div>
+
+  <div class="autocomplete-suggestions" id="r-s" style="top:220px">
+    <div class="autocomplete-title">Suggested words</div>
+    <div class="autocomplete-suggestion">Rare</div>
+    <div class="autocomplete-suggestion">Real</div>
+    <div class="autocomplete-suggestion">Relentless</div>
+    <div class="autocomplete-suggestion">Rebellious</div>
+    <div class="autocomplete-suggestion">Rowdy</div>
+    <div class="autocomplete-suggestion">Resurgent</div>
+    <div class="autocomplete-suggestion">Rachet</div>
+    <div class="autocomplete-suggestion">Respected</div>
+    <div class="autocomplete-suggestion">Radical</div>
+    <div class="autocomplete-suggestion">Raconteur</div>
+    <div class="autocomplete-suggestion">Rambunctious</div>
+    <div class="autocomplete-suggestion">Rarefied</div>
+    <div class="autocomplete-suggestion">Reticent</div>
+    <div class="autocomplete-suggestion">Revered</div>
+    <div class="autocomplete-suggestion">Revolutionary</div>
+    <div class="autocomplete-suggestion">Rigorous</div>
+    <div class="autocomplete-suggestion">Riveting</div>
+    <div class="autocomplete-suggestion">Ruthless</div>
+  </div>
+  <div class="autocomplete-suggestions" id="d-s" style="top:420px">
+    <div class="autocomplete-title">Suggested words</div>
+    <div class="autocomplete-suggestion">Different</div>
+    <div class="autocomplete-suggestion">Diverse</div>
+    <div class="autocomplete-suggestion">Dapper</div>
+    <div class="autocomplete-suggestion">Dominant</div>
+    <div class="autocomplete-suggestion">Delicious</div>
+    <div class="autocomplete-suggestion">Durable</div>
+    <div class="autocomplete-suggestion">Delectable</div>
+    <div class="autocomplete-suggestion">Dauntless</div>
+    <div class="autocomplete-suggestion">Defiant</div>
+    <div class="autocomplete-suggestion">Diabolical</div>
+    <div class="autocomplete-suggestion">Dangerous</div>
+    <div class="autocomplete-suggestion">Discreet</div>
+    <div class="autocomplete-suggestion">Distant</div>
+    <div class="autocomplete-suggestion">Dubious</div>
+  </div>
+  <div class="autocomplete-suggestions" id="e-s" style="top:320px">
+    <div class="autocomplete-title">Suggested words</div>
+    <div class="autocomplete-suggestion">Epic</div>
+    <div class="autocomplete-suggestion">Excellence</div>
+    <div class="autocomplete-suggestion">Enthusiastic</div>
+    <div class="autocomplete-suggestion">Exorbitant</div>
+    <div class="autocomplete-suggestion">Elegant</div>
+    <div class="autocomplete-suggestion">Elusive</div>
+    <div class="autocomplete-suggestion">Exquisite</div>
+    <div class="autocomplete-suggestion">Egomania</div>
+    <div class="autocomplete-suggestion">Euphoric</div>
+    <div class="autocomplete-suggestion">Eclectic</div>
+    <div class="autocomplete-suggestion">Enigmatic</div>
+    <div class="autocomplete-suggestion">Exuberant</div>
+    <div class="autocomplete-suggestion">Exceptional</div>
+    <div class="autocomplete-suggestion">Explicit</div>
+    <div class="autocomplete-suggestion">Entertaining</div>
+    <div class="autocomplete-suggestion">Extemporaneous</div>
+    <div class="autocomplete-suggestion">Excited</div>
+    <div class="autocomplete-suggestion">Ecstasy</div>
+    <div class="autocomplete-suggestion">Eloquent</div>
+    <div class="autocomplete-suggestion">Effervescent</div>
+    <div class="autocomplete-suggestion">Egregious</div>
+    <div class="autocomplete-suggestion">Experimental</div>
+    <div class="autocomplete-suggestion">Endearing</div>
+    <div class="autocomplete-suggestion">Enticing</div>
+    <div class="autocomplete-suggestion">Entrepreneurial</div>
+    <div class="autocomplete-suggestion">Epiphany</div>
+    <div class="autocomplete-suggestion">Erratic</div>
+    <div class="autocomplete-suggestion">Esoteric</div>
+    <div class="autocomplete-suggestion">Evasive</div>
+    <div class="autocomplete-suggestion">Extolled</div>
+    <div class="autocomplete-suggestion">Extrovert</div>
+  </div>
+
+  <script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71483131-1', 'auto');
+  ga('send', 'pageview');
+
+  $('button').hide();
+
+  var lastid = '';
+  $('.recommended').on('click', function() {
+    var id = $(this).data('id');
+    $('.autocomplete-suggestions').hide();
+    if (id == lastid) {
+      lastid = '';
+      return false;
+    }
+    var offset = $('#'+id).offset();
+    var top = offset.top + $('#'+id).outerHeight();
+    var width = $('#'+id).outerWidth() - 2;
+    $('#'+id+'-s').css({top: top, left: offset.left, width: width+'px'});
+    $('#'+id+'-s').show();
+    lastid = id;
+    return false;
+  });
+  $('.autocomplete-suggestion').on('click', function(e) {
+    e.preventDefault();
+    var value = $(this).html().substring(1);
+    $('#'+lastid).val(value);
+      $('#'+lastid+'-s').hide();
+      lastid = '-';
+      $('input').trigger('keyup');
+  });
+
+  // Show button on input
+  $('input').on('keyup', function(){
+  	if ($('input[name=r]').val().length < 1 || $('input[name=e]').val().length < 1
+      || $('input[name=d]').val().length < 1) {
+  		$('button').hide();
+  	}
+  	else {
+  		$('button').show();
+  	}
+  });
+  $('button').on('click', function() {
+    $('#file-input').trigger('click');
+  });
+  $('#file-input').change(function(e) {
+      var file = e.target.files[0],
+          imageType = /image.*/;
+
+      if (!file.type.match(imageType))
+          return;
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('input[name=src]').val(e.target.result);
+
+          // Processing
+          $('.photo').hide();
+          $('.getalbum').hide();
+          $('.loader').show();
+          $('form').submit();
+        }
+        reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
