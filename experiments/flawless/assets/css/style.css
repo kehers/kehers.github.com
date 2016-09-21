@@ -1,0 +1,154 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+*:focus {
+    outline: none;
+}
+body {
+	color: #fff;
+	font-family: montserrat;
+	background-color: #777;
+	background-size: 400% 400%;
+}
+h1, h2, h3, h4 {
+	font-weight: 700;
+	text-shadow: 1px 1px 1px #000
+}
+h2 {
+  font-size: 18px;
+}
+p {
+	margin: 0;
+}
+hr {
+	margin-bottom: 5px;
+	border-top: 1px solid #fed4d4;
+}
+input[type=range] {
+	width: 70%;
+	margin: 10px 20px;
+}
+a {
+	color: #f1e695;
+}
+a:hover {
+	color: #e9d859;
+}
+.container {
+	margin: 20px auto 0;
+	width: 960px;
+	/*width: 100%;*/
+	padding: 0;
+	position: relative;
+}
+.canvas-wrp, .logo-wrp {
+	float: left;
+}
+.logo-wrp {
+	padding: 20px;
+	box-sizing: border-box;
+}
+.logo-wrp img{
+	border: 5px solid transparent;
+	width: 100%
+}
+.logo-wrp img.active {
+	border-color: #390;
+}
+.image-wrp img {
+	width: 100%;
+}
+.canvas-wrp {
+	width: 640px
+}
+.logo-wrp {
+	width: 300px;
+	margin-top: 50px;
+	text-align: center
+}
+.logo-wrp img {
+	cursor: pointer;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.hide {
+	display: none;
+}
+p {
+	margin: 10px 0;
+}
+.center {
+	text-align: center;
+}
+
+button.add {
+  height:auto;font-size:15px;
+  line-height:auto;padding:10px 20px;
+  margin:10px 20px
+}
+.store-links img {
+  width: 25%;
+}
+.cover-a {
+  display: none;
+}
+.cover-b {
+  display: block;
+}
+
+.video-wrp {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.video-wrp iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button,
+button,
+button:focus {
+	display: inline-block;
+	background-color: white;
+	text-decoration: none;
+	border: 1px solid #fff;
+	font-size: 90%;
+	font-weight: bold;
+	color: #444;
+	line-height: 38px;
+	padding: 5px 30px;
+	border-radius: 5px;
+}
+a.button:hover,
+button:hover {
+	background-color: #eee;
+	color: #000;
+}
+
+@media (min-width: 750px) {
+  button.add {
+    font-size: 2em;
+    padding: 20px 30px;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  .store-links img {
+    width: auto
+  }
+  .cover-a {
+    display: block;
+  }
+  .cover-b {
+    display: none;
+  }
+}
