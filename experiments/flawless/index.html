@@ -23,7 +23,7 @@
   <div class="video-wrp">
     <iframe src="http://www.youtube.com/embed/-Ghg4iJJWyc?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
   </div>
-  <input type="file" id="file-input" style="opacity:0"><br>
+  <input type="file" id="file-input"><br>
   <button class="button add">Create your #soFLAWLESS image</button>
   <h2 style="font-weight:normal;padding:20px 38px;text-align:left;line-height:1.5em">Flawless aka #soFLAWLESS is the incredible new single from Mavin Records artist Dr Sid ft. Korede Bello. We have both decided to celebrate all the ladies on social media that are always #soFLAWLESS. If you are #soFLAWLESS, be a part of this celebration by putting the #soFLAWLESS filter on your image. You can do this on soflawless.com. Then post the image on social media with the hashtag #soFLAWLESS so we can celebrate you and have your image be a part of the social music video of Flawless. You may even get your own custom flawless social media video with all the #soFLAWLESS pics you create of yourself. Fellas, you can participate by adding your bae, your baby mama, your mom or any woman in your life that is #soFLAWLESS</h2>
   <img src="assets/images/album-cover.png" class="cover-a" style="float:left">
@@ -57,9 +57,7 @@
   // Opeyemi Obembe (@kehers)
 
   //(function() {
-    alert("Yo");
     var canvas = this.__canvas = new fabric.Canvas('c');
-    alert(canvas);
 
     var added_photo = false;
     var black_stamped = true;
@@ -125,8 +123,9 @@
     canvas.add(frame);
 
     // Upload image
-
+    alert("Yo");
     $('#file-input').change(function(e) {
+        alert("Change!");
         var file = e.target.files[0],
             imageType = /image.*/;
 
@@ -300,8 +299,6 @@
         canvas.setWidth(dim);
         canvas.setHeight(dim);
         canvas.setZoom(scaleRatio);
-
-        alert("reseize");
       }
     }
     // Responsive scaling
