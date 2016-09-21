@@ -4,13 +4,13 @@
 
   <meta charset="utf-8">
   <title>Dr Sid ft Korede Bello - Flawless aka #soFLAWLESS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Opeyemi Obembe (@kehers)">
   <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="assets/js/jquery-2.1.3.min.js"></script>
   <script src="assets/js/exif.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <link rel="stylesheet" href="assets/css/style.css?b">
 </head>
 
@@ -60,9 +60,12 @@
 
     ga('create', 'UA-84557605-1', 'auto');
     ga('send', 'pageview');
+  $('button').on('click', function() {
+    $('#file-input').trigger('click');
+  });
   </script>
-  <script type="text/javascript" src="assets/js/fabric.js"></script>
-  <script type="text/javascript" src="assets/js/src.js"></script>
+  <!--script type="text/javascript" src="assets/js/fabric.js"></script>
+  <script type="text/javascript" src="assets/js/src.js"></script-->
 
 </body>
 </html>
