@@ -13,7 +13,7 @@ Let's start with creating user subdomains. If you are familiar with vhost on Apa
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/catchall.gif)
 
-The * is the catch-all. The @ simply means the server IP. (I could have actually put the server's IP there. It's the same thing). In other words, I'm saying redirect **all subdomains** to the server. On my server, I can now check and see the referring subdomain. In PHP, I can find this in the `$_SERVER['HTTP_HOST']` variable[1]. All I need to do is create an `index.php` script that looks like this in my server document root:
+The * is the catch-all. The @ simply means the server IP. (I could have actually put the server's IP there. It's the same thing). In other words, I'm saying redirect **all subdomains** to the server. On my server, I can now check and see the referring subdomain. In PHP, I can find this in the `$_SERVER['HTTP_HOST']` variable[^1]. All I need to do is create an `index.php` script that looks like this in my server document root:
 
 {% highlight php %}
 <?php
@@ -88,4 +88,4 @@ It's that simple. The only other little details is allowing user use a non root 
 
 (Note: I added a dot after alias.mood.board when adding the CNAME because the domain dashboard requires this)
 
-[1]: The HTTP_HOST server variable can be a little tricky. Read more about this here: http://shiflett.org/blog/2006/mar/server-name-versus-http-host. If you have a simple straightforward server Apache setup, you should be fine though.
+[^1]: The HTTP_HOST server variable can be a little tricky. Read more about this here: http://shiflett.org/blog/2006/mar/server-name-versus-http-host. If you have a simple straightforward server Apache setup, you should be fine though.
