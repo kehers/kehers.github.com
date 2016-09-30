@@ -88,4 +88,4 @@ It's that simple. The only other little details is allowing user use a non root 
 
 (Note: I added a dot after alias.mood.board when adding the CNAME because the domain dashboard requires this)
 
-[^1]: The HTTP_HOST server variable can be a little tricky. Read more about this here: [shiflett.org/blog/2006/mar/server-name-versus-http-host](http://shiflett.org/blog/2006/mar/server-name-versus-http-host). If you have a simple straightforward server Apache setup, you should be fine though.
+[^1]: The HTTP_HOST server variable can be a little tricky. Read more about this here: [shiflett.org/blog/2006/mar/server-name-versus-http-host](http://shiflett.org/blog/2006/mar/server-name-versus-http-host). If you have a simple and straightforward server setup, you should be fine though.
