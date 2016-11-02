@@ -5,11 +5,11 @@ layout: post
 ---
 Implementing OAuth 2 on Android follows the exact flow as is on web. Taking Github as an example provider, the OAuth [web] flow is this -
 
-1. **Redirect users to GitHub for authentication**  
-The user clicks a button (say Login) on your website and you redirect him to ```https://github.com/login/oauth/authorize```. The page shows a login form.
-2. **GitHub redirects back to your callback URL with a "code" URL parameter**  
-Once he logs in with the form above and allows your app, Github redirects to your callback URL. The callback URL is a URL you have configured with Github in your application settings. You can also pass one via the ```redirect_uri``` parameter to the authorization URL in 1 like this ```https://github.com/login/oauth/authorize?redirect_uri=http://example.com/github```. Github then redirects back to ```http://example.com/github?code=1234```
-3. **You post the "code" to Github in exchange for the access token**  
+1. **Redirect users to GitHub for authentication**
+The user clicks a button (say Login) on your website and you redirect him to ```https://github.com/login/oauth/authorize?client_id={id}&scope={scope}```. The page shows a login form.
+2. **GitHub redirects back to your callback URL with a "code" URL parameter**
+Once he logs in with the form above and allows your app, Github redirects to your callback URL. The callback URL is a URL you have configured with Github in your application settings. You can also pass one via the ```redirect_uri``` parameter to the authorization URL in 1 like this ```https://github.com/login/oauth/authorize?client_id={id}&scope={scope}&redirect_uri=http://example.com/github```. Github then redirects back to ```http://example.com/github?code=1234```
+3. **You post the "code" to Github in exchange for the access token**
 Using cURL or similar library, you POST the code to ```https://github.com/login/oauth/access_token```. The response will be something like this ```access_token=e72e16&scope=user%2Cgist&token_type=bearer```. Extract the access_token parameter.
 4. **Access the API with the access token**
 
@@ -25,16 +25,16 @@ While this is a supposed web flow, it is not a hard thing to replicate in an And
 // The webview layout
 // layout/webview.xml
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   >
-  <WebView  
+  <WebView
     android:id="@+id/webview"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     />
 </LinearLayout>
 {% endhighlight %}
@@ -44,7 +44,7 @@ public void githubBtnClicked(View v) {
   setContentView(R.layout.webview);
   final WebView webview = (WebView) findViewById(R.id.webview);
   // Load Github's auth URL
-  webview.loadUrl("https://github.com/login/oauth/authorize");
+  webview.loadUrl("https://github.com/login/oauth/authorize?client_id={id}&scope={scope}");
 }
 {% endhighlight %}
 
@@ -56,7 +56,7 @@ However, since this is a mobile application and not a web application, the callb
 public void githubBtnClicked(View v) {
   setContentView(R.layout.webview);
   final WebView webview = (WebView) findViewById(R.id.webview);
-  webview.loadUrl("https://github.com/login/oauth/authorize");
+  webview.loadUrl("https://github.com/login/oauth/authorize?client_id={id}&scope={scope}");
   webview.setWebViewClient(new WebViewClient() {
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
       // Is this the callback url?
@@ -79,7 +79,7 @@ Now we have our code, step 3, send it to Github in exchange for an access token.
 public void githubBtnClicked(View v) {
   setContentView(R.layout.webview);
   final WebView webview = (WebView) findViewById(R.id.webview);
-  webview.loadUrl("https://github.com/login/oauth/authorize");
+  webview.loadUrl("https://github.com/login/oauth/authorize?client_id={id}&scope={scope}");
   webview.setWebViewClient(new WebViewClient() {
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
       String fragment = "?code=";
@@ -98,7 +98,7 @@ public void githubBtnClicked(View v) {
               params.put("client_id", "UR_GITHUB_CLIENT_ID");
               params.put("client_secret", "UR_GITHUB_CLIENT_SECRET");
               params.put("code", code);
-              
+
               // Post
               String data = null;
               URL url = new URL("https://github.com/login/oauth/access_token");
@@ -114,10 +114,10 @@ public void githubBtnClicked(View v) {
                 conn.setRequestProperty("Accept", "application/json");
                 // Github requires a user agent header
                 conn.setRequestProperty("User-Agent", "My Oauth app");
-                
+
                 OutputStream out = conn.getOutputStream();
                 out.write(bytes);
-                out.close();      
+                out.close();
 
                 InputStream is = null;
                 try {
@@ -128,28 +128,28 @@ public void githubBtnClicked(View v) {
                   // Hack for 4xx http headers
                   is = conn.getErrorStream();
                 }
-                
+
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is));
                 StringBuffer response = new StringBuffer();
                 String line;
                 while((line = rd.readLine()) != null) {
                   response.append(line).append("\n");;
                 }
-                rd.close();	
+                rd.close();
                 data = response.toString();
               } finally {
                 if (conn != null) {
                   conn.disconnect();
                 }
-              }                
-              
+              }
+
               try {
                 JSONObject json = new JSONObject(data);
                 String token = json.getString("access_token");
-                
+
                 // Now we have the token
                 // Probably save it for subsequent API calls here
-                
+
                 return null;
               } catch (JSONException e) {
                 // Log.e(TAG, e.getMessage());
@@ -157,11 +157,11 @@ public void githubBtnClicked(View v) {
             }
             catch (IOException e) {
               // Log.e(TAG, e.getMessage());
-            } 
+            }
             catch (JSONException e) {
               // Log.e(TAG, e.getMessage());
             }
-            
+
             return null;
           }
 
