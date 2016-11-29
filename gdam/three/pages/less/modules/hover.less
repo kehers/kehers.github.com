@@ -1,0 +1,113 @@
+/*------------------------------------------------------------------
+[22. Hover]
+*/
+
+.hover-push {
+    background: #000;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+        .hover-backdrop {
+            opacity: .6;
+        }
+        .hover-caption {
+            -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+            a {
+                opacity: 1;
+            }
+            a:after {
+                -webkit-transform: translate3d(0, 40px, 0);
+                transform: translate3d(0, 40px, 0);
+                opacity: 1;
+            }
+        }
+    }
+    .hover-backdrop {
+        opacity: .8;
+        background-size: cover !important;
+        background-position: center !important;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+    }
+    .hover-caption {
+        position: relative;
+        z-index: 1;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+        a {
+            display: inline-block;
+            margin: 0 auto;
+            position: relative;
+            -webkit-transition: all 0.35s;
+            transition: all 0.35s;
+            &:after {
+                position: absolute;
+                bottom: 32px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: #fff;
+                content: '';
+                -webkit-transform: translate3d(0, 80px, 0);
+                transform: translate3d(0, 80px, 0);
+                opacity: 0;
+                -webkit-transition: all 0.35s;
+                transition: all 0.35s;
+            }
+        }
+    }
+}
+
+.hover-zoom{
+    cursor: pointer;
+    position: relative;
+    .inner{
+        z-index: 1;
+    }
+    &:hover{
+        [data-pages-bg-image]{
+            transform: scale(1.1);
+            .bg-overlay{
+                opacity: .3 !important;
+            }
+        }
+    }
+    [data-pages-bg-image] {
+        transition: all .3s ease;
+        .bg-overlay{
+            transition: all .3s ease;
+        }
+    }
+}
+
+.hover-zoom-simple{
+      cursor: pointer;
+    position: relative;
+    [data-pages-bg-image] {
+        background-position: center center;
+        transition: background-size .3s ease;
+        -webkit-transition: background-size .3s ease;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+    
+    [data-pages-bg-image]:hover {
+        background-size: 110%;
+    }
+    
+    [data-pages-bg-image] .bg-overlay {
+        transition: all .3s ease;
+    }
+    
+    [data-pages-bg-image]:hover .bg-overlay {
+        opacity: .6 !important;
+    }
+}
