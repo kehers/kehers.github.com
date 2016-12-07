@@ -1,0 +1,23 @@
+p {
+  font-family: Arial, sans-serif !important;
+}
+.header .menu > li > .classic {
+  min-width: 240px;
+}
+.header.dark {
+  background-color: #fff;
+}
+.btn-bordered.btn-burgundy {
+  border-color: #6f2c32;
+  color: #6f2c32;
+}
+.slider-wrapper .bg-image {
+  background-size: cover !important
+}
+body {
+  colo: #222;
+}
+.header.light-solid .menu > li > a:not(.btn),
+.header .menu > li > .classic ul > li a {
+  opacity: 0.7
+}
