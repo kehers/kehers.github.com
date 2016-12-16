@@ -21,3 +21,6 @@ body {
 .header .menu > li > .classic ul > li a {
   opacity: 0.7
 }
+.bg-master-darkest, .bg-master-darker {
+  background-color: #5c1e28;
+}
