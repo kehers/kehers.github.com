@@ -4,10 +4,14 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta content="article" property="og:type">
+  <meta property="og:description" content="{{ content | strip_html | truncate: 200 }}" />
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@kehers">
-  <meta name="twitter:title" content="{{ page.title }}">
-  <meta name="twitter:description" content="{{ content | strip_html | truncate: 200 }}">
   <meta name="twitter:creator" content="@kehers">
   <title>{{ page.title }}</title>
   <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
