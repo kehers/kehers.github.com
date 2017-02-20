@@ -1,9 +1,0 @@
-p {
-  font-family: Arial, sans-serif !important;
-}
-.header .menu > li > .classic {
-  min-width: 240px;
-}
-.header.dark {
-  background-color: rgba(111, 44, 50, 0.98);
-}
