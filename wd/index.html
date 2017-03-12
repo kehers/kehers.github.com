@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Workdone</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!--link rel="icon" type="image/png" href="images/favicon.png"-->
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+
+<header>
+  <div class="b-nav">
+    <ul>
+      <li><a href="./">Home</a></li>
+      <li><a href="signup.html">Signup</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="become-worker.html">Become a worker</a></li>
+    </ul>
+    <ul>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="b-container">
+    <div class="b-menu">
+      <div class="b-bun b-bun--top"></div>
+      <div class="b-bun b-bun--mid"></div>
+      <div class="b-bun b-bun--bottom"></div>
+    </div>
+
+    <a href="./" class="b-brand"><img src="assets/images/logo.png"></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="twelve center columns">
+        <h3>The Services You Need,<br>
+        Delivered To Your Door</h3>
+        <p>Do you have a job that needs to be done? Get a worker from our pool of vetted professionals</p>
+        <p>&nbsp;</p>
+        <form>
+          <select name="" class="u-full-width">
+           <option>Please select a state</option>
+          </select>
+          <select name="" class="u-full-width">
+           <option>Please select the area you are in now</option>
+          </select>
+          <button class="button button-primary">Find Services</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <h5 class="center">See what we offer</h5>
+        <ul class="list">
+          <li>
+            <a href="category.html"><img src="assets/images/drawer.svg" class="bgimg">
+            <p>Handyman &amp; Artisan</p>
+            <small class="fade">The handyman will bring all necessary tools, materials are not included. All of our handymen are fully insured and verified.</small></a>
+          </li>
+          <li>
+            <a href="category.html"><img src="assets/images/send.svg" class="bgimg">
+            <p>Domestic Services</p>
+            <small class="fade">Description here</small></a>
+          </li>
+          <li><a href="categories.html">View All</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-grey">
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <h5 class="center">How it works</h5>
+        <ul class="list white-border">
+          <li>
+            <img src="assets/images/how1.png" class="fimg">
+            <p>Request for work</p>
+            <small class="fade">Our smart technology matches and assigns your work request to the best worker available who then contacts you to schedule the work to a time convenient for you.</small>
+          </li>
+          <li>
+            <img src="assets/images/how2.png" class="fimg">
+            <p>Work is done</p>
+            <small class="fade">Once the work is done, the worker fills an invoice which would be confirmed by you. Billing would only take place once the entire process is completed..</small>
+          </li>
+          <li>
+            <img src="assets/images/how3.png" class="fimg">
+            <p>Payment is made</p>
+            <small class="fade">We offer a secure cash-free payment system. The entire payment process is handled securely hence there's no need for cash to change hands.</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+  'use strict';
+  (function() {
+    var body = document.body;
+    var burgerMenu = document.getElementsByClassName('b-menu')[0];
+    var burgerContain = document.getElementsByClassName('b-container')[0];
+    var burgerNav = document.getElementsByClassName('b-nav')[0];
+
+    burgerMenu.addEventListener('click', function toggleClasses() {
+      [body, burgerContain, burgerNav].forEach(function (el) {
+        el.classList.toggle('open');
+      });
+    }, false);
+  })();
+  </script>
+
+</body>
+</html>
