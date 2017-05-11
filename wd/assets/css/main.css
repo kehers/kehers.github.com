@@ -18,6 +18,9 @@ p, form {
   margin: 0;
   padding: 5px 0;
 }
+i {
+  color: #390;
+}
 
 .float-right{
   float: right;
@@ -26,6 +29,15 @@ p, form {
 header {
   position: relative;
   background-color: #000
+}
+footer {
+  margin-top: 70px;
+  background-color: #1e262f;
+  font-size: 90%;
+  padding: 30px;
+}
+footer a {
+  color: #ddd;
 }
 
 .hero {
@@ -60,6 +72,11 @@ section {
 .list li {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
+  clear: both;
+}
+.list-td li {
+  display: table-cell;
+  vertical-align: middle;
 }
 .list.white-border li{
   border-bottom: 1px solid #fff;
@@ -77,10 +94,24 @@ section {
   object-fit: contain;
 }
 
-.list img.fimg {
+.list img.fimg,
+.list img.fimg-alt
+ {
   float: left;
   width: 30%;
   margin: 20px 20px 20px 0;
+}
+.list img.fimg-alt {
+  float: left;
+  width: 15%;
+  margin: 0 10px 0 0;
+  border-radius: 20px
+}
+.list h5 {
+  float: left;
+  width: 15%;
+  margin: 0 10px 0 0;
+  border-radius: 20px
 }
 
 .fade {
@@ -89,10 +120,33 @@ section {
 .bg-grey {
   background-color: #f3f3f3
 }
+.bg-green {
+  background-color: #77b949;
+  color: #fff
+}
 
 /*
 Button override
 */
+.button.button-plus,
+button.button-plus {
+  color: #fff;
+  background-color: #77b949;
+  padding: 0 20px;
+  border-color: #77b949; }
+.button.button-minus,
+button.button-minus {
+  color: #fff;
+  padding: 0 20px;
+  background-color: #cc6361;
+  border-color: #cc6361; }
+.button.button-plus i,
+button.button-plus i,
+.button.button-minus i,
+button.button-minus i {
+  color: #fff
+}
+
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
@@ -137,6 +191,29 @@ input[type="button"].button-fb:focus {
   color: #FFF;
   background-color: #2d4473;
   border-color: #2d4473; }
+
+/* Input override
+*/
+input[type="date"],
+input[type="time"] {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+input[type="date"]:focus,
+input[type="time"]:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+
 /*
 Menu
 */
@@ -160,6 +237,10 @@ body.open {
 }
 body.open:after {
   display: block;
+}
+
+.avatar {
+  border-radius: 50%
 }
 
 .b-nav ul {

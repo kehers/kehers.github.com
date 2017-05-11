@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="assets/css/normalize.css">
   <link rel="stylesheet" href="assets/css/skeleton.css">
 
+  <link rel="stylesheet" href="assets/css/ideal-image-slider.css">
+  <link rel="stylesheet" href="assets/css/slider-default.css">
+
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <!--link rel="icon" type="image/png" href="images/favicon.png"-->
@@ -57,7 +60,15 @@
   </div>
 </header>
 
-<section class="hero">
+<section>
+  <div id="slider">
+    <img src="assets/images/sliders/1.jpg" data-src="assets/images/sliders/1.jpg" title="" alt="Do you have a job that needs to be done? Get a worker from our pool of vetted professionals" />
+    <img data-src="assets/images/sliders/2.jpg" src="assets/images/sliders/2.jpg" title="" alt="Do you have a job that needs to be done? Get a worker from our pool of vetted professionals" />
+    <img data-src="assets/images/sliders/3.jpg" src="assets/images/sliders/3.jpg" title="" alt="Do you have a job that needs to be done? Get a worker from our pool of vetted professionals" />
+  </div>
+</section>
+
+<section class="bg-grey">
   <div class="container">
     <div class="row">
       <div class="twelve center columns">
@@ -145,5 +156,38 @@
   })();
   </script>
 
+  <script src="assets/js/ideal-image-slider.min.js"></script>
+  <script src="assets/js/iis-captions.js"></script>
+  <script>
+  var slider = new IdealImageSlider.Slider('#slider');
+  slider.addCaptions();
+  slider.start();
+  </script>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <p class="white">Subscribe to our newsletter</p>
+        <p><input type="text" placeholder="Name" class="u-full-width"><br>
+        <input type="text" placeholder="Email" class="u-full-width"><br>
+        <button class="button-secondary u-full-width">Subscribe</button></p>
+      </div>
+    </div>
+    <div class="row" style="padding:20px 0">
+      <div class="twelve center columns">
+        <p><a href=""><i class="fa fa-2x fa-twitter"></i></a> &middot; <a href=""><i class="fa fa-2x fa-facebook"></i></a> &middot; <a href=""><i class="fa fa-2x fa-instagram"></i></a></p>
+      </div>
+    </div>
+    <div class="row center">
+      <div class="six columns">
+        <p><a href="">Our Team</a> &middot; <a href="">Blog</a> &middot; <a href="">Careers</a> &middot; <a href="">Contact Us</a> &middot; <a href="">FAQ</a> &middot; <a href="">Legal</a> &middot; <a href="">Privacy</a> &middot; <a href="">About Us</a></p>
+      </div>
+      <div class="six text-right columns">
+        <p><a href="">&copy; 2017, Workdone</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
