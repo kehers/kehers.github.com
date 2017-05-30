@@ -1,3 +1,9 @@
+---
+published: true
+title: Musings: TheFeed.press
+layout: post
+---
+
 Seun me asked on twitter:
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/kehers">@kehers</a> quick question: what does the architecture of <a href="https://t.co/ekPbJ2ejCa">https://t.co/ekPbJ2ejCa</a> look like? And how much does it cost to run atm?</p>&mdash; Seun (@impactmass) <a href="https://twitter.com/impactmass/status/860997815014756352">May 6, 2017</a></blockquote>
