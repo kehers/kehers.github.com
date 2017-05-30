@@ -1,6 +1,6 @@
 ---
 published: true
-title: Musings: TheFeed.press
+title: "Musings: TheFeed.press"
 layout: post
 ---
 
