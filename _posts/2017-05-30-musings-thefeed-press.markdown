@@ -17,7 +17,7 @@ And it is really this simple:
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">1. Site on $5 DO<br>2. Some workers doing the heavy aggregation on Amazon Lambda (&gt;$20/mnt)<br>3. $10 Linode MongoDB server (~20k articles/day) <a href="https://t.co/atTjwhzd7k">https://t.co/atTjwhzd7k</a></p>&mdash; Opeyemi Obembe (@kehers) <a href="https://twitter.com/kehers/status/861009284141895681">May 7, 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-During the QA session of the Producthunt Lagos meetup (I gave a talk on [Shipping products](https://docs.google.com/presentation/d/13mqostF1vDkBgOehCyNUHge2qKRbG9C76R2i_UbX_Oc)), someone else asked how much it costs to run my side projects. Here is a detailed breakdown of [TheFeed Press](http://thefeed.press/) to help put things in better perspective. But I won't be talking about the running cost alone. For context, I will be talking about other things.
+During the QA session of the Producthunt Lagos meetup (I gave a talk on [Shipping products](https://docs.google.com/presentation/d/13mqostF1vDkBgOehCyNUHge2qKRbG9C76R2i_UbX_Oc)), someone else asked how much it costs to run my side projects. Here is a detailed breakdown of [TheFeed Press](http://thefeed.press/) to help put things in better perspective. But I won't be talking about the running cost alone. For context, I will also be talking about other things.
 
 [TheFeed Press](http://thefeed.press/) is a side project I built last year. The idea was simple. Search my Twitter feed for articles, get and save them, and present them to me in a simple way. The idea came off [Fave](http://github.com/kehers/fave), an earlier experiment that didn't work. With Fave, my Twitter likes were checked for links and sent to my Pocket account. Two issues with this though:
 
@@ -38,7 +38,7 @@ Here is how it's different to Nuzzel:
 
 I did development with NodeJs, using MongoDB as the database. This is the common architecture for most of my experiments. NodeJs' async nature makes it perfect for making multiple requests. My choice of MongoDB was because of the speed of write operations (TFP does thousands of writes/seconds). I spinned a $5 DigitalOcean (DO) server and got nodeJS + HAproxy on it.  I was using [iron.io](http://iron.io/) for Fave already so I moved the worker (the part of the code that regularly checks the user's timeline for articles and extract the content) over there. [compose.io](http://compose.io) took care of database hosting.
 
-I had to move from compose.io shortly after. $30/month for 1GB database storage and 102MB RAM was too much[^1]. I figured with half that price, I can do 3 replica sets on 3 DigitalOcean servers that will give me almost 20GB storage and 512MB RAM. Plus I can have WiredTiger, MongoDB's latest storage engine. And that was what I did.
+I had to move from compose.io shortly after. $30/month for 1GB database storage and 102MB RAM was too much for me[^1]. I figured with half that price, I can do 3 replica sets on 3 DigitalOcean servers that will give me almost 20GB storage and 512MB RAM. Plus I can have WiredTiger, MongoDB's latest storage engine. And that was what I did.
 
 The next thing was moving from iron.io to [Amazon Lambda](https://aws.amazon.com/lambda/). I hit the free tier limit on iron.io and wasn't ready to pay $50/month for the next tier. Besides that, I had to split the worker into multiple scripts connected with a queue. Amazon Lambda was the perfect alternative.
 
