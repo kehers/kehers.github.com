@@ -51,15 +51,15 @@ Search was the other big thing. Initially, what I did was to use [tf-idf](https:
 In total, every month, I currently spend:
 
 - $5 for the application server on DO
-- $10 for the database server on Linode (no replica sets)
-- &gt; $20 AWS (Lambda, Bandwidth, SNS, etc)
+- $10 for the database server on Linode (no replica sets for now)
+- &gt; $20 for AWS (Lambda, Bandwidth, SNS, etc. Fluctuates)
 - $0 for the Elasticsearch DB on Google cloud (The server costs over $20/month but I have free $300 for a year)
 
 #### Making money
 
-Currently, TFP doesn't make money. At a point I added a "free for 6 months, $10/year after" label to the homepage (there was no actual payment integration though). The plan was to use this to limit signups to only interested people. (The more the users, the more work the workers need to do and consequently, the higher my AWS fees and possible DB scaling). Then I thought about it again and remembered [this post from Marco](https://marco.org/2015/10/13/pragmatic-pricing). Why would anyone leave nuzzel (free) or the other news apps (Flipboard, Digg deeper) and pay for TFP? Could there be other ways to make money? Sponsored posts?
+Currently, TFP doesn't make money. At a point I added a "free for 6 months, $10/year after" label to the homepage (there was no actual payment integration though). The plan was to use this to limit signups to only interested people. (The more the users, the more work the workers need to do and consequently, the higher my AWS bill and storage/memory required by the DB). Then I thought about it again and remembered [this post from Marco](https://marco.org/2015/10/13/pragmatic-pricing). Why would anyone leave nuzzel (free) or the other news apps (Flipboard, Digg deeper) and pay for TFP? Could there be other ways to make money? Sponsored posts?
 
-I haven't reached a conclusion on that but I am comfortable taking care of hosting costs for now. Eventually, it's going to be a lot and the money will need to come from somewhere.
+I haven't reached a conclusion on that but I am comfortable taking care of hosting costs for now. Eventually, it's going to be a lot and the money will need to come from somewhere. Till then though.
 
 #### What's next
 
