@@ -30,7 +30,7 @@ Here is how it's different to Nuzzel:
 
 1. TFP is focused on one thing—extracting links from the user's Twitter feed. Nuzzel has support for Facebook and a lot of other interesting things like newsletters, feed of friend of friends and a lot more.
 
-2. TFP sorts the article feed displayed by number of influencers (people that tweeted the link in a feed) + time. Everyday the user gets top articles by influencers in the last 24 hours. It is that simple. I'd assume Nuzzel has some fancy algorithm for this.
+2. TFP sorts the article feed displayed by number of influencers (people that tweeted the link in a feed) + time. Everyday, the user gets top articles by influencers in the last 24 hours. It is that simple. I'd assume Nuzzel has some fancy algorithm for this.
 
 3. TFP extracts content of links just the way Pocket/Instapaper saves articles for offline read. This way, it doesn't take you out of the site when you read articles. And everything is preloaded on page load so reading is easy and without the extra distractions going to the individual sites bring. This brings a different concern though. Even though direct links to the respective sites are still available in the feeds, how comfortable are the respective sites with their content being scraped? How does Pocket/Instapaper do it?
 
