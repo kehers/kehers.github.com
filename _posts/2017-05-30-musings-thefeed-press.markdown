@@ -36,7 +36,7 @@ Here is how it's different to Nuzzel:
 
 #### Architecture, Iterations and Scaling
 
-I did development with NodeJs, using MongoDB as the database. This is the common architecture for most of my experiments. NodeJs' async nature makes it perfect for making multiple requests. My choice of MongoDB was because of the speed of write operations (TFP does thousands of writes/seconds). I spinned a $5 DigitalOcean (DO) server and got nodeJS + HAproxy on it.  I was using [iron.io](http://iron.io/) for Fave already so I moved the worker (the part of the code that regularly checks the user's timeline for articles and extract the content) over there. [compose.io](http://compose.io) took care of database hosting.
+I did development with NodeJs, using MongoDB as the database. This is the common architecture for most of my experiments. NodeJs' async nature makes it perfect for making multiple requests (this has huge effect on the speed of the workers). My choice of MongoDB was because of the speed of write operations (TFP does thousands of writes/seconds). I spinned a $5 DigitalOcean (DO) server and got nodeJS + HAproxy on it.  I was using [iron.io](http://iron.io/) for Fave already so I moved the worker (the part of the code that regularly checks the user's timeline for articles and extract the content) over there. [compose.io](http://compose.io) took care of database hosting.
 
 I had to move from compose.io shortly after. $30/month for 1GB database storage and 102MB RAM was too much for me[^1]. I figured with half that price, I can do 3 replica sets on 3 DigitalOcean servers that will give me almost 20GB storage and 512MB RAM. Plus I can have WiredTiger, MongoDB's latest storage engine. And that was what I did.
 
