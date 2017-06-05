@@ -40,9 +40,9 @@ I did development with NodeJs, using MongoDB as the database. This is the common
 
 I had to move from compose.io shortly after. $30/month for 1GB database storage and 102MB RAM was too much for me[^1]. I figured with half that price, I can do 3 replica sets on 3 DigitalOcean servers that will give me almost 20GB storage and 512MB RAM. Plus I can have WiredTiger, MongoDB's latest storage engine. And that was what I did.
 
-The next thing was moving from iron.io to [Amazon Lambda](https://aws.amazon.com/lambda/). I hit the free tier limit on iron.io and wasn't ready to pay $50/month for the next tier. Besides that, I had to split the worker into multiple scripts connected with a queue. Amazon Lambda was the perfect alternative.
+The next thing was moving from iron.io to [Amazon Lambda](https://aws.amazon.com/lambda/). I hit the free tier limit on iron.io and wasn't ready to pay $50/month for the next tier. Besides that, I had to split the worker into multiple scripts connected with a queue. Amazon Lambda was just the perfect alternative.
 
-Within just few months of use (by about 100 users), the DB had over 2m articles and even more streams (tweet records). Then things started breaking. I had to scale each replica set of the DB to the $10 DigitalOcean plan. Even this didn't hold for long. I even lost the DB once. I noticed [Linode](http://linode.com/) has twice DigitalOcean's RAM at same price and moved the DB there. And so far, everything works.
+Within just few months of use (by about 100 users), the DB had over 2m articles and even more streams (tweet records). Then things started breaking. I had to scale each replica set of the DB to the $10 DigitalOcean plan. Even this didn't hold for long. At a point the DB crashed and I lost everything. I noticed [Linode](http://linode.com/) has twice DigitalOcean's RAM at same price and moved the DB there. And so far, everything works.
 
 Search was the other big thing. Initially, what I did was to use [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) to index top words per article and search on that. But that wasn't scalable. Eventually I had to move to Elasticsearch. The setup required atleast 2GB RAM so I had to create a separate server for it. I had this $300 free trial credit on Google cloud so I spinned up a VM on it.
 
