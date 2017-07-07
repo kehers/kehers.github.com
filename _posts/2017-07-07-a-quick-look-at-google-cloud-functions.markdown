@@ -9,13 +9,13 @@ The good parts:
 
 1. Google Cloud Function allows creating HTTP triggers directly. (A trigger is what tells your functions to run). You simply check a box and that's it. If you need an HTTP trigger for your Lambda function, you need to connect it to API gateway which is another curve on its own.
 2. Because Cloud Function allows creating HTTP triggers directly, you can easily work with the request and response objects within the functions as exposed to the function
-```
+{% highlight javascript %}
 exports.myfunction = function(req, res) {
   // Play with req and res easily
 }
-```
-3. This also makes it easy to handle request and response objects with middlewares. As an example, multipart/form-data can easily be handled in Cloud Functions with multer
-```
+{% endhighlight %}
+3. Consequently, it is easy to handle request and response objects with middlewares. As an example, multipart/form-data can easily be handled in Cloud Functions with multer
+{% highlight javascript %}
 const multer = require('multer')
   , parser = multer().none()
   ;
@@ -26,7 +26,7 @@ exports.hook = function(req, res) {
     res.json({status: 'Ok'});
   }
 }
-```
+{% endhighlight %}
 4. Unlike Lambda, there is no need to upload the node_modules folder. Cloud Functions installs the modules from the package.json file.
 
 The bad parts:
