@@ -22,8 +22,8 @@ const multer = require('multer')
 exports.hook = function(req, res) {
   // Add multipart/form-data support
   parser(req, res, function(){
-    //...
-    res.json({status: 'Ok'});
+      //...
+      res.json({status: 'Ok'});
   }
 }
 ```
