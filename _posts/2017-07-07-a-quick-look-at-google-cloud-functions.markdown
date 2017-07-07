@@ -31,7 +31,7 @@ exports.hook = function(req, res) {
 
 The bad parts:
 
-1. No environmental variables. This is top on my list. I was really amazed Google would miss a feature like that.
+1. No environment variables. This is top on my list. I was really amazed Google would miss a feature like that.
 2. No custom domain support. This means I can't map a Cloud Function URL like `https://us-central1-suet-170506.cloudfunctions.net/suethooks` behind a URL like `https://hooks.suet.co/`
 3. I know this is not HTTP related or for my use case but Cloud Functions could use scheduler triggers. (A scheduler allows you set when or a recurrent interval to run a function. This makes a good use for running cron jobs).
 
