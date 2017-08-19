@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  color: #222;
+  padding: 50px 0;
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Rubik', sans-serif;
+  margin: 20px 0 5px;
+  color: #000;
+  padding: 0;
+  position: relative;
+  display: inline-block;
+}
+h2::after {
+  position: absolute;
+  height: 10px;
+  z-index: -1;
+  content: "\00A0";
+  width: 100%;
+  bottom: 7px;
+  left: 10px;
+  display: block;
+  background-color: #c09fe4
+}
+a {
+  text-decoration: none;
+  color: #175FFE
+}
+a:hover {
+  text-decoration: underline;
+}
+strong {
+  color: #000;
+}
+.fade {
+  color: #888;
+}
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+li {
+  margin-bottom: 5px;
+}
+p {
+  padding: 3px 0;
+  margin: 0
+}
+
+/* Grid stuff */
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  margin-left: 4%;
+}
+.column:first-child,
+.columns:first-child {
+  margin-left: 0; }
+.one-half.column {
+  width: 48%;
+}
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+@media (max-width: 550px) {
+
+  .one-half.column {
+    width: 100%;
+  }
+}
