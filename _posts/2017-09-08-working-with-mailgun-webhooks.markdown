@@ -154,27 +154,27 @@ There are a couple of serverless computing providers. One I use and recommend is
 
 To create this function, we need to write a JavaScript function that will be exported as a Node.js module. The function takes HTTP-specific arguments: `request` and `response`.
 
-```javascript
+{% highlight javascript %}
 exports.webhook = function(request, response) {
   // Handle event data here
   response.send({status:"ok"});
 }
-```
+{% endhighlight %}
 
 Based on the request *content-type*, the body of the request is automatically passed and available in the **body** parameter of the request object.
 
-```javascript
+{% highlight javascript %}
 exports.webhook = function(request, response) {
   let event = request.body.event; // delivered
   // Handle event data here
   // ...
   response.send({status:"ok"});
 }
-```
+{% endhighlight %}
 
 This doesn’t work for the content type *multipart/form-data* though.  And as we already know, Mailgun sends some data as multipart/form-data. We can bring in a library like Multer by using **require()**. However, we need to ensure the dependency is listed in the *package.json* file.
 
-```javascript
+{% highlight javascript %}
 const multer = require('multer');
 
 exports.webhook = function(request, response) {
@@ -185,15 +185,15 @@ exports.webhook = function(request, response) {
     response.send({status:"ok"});
   });
 }
-```
+{% endhighlight %}
 
-```json
+{% highlight json %}
 {
   "dependencies": {
     "multer": "^1.3.0"
   }
 }
-```
+{% endhighlight %}
 
 Next, we can publish the function to Cloud Functions. An easy way to do this is to do it from the Cloud Functions dashboard.
 
