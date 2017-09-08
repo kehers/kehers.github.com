@@ -43,7 +43,7 @@ If you look closely at the requestbin data, you will notice what I said about so
 
 Now that we know what the parameters are for each event types and the content type they may come in, it is easy to write the code that will handle the sent data. Here is a simple code that will output details of **complaints** and **dropped** emails. (I am using [multer](https://github.com/expressjs/multer) to handle multipart/form-data)
 
-```javascript
+{% highlight javascript %}
 const express = require('express')
     , bodyParser = require('body-parser')
     , multer = require('multer')
@@ -69,7 +69,7 @@ app.post('/webhook', multer().none(), function(req, res) {
 
   res.end();
 });
-```
+{% endhighlight %}
 
 
 ## Making it secure
@@ -87,7 +87,7 @@ To verify the token;
 
 Here is what it looks like in Node.js:
 
-```javascript
+{% highlight javascript %}
 const value = event_data_timestamp+event_data_token;
 const hash = crypto.createHmac('sha256', apikey)
                    .update(value)
@@ -96,11 +96,11 @@ if (hash !== event_data_signature) {
   console.log('Invalid signature');
   return;
 }
-```
+{% endhighlight %}
 
 If we add that to our original code example, we will have something like this:
 
-```javascript
+{% highlight javascript %}
 const express = require('express')
     , crypto = require('crypto')
     , multer = require('multer')
@@ -139,7 +139,7 @@ app.get('/webhook', multer().none(), function(req, res) {
 
   res.end();
 });
-```
+{% endhighlight %}
 
 We can even step this up and:
 
