@@ -5,6 +5,7 @@ layout: post
 ---
 
 *TL;DR
+
 Mailgun webhooks allow you receive event data for your transactional emails and they are easy to work with. You can use the data to build custom analytics and enrich your applications. For a real world example, check out [Suet](https://github.com/kehers/suet) on Github.*
 
 Transactional emails are essentials for most apps. We send welcome emails, password recovery emails, notifications and more. And when we do, we use providers like [Mailgun](https://mailgun.com/). Sending the emails is cool and all but what about the delivery and performance? Did that user get that password reset email? Was that ‘credit card expiring’ notification email opened?
