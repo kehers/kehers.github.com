@@ -13,12 +13,12 @@ Notice the size of the articles and streams. And this is only from just over a m
 ## Text Classification?
 > Most times, I find only one link in the email that really matches my interest and I click to see it. The others I discard. It'll be good if that percentage can go up. Maybe I need to clean up my Twitter TL?
 >
-> source: [https://tgh.typeform.com/to/tGmcMq]
+> source: [tgh.typeform.com/to/tGmcMq](https://tgh.typeform.com/to/tGmcMq)
 
 For a while now, a feature I have been looking at add is  automatically categorising articles. By matching categories with what users are reading (thanks to Mailgun click events + [Suet](https://suet.co/)), articles in a user’s fav categories can be prioritised in newsletters and the web feed. This will definitely bump up newsletter open rates (from ~ 37%) and CTR (from ~12%).
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/suet.png)
-source: [https://suet.co/]
+source: [suet.co](https://suet.co/)
 
 The bad news? Text classification isn’t an easy feat, especially not at TFP’s current scale and resources. I haven’t done any “code” work but I have explored a couple of ideas in my head.
 
