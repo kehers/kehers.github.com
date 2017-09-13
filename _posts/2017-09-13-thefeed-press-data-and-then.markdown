@@ -15,7 +15,7 @@ Notice the size of the articles and streams. And this is only from just over a m
 >
 > source: [tgh.typeform.com/to/tGmcMq](https://tgh.typeform.com/to/tGmcMq)
 
-For a while now, a feature I have been looking at add is  automatically categorising articles. By matching categories with what users are reading (thanks to Mailgun click events + [Suet](https://suet.co/)), articles in a user’s fav categories can be prioritised in newsletters and the web feed. This will definitely bump up newsletter open rates (from ~ 37%) and CTR (from ~12%).
+For a while now, a feature I have been looking to add is  automatically categorising articles. By matching categories with what users are reading (thanks to Mailgun click events + [Suet](https://suet.co/)), articles in a user’s fav categories can be prioritised in newsletters and the web feed. This will definitely bump up newsletter open rates (from ~ 37%) and CTR (from ~12%).
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/suet.png)
 source: [suet.co](https://suet.co/)
