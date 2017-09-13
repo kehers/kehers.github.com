@@ -1,5 +1,5 @@
 ---
-title: TheFeed.press: Data and then?
+title: "TheFeed.press: Data and then?"
 published: true
 layout: post
 ---
