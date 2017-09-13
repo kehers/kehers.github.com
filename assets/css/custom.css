@@ -7,6 +7,11 @@ body {
 .container {
   min-width: 90%;
 }
+blockquote {
+  border-left: 2px solid #ddd;
+  padding-left: 20px;
+  color: #566;
+}
 article {
   margin: 150px 0 50px;
 }

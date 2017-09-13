@@ -4,7 +4,7 @@ published: true
 layout: post
 ---
 
-I was checking out the MongoDB compass app this morning, using it to explore data from thefeed.press database.  Here is what it looks like:
+I was checking out the MongoDB compass app this morning, using it to explore data from [thefeed.press](https://thefeed.press/) database.  Here is what it looks like:
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/stat.png)
 
