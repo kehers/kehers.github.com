@@ -39,4 +39,4 @@ TF-IDF can give important words in the document. That alone is not a big deal bu
 Strip stop words and lower case words of length less than a threshold  -> TF-IDF -> Classification Algorithm (Naives Bayes, NN, etc)
 
 ## What else?
-So far, I’ve only talked about classification. I believe there are more interesting things that can be done with the data. Sentiment Analysis? Trending words/topics? These are things I hope to explore once I have the time. If you have other ideas, do let me know. I am @kehers on Twitter.
+So far, I’ve only talked about classification. I believe there are more interesting things that can be done with the data. Sentiment Analysis? Trending words/topics? These are things I hope to explore once I have the time. If you have other ideas, do let me know. I am [@kehers](https://twitter.com/kehers) on Twitter.
