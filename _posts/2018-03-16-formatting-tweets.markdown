@@ -4,9 +4,9 @@ published: true
 layout: post
 ---
 
-*One thing I’ve found out with [thefeed.press](thefeed.press) is that the conversations (the tweets) surrounding shared links are sometimes more interesting than the link. To place proper emphasis on these tweets mean displaying them wherever necessary; the email digest for example. And displaying them mean formatting them properly.*
+*One thing I’ve found out with [thefeed.press](https://thefeed.press) is that the conversations (the tweets) surrounding shared links are sometimes more interesting than the link. To place proper emphasis on these tweets mean displaying them wherever necessary; the email digest for example. And displaying them mean formatting them properly.*
 
-## Introduction
+### Introduction
 
 To display a tweet properly, it needs to be well formatted. This means identifying and linking entities like usernames, hashtags and URLs. In simple terms, it is converting a typical tweet object[^1] like this:
 
@@ -61,7 +61,7 @@ const twitter = require('twitter-text')
 console.log(twitter.autoLinkWithJSON(tweet.text, tweet.entities);
 {% endhighlight %}
 
-## Say hello to extended tweets
+### Say hello to extended tweets
 
 For tweets over 140 characters, the tweet object only returns 140 characters of text by default. In this compatibility mode, 
 1. `text` is truncated to 140 characters
@@ -102,7 +102,7 @@ compared to the original tweet:
 
 > I kind of hate how with most web development/new frameworks etc., I start out with the intention “I’d like to spend 20 minutes learning X today,” and have to invest an additional 60 minutes just setting up the appropriate environment.  
 
-## Mode: Extended
+### Mode: Extended
 
 How to get the full text? Simple. Add the parameter `tweet_mode=extended` to any endpoint you are querying.  So instead of `https://api.twitter.com/1.1/statuses/show/972535628742078469.json`, let’s try `https://api.twitter.com/1.1/statuses/show/972535628742078469.json?tweet_mode=extended`
 
@@ -122,15 +122,35 @@ How to get the full text? Simple. Add the parameter `tweet_mode=extended` to any
 }
 {% endhighlight %}
 
-Yeah, that simple. 
-
-What you will notice:
+Yeah, that simple. Notice that:
 
 1. `full_text` replaces `text`
 2. `truncated` is `false`
 3. `display_text_range` identifies the start and end of the displayable content of the tweet.
 
-## Hmmm…retweets
+You can then go ahead and format using `full_text` and `entities`.
+
+{% highlight js %}
+const twitter = require('twitter-text')
+    , tweet = {
+        "created_at": "Sat Mar 10 18:12:17 +0000 2018",
+        "id": 972535628742078500,
+        "full_text": "I kind of hate how with most web development/new frameworks etc., I start out with the intention “I’d like to spend 20 minutes learning X today,” and have to invest an additional 60 minutes just setting up the appropriate environment.",
+        "truncated": false,
+        "display_text_range": [0, 234],
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "user_mentions": [],
+          "urls": []
+        }
+      }
+    ;
+
+console.log(twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
+{% endhighlight %}
+
+### Hmmm…retweets
 Here is a retweet requested in extended mode.
 
 {% highlight json %}
@@ -203,7 +223,7 @@ if (tweet.retweeted_status)
 formatted = twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
 {% endhighlight %}
 
-## Quotes >:)
+### Quotes :/
 
 Quotes are in an entirely different world of their own. You need to see what a quoted tweet looks like to understand.
 
@@ -230,7 +250,7 @@ Quotes are in an entirely different world of their own. You need to see what a q
 }
 {% endhighlight %}
 
-The `full_text` does not tell the complete story. It does not include the tweet that was quoted. The quoted tweet is hidden somewhere in `quoted_status`. And unlike retweets where you can replace the tweet with the retweeted status, you need both the original and additional tweet in a quoted tweet. Here is what `quoted_status` looks like:
+The `full_text` does not tell the complete story. It does not include the tweet that was quoted. The quoted tweet is hidden somewhere in `quoted_status`. And unlike retweets where you can replace the tweet with the retweeted status, you need both the original and additional tweet to make complete sense of a *quote*. Here is what `quoted_status` looks like:
 
 {% highlight json %}
 {
@@ -244,9 +264,13 @@ The `full_text` does not tell the complete story. It does not include the tweet 
 }
 {% endhighlight %}
 
-So how do we format and show both?
+So what do we do in this case? What we need to achieve is something like this:
 
-One thing we can do is to format separately and show them together.
+> Added tweets to the daily newsletter for better context
+>> [@thefeedpress](https://twitter.com/thefeedpress):  
+>> New newsletter screenshot [pic.twitter.com/HQmJumZfhN](http://pic.twitter.com/HQmJumZfhN)  
+
+And it seems we just need to format the quoted tweet and additional tweet separately and show them together.
 
 {% highlight js %}
 const twitter = require('twitter-text')
@@ -272,7 +296,7 @@ console.log(text);
 
 Looks pretty close. But the additional tweet has a link to the embedded quote. Can we remove this link though? Let’s try. 
 
-Since we know the link to the quoted status will always end the text, we can match end of text for link with format `https://twitter.com/[quoted_status_user_username]/status/[0-9]+` and remove. There are a couple of issues with this though. If we match the unformatted text, the url will still be in the format `http://t.co/\w+` (unexpanded) and not `https://twitter.com/[quoted_status_user_username]/status/[0-9]+` (expanded). If we match after formatting, the link would have been expanded but will contain HTML tags that will break our regular expression [:2]. 
+Since we know the link to the quoted status will always end the additional tweet text, we can match end of text for link with format `https://twitter.com/[quoted_status_user_username]/status/[0-9]+` and remove. There are a couple of issues with this though. If we match the unformatted text, the url will still be in the format `http://t.co/\w+` (unexpanded) and not `https://twitter.com/[quoted_status_user_username]/status/[0-9]+` (expanded). If we match after formatting, the link would have been expanded but will contain HTML tags that will break our regular expression[^2]. 
 
 Well, since we know the link will always end the text, we can remove any ending link in the unformatted text. We can also remove the index from the entities before we then proceed to format the text.
 
@@ -294,11 +318,11 @@ else
     text = twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
 {% endhighlight %}
 
-## Conclusion
+### Conclusion
 
 This is all you will probably need. But there is still more to do. What about displaying media (pictures, videos) within the tweet? Quotes within quotes? Threaded replies?
 
-If you really want to do it, formatting tweets can be a complex thing. But you really don’t have to do it if you don’t have to. You can use [embedded tweets](https://dev.twitter.com/web/embedded-tweets) instead.
+If you really want to do it, formatting tweets can be a complex thing. But you really don’t have to do it if not necessary. You can use [embedded tweets](https://dev.twitter.com/web/embedded-tweets) instead.
 
 
 [^1]: Some items are removed from the tweet object as well as others used in this piece for brevity purpose.
