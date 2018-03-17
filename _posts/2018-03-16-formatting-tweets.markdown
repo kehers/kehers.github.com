@@ -312,7 +312,7 @@ if (tweet.quoted_status) {
   text = twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
   let qt = twitter.autoLinkWithJSON(tweet.quoted_status.full_text, tweet.quoted_status.entities);
   text = text.replace(/https:\/\/t.co\/[^\/]+$/, '');
-  text += `<blockquote><a href="https://twitter.com/${tweet.quoted_status.user.screen_name}">@${tweet.quoted_status.user.screen_name}</a><br>${qt}</blockquote>';
+  text += `<blockquote><a href="https://twitter.com/${tweet.quoted_status.user.screen_name}">@${tweet.quoted_status.user.screen_name}</a><br>${qt}</blockquote>`;
 }
 else
     text = twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
