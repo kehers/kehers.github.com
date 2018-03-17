@@ -29,7 +29,9 @@ pre > code {
   color: #ddd;
 }
 p > code {
-  background-color: #eee
+  background-color: #eee;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 figure {
   margin: 0 0 0 -20px;
