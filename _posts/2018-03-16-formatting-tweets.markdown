@@ -4,7 +4,7 @@ published: true
 layout: post
 ---
 
-*One thing I’ve found out with [thefeed.press](https://thefeed.press) is that the conversations (the tweets) surrounding shared links are sometimes more interesting than the link. To place proper emphasis on these tweets mean displaying them wherever necessary; the email digest for example. And displaying them mean formatting them properly.*
+*One thing I’ve noticed on [thefeed.press](https://thefeed.press) is that the conversations (the tweets) surrounding shared links are sometimes more interesting than the link. To place proper emphasis on these tweets mean displaying them wherever necessary; the email digest for example. And displaying them mean formatting them properly.*
 
 ### Introduction
 
