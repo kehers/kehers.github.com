@@ -15,9 +15,9 @@ exports.handler = (event, context, callback) => {
 }
 {% endhighlight %}
 
-To be able to test this locally, we need to be able to pass in the required `event`, `context` and `callback` parameters. Interestingly, by looking into the `event`  and  `context` objects and of course knowing `callback` is just a function passed in to return information, we can similar objects and use them for our local test.
+To be able to test this locally, we need to be able to pass in the required `event`, `context` and `callback` parameters. Interestingly, by looking into the `event`  and  `context` objects and of course knowing `callback` is just a function passed in to return information, we can create similar objects and use them for our local test.
 
-Let’s start with `event`. This is used to pass event data to the function. The data will depend on the event source connected to your Lambda function. You can find a list of [sample events published by event sources here](https://docs.aws.amazon.com/lambda/latest/dg/eventsources.html#eventsources-sns). For example, let’s see the data sent from SNS. Here is what the sample event data looks like:
+Let’s start with `event`. This is used to pass event data to the function. The data will depend on the event source connected to your Lambda function. You can find a list of [sample events published by event sources here](https://docs.aws.amazon.com/lambda/latest/dg/eventsources.html#eventsources-sns). Here is the sample event data for SNS for example:
 
 {% highlight json %}
 {
@@ -54,7 +54,7 @@ Let’s start with `event`. This is used to pass event data to the function. The
 {% endhighlight %}
 
 For me though, (I use this on [TFP](https://thefeed.press/) to send data across the workers), two things:
-1. The only value I’m interested in from the event data is `event.Records[0].Sns.Message` .
+1. The only value I’m interested in from the event data is `event.Records[0].Sns.Message`
 2. `Message` is a *stringified* JSON object.
 
 Based on these, I can create my `event` object as this:
@@ -153,3 +153,5 @@ var callback = function(err, result) {
 // Run
 lambda.handler(event, context, callback);
 {% endhighlight %}
+
+And there we have it. If there is any issue with the function, we can easily know and debug. One tip during test is to do lots of console logging within your function to note execution points and see the data that is passed around.
