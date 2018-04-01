@@ -24,50 +24,17 @@ published: true
 <div class="container">
   <div class="row">
     <div class="six offset-by-three columns">
-		<h3 class="title p-t-100">/opeyemi</h3>
-		<h5>My name is Opeyemi Obembe. I build things for web and mobile.</h5>
-		<h3 class="title p-t-20 m-b-40">Startups</h3>
-			<h5 class="libre no-margin"><a href="http://callbase.co/">Callbase</a></h5>
-			<p>The perfect Call Center for distributed teams</p>
-			<h5 class="libre no-margin"><a href="http://fonenode.com/">Fonenode</a></h5>
-			<p>Telephony API for Nigeria</p>
-			<h5 class="libre no-margin"><a href="http://prowork.me/">Prowork</a></h5>
-			<p>Project management app for team collaboration</p>
+    <h3 class="title p-t-100">/opeyemi</h3>
+    <p>My name is Opeyemi Obembe. I build things for web and mobile.</p>
+    <p>In my over 15 years of doing this, I have cofounded a <a href="https://prowork.me/">project management</a> app, <a href="http://fonenode.com/">two</a> <a href="http://callbase.co/">telephony</a> startups, a <a href="http://writerack.com/">tweetstorm app</a>; built, sunsetted and sold personal <a href="https://www.producthunt.com/posts/tinypress">projects</a> used <a href="https://www.google.com/search?q=twhii">globally</a> and helped people build their own <a href="https://www.google.com/search?q=gomyway">startups</a> and <a href="http://techcabal.com/2015/12/23/mavin-is-promoting-tiwa-savages-r-e-d-album-with-a-meme-generator/">projects</a>.</p>
+    <p>I am learning to build all over again. You can follow my personal experiments at <a href="http://everygood.co/">everygood.co</a></p>
 
-      <h3 class="title p-t-40">Projects (client; selected)</h3>
-      <h5 class="libre no-margin"><a href="http://gomyway.com/">Gomyway</a></h5>
-      <p>Led development of the ride sharing platform</p>
-      <h5 class="libre no-margin">IamRed</h5>
-      <p>Developed Tiwa Savage's RED album meme generator</p>
-
-		  <h3 class="title p-t-40">Projects (personal)</h3>
-      <h5 class="libre no-margin"><a href="https://suet.co/">Suet</a></h5>
-      <p>Analytics for your Mailgun transactional mails</p>
-			<h5 class="libre no-margin"><a href="http://thefeed.press">TheFeed.press</a></h5>
-  		<p>Discover news shared by your friends on Twitter</p>
-      <h5 class="libre no-margin"><a href="http://billtab.co/">Billtab (v2)</a></h5>
-      <p>A second attempt at an earnings and expenses tracker. Automatically checks your bank transaction emails and makes sense out of it <a href="http://github.com/kehers/billtab" class="label">v1 opensource</a></p>
-			<h5 class="libre no-margin"><a href="http://gum.co/Sxoj">Consuming REST APIs - a soft introduction</a></h5>
-  		<p>A soft introduction to consuming REST APIs. <span class="label">ebook</span> <a href="http://consumingrestapis.github.io" class="label">web version</a></p>
-    	<h5 class="libre no-margin"><a href="http://github.com/kehers/fave">Fave</a></h5>
-    	<p>Send links in tweets you fav to your Pocket account. <a href="http://github.com/kehers/fave" class="label">v1 opensource</a></p>
-			<h5 class="libre no-margin"><a href="#">Pricecrunch</a></h5>
-			<p>Track price changes of your favourite products across your favourite stores. <span class="label">sunsetted</span></p>
-    	<h5 class="libre no-margin"><a href="https://github.com/kehers/tinypress">Tinypress</a></h5>
-    	<p>Create and easily manage your blog on Github <a href="http://github.com/kehers/billtab" class="label">v1 opensource</a></p>
-			<h5 class="libre no-margin"><a href="https://github.com/kehers/tinypress-android-v1">Tinypress for Android</a></h5>
-			<p>Android client for Tinypress <a href="https://github.com/kehers/tinypress-android-v1" class="label">opensource</a></p>
-			<h5 class="libre no-margin"><a href="https://github.com/kehers/snag-android">Snag</a></h5>
-			<p>An experimental spam filter for Android. <span class="label">android</span> <span class="label">uncompleted</span> <a href="https://github.com/kehers/snag-android" class="label">opensource</a></p>
-			<h5 class="libre no-margin"><a href="http://subcopy.tumblr.com/">Subcopy</a></h5>
-			<p>A tumblog of interesting copy across web and mobile apps</p>
-
-		<h3 class="title p-t-20">Posts (<a href="/posts.html">all</a>)</h3>
-			{% for post in site.posts limit:5 %}
-				<h5 class="libre no-margin"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h5>
-				<p>{{ post.date | date_to_string }}</p>
-			{% endfor %}
-	</div>
+    <h3 class="title p-t-20">Posts (<a href="/posts.html">all</a>)</h3>
+      {% for post in site.posts limit:5 %}
+        <h5 class="libre no-margin"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h5>
+        <p>{{ post.date | date_to_string }}</p>
+      {% endfor %}
+  </div>
   </div>
 </div>
 
