@@ -11,7 +11,7 @@ Mailgun Mailing Lists allow you create an email address you can subscribe member
 ### Creating the Mailing List
 Let’s start by creating our example mailing list. We can do this from the dashboard or Mailgun API.
 
-![](/assets/image/{{ page.date | date: '%Y/%m' }}/crete.png)
+![](/assets/image/{{ page.date | date: '%Y/%m' }}/create.png)
 
 > Notes:   
 > - It is important to leave the access level at **read only**. This ensures that only you can send mail to the list through the API.  
@@ -20,9 +20,9 @@ Let’s start by creating our example mailing list. We can do this from the dash
 ### Adding Members
 Now that we have our Mailing List, we can start adding members. 
 
-**Endpoint**: https://api.mailgun.net/v3/lists/{address}/members
-**Method**: POST
-**Authentication**: HTTP Basic (`api` as username, API Key as password)
+**Endpoint**: https://api.mailgun.net/v3/lists/{address}/members   
+**Method**: POST   
+**Authentication**: HTTP Basic (`api` as username, API Key as password)   
 **Parameters**:
   - `address`: email address, e.g. `Alice <alice@example.com>` or  `alice@example.com`
   - `name`: Member name. Optional.
@@ -66,9 +66,9 @@ You can also add existing users to the list using the bulk upload option under *
 
 Or use the bulk insert API.
 
-**Endpoint**: https://api.mailgun.net/v3/lists/{address}/members.json
-**Method**: POST
-**Authentication**: HTTP Basic (`api` as username, API Key as password)
+**Endpoint**: https://api.mailgun.net/v3/lists/{address}/members.json   
+**Method**: POST   
+**Authentication**: HTTP Basic (`api` as username, API Key as password)   
 **Parameters**:
   - `members`: JSON-encoded array. Elements can be either addresses, . `["bob@example.com", "alice@example.com"]`, or JSON objects, e.g. `[{“address": "bob@example.com", "name": "Bob", "subscribed": false}, {"address": "alice@example.com", "name": "Alice"}]`. Custom variables can also be provided, e.g. `[{"address": "Bruce <bruce@jl.dc>", "vars": {"superpower": "money"}},{"name": "Barry", "address": "barry@jl.dc", "vars": {"superpower": "speed"}}]`. 1000 emails per call.
   - `upsert`: `yes` to update member if present, `no` to raise error in case of a duplicate member (default)

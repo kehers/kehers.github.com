@@ -8,9 +8,8 @@ body {
   min-width: 90%;
 }
 blockquote {
-  border-left: 2px solid #ddd;
-  padding-left: 20px;
-  color: #566;
+  border-left: 5px solid #ddd;
+  margin-left: 0
 }
 article {
   margin: 150px 0 50px;
@@ -23,12 +22,13 @@ article img {
 }
 code {
   border: none;
-  background-color: transparent
+  background-color: transparent;
 }
 pre > code {
   color: #ddd;
 }
-p > code {
+p > code,
+li > code {
   background-color: #eee;
   word-wrap: break-word;
   white-space: pre-wrap;
