@@ -1,0 +1,38 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #fafafa;
+  color: #444
+}
+h1 {
+  color: #0a0f14
+}
+h1, h2, h3 {
+  font-family: 'Poppins', serif;
+}
+
+footer, .lead {
+  background-color: #20284c;
+  color: #b2b4dd;
+}
+.stats {
+  background-color: #b2b4dd;
+  color: #000;
+}
+.features h2 {
+  color: #000
+}
+.lead h1 {
+  color: #fff;
+}
+.logo {
+  margin: 0 !important;
+  padding: 2em 0 1em;
+}
+.logo a {
+  text-decoration: none;
+  color: #e2e2f2;
+}
+
+footer {
+  font-size: 90%
+}

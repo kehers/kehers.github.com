@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Shakepay</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Poppins:700" rel="stylesheet">
+  <link rel="stylesheet" href="css/tachyons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+  <div class="lead">
+    <div class="ph6 ph6-ns center">
+      <header class="pb3">
+        <h1 class="f3 lh-title logo"><a href="/">Shakepay</a></h1>
+      </header>
+
+      <div class="fl w-60">
+        <div class="pv5 pr5">
+          <div class="pb3">
+            <h1 class="f2 lh-title">The easiest way for Canadians to buy and sell bitcoin</h1>
+            <p class="f4 lh-copy">We make it easy to securely buy, use, and spend bitcoin.<br>
+            Own your first bitcoin in less than 10 minutes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fl w-40">
+        <div class="pt5">
+          <p>&nbsp;</p>
+          <canvas id="graph" height="100"></canvas>
+        </div>
+      </div>
+      <div class="cb-ns"></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="ph6 ph6-ns center">
+      <div class="fl w-30">
+        <div class="pv5">
+          <h3 class="f2 lh-title ma0">10 minutes</h3>
+          to get your first bitcoin
+        </div>
+      </div>
+      <div class="fl w-30">
+        <div class="pv5">
+          <h3 class="f2 lh-title ma0">$20M+</h3>
+          in digital currency exchanged
+        </div>
+      </div>
+      <div class="fl w-30">
+        <div class="pv5">
+          <h3 class="f2 lh-title ma0">30,000+</h3>
+          customers served
+        </div>
+      </div>
+      <div class="cb-ns"></div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="ph6 ph6-ns center">
+      <div>
+        <div class="fl w-40">
+          <div class="pv6 pr5">
+            <h2 class="f2 lh-title">Instant account funding</h2>
+            <p class="f4 lh-copy">Send Shakepay an e-transfer and your account gets funded instantly.</p>
+          </div>
+        </div>
+        <div class="cb-ns"></div>
+      </div>
+      <div>
+        <div class="fl w-40">
+          <div class="pv6 pr5">
+            <h2 class="f2 lh-title">Store bitcoin securely</h2>
+            <p class="f4 lh-copy">The vast majority of all digital assets on Shakepay are stored securely offline. See for yourself (link to security).</p>
+          </div>
+        </div>
+        <div class="cb-ns"></div>
+      </div>
+      <div>
+        <div class="fl w-40">
+          <div class="pv6 pr5">
+            <h2 class="f2 lh-title">Your money in your control</h2>
+            <p class="f4 lh-copy">Send out your bitcoin to a wallet in your control or your Canadian Dollars directly to your bank account in seconds.</p>
+          </div>
+        </div>
+        <div class="cb-ns"></div>
+      </div>
+      <div>
+        <div class="fl w-40">
+          <div class="pv6 pr5">
+            <h2 class="f2 lh-title">Complete transparency (or No hidden fees)</h2>
+            <p class="f4 lh-copy">All fees are posted online and we'll never charge you one cent more.</p>
+          </div>
+        </div>
+        <div class="cb-ns"></div>
+      </div>
+      <div>
+        <div class="fl w-40">
+          <div class="pv6 pr5">
+            <h2 class="f2 lh-title">Responsive support</h2>
+            <p class="f4 lh-copy">We'll get your problem resolved within hours any day of the week.</p>
+          </div>
+        </div>
+        <div class="cb-ns"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="ph6 ph6-ns center">
+      <div class="fl w-60">
+        <div class="pv5">
+          <p class="lh-copy">We make it easy to securely buy, use, and spend bitcoin.<br>
+            Own your first bitcoin in less than 10 minutes.</p>
+          <p class="lh-copy">&copy; 2018, Shakepay</p>
+        </div>
+      </div>
+      <div class="cb-ns"></div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script type="text/javascript">
+  var ctx = document.getElementById("graph").getContext('2d');
+  var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May'],
+          datasets: [{
+            label: '',
+            backgroundColor: '#71d3f6',
+            borderColor: '#71d3f6',
+            borderWidth: 1,
+            pointRadius: 1,
+            lineTension: 0,
+            data: [2832, 4735, 4355, 6131, 9767, 13784, 10147, 10274, 6934, 9217],
+            fill: false,
+          }]
+        },
+        options: {
+          responsive: true,
+          legend:{
+            display: false
+          },
+          title:{
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              display: false
+            }],
+            yAxes: [{
+              display: false
+            }]
+          }
+        }
+      });
+  </script>
+
+</body>
+</html>
