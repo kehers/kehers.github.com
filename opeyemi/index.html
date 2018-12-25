@@ -27,13 +27,14 @@ published: true
     <h3 class="title p-t-100">/opeyemi</h3>
     <p>My name is Opeyemi Obembe. I build things for web and mobile.</p>
     <p>In my over 15 years of doing this, I have cofounded a <a href="https://prowork.me/">project management</a> app, <a href="http://fonenode.com/">two</a> <a href="http://callbase.co/">telephony</a> startups, a <a href="http://writerack.com/">tweetstorm app</a>; built, sunsetted and sold personal <a href="https://www.producthunt.com/posts/tinypress">projects</a> used <a href="https://www.google.com/search?q=twhii">globally</a> and helped people build their own <a href="https://www.google.com/search?q=gomyway">startups</a> and <a href="http://techcabal.com/2015/12/23/mavin-is-promoting-tiwa-savages-r-e-d-album-with-a-meme-generator/">projects</a>.</p>
-    <p>I am learning to build all over again. You can follow my personal experiments at <a href="http://everygood.co/">everygood.co</a></p>
+    <p>I currently lead technology for <a href="https://reliancehmo.com/">RelianceHMO</a>. I build personal projects at <a href="http://everygood.co/">everygood.co</a></p>
 
-    <h3 class="title p-t-20">Posts (<a href="/posts.html">all</a>)</h3>
+    <h3 class="title p-t-20">Posts</h3>
       {% for post in site.posts limit:5 %}
         <h5 class="libre no-margin"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h5>
         <p>{{ post.date | date_to_string }}</p>
       {% endfor %}
+      <h5 class="libre no-margin"><a href="/posts.html">View more &rarr;</a></h5>
   </div>
   </div>
 </div>
