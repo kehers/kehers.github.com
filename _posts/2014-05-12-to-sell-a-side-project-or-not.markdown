@@ -1,8 +1,9 @@
 ---
-published: true
 title: To sell a side project or not?
+date: 2014-05-12 00:00:00 Z
 layout: post
 ---
+
 Saw this interesting checklist on HN just now on if to sell a side project or not:
 
 > [ ] I don't need money   

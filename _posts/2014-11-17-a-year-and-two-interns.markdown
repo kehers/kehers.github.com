@@ -1,8 +1,9 @@
 ---
-published: true
 title: A year and two interns
+date: 2014-11-17 00:00:00 Z
 layout: post
 ---
+
 My ([our, actually](http://fonebaselabs.com)) two interns leave by the end of the month. I will miss them. It's been an interesting and rough couple of months. But I am proud of what we've achieved together. I am proud to say I have made them better than they were. And I am better than I was before them as well.
 
 ## The beginning

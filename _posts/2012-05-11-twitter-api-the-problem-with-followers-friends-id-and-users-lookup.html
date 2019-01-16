@@ -1,8 +1,9 @@
---- 
-published: true
-title: "Twitter API: The problem with followers[friends]/id and users/lookup"
+---
+title: 'Twitter API: The problem with followers[friends]/id and users/lookup'
+date: 2012-05-11 00:00:00 Z
 layout: post
 ---
+
 <p>Twitter is doing a little <a href="https://dev.twitter.com/blog/api-housekeeping" target="_blank">API housekeeping</a> and come 14th* (May, 2012) the changes will take effect and they plan on pulling the plugs on deprecated methods. I have gone through the changes and compared the deprecated API with new ones to see where it affects <a href="http://twhii.com/">Twhii</a>. As a client for low end java devices, there is a little hit here and there but it's not that bad. For example, I've had to remove public timeline but then who really cares that much about public timelines anyway. But beyond Twhii, I have noticed that the deprecation of <a href="https://dev.twitter.com/docs/api/1/get/statuses/followers" target="_blank">statuses/followers</a> (and statuses/friends) for the combination of <a href="https://dev.twitter.com/docs/api/1/get/followers/ids" target="_blank">followers[friends]/id</a> and <a href="https://dev.twitter.com/doc/get/users/lookup" target="_blank">users/lookup</a> has some downsides.<strong>&nbsp;</strong></p>
 <p><strong>1. The follow order</strong></p>
 <p><span style="text-decoration: underline;">Statuses/followers[friends]</span> return list of followers or friends in the order they follow or are followed by an account. When I check my followers, I want to know the people that just followed me since last check. <span style="text-decoration: underline;">followers/id + users/lookup</span> don't return in that order. Really, I don't even know in what order the ids are returned.</p>

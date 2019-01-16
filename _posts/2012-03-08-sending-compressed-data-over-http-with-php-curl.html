@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: Sending compressed data over http with PHP curl
+date: 2012-03-08 00:00:00 Z
 layout: post
 ---
+
 <p>There are times applications need to sync across multiple servers by data transfer via http. This data could at times be bulky, taking up to tenths of megs. Instead of sending that large volume, a better way would be to compress first, send, and decompress at the other end. This will not only reduce the consumption of bandwidth but as well make the transfer faster.</p>
 <p>Here is a the way to do it in PHP using the <a href="http://php.net/manual/en/book.curl.php">CURL</a> library:</p>
 <ol>

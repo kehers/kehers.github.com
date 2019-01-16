@@ -1,6 +1,6 @@
 ---
-title: "TheFeed.press: Data and then?"
-published: true
+title: 'TheFeed.press: Data and then?'
+date: 2017-09-13 00:00:00 Z
 layout: post
 ---
 

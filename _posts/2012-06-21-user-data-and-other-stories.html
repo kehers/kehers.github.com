@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: User Data and other stories
+date: 2012-06-21 00:00:00 Z
 layout: post
 ---
+
 <p>Rule 1. Never trust any data coming from the user. You should always sanitize before use. While <a href="http://php.net/manual/en/function.mysql-real-escape-string.php">mysql_real_escape_string</a> protects against sql injection, it won't save you from Javascript XSS. The path for many [PHP] developers is to therefore</p>
 <ol>
 <li>Strip tags with <a href="http://php.net/manual/en/function.strip-tags.php">strip_tags</a></li>

@@ -1,8 +1,9 @@
 ---
-published: true
 title: Back on Android
+date: 2014-05-17 00:00:00 Z
 layout: post
 ---
+
 I got an iPhone 4s some time late last year. I wanted the experience. Then
 development purpose - if I eventually get to it. For a couple of months,
 the phone was my secondary device; I used it occasionally for the apps.

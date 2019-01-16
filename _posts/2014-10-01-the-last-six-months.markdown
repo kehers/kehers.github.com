@@ -1,8 +1,9 @@
 ---
-published: true
 title: The last six months
+date: 2014-10-01 00:00:00 Z
 layout: post
 ---
+
 I remember laying there on the bed waiting for the call. It was the call that would change everything - change our lives forever. We've worked for it. We've fought for it. All we could do at that point was wait. 
 
 I have experimented with telephony a while ago so when the [Fonenode](https://fonenode.com/) idea came up, it easily got my attention. It wasn't supposed to be a full commitment at first. I had moved to Lagos from my quiet life in Ibadan to focus on [Prowork](http://prowork.me) under the [Tech Launchpad incubation](http://techlaunchpad.com.ng/) program. Things got interesting for a bit. Then somewhere along the line I lost it. And after three years, it was time for me to move on to something different. Later in October, I picked what was left and returned to Ibadan. 

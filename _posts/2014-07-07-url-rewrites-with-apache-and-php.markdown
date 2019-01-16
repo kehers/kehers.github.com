@@ -1,8 +1,9 @@
 ---
-published: true
 title: URL rewrites with Apache and PHP
+date: 2014-07-07 00:00:00 Z
 layout: post
 ---
+
 We all love fancy URLs.
 
 1. You get to hide your file extensions, e.g [tinypress.co/about](https://tinypress.co/about) (no .html, .php or whatever)

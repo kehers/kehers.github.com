@@ -1,6 +1,6 @@
 ---
-published: true
 title: Disabling retries on Amazon Lambda
+date: 2017-04-28 00:00:00 Z
 layout: post
 ---
 

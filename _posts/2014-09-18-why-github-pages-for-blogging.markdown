@@ -1,8 +1,9 @@
 ---
-published: true
 title: Why Github pages for blogging?
+date: 2014-09-18 00:00:00 Z
 layout: post
 ---
+
 [I moved my blog](http://kehers.github.io/2013/02/20/moved.html) to [Jekyll on] Github pages a while ago and I've enjoyed every bit of it. Then it was because it felt like a geeky thing to do. But now I can list a couple of reasons it was the right move. And this should help others that need conviction too.
 
 #### The new cool

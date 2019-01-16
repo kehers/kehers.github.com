@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: Twilio's PHP library support for JSON
+date: 2010-12-30 00:00:00 Z
 layout: post
 ---
+
 <p>I have been hacking <a href="http://twilio.com/">Twilio</a> for some days now and it's been fun.</p>
 <p>The  Twilio API supports XML and JSON as response formats, XML being the  default. Twilio has also been generous to include sample libraries in  various languages to play around the API. Thing however is that the PHP  library has support for only XML as the response type. Being a fan of  JSON (the reduction in data transfer as compared to XML among other  things), I added a little hack to the response class in the library.</p>
 <p>So here is my new constructor of the <strong>TwilioRestResponse</strong> class:</p>

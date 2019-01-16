@@ -1,8 +1,9 @@
 ---
-published: true
-title: 4 little open source projects 
+title: 4 little open source projects
+date: 2015-11-19 00:00:00 Z
 layout: post
 ---
+
 Here are 4 small open source projects I have created this year.
 
 ### 1. Ubercodes

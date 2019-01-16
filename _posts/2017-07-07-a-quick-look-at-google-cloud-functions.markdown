@@ -1,8 +1,9 @@
 ---
-published: true
 title: A quick look at HTTP triggers on Google Cloud Functions
+date: 2017-07-07 00:00:00 Z
 layout: post
 ---
+
 When writing [Suet's](https://suet.co/) webhook, I went with Amazon's [API gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/) by default. After spending a couple of hours to write and deploy, I found out Amazon's API gateway has no support for multipart/form-data, a content type Mailgun sends some webhook data in. Pheeew. Well, the good news is that allowed me to give [Google Cloud Functions](https://cloud.google.com/functions/) a spin.
 
 The good parts:

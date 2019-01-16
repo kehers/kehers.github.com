@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: MongoDb - my first impressions
+date: 2010-07-31 00:00:00 Z
 layout: post
 ---
+
 <p><img src="/assets/image/{{ page.date | date: '%Y/%m' }}/12975944-speed.jpg" /></p>
 <p>I've been toying on new things of late by giving a shot at new frameworks, standards and general development tools. And <a href="http://mongodb.org">MongoDb</a> has been one of the new love.</p>
 <p>There is this project I'm playing with that has something along the lines of a contact manager. Thing is the app involves way too many database writes. An example is importing a set of contacts (in VCard). Each contact imported performs multiple writes across 4 different tables. In short, importing a collection of 100 contacts (zipped) performs nothing less than 500 writes and could even be as much as 800 depending on the availability of different contact elements (VCard standard) like <em>addr, role, email, org</em>, etc. Profiling (locally on my PC), I got around 20 sec (including script execution time) for an import action of a collection of 144 vcard contacts using MySQL as my DB. This is quite worrysome. I switched the database engine to Mongo and killed the relationships between the 4 tables used for contacts insertion to one. Guess what? I got just around 2 seconds against MySQL's 20 secs. The write speed is just so great!</p>

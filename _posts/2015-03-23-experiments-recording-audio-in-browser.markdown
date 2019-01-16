@@ -1,8 +1,9 @@
 ---
-published: true
 title: Recording audio in browser
+date: 2015-03-23 00:00:00 Z
 layout: post
 ---
+
 With advancements in HTML5, audio recording in browser is now easier than before. Even though the underlying technologies, Web Audio API + WebRTC, is [not fully supported across browsers](http://caniuse.com/#search=webrtc), it is a better alternative to having users install addons or download extensions to enable audio recording in browser.
 
 ## The how

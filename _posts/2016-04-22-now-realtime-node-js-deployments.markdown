@@ -1,8 +1,9 @@
 ---
-published: true
-title: "now - realtime node.js deployments"
+title: now - realtime node.js deployments
+date: 2016-04-22 00:00:00 Z
 layout: post
 ---
+
 [Now](http://now.sh/) allows you deploy nodejs applications in realtime, from your terminal. Think of this as a simpler Heroku for nodejs. You simply run `now` in your project directory and you get a unique URL similar to this: https://yo-smppqrgsbt.now.sh
 
 ### Installation

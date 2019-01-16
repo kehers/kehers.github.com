@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: JQuery and Element Objects
+date: 2010-08-01 00:00:00 Z
 layout: post
 ---
+
 <p>Part of the switch I'm making includes <a href="http://prototypejs.org">prototypejs</a> to <a href="http://jquery.com">JQuery</a>. No, not like I've found anything lacking in prototype. It's just about the change.<br />The transition has been quite easy very much unlike <a href="{% post_url 2010-07-31-mongodb-my-first-impressions %}">MySQL to MongoDB</a>. The two javascript frameworks even share some methods that are exactly the same - same name, same work. The little problem however is the way both handles objects.<br />JQuery doesn't seem to work with core element objects. I will explain. Take a look at the sample code:</p>
 <p>{% highlight html linenos %}
 <p onclick="alert(this)">Sup?</p>

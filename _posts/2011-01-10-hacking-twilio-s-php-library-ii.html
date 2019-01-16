@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: Hacking Twilio's PHP library II
+date: 2011-01-10 00:00:00 Z
 layout: post
 ---
+
 <p>So here are three more hacks for the Twilio PHP library.</p>
 <p><strong>1. Support for both XML and JSON</strong></p>
 <p>In <a href="{% post_url 2010-12-30-twilio-s-php-library-support-for-json %}">my last piece</a>, I posted a code hack that enables using the JSON endpoints of the API instead of the XML. What if we can find a way to support both? Here is a rewrite of the <strong>TwilioRestResponse</strong> constructor class to do that.</p>

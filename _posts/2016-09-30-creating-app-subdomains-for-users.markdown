@@ -1,8 +1,9 @@
 ---
-published: true
 title: Creating App Subdomains for Users
+date: 2016-09-30 00:00:00 Z
 layout: post
 ---
+
 Someone sent me a [message on Twitter](http://twitter.com/kehers) asking how to automatically create user subdomains and further allow users point their preferred domain to the subdomain. So I think I should just do a quick one about it as it really isn't a complex thing.
 
 A lot of web apps do this. A big example is Tumblr. Once you signup, you get a shiny subdomain based on your selected username, e.g [appscreens.tumblr.com](http://appscreens.tumblr.com/). Another example is Github pages which this blog runs on. On setup, I got [kehers.github.io](http://kehers.github.io/). What I later did was to register [obem.be](http://obem.be/) and point it to [kehers.github.io](http://kehers.github.io/)

@@ -1,8 +1,9 @@
 ---
-published: true
 title: OAuth 2 on Android
+date: 2014-07-28 00:00:00 Z
 layout: post
 ---
+
 Implementing OAuth 2 on Android follows the exact flow as is on web. Taking Github as an example provider, the OAuth [web] flow is this -
 
 1. **Redirect users to GitHub for authentication**

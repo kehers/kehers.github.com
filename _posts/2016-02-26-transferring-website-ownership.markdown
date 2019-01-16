@@ -1,8 +1,9 @@
 ---
-published: true
 title: Transferring website ownership
+date: 2016-02-26 00:00:00 Z
 layout: post
 ---
+
 I experiment on ideas for the fun and to learn new things from time to time. Once I run these projects for a while, I either [open source](http://github.com/kehers/tinypress) or sell them. What this means is I get to transfer site assets and services to a new maintainer from time to time. This transfer can be a little tricky. While some services make it easy to do, it is difficult on others. Here is a how-to guide for some of the things I get to deal with. PS: This is not a definitive list. These are just some of the services I use for personal experiments.
 
 ### Domain name, SSL and Email (Namecheap)

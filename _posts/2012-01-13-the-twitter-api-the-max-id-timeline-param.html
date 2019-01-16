@@ -1,8 +1,9 @@
---- 
-published: true
-title: "The Twitter api: the max_id timeline param"
+---
+title: 'The Twitter api: the max_id timeline param'
+date: 2012-01-13 00:00:00 Z
 layout: post
 ---
+
 <p>I have been making some improvements to <a href="http://twhii.com/">Twhii</a> of late. Memory management, better sign-on process and all that. Among the numerous others, one thing that has come with the update is adding a 'Load More' button to load more tweets.</p>
 <p>The 'load more' functions differently from loading new tweets. Actually, this loads previous tweets. Loading new tweets uses the since_id parameter in related timeline APIs while loading previous tweets uses the max_id parameter (see <a href="https://dev.twitter.com/docs/api/1/get/statuses/home_timeline">https://dev.twitter.com/docs/api/1/get/statuses/home_timeline</a> for sample doc). In other words, if you have a stream of tweets, you can take the id of the topmost tweet (i.e the most recent) and pass it as a since_id parameter to fetch recent tweets (i.e new tweets after that id). You can also take the id of the last tweet and pass it as max_id parameter to fetch tweets before that id. However, max_id (as documented and tested) may include the tweet with the passed id in the returned stream.</p>
 <p>I don't know Twitter's reason for this but I think it shouldn't be so. If I want to get tweets before 'tweetA' and so passed the id of tweetA to the API, I shouldn't get tweetA as part of the returned array of tweets. Even since_id doesn't work this way.</p>

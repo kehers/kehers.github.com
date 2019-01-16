@@ -1,6 +1,6 @@
 ---
-published: true
-title: "Musings: TheFeed.press"
+title: 'Musings: TheFeed.press'
+date: 2017-05-30 00:00:00 Z
 layout: post
 ---
 

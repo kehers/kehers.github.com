@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: Little places we fail - bad policies and TOS
+date: 2010-12-04 00:00:00 Z
 layout: post
 ---
+
 <p>The penultimate version of <a href="http://mobile.ngbot.com">ngBot mobile</a> allows users send mobile items from the site to phones via MMS. To accomplish this we needed an sms provider that supported binary sms. And <a href="http://clickatell.com">clickatell</a> was it. So we made arrangements, got an account up, implemented the API and everyone lived happily thereafter.</p>
 <p>But with all stories, there is never truly a happy ending if you follow far enough. We redesigned ngBot mobile and killed support for sending items via MMS. For the normal SMS feature that allows users send SMS from the site to phone, we switched to a local gateway that was way cheaper to clickatell. For one, our new gateway support custom sender ids. And two, payment was much easier besides being cheaper. With clickatell you have to register all sender ids you want to use and as regards payment, the only supported payment method from Nigeria is direct bank transfer. Quite unfortunately though, we've used only a little of the purchased credit at clickatell. But then since it's not as if the credits are lost, we can always use clickatell as our backup gateway should we ever find the reason to urgently make a switch. That scenerio, however, never happened.</p>
 <p>Long months away, there is the need to go back to the clickatell. For our latest project, <a href="http://mycontactsapp.com">myContacts</a>, there is the need to send syncronization settings to users. Since clickatell has a good binary sms support and we already have an account, I rushed back. The first blow came when I had problems signing in. After much attempts and failed 'recover my password' attempts, I finally decided to talk to the support. The support is great. I got a quick response that my account has been deactivated but then now reactivated. What however came as a shock was that all the credits in the account were gone. I quickly complained to the support about this and the response was fast to tell me it is part of their policy and is there in their terms. And true the terms says you must use up purchased credits within 120 days.</p>

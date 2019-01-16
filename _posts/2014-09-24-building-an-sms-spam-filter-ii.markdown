@@ -1,8 +1,9 @@
 ---
-published: true
-title:  Building an SMS spam filter II
+title: Building an SMS spam filter II
+date: 2014-09-24 00:00:00 Z
 layout: post
 ---
+
 I started an experiment on spam filtering for SMS the other week. I called it **Snag**. You can read about it here already: <https://kehers.github.com/2014/09/07/building-an-sms-spam-filter.html>. 
 
 The way Snag should work is

@@ -1,5 +1,16 @@
-gems: [jekyll-paginate]
+---
+title: Kehers.Github.Com
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+gems:
+- jekyll-paginate
 highlighter: rouge
-excerpt_separator: ""
+excerpt_separator: ''
 paginate: 5
 markdown: kramdown

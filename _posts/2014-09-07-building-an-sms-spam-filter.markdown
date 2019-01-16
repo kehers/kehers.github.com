@@ -1,8 +1,9 @@
 ---
-published: true
 title: Building an SMS spam filter
+date: 2014-09-07 00:00:00 Z
 layout: post
 ---
+
 TL;DR
 
 I am experimenting with a spam filter for SMS. You can demo an implementation here: [kehers.github.io/experiments/snag](http://kehers.github.io/experiments/snag). (Or download here: [github.com/kehers/snag](http://github.com/kehers/snag)). If you are interested in the final app, get notified here: [tinyletter.com/kehers](https://tinyletter.com/kehers)

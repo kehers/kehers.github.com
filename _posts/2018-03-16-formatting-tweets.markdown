@@ -1,6 +1,6 @@
 ---
-title: "Formatting tweets: a look at Extended tweets, Retweets and Quotes"
-published: true
+title: 'Formatting tweets: a look at Extended tweets, Retweets and Quotes'
+date: 2018-03-16 00:00:00 Z
 layout: post
 ---
 

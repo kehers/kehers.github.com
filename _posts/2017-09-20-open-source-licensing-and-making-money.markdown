@@ -1,6 +1,6 @@
 ---
-title: "Open-source, licensing and making money"
-published: true
+title: Open-source, licensing and making money
+date: 2017-09-20 00:00:00 Z
 layout: post
 ---
 

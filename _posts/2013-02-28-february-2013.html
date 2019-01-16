@@ -1,8 +1,9 @@
---- 
-published: true
+---
 title: February 2013
+date: 2013-02-28 00:00:00 Z
 layout: post
 ---
+
 <p>It has been a lazy month. It moved too fast. Oh well, I think it's that many things happened - travelling, presentation and studying some [dev] technologies and standards. So what dev thing have I done? Nothing really new. Just improvements on existing projects.</p>
 <p><strong>aarrr.js</strong></p>
 <p>We've been receiving requests for some of our [<a href="http://prowork.me/">prowork</a>] metrics. Each time there is a new request different from something already pulled, I will have to mine our dbs (we run on MySQL and Mongo). And damn, Mongo can be interesting when you have to do aggregate functions and those map reduce kicks. Even though we've been able to pull metrics like user growth, demography, corporate adoption, etc, ones like retention ratio, activity channels (web? mobile? an app through the api?) and referrals from users can be crazy. What I have done is to write a [node] JS api that receives calls for acquisition, activation, retention, revenue and referrals - the popular aarrr, and do the necessary sort, filter and grouping. On it is a socket io layer you can plug a simple html dashboard to and see these calls live.</p>

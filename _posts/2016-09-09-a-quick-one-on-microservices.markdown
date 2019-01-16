@@ -1,8 +1,9 @@
 ---
-published: true
 title: A quick one on microservices
+date: 2016-09-09 00:00:00 Z
 layout: post
 ---
+
 ### Context
 Following links shared on my Twitter timeline has been something I have been interested in. [One experiment](http://github.com/kehers/fave) was to send links in Tweets I fave to my pocket account. But then my unread Pocket articles kept growing. Plus what happens to links I miss and didn't fave on the timeline? Why not a service that constantly checks my timeline and saves the links instead? (Something between Pocket and Nuzzle). This led me to build a [tiny service](http://thefeed.press) I have been using to follow articles shared on my timeline for some months now. I recently moved the core of the service, the part that constantly checks the timeline, from iron.io worker to Amazon Lambda and wanted to write about it. It however just feels odd writing about queues, workers, iron.io and Amazon Lambda without writing about why such architecture in the first place. 
 

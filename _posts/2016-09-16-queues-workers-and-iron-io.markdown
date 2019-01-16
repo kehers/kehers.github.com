@@ -1,8 +1,9 @@
 ---
-published: true
 title: Queues, Workers and iron.io
+date: 2016-09-16 00:00:00 Z
 layout: post
 ---
+
 *[In the last piece](/2016/09/09/a-quick-one-on-microservices.html), I briefly talked about the microservice architecture. In this, I will touch on queues, workers and iron.io. In the next, computing with Amazon Lambda. To keep it concise, I will break this to two parts. This part will be more of theoretical context stuff. The second will be more of how-to codes and screenshots.*
 
 ### Queues

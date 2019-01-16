@@ -1,8 +1,9 @@
 ---
-published: true
 title: On Curl's CURLOPT_NOBODY
+date: 2014-04-06 00:00:00 Z
 layout: post
 ---
+
 Curl has a CURLOPT_NOBODY option that allows you exclude the body from the output. In other words, only the HTTP headers are returned in the request; the content is not. This is extremely useful when you need to just "hit" a URL and "leave" without retrieving the content. Or say you want to verify a link works or get details of a resource (size of an image or mp3 file for example) without downloading it.
 
 What many don't know however (just did myself) is that underneath, the option sets the request method to [HEAD](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.4). That said, never use the option when making a POST; whether you need the result or not!

@@ -1,8 +1,9 @@
 ---
-published: true
 title: Using Pushover for issue logging and notifications
+date: 2015-03-12 00:00:00 Z
 layout: post
 ---
+
 Things go wrong within applications, in production. A good thing to do is to build a way to automatically capture and log the issue and related data. This way, these issues don't just go unnoticed. And the location of the issue is known too, which is like half problem solved.
 
 Here is an example source:

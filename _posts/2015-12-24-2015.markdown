@@ -1,8 +1,9 @@
 ---
-published: true
-title: 2015
+title: '2015'
+date: 2015-12-24 00:00:00 Z
 layout: post
 ---
+
 ### The travel
 
 I traveled back to US end of June. I needed the holiday. But I had no plans about the *where*. I didn't want to do San Francisco. I wanted somewhere different. And it didn't take Kaya and Courtney much persuasion to narrow my options to Los Angeles. Kaya and Courtney, both from LA, were exchange students I made friends with at the University of Legon, Accra earlier this year. When LA came up, I looked up the tech scene (I didn't get to do anything tech in the end) and life style and figured it would be fun. I mean, it is Hollywood after all. So I packed up and did it.

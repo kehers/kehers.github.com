@@ -1,6 +1,6 @@
 ---
 title: Working with Mailgun webhooks
-published: true
+date: 2017-09-08 00:00:00 Z
 layout: post
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Sending bulk emails with Mailgun lists"
-published: true
+title: Sending bulk emails with Mailgun lists
+date: 2018-04-26 00:00:00 Z
 layout: post
 ---
 

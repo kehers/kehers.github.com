@@ -1,8 +1,9 @@
 ---
-published: true
 title: A quick look at Twitter analytics [and Twitter cards]
+date: 2014-08-16 00:00:00 Z
 layout: post
 ---
+
 [Twitter analytics](https://analytics.twitter.com/) gives you insight into your twitter impact. Needless to say, this is a useful social media marketing tool. It answers the questions: how many times was your tweet displayed? The engagement[^1]? Link clicks?
 
 ## Getting in

@@ -1,6 +1,6 @@
 ---
-published: true
-title: "re - Tiketmobile"
+title: re - Tiketmobile
+date: 2015-11-18 00:00:00 Z
 layout: post
 ---
 
