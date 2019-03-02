@@ -46,14 +46,14 @@ a:hover {
 
 .container {
 	margin: 20px auto 0;
-	width: 960px;
+	width: 640px;
 	/*width: 100%;*/
 	padding: 0;
 	position: relative;
 }
-.canvas-wrp, .logo-wrp {
+/*.canvas-wrp, .logo-wrp {
 	float: left;
-}
+}*/
 .logo-wrp {
 	padding: 20px;
 	box-sizing: border-box;
@@ -68,9 +68,9 @@ a:hover {
 .image-wrp img {
 	width: 100%;
 }
-.canvas-wrp {
+/*.canvas-wrp {
 	width: 640px
-}
+}*/
 .logo-wrp {
 	width: 300px;
 	margin-top: 50px;

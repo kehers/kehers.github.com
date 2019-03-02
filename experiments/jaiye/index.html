@@ -17,35 +17,30 @@
 
 <body>
 
-<div class="pre container" style="width:100%;max-width:960px">
+  <div class="pre container" style="width:100%;max-width:960px">
 
-  <img src="assets/images/home.jpg" class="lead">
+    <img src="assets/images/home.jpg" class="lead">
 
-  <input type="file" id="file-input" class="hide">
-  <p class="center"><button class="button add">Create your #Jaiye image</button></p>
-  <p>&nbsp;</p>
+    <input type="file" id="file-input" class="hide">
+    <p class="center"><button class="button add">Create your #Jaiye image</button></p>
+    <p>&nbsp;</p>
 
-  <p>If you've never been to Lagos, or even if you have, LADIPOE brings a new lens to the big city with his latest single release, "Jaiye (Time of Our Lives)"</p>
+    <p>If you've never been to Lagos, or even if you have, LADIPOE brings a new lens to the big city with his latest single release, "Jaiye (Time of Our Lives)"</p>
 
-  <p>From the Yoruba word that literally translates to "eat life", we get an infectious and danceable ode to the parts of Lagos that come alive—or as POE puts it, from Lagos Island to Mushin Olosha, and everything these places inspire. "Jaiye" is a celebration of life, of youth, and of living in the moment. We invite you to join this celebration through the jaiye filter for those memorable jaiye photos.</p>
-</div>
+    <p>From the Yoruba word that literally translates to "eat life", we get an infectious and danceable ode to the parts of Lagos that come alive—or as POE puts it, from Lagos Island to Mushin Olosha, and everything these places inspire. "Jaiye" is a celebration of life, of youth, and of living in the moment. We invite you to join this celebration through the jaiye filter for those memorable jaiye photos.</p>
+  </div>
 
-  <div class="container c-c hide">
+  <div class="container">
+    <div class="hide"><img src="assets/images/stamp.png" id="watermark"></div>
     <div class="canvas hide">
-      <div class="row">
-        <div class="canvas-wrp">
-          <canvas id="c" width="640" height="640"></canvas>
-        </div>
-        <div class="logo-wrp hide">
-          <div class="hide"><img src="assets/images/stamp.png" id="watermark"></div>
-        </div>
-      </div>
-      <p class="center btn-container crop-wrp" style="width:640px"><a href="#" class="button" id="crop">Crop</a></p>
-      <p class="center btn-container dwn-wrp hide" style="width:640px"><a href="#" class="button" id="download">Download</a> <a href="?" class="button">Restart</a></span></p>
+      <canvas id="c" width="640" height="640"></canvas>
+      <p class="center btn-container crop-wrp"><a href="#" class="button" id="crop">Crop</a></p>
+      <p class="center btn-container dwn-wrp hide"><a href="#" class="button" id="download">Download</a> <a href="?" class="button">Restart</a></p>
     </div>
   </div>
+
   <div class="image-wrp" style="text-align:center;display:none">
-    <img id="image" download="flawless.png">
+    <img id="image" download="jaiye.png">
     <p style="box-sizing:border-box;padding:10px;font-size:140%">Long press image and select "Save Image" to download the image</p>
   </div>
 

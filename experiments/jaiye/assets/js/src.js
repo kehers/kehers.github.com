@@ -170,7 +170,6 @@ $('#file-input').change(function(e) {
         //$('#scale-control').show();
         $('.pre').hide();
         $('.canvas').show();
-        $(".c-c").show()
       });
     }
   }
@@ -313,7 +312,7 @@ canvas.on("object:moving", function(e){
     }
 });//*/
 
-function resizeCanvas() {
+/*function resizeCanvas() {
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   if (width < 960) {
     scaleRatio = width/640;
@@ -331,7 +330,8 @@ function resizeCanvas() {
     //alert("reseize");
   }
 }
+
 // Responsive scaling
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas, false);
-//})();
+//})();//*/
