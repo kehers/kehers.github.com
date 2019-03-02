@@ -6,7 +6,7 @@ var added_photo = false; // There a photo now?
 var black_stamped = true;
 var watermark = document.getElementById('watermark');
 var stamp, cropper, image, frame;
-var wdt = 640, scale, scaleRatio = 1;
+var scale, scaleRatio = 1;
 
 function addStamp(imgElement, left, top) {
   /*if (!left) {
@@ -21,6 +21,8 @@ function addStamp(imgElement, left, top) {
       evented: true,
       selectable: true,
       hasControls: false,
+      originX: "center",
+      originY: "center",
       left: left,
       top: top,
       scaleX: 0.6,
@@ -121,8 +123,6 @@ $('#file-input').change(function(e) {
           crop_dim = _w - 20;
         }
 
-        //console.log(_top, _left);
-
         image.set({
           id: 'image',
           originX: "center",
@@ -154,7 +154,7 @@ $('#file-input').change(function(e) {
           strokeWidth: 2,
           strokeDashArray: [5, 5],
           selectable: true,
-          lockUniScaling: true,
+          //lockUniScaling: true,
           hasBorders: false,
           hasRotatingPoint: false,
           cornerColor: '#248ff4',
@@ -189,21 +189,25 @@ $('#crop').on('click', function(){
       left: cropper.left * scaleRatio,
       top: cropper.top * scaleRatio,
       width: cropper.getScaledWidth() * scaleRatio,
-      height: cropper.getScaledWidth() * scaleRatio
+      height: cropper.getScaledHeight() * scaleRatio
   });
   cropped.onload = function() {
     //canvas.clear();
+    scale = 640/cropper.getScaledWidth();
+    var newH = scale*cropper.getScaledHeight();
+
     canvas.remove(image);
     canvas.setWidth(640);
-    canvas.setHeight(640);
+    canvas.setHeight(newH);
     frame.setWidth(638);
-    frame.setHeight(638);
+    frame.setHeight(newH - 2);
     frame.visible = true;
 
-    console.log(cropper.getScaledWidth());
+    //console.log(cropper.getScaledWidth());
 
     image = new fabric.Image(cropped);
-    scale = 640/cropper.getScaledWidth();
+
+    console.log(cropper.getScaledWidth(), cropper.getScaledHeight())
     //console.log(cropper.getScaledWidth(), scale);
 
     image.set({
@@ -212,7 +216,7 @@ $('#crop').on('click', function(){
       originY: "center",
       scaleX: scale,
       scaleY: scale,
-      top: 320,
+      top: newH/2,
       left: 320,
       hasControls: false,
       selectable: false,
@@ -224,7 +228,7 @@ $('#crop').on('click', function(){
     canvas.bringForward(image);
 
     // Add black
-    addStamp(watermark, 350, 390);
+    addStamp(watermark, 320, (newH/2));
 
     canvas.renderAll();
 
@@ -314,20 +318,21 @@ canvas.on("object:moving", function(e){
 
 /*function resizeCanvas() {
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  if (width < 960) {
+  if (width < 640) {
     scaleRatio = width/640;
     var dim = 640*scaleRatio;
-    $('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
+    console.log("Scale ratio: "+scaleRatio);
+
+    $('.container').css({width: dim+'px', marginTop: '0'});
+
+    /*$('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
     $('.canvas-wrp, .logo-wrp').css({float: 'none'});
     $('.logo-wrp').css({marginTop: 0, textAlign: 'center', width: '100%'});
     $('.btn-container').css({width: dim+'px'});
-    $('.logo-wrp img').css({width: '45%'});
-    //$('.add').css({top: '20px', right: '20px', marginLeft: '0'});
+    $('.logo-wrp img').css({width: '45%'});//
     canvas.setWidth(dim);
     canvas.setHeight(dim);
     canvas.setZoom(scaleRatio);
-
-    //alert("reseize");
   }
 }
 
