@@ -7,6 +7,7 @@ var black_stamped = true;
 var watermark = document.getElementById('watermark');
 var stamp, cropper, image, frame;
 var scale, scaleRatio = 1;
+var screenWidth = 640;
 
 function addStamp(imgElement, left, top) {
   /*if (!left) {
@@ -44,8 +45,8 @@ function dataURLtoBlob(dataurl) {
 // Gradient
 fabric.Image.fromURL('assets/images/overlay.png', function(img) {
   img.evented = false;
-  img.width = 640;
-  img.height = 640;
+  img.width = screenWidth;
+  img.height = screenWidth;
   img.selectable = false;
   canvas.add(img);
   canvas.sendToBack(img);
@@ -56,8 +57,8 @@ frame = new fabric.Rect({
   id: 'frame',
   top: 0,
   left: 0,
-  width: 638,
-  height: 638,
+  width: screenWidth - 2,
+  height: screenWidth - 2,
   fill: 'transparent',
   stroke: 'white',
   strokeWidth: 2,
@@ -87,8 +88,8 @@ $('#file-input').change(function(e) {
 
       added_photo = true;
       image = new fabric.Image(imgObj);
-      // Exif stuff
       EXIF.getData(imgObj, function() {
+        // Exif stuff
         switch(EXIF.getTag(this, 'Orientation')){
           case 8:
             image.setAngle(-90);
@@ -102,26 +103,30 @@ $('#file-input').change(function(e) {
         }
 
         scale = 1;
-        var crop_dim = 620, _top = 320, _left = 320;
+
+        var crop_dim = screenWidth - 20, _top = screenWidth/2, _left = screenWidth/2;
         if (image.height == image.width) {
-          scale = 640/image.height;
+          scale = screenWidth/image.height;
         }
         else if (image.width > image.height) {
-          scale = 640/image.width;
-          var _h = 640 * image.height/image.width;
+          scale = screenWidth/image.width;
+          var _h = screenWidth * image.height/image.width;
           canvas.setHeight(_h);
           frame.setHeight(_h - 2);
           _top = _h/2;
           crop_dim = _h - 20;
         }
         else if (image.width < image.height) {
-          scale = 640/image.height;
-          var _w = 640 * image.width/image.height;
+          scale = screenWidth/image.height;
+          var _w = screenWidth * image.width/image.height;
+          $('.container').css({width: _w+'px'});
           canvas.setWidth(_w);
           frame.setWidth(_w - 2);
           _left = _w/2;
           crop_dim = _w - 20;
         }
+
+        // Adjust frames & overlay
 
         image.set({
           id: 'image',
@@ -193,22 +198,18 @@ $('#crop').on('click', function(){
   });
   cropped.onload = function() {
     //canvas.clear();
-    scale = 640/cropper.getScaledWidth();
+    scale = screenWidth/cropper.getScaledWidth();
     var newH = scale*cropper.getScaledHeight();
+    $('.container').css({width: screenWidth+'px'});
 
     canvas.remove(image);
-    canvas.setWidth(640);
+    canvas.setWidth(screenWidth);
     canvas.setHeight(newH);
-    frame.setWidth(638);
+    frame.setWidth(screenWidth - 2);
     frame.setHeight(newH - 2);
     frame.visible = true;
 
-    //console.log(cropper.getScaledWidth());
-
     image = new fabric.Image(cropped);
-
-    console.log(cropper.getScaledWidth(), cropper.getScaledHeight())
-    //console.log(cropper.getScaledWidth(), scale);
 
     image.set({
       id: 'image',
@@ -217,7 +218,7 @@ $('#crop').on('click', function(){
       scaleX: scale,
       scaleY: scale,
       top: newH/2,
-      left: 320,
+      left: screenWidth/2,
       hasControls: false,
       selectable: false,
       evented: false
@@ -228,7 +229,7 @@ $('#crop').on('click', function(){
     canvas.bringForward(image);
 
     // Add black
-    addStamp(watermark, 320, (newH/2));
+    addStamp(watermark, (screenWidth/2), (newH/2));
 
     canvas.renderAll();
 
@@ -259,7 +260,7 @@ $('#download').on('click', function(){
   // Zoom in to download
   canvas.setWidth(1080);
   canvas.setHeight(1080);
-  canvas.setZoom(1080/640);
+  canvas.setZoom(1080/screenWidth);
 
   var ios = /iPad|iPhone|iPod/.test(navigator.platform);
   if (ios) {
@@ -280,8 +281,8 @@ $('#download').on('click', function(){
   }
 
   // Revert zoom
-  canvas.setWidth(640);
-  canvas.setHeight(640);
+  canvas.setWidth(screenWidth);
+  canvas.setHeight(screenWidth);
   canvas.setZoom(1);
   resizeCanvas();
 
@@ -316,14 +317,19 @@ canvas.on("object:moving", function(e){
     }
 });//*/
 
-/*function resizeCanvas() {
+function resizeCanvas() {
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   if (width < 640) {
-    scaleRatio = width/640;
+    /*scaleRatio = width/640;
     var dim = 640*scaleRatio;
-    console.log("Scale ratio: "+scaleRatio);
+    console.log("Scale ratio: "+scaleRatio);*/
+    screenWidth = width;
+    canvas.setWidth(screenWidth);
+    canvas.setHeight(screenWidth);
+    frame.setWidth(screenWidth - 2);
+    frame.setHeight(screenWidth - 2);
 
-    $('.container').css({width: dim+'px', marginTop: '0'});
+    $('.container').css({width: screenWidth+'px', marginTop: '0'});
 
     /*$('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
     $('.canvas-wrp, .logo-wrp').css({float: 'none'});
@@ -332,7 +338,7 @@ canvas.on("object:moving", function(e){
     $('.logo-wrp img').css({width: '45%'});//
     canvas.setWidth(dim);
     canvas.setHeight(dim);
-    canvas.setZoom(scaleRatio);
+    canvas.setZoom(scaleRatio);//*/
   }
 }
 
