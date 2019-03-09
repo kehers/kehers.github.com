@@ -191,15 +191,15 @@ $('#crop').on('click', function(){
 
   var cropped = new Image();
   cropped.src = canvas.toDataURL({
-      left: cropper.left * scaleRatio,
-      top: cropper.top * scaleRatio,
-      width: cropper.getScaledWidth() * scaleRatio,
-      height: cropper.getScaledHeight() * scaleRatio
+    left: cropper.left * scaleRatio,
+    top: cropper.top * scaleRatio,
+    width: cropper.getScaledWidth() * scaleRatio,
+    height: cropper.getScaledHeight() * scaleRatio
   });
   cropped.onload = function() {
     //canvas.clear();
-    scale = screenWidth/cropper.getScaledWidth();
-    var newH = scale*cropper.getScaledHeight();
+    var newScale = screenWidth/cropper.getScaledWidth();
+    var newH = newScale*cropper.getScaledHeight();
     $('.container').css({width: screenWidth+'px'});
 
     canvas.remove(image);
@@ -209,16 +209,23 @@ $('#crop').on('click', function(){
     frame.setHeight(newH - 2);
     frame.visible = true;
 
-    image = new fabric.Image(cropped);
+    //image = new fabric.Image(cropped);
+    image.setScaleX(1);
+    image.setScaleY(1);
+
+    var _w = cropper.getScaledWidth()/scale;
+    newScale = screenWidth/_w;
+    var _l = (cropper.left/scale) * newScale;
+    var _t = (cropper.top/scale) * newScale;
 
     image.set({
       id: 'image',
-      originX: "center",
-      originY: "center",
-      scaleX: scale,
-      scaleY: scale,
-      top: newH/2,
-      left: screenWidth/2,
+      originX: "left",
+      originY: "top",
+      scaleX: newScale,
+      scaleY: newScale,
+      top: 0 - _t,
+      left: 0 - _l,
       hasControls: false,
       selectable: false,
       evented: false
@@ -258,9 +265,9 @@ $('#download').on('click', function(){
   frame.visible = false;
 
   // Zoom in to download
-  canvas.setWidth(1080);
-  canvas.setHeight(1080);
-  canvas.setZoom(1080/screenWidth);
+  // canvas.setWidth(1080);
+  // canvas.setHeight(1080);
+  // canvas.setZoom(1080/screenWidth);
 
   var ios = /iPad|iPhone|iPod/.test(navigator.platform);
   if (ios) {
@@ -280,10 +287,10 @@ $('#download').on('click', function(){
     });
   }
 
-  // Revert zoom
-  canvas.setWidth(screenWidth);
-  canvas.setHeight(screenWidth);
-  canvas.setZoom(1);
+  // // Revert zoom
+  // canvas.setWidth(screenWidth);
+  // canvas.setHeight(screenWidth);
+  // canvas.setZoom(1);
   resizeCanvas();
 
   // Show lines and frame
