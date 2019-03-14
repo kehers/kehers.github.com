@@ -127,7 +127,6 @@ $('#file-input').change(function(e) {
         }
 
         // Adjust frames & overlay
-
         image.set({
           id: 'image',
           originX: "center",
@@ -146,35 +145,17 @@ $('#file-input').change(function(e) {
         canvas.sendToBack(image);
         canvas.bringForward(image);
 
-        // Add cropper
-        // Border
-        cropper = new fabric.Rect({
-          id: 'cropper',
-          top: 10,
-          left: 10,
-          width: crop_dim,
-          height: crop_dim,
-          fill: 'transparent',
-          stroke: '#248ff4',
-          strokeWidth: 2,
-          strokeDashArray: [5, 5],
-          selectable: true,
-          //lockUniScaling: true,
-          hasBorders: false,
-          hasRotatingPoint: false,
-          cornerColor: '#248ff4',
-          transparentCorners: false,
-          evented: true
-        });
-        canvas.add(cropper);
-        canvas.setActiveObject(cropper);
+        addStamp(watermark, _top, _left);
 
         canvas.renderAll();
 
-        // Show slider and download button
-        //$('#scale-control').show();
         $('.pre').hide();
         $('.canvas').show();
+
+        $('.dwn-wrp').show();
+
+        // Show slider and download button
+        //$('#scale-control').show();
       });
     }
   }
@@ -184,66 +165,6 @@ $('#file-input').change(function(e) {
 $('.add').on('click', function(){
   $('#file-input').trigger('click');
   return false;
-});
-$('#crop').on('click', function(){
-  canvas.remove(cropper);
-  frame.visible = false;
-
-  var cropped = new Image();
-  cropped.src = canvas.toDataURL({
-    left: cropper.left * scaleRatio,
-    top: cropper.top * scaleRatio,
-    width: cropper.getScaledWidth() * scaleRatio,
-    height: cropper.getScaledHeight() * scaleRatio
-  });
-  cropped.onload = function() {
-    //canvas.clear();
-    var newScale = screenWidth/cropper.getScaledWidth();
-    var newH = newScale*cropper.getScaledHeight();
-    $('.container').css({width: screenWidth+'px'});
-
-    canvas.remove(image);
-    canvas.setWidth(screenWidth);
-    canvas.setHeight(newH);
-    frame.setWidth(screenWidth - 2);
-    frame.setHeight(newH - 2);
-    frame.visible = true;
-
-    //image = new fabric.Image(cropped);
-    image.setScaleX(1);
-    image.setScaleY(1);
-
-    var _w = cropper.getScaledWidth()/scale;
-    newScale = screenWidth/_w;
-    var _l = (cropper.left/scale) * newScale;
-    var _t = (cropper.top/scale) * newScale;
-
-    image.set({
-      id: 'image',
-      originX: "left",
-      originY: "top",
-      scaleX: newScale,
-      scaleY: newScale,
-      top: 0 - _t,
-      left: 0 - _l,
-      hasControls: false,
-      selectable: false,
-      evented: false
-    });
-    image.setCoords();
-    canvas.add(image);
-    canvas.sendToBack(image);
-    canvas.bringForward(image);
-
-    // Add black
-    addStamp(watermark, (screenWidth/2), (newH/2));
-
-    canvas.renderAll();
-
-    $('.crop-wrp').hide();
-    $('.dwn-wrp').show();
-    $('.logo-wrp').show();
-  };
 });
 /*$('#restart').on('click', function(){
   // Remove photo.
@@ -336,7 +257,7 @@ function resizeCanvas() {
     frame.setWidth(screenWidth - 2);
     frame.setHeight(screenWidth - 2);
 
-    $('.container').css({width: screenWidth+'px', marginTop: '0'});
+    $('.container').css({width: screenWidth+'px'});
 
     /*$('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
     $('.canvas-wrp, .logo-wrp').css({float: 'none'});
