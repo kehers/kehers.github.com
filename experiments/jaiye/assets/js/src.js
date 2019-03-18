@@ -107,19 +107,21 @@ $('#file-input').change(function(e) {
         var crop_dim = screenWidth - 20, _top = screenWidth/2, _left = screenWidth/2;
         if (image.height == image.width) {
           scale = screenWidth/image.height;
+          alert(screenWidth+" "+scale+" "+image.width+" "+image.height);
         }
         else if (image.width > image.height) {
           scale = screenWidth/image.width;
           var _h = screenWidth * image.height/image.width;
           canvas.setHeight(_h);
           frame.setHeight(_h - 2);
+          alert(_h+" "+screenWidth+" "+scale+" "+image.width+" "+image.height);
           _top = _h/2;
           crop_dim = _h - 20;
         }
         else if (image.width < image.height) {
           scale = screenWidth/image.height;
           var _w = screenWidth * image.width/image.height;
-          alert(`${_w} ${screenWidth} ${scale}`);
+          alert(_w+" "+screenWidth+" "+scale+" "+image.width+" "+image.height);
           $('.container').css({width: _w+'px'});
           canvas.setWidth(_w);
           frame.setWidth(_w - 2);
