@@ -119,6 +119,7 @@ $('#file-input').change(function(e) {
         else if (image.width < image.height) {
           scale = screenWidth/image.height;
           var _w = screenWidth * image.width/image.height;
+          alert(`${_w} ${screenWidth} ${scale}`);
           $('.container').css({width: _w+'px'});
           canvas.setWidth(_w);
           frame.setWidth(_w - 2);
