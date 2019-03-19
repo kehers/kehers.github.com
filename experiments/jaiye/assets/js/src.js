@@ -8,6 +8,7 @@ $(window).load(function() {
   var stamp, cropper, image, frame;
   var scale, scaleRatio = 1;
   var screenWidth = 640;
+  var originalImgWidth, originalImgHeight, zoomDimension;
 
   function addStamp(imgElement, left, top) {
     /*if (!left) {
@@ -26,8 +27,8 @@ $(window).load(function() {
         originY: "center",
         left: left,
         top: top,
-        scaleX: 0.6,
-        scaleY: 0.6,
+        scaleX: 0.4,
+        scaleY: 0.4,
         hasBorders: false
       });
     canvas.add(stamp);
@@ -103,25 +104,27 @@ $(window).load(function() {
           }
 
           scale = 1;
+          originalImgHeight = image.height;
+          originalImgWidth = image.width;
 
           var crop_dim = screenWidth - 20, _top = screenWidth/2, _left = screenWidth/2;
           if (image.height == image.width) {
             scale = screenWidth/image.height;
-            // /alert(screenWidth+" "+scale+" "+image.width+" "+image.height);
+            zoomDimension = screenWidth;
           }
           else if (image.width > image.height) {
             scale = screenWidth/image.width;
             var _h = Math.round(screenWidth * image.height/image.width);
+            zoomDimension = _h;
             canvas.setHeight(_h);
             frame.setHeight(_h - 2);
-            //alert(_h+" "+screenWidth+" "+scale+" "+image.width+" "+image.height);
             _top = _h/2;
             crop_dim = _h - 20;
           }
           else if (image.width < image.height) {
             scale = screenWidth/image.height;
             var _w = Math.round(screenWidth * image.width/image.height);
-            // alert(_w+" "+screenWidth+" "+scale+" "+image.width+" "+image.height);
+            zoomDimension = _w;
             $('.container').css({width: _w+'px'});
             canvas.setWidth(_w);
             frame.setWidth(_w - 2);
@@ -187,23 +190,26 @@ $(window).load(function() {
         obj.set({opacity: 0});
     });*/
     frame.visible = false;
+    console.log(canvas.getWidth());
 
     // Zoom in to download
-    // canvas.setWidth(1080);
-    // canvas.setHeight(1080);
-    // canvas.setZoom(1080/screenWidth);
+    var _w = canvas.getWidth();
+    var _h = canvas.getHeight();
+    canvas.setWidth(1080);
+    canvas.setHeight(1080*_h/_w);
+    canvas.setZoom(1080/_w);
 
     var ios = /iPad|iPhone|iPod/.test(navigator.platform);
     if (ios) {
       // Save as image and to another page
       $('#image').attr({
-        src: canvas.toDataURL("image/png")
+        src: canvas.toDataURL('image/png')
       });
       $('.image-wrp').show();
       $('.container, .btn-container').hide();
     }
     else {
-      var blob = dataURLtoBlob(canvas.toDataURL("image/png"));
+      var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
 
       $(this).attr({
         href: URL.createObjectURL(blob),
@@ -211,11 +217,12 @@ $(window).load(function() {
       });
     }
 
-    // // Revert zoom
-    // canvas.setWidth(screenWidth);
-    // canvas.setHeight(screenWidth);
-    // canvas.setZoom(1);
-    resizeCanvas();
+    canvas.renderAll();
+    // Revert zoom
+    canvas.setWidth(_w);
+    canvas.setHeight(_h);
+    canvas.setZoom(1);
+    //resizeCanvas();
 
     // Show lines and frame
     /*canvas.forEachObject(function(obj){
@@ -224,7 +231,6 @@ $(window).load(function() {
     });*/
     frame.visible = true;
 
-    canvas.renderAll();
   });
 
   // Set image boundaries
@@ -260,7 +266,7 @@ $(window).load(function() {
       frame.setWidth(screenWidth - 2);
       frame.setHeight(screenWidth - 2);
 
-      $('.container').css({width: screenWidth+'px'});
+      $('.container').css({width: screenWidth+'px', marginTop: 0});
 
       /*$('.canvas-wrp, .container').css({width: dim+'px', height: dim+'px', marginTop: '0'});
       $('.canvas-wrp, .logo-wrp').css({float: 'none'});
