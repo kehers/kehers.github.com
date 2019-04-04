@@ -1,5 +1,5 @@
 ---
-title: 'Notes on FreeSWITCH'
+title: Notes on FreeSWITCH
 date: 2019-04-04 00:00:00 Z
 layout: post
 ---
