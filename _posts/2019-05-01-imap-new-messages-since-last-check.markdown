@@ -4,7 +4,7 @@ date: 2019-05-01 00:00:00 Z
 layout: post
 ---
 
-I have been working on sharedBox in the last couple of months. The idea is simple: allow teams send and receive emails in Slack. I had to allow email connection via IMAP and doing this means it is important to be able to get only new emails at every check.
+I have been working on [sharedBox](https://sharedbox.app/) in the last couple of months. The idea is simple: allow teams send and receive emails in Slack. I had to allow email connection via IMAP and doing this means it is important to be able to get only new emails at every check.
 
 ### Message IDs and other stories
 
@@ -30,69 +30,73 @@ Now that we have a basic idea of what message ids are, it’s easy to start pull
 
 Let’s start with connection to the IMAP server and box selection. And see what the response of the select action looks like.
 
-{% highlight javascript %}
+```js
 (async function (){
   // Connect to the imap server
-	const imap = new ImapClient.default('imap.mail.yahoo.com', 993, {
-	        auth: {
-	          user: 'awesomeme@yahoo.com',
-	          pass: 'ninjaninja'
-	        }
-	    });
-	await imap.connect();
+  const imap = new ImapClient.default('imap.mail.yahoo.com', 993, {
+          auth: {
+            user: 'awesomeme@yahoo.com',
+            pass: 'ninjaninja'
+          }
+      });
+  await imap.connect();
 
   // Select the "mailbox" you want to "interact" with
-	const box = await imap.selectMailbox('INBOX');
+  const box = await imap.selectMailbox('INBOX');
   console.log(box);
 })()
-{% endhighlight %}
+```
 
 This should give you a response like this:
 
-{% highlight json %}
-{ readOnly: false,
-  exists: 1,
-  flags:
-   [ '\\Answered',
-     '\\Flagged',
-     '\\Draft',
-     '\\Deleted',
-     '\\Seen',
-     '$NotPhishing',
-     '$Phishing' ],
-  permanentFlags:
-   [ '\\Answered',
-     '\\Flagged',
-     '\\Draft',
-     '\\Deleted',
-     '\\Seen',
-     '$NotPhishing',
-     '$Phishing',
-     '\\*' ],
-  uidValidity: 1,
-  uidNext: 686,
-  highestModseq: '108661' }
-{% endhighlight %}
+```json
+{
+  "readOnly": false,
+  "exists": 1,
+  "flags": [
+    "\\Answered",
+    "\\Flagged",
+    "\\Draft",
+    "\\Deleted",
+    "\\Seen",
+    "$NotPhishing",
+    "$Phishing"
+  ],
+  "permanentFlags": [
+    "\\Answered",
+    "\\Flagged",
+    "\\Draft",
+    "\\Deleted",
+    "\\Seen",
+    "$NotPhishing",
+    "$Phishing",
+    "\\*"
+  ],
+  "uidValidity": 1,
+  "uidNext": 686,
+  "highestModseq": "108661"
+}
+```
 
 Notice the `uidValidity` and `uidNext` fields. Also note `highestModseq`. We will get to it. Another parameter you may be interested in is `exists`. It returns the number of emails currently available in the mailbox. Even though the mailbox might have received a lot of emails, only one is currently left in the mailbox.
 
 Let’s extend our example to pull message with sequence number 1:
 
-{% highlight javascript %}
+```js
 (async function (){
-	// ...
-	const messages = await imap.listMessages('INBOX', '1', ['body[]']);
+  // ...
+  const messages = await imap.listMessages('INBOX', '1', ['body[]']);
 })()
-{% endhighlight %}
+```
 
 We can also pull message with UID 686:
 
-{% highlight javascript %}
+```js
 (async function (){
-	// ...
-	const messages = await imap.listMessages('INBOX', '686', ['body[]'], {byUid: true});
+  // ...
+  const messages = await imap.listMessages('INBOX', '686', ['body[]'], {byUid: true});
 })()
-{% endhighlight %}
+```
 
 Pulling all emails from the mailbox is easy. All you need to do is specify a message sequence of `1:*`. (This may be a bad idea as the number of messages in the mailbox may choke your application. But you can always split the process `1:500`, `500:1000` and so on). The tricky part comes when you want to only pull new emails (mails after your last pull) from the server. And if you think one way syncs are tricky, wait till you attempt two-way syncs. 
 
@@ -102,12 +106,12 @@ Pulling all emails from the mailbox is easy. All you need to do is specify a mes
 
 Let’s assume the first time we checked the user’s mailbox, `highestModseq` was 100. The next time, it’s 120. This tells us there has been changes to the mailbox. We can then fetch new messages from when our `highestModseq` was 100.
 
-{% highlight javascript %}
+```js
 (async function (){
-	// ...
-	const messages = await imap.listMessages('INBOX', '1:*', ['body[]'], {changedSince: '100'});
+  // ...
+  const messages = await imap.listMessages('INBOX', '1:*', ['body[]'], {changedSince: '100'});
 })()
-{% endhighlight %}
+```
 
 This is easy and works. There is just one problem though. Not all servers support `highestModseq`.
 
@@ -133,14 +137,13 @@ We can combine IMAP’s search function with a `since` parameter to get new mess
 
 Can we use the knowledge of what the next UID will be (taking into consideration if `uidValidity` has changed or not) to do this? Absolutely. If at first pull, uidValidity is 1 and uidNext is 686 then we can pull new messages since last pull with the sequence set: `686:*` if uidValidity is still 1.
 
-{% highlight javascript %}
+```js
 (async function (){
-	// ...
-	const messages = await imap.listMessages('INBOX', '686:*', ['body[]'], {byUid: true});
+  // ...
+  const messages = await imap.listMessages('INBOX', '686:*', ['body[]'], {byUid: true});
 })()
-{% endhighlight %}
+```
 
 What if uidValidity has changed? Then we can assume that there has been a major change to the mailbox—it has been recreated or so. We just need to assume we are starting our sync again—we store the new uidValidity and the use the new uidNext as our sequence set.
-
 
 [^1]: https://tools.ietf.org/html/rfc3501#section-2.3.1
