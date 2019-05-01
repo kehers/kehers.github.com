@@ -1,7 +1,6 @@
 ---
-title: IMAP: new messages since last check
-date: 2019-05-01 00:00:00 Z
-layout: post
+title: 2019 05 01 Imap New Messages Since Last Check
+date: 2019-05-01 11:40:35.451000000 Z
 ---
 
 I have been working on sharedBox in the last couple of months. The idea is simple: allow teams send and receive emails in Slack. I had to allow email connection via IMAP and doing this means it is important to be able to get only new emails at every check.
