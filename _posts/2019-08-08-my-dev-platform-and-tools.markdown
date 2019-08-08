@@ -1,5 +1,5 @@
 ---
-title: 'My dev platforms and tools (2)'
+title: My dev platforms and tools (2)
 date: 2019-08-08 00:00:00 Z
 layout: post
 ---
