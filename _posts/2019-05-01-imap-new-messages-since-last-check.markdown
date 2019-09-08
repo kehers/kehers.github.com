@@ -6,7 +6,7 @@ layout: post
 
 I have been working on [sharedBox](https://sharedbox.app/) in the last couple of months. The idea is simple: allow teams send and receive emails in Slack. I had to allow email connection via IMAP and doing this means it is important to be able to get only new emails at every check.
 
-#### Message IDs and other stories
+### Message IDs and other stories
 
 Let’s start with some basic understanding of the message ids—sequence number and uid. It’s going to be important.  These numbers are how messages are identified[^1] in a mailbox. (Note that a *mailbox* refers to a message folder—inbox, sent, draft…and not the full email box). 
 
@@ -100,7 +100,7 @@ We can also pull message with UID 686:
 
 Pulling all emails from the mailbox is easy. All you need to do is specify a message sequence of `1:*`. (This may be a bad idea as the number of messages in the mailbox may choke your application. But you can always split the process `1:500`, `500:1000` and so on). The tricky part comes when you want to only pull new emails (mails after your last pull) from the server. And if you think one way syncs are tricky, wait till you attempt two-way syncs. 
 
-#### HighestModseq and ChangedSince
+### HighestModseq and ChangedSince
 
 `highestModseq` returned when the mailbox is selected as you’ve seen above is the highest sequence number value of all messages in the mailbox. Once you select a mailbox and this number is greater than at last check, you can assume that there has been changes to the mailbox. You can then use the last value you have to pull all new messages.
 
@@ -115,7 +115,7 @@ Let’s assume the first time we checked the user’s mailbox, `highestModseq` w
 
 This is easy and works. There is just one problem though. Not all servers support `highestModseq`.
 
-#### \Recent? \Seen?
+### \Recent? \Seen?
 
 There is a `recent` flag that can be used to get “recent” messages from the server. The issue with this though is that the definition of “recent” by the server is relative. Here is what I mean:
 - You disconnected from the server at 9:00pm
@@ -129,11 +129,11 @@ There is a `recent` flag that can be used to get “recent” messages from the 
 
 The `seen` flag is similar but also goes through the same fate. If another client opens the message, the flag is removed. Trying to get “unseen” messages after another client has “seen” them will return nothing. 
 
-#### Search Since
+### Search Since
 
 We can combine IMAP’s search function with a `since` parameter to get new messages since our last check. And this would have been a great solution—store the last time we checked and use that to get new messages since then. But there is a limitation to IMAP. The `since` parameter only takes date and not time.
 
-#### uidValidity + uidNext
+### uidValidity + uidNext
 
 Can we use the knowledge of what the next UID will be (taking into consideration if `uidValidity` has changed or not) to do this? Absolutely. If at first pull, uidValidity is 1 and uidNext is 686 then we can pull new messages since last pull with the sequence set: `686:*` if uidValidity is still 1.
 

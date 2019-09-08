@@ -3,40 +3,23 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Code, Thoughts, Ideas, Experiments and Rants</title>
+  <title>Code, Thoughts, Ideas, Experiments and Rants – Opeyemi Obembe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/assets/css/normalize.css">
-  <link rel="stylesheet" href="/assets/css/skeleton.css">
-  <link rel="stylesheet" href="/assets/css/custom.css?20180426">
   <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
+  <link href="https://fonts.googleapis.com/css?family=Cousine:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/tachyons.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <div class="row">
-      <div id="logo" class="three columns">
-      <div id="menu"><img src="images/hamburger.png"></div>
-      <h3><a href="/">/opeyemi</a></h3>
-    </div>
-      <nav class="nine columns">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/posts.html" class="active">Posts</a></li>
-          <li><a href="/feed.xml">RSS Feed</a></li>
-          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
-      </ul>
-      </nav>
-    </div>
-  </header>
-  <div class="row">
-    <div class="six offset-by-three columns">
-      <article>
-        <h3 class="title">Code, Thoughts, Ideas, Experiments and Rants.</h3>
-        {{ content }}
-      </article>
-    </div>
+  <div class="w-60-ns w-100 pv5 ph6-ns ph4">
+    <nav class="mb5">
+      <a href="/opeyemi">/Opeyemi</a> <span class="di mh2">·</span> <a href="/posts" class="active">Blog Posts</a> <span class="di mh2">·</span> <a href="/now">Now</a> <span class="di mh2">·</span> <a href="http://everygood.co/" target="_blank">Projects</a>
+    </nav>
+
+    <section>
+      {{ content }}
+    </section>
   </div>
 
 {% include footer.html %}

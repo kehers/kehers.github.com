@@ -1,2 +1,4 @@
 ﻿/_site
 /build
+Gemfile*
+/backup*

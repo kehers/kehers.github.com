@@ -8,33 +8,40 @@ layout: none
 
   <meta charset="utf-8">
   <title>Obembe Opeyemi</title>
+  <meta name="description" content="My name is Opeyemi Obembe. I am a technology enthusiast based in Lagos, Nigeria">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
   <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
-
-  <link rel="stylesheet" href="/assets/css/normalize.css">
-  <link rel="stylesheet" href="/assets/css/skeleton.css">
-  <link rel="stylesheet" href="/assets/css/custom.css?a">
+  <link href="https://fonts.googleapis.com/css?family=Cousine:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/tachyons.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
 </head>
 <body>
 
-<div class="container">
-  <div class="row">
-    <div class="six offset-by-three columns">
-    <h3 class="title p-t-100">/opeyemi</h3>
-    <p>My name is Opeyemi Obembe. I build things for web and mobile.</p>
-    <p>In my over 15 years of doing this, I have cofounded a <a href="https://prowork.me/">project management</a> app, <a href="http://fonenode.com/">two</a> <a href="http://callbase.co/">telephony</a> startups, a <a href="http://writerack.com/">tweetstorm app</a>; built, sunsetted and sold personal <a href="https://www.producthunt.com/posts/tinypress">projects</a> used <a href="https://www.google.com/search?q=twhii">globally</a> and helped people build their own <a href="https://www.google.com/search?q=gomyway">startups</a> and <a href="http://techcabal.com/2015/12/23/mavin-is-promoting-tiwa-savages-r-e-d-album-with-a-meme-generator/">projects</a>.</p>
-    <p>I currently lead technology for <a href="https://reliancehmo.com/">RelianceHMO</a>. I build personal projects at <a href="http://everygood.co/">everygood.co</a></p>
-
-    <h3 class="title p-t-20">Posts</h3>
-      {% for post in site.posts limit:5 %}
-        <h5 class="libre no-margin"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h5>
-        <p>{{ post.date | date_to_string }}</p>
-      {% endfor %}
-      <h5 class="libre no-margin"><a href="/posts.html">View more &rarr;</a></h5>
-  </div>
-  </div>
+<div class="w-60-ns w-100 pv5 ph6-ns ph4">
+  <nav class="mb5">
+    <a href="/opeyemi" class="active">/Opeyemi</a> <span class="di mh2">·</span> <a href="/posts">Blog Posts</a> <span class="di mh2">·</span> <a href="/now">Now</a> <span class="di mh2">·</span> <a href="http://everygood.co/" target="_blank">Projects</a>
+  </nav>
+  <h1 class="lh-title mb-5">Opeyemi Obembe</h1>
+  <section>
+    <h3 class="lh-title">About</h3>
+    <p>These days, it's hard to fit what I do in a single category. My 15+ years experience range from product development to design on mobile and web, frontend and backend development, devops and everything in-between. </p>
+    <p>My current fascination is understanding how people use products and how to build products people love.</p>
+    <p><span class="highlight">My name is Opeyemi Obembe. I am a technology enthusiast based in Lagos, Nigeria.</span></p>
+  </section>
+  <section>
+    <h3 class="lh-title">Work</h3>
+    <p>I currently lead technology for <a href="http://reliancehmo.com/" target="_blank">RelianceHMO</a> where I manage an amazing team of engineers that build products that make healthcare access and delivery beautiful to both our customers and service providers.</p>
+    <p>Before then, I cofounded two startups and consulted for some startups and companies.</p>
+  </section>
+  <section>
+    <h3 class="lh-title">Projects</h3>
+    <p>I run personal experiments at <a href="http://everygood.co/">everygood.co</a>. If you are interested in the things I have built in the past, I am compiling a list here: <a href="https://airtable.com/shrN0UldUnOCMhFPF">experiments (Airtable).</a></p>
+    <p>By the way, I wrote an <a href="https://gumroad.com/l/Sxoj">introduction to consuming REST APIs</a>.</p>
+  </section>
+  <section>
+    <h3 class="lh-title">Contact</h3>
+    <p>I'd love to hear from you. I am <span class="highlight">@kehers</span> on <a href="http://twitter.com/kehers">Twitter</a> (best way to reach me), <a href="http://instagram.com/kehers">Instagram</a> and <a href="http://github.com/kehers">Github</a>. If email is your thing, it's kehers at gmail.</p>
+  </section>
 </div>
 
 {% include footer.html %}

@@ -49,5 +49,5 @@ Sigh. I don’t have my mailboxes in one place. There is Privateemail, Zoho, and
 ### Versioning
 Nothing has changed. Bitbucket and Github.
 
-## Editor
+### Editor
 ~~Notepad++~~ Sublime text.

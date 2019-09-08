@@ -14,68 +14,48 @@
   <meta name="twitter:site" content="@kehers">
   <meta name="twitter:creator" content="@kehers">
   <title>{{ page.title }}</title>
-  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/assets/css/normalize.css">
-  <link rel="stylesheet" href="/assets/css/skeleton.css">
-  <link rel="stylesheet" href="/assets/css/custom.css?20180426">
+  <link href="https://fonts.googleapis.com/css?family=Cousine:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/tachyons.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/monokai.css" />
   <link rel="alternate" type="application/atom+xml" title="Blog post feed" href="/feed.xml">
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <div class="row">
-      <div id="logo" class="three columns">
-      <div id="menu"><img src="images/hamburger.png"></div>
-      <h3><a href="/">/opeyemi</a></h3>
-    </div>
-      <nav class="nine columns">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/posts.html">Posts</a></li>
-          <li><a href="/feed.xml">RSS Feed</a></li>
-          <li><a href="http://gum.co/Sxoj" class="bordered">Consuming REST APIs - a soft introduction</a></li>
-      </ul>
-      </nav>
-    </div>
-  </header>
-  <div class="row">
-    <div class="six offset-by-three columns">
+  <div class="w-60-ns w-100 pv5 ph6-ns ph4">
+    <nav class="mb5">
+        <a href="/opeyemi">/Opeyemi</a> <span class="di mh2">·</span> <a href="/posts" class="active">Blog Posts</a> <span class="di mh2">·</span> <a href="/now">Now</a> <span class="di mh2">·</span> <a href="http://everygood.co/" target="_blank">Projects</a>
+    </nav>
+
+    <section>
       <article>
-        <date>{{ page.date | date_to_string }}</date>
-        <h1 class="title">{{ page.title }}</h1>
+        <date class="fade">{{ page.date | date_to_string }}</date>
+        <h1 class="lh-title mb5">{{ page.title }}</h1>
         {{ content }}
       </article>
-    </div>
+      
+      <h3>&nbsp;</h3>
+      <p>My name is Opeyemi Obembe. I build things for web and mobile and write about my experiments. Follow me on Twitter–<a href="http://twitter.com/kehers">@kehers</a>.</p>
+
+      {% for post in site.posts %}
+          {% if post.url == page.url %}
+              {% assign post_index = forloop.index %}
+          {% endif %}
+      {% endfor %}
+      {% for post in site.posts %}
+          {% if post_index == forloop.index0 %}
+              {% assign next_url = post.url %}
+              {% assign next_title = post.title %}
+          {% endif %}
+      {% endfor %}
+      {% if next_url %}
+      <p class="b">Next post: <a href="{{ next_url }}">{{ next_title }}</a></p>
+      {% endif %}
+    </section>
   </div>
-</div>
-<div class="colophon">
-  <div class="container">
-    <div class="row">
-      <div class="author six offset-by-three columns">
-        <img src="https://pbs.twimg.com/profile_images/1069130144382627840/-kdMxiWD_400x400.jpg" class="avi"> <p>My name is Opeyemi Obembe. I build things for web and mobile. You should follow me on Twitter (<a href="http://twitter.com/kehers">@kehers</a>).</p>
-      </div>
-    </div>
-    <div class="row p-t-20">
-      <div class="six offset-by-three columns">
-        {% for post in site.posts %}
-            {% if post.url == page.url %}
-                {% assign post_index = forloop.index %}
-            {% endif %}
-        {% endfor %}
-        {% for post in site.posts %}
-            {% if post_index == forloop.index0 %}
-                {% assign next_url = post.url %}
-                {% assign next_title = post.title %}
-            {% endif %}
-        {% endfor %}
-        {% if next_url %}
-        <article class="m-t-20">
-          <h4 class="title m-b-20">Next post</h4>
-          <h5 class="libre no-margin"><a href="{{ next_url }}">{{ next_title }}</a></h5>
-        </article>
-        {% endif %}
+
+  <div class="colophon">
+    <div class="w-60-ns w-100 pt4 ph6-ns ph4">
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           var disqus_shortname = 'kehers';
@@ -88,6 +68,5 @@
       </div>
     </div>
   </div>
-</div>
 
 {% include footer.html %}
