@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Template</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tachyons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <div class="left" v-if="!activeSection">
+    <h3 class="pa3 ma0">Sections</h3>
+    <ul class="list pa0 nav ma0">
+      <li><a href="#" @click.precent="openNews" class="db">+ News Item</a></li>
+      <li><a href="#" class="db" @click.precent="openEvent">Events</a></li>
+      <li><a href="#" class="db" @click.precent="openJobs">+ Job</a></li>
+    </ul>
+  </div>
+  <div class="left" v-if="activeSection">
+    <section v-if="activeSection == 'news'">
+      <div>
+        <div class="ph3 fixed w-25 header">
+          <div class="db mv3"><a href="#" @click.prevent="mainSection">&larr; Back</a> <a href="#" class="fr" @click.precent="openNews">+ News Item</a></div>
+          <h3 class="">News Item</h3> 
+          <label>Category</label>
+          <select name="category" v-model="content.news[activeIndex].category">
+            <option>Payments</option>
+            <option>Conversations</option>
+            <option>Banking & Finance</option>
+            <option>Remittance</option>
+            <option>Regulatory</option>
+            <option>Fundraising</option>
+            <option>Cryptocurrency</option>
+          </select>
+          <div class="pa1 tc asc"><a href="#" @click.prevent="addNewsEntry">Add News Entry</a> – <a href="#" @click.prevent="deleteNews">Delete</a></div>
+        </div>
+        <div style="padding-top:215px"></div>
+        <div
+        v-for="(item, index) in content.news[activeIndex].items"
+        v-bind:class="[selectedItem == index ? 'active-pane' : '', 'pane', 'pa3']"
+        :id="item.id"
+        >
+          <div>
+            <label>Country</label>
+            <select name="country" v-model="item.country">
+            <option>Global</option>
+            <option>Algeria</option>
+            <option>Angola</option>
+            <option>Benin</option>
+            <option>Botswana</option>
+            <option>Burkina Faso</option>
+            <option>Burundi</option>
+            <option>Cameroon</option>
+            <option>Cape Verde</option>
+            <option>Central African Republic</option>
+            <option>Chad</option>
+            <option>Comoros</option>
+            <option>Congo - Brazzaville</option>
+            <option>Congo - Kinshasa</option>
+            <option>Côte d’Ivoire</option>
+            <option>Djibouti</option>
+            <option>Egypt</option>
+            <option>Equatorial Guinea</option>
+            <option>Eritrea</option>
+            <option>Ethiopia</option>
+            <option>Gabon</option>
+            <option>Gambia</option>
+            <option>Ghana</option>
+            <option>Guinea</option>
+            <option>Guinea-Bissau</option>
+            <option>Kenya</option>
+            <option>Lesotho</option>
+            <option>Liberia</option>
+            <option>Libya</option>
+            <option>Madagascar</option>
+            <option>Malawi</option>
+            <option>Mali</option>
+            <option>Mauritania</option>
+            <option>Mauritius</option>
+            <option>Mayotte</option>
+            <option>Morocco</option>
+            <option>Mozambique</option>
+            <option>Namibia</option>
+            <option>Niger</option>
+            <option>Nigeria</option>
+            <option>Rwanda</option>
+            <option>Réunion</option>
+            <option>Saint Helena</option>
+            <option>Senegal</option>
+            <option>Seychelles</option>
+            <option>Sierra Leone</option>
+            <option>Somalia</option>
+            <option>South Africa</option>
+            <option>Sudan</option>
+            <option>Sudan</option>
+            <option>Swaziland</option>
+            <option>São Tomé and Príncipe</option>
+            <option>Tanzania</option>
+            <option>Togo</option>
+            <option>Tunisia</option>
+            <option>Uganda</option>
+            <option>Western Sahara</option>
+            <option>Zambia</option>
+            <option>Zimbabwe</option>
+            </select>
+          </div>
+          <div>
+            <label>Source</label>
+            <input type="url" name="link" v-model="item.link">
+            <input type="text" name="source" v-model="item.source">
+          </div>
+          <div>
+            <label>Title</label>
+            <input type="url" name="title" v-model="item.title">
+          </div>
+          <div>
+            <label>Snippet</label>
+            <textarea v-model="item.snippet"></textarea>
+          </div>
+          <div class="pa1 tc asc"><a href="#" @click.prevent="deleteNewsEntry(index)">delete entry</a></div>
+        </div>
+      </div>
+    </section>
+    <section v-if="activeSection == 'event'">
+      <div>
+        <div class="ph3 fixed w-25 header">
+          <a href="#" @click.prevent="mainSection" class="fr db mv3">&larr; Back</a>
+          <h3 class="">Events</h3> 
+          <div class="pa1 tc asc"><a href="#" @click.prevent="addEventEntry">Add Event</a></div>
+        </div>
+        <div style="padding-top:100px"></div>
+        <div
+        v-for="(item, index) in content.events"
+        v-bind:class="[selectedItem == index ? 'active-pane' : '', 'pane', 'pa3']"
+        :id="item.id"
+        >
+          <div>
+            <label>Title</label>
+            <input type="url" name="title" v-model="item.title">
+          </div>
+          <div>
+            <label>From</label>
+            <input type="text" name="from" v-model="item.from">
+          </div>
+          <div>
+            <label>To</label>
+            <input type="text" name="to" v-model="item.to">
+          </div>
+          <div>
+            <label>Location</label>
+            <input type="text" name="location" v-model="item.location">
+          </div>
+          <div class="pa1 tc asc"><a href="#" @click.prevent="deleteEventEntry(index)">delete entry</a></div>
+        </div>
+      </div>
+    </section>
+    <section v-if="activeSection == 'jobs'">
+      <div>
+        <div class="ph3 fixed w-25 header">
+          <div class="db mv3"><a href="#" @click.prevent="mainSection">&larr; Back</a> <a href="#" class="fr" @click.precent="openJobs">+ Job</a></div>
+          <h3 class="">Job</h3> 
+          <div>
+            <label>Company</label>
+            <input name="text" type="text" v-model="content.jobs[activeIndex].company">
+          </div>
+          <div class="pa1 tc asc"><a href="#" @click.prevent="addJobEntry">Add job Entry</a> – <a href="#" @click.prevent="deleteJob">Delete</a></div>
+        </div>
+        <div style="padding-top:220px"></div>
+        <div
+        v-for="(item, index) in content.jobs[activeIndex].items"
+        v-bind:class="[selectedItem == index ? 'active-pane' : '', 'pane', 'pa3']"
+        :id="item.id"
+        >
+          <div>
+            <label>Title</label>
+            <input type="text" name="title" v-model="item.title">
+          <div>
+          <div>
+            <label>Link</label>
+            <input type="url" name="link" v-model="item.link">
+          <div>
+          <div>
+            <label>Location</label>
+            <input type="url" name="link" v-model="item.location">
+          <div>
+          <div class="pa1 tc asc"><a href="#" @click.prevent="deleteJobEntry(index)">delete entry</a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="main">
+    <div class="body center w-70 mv4 pa3">
+      <news
+      v-for="(news, index) in content.news"
+      v-bind:news="news"
+      v-bind:key="news.id"
+      v-bind:index="index"
+      v-bind:activeindex="activeIndex"
+      v-bind:selected="selectedItem"
+      v-bind:item="activeSection"
+      @onselect="selectEvent"
+      >
+      </news>
+      <event
+      v-bind:events="content.events"
+      v-bind:selected="selectedItem"
+      v-bind:item="activeSection"
+      @onselect="selectEvent"
+      >
+      </event>
+
+      <section class="jobs">
+        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+          <tbody>
+            <tr>
+              <td align="left" style="font-size:0px;padding:0 0 15px 0;word-break:break-word;">
+                <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:20px;font-weight:600;letter-spacing:-0.1px;line-height:22px;text-align:left;color:#22D34B;">Jobs</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="background: #FFFFFF; background-image: url('https://decodefintech.com/public/images/email/green-box.png'); background-size: cover; background-position: -5px 5px; background-repeat: no-repeat; border: 1px solid #22D34B; font-size: 0; line-height: 0; text-align: left; display: inline-block; width: 100%; direction: ltr;padding: 20px">
+          <jobs
+          v-for="(job, index) in content.jobs"
+          v-bind:job="job"
+          v-bind:key="job.id"
+          v-bind:index="index"
+          v-bind:activeindex="activeIndex"
+          v-bind:selected="selectedItem"
+          v-bind:item="activeSection"
+          @onselect="selectEvent"
+          >
+          </jobs>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script type="text/x-template" id="news-template">
+  <section class="news">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+      <tbody>
+        <tr>
+          <td align="left" style="font-size:0px;padding:0 0 15px 0;word-break:break-word;">
+            <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:20px;font-weight:600;letter-spacing:-0.1px;line-height:22px;text-align:left;color:#22D34B;">{{news.category}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <newsitem
+      v-for="(newsitem, itemindex) in news.items"
+      v-bind:newsitem="newsitem"
+      v-bind:key="newsitem.id"
+      v-bind:onindex="activeindex == index"
+      v-bind:index="index"
+      v-bind:itemindex="itemindex"
+      v-bind:selected="selected"
+      v-bind:item="item"
+      @onselect="selectEvent"
+    ></newsitem>
+  </section>
+</script>
+<script type="text/x-template" id="newsitem-template">
+  <section 
+  v-bind:class="[item == 'news' && onindex && selected == itemindex ? 'active' : '', 'newsitem', 'item']"
+  @click.prevent="selectEvent(itemindex, index)"
+  >
+    <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#011b33;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:16px;line-height:22px;table-layout:auto;width:100%;border:none;">
+      <tbody>
+        <tr style="vertical-align: top">
+            <td width="70px"><span style="font-size: 12px; line-height: 14px; font-weight: 600; text-transform: uppercase; margin: 5px 0; display: block; hyphens: auto;">{{newsitem.country}}</span></td>
+            <td><b style="font-weight: 600;">{{newsitem.title}}</b> {{newsitem.snippet}} <a target="_blank" :href="newsitem.link" style="text-decoration: underline; color: #22D34B;"><b style="font-weight: 500;">{{newsitem.source}}</b></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</script>
+
+<script type="text/x-template" id="jobs-template">
+  <div class="jobs pb3">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+      <tbody>
+        <tr>
+          <td align="left" style="font-size:0px;padding:15px 0 5px 0;word-break:break-word;">
+              <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:16px;font-weight:500;letter-spacing:-0.1px;line-height:22px;text-align:left;color:#011b33;">{{job.company}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <jobitem
+      v-for="(jobitem, itemindex) in job.items"
+      v-bind:jobitem="jobitem"
+      v-bind:key="jobitem.id"
+      v-bind:onindex="activeindex == index"
+      v-bind:index="index"
+      v-bind:itemindex="itemindex"
+      v-bind:selected="selected"
+      v-bind:item="item"
+      @onselect="selectEvent"
+    ></jobitem>
+  </div>
+</script>
+<script type="text/x-template" id="jobitem-template">
+  <div
+   v-bind:class="[item == 'jobs' && onindex && selected == itemindex ? 'active' : '', 'item']"
+   @click.prevent="selectEvent(itemindex, index)"
+  >
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+      <tbody>
+        <tr>
+          <td align="left" style="font-size:0px;padding:10px 0;word-break:break-word;">
+            <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:16px;font-weight:500;letter-spacing:-0.1px;line-height:22px;text-align:left;color:#011b33;">
+              <a target="_blank" :href="jobitem.link" style="text-decoration: underline; color: #22D34B;">{{jobitem.title}}</a>
+              <div style="color: #696F75; font-size: 14px; font-weight: normal;">{{jobitem.location}}</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</script>
+
+<script type="text/x-template" id="events-template">
+  <section class="event">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+      <tbody>
+        <tr>
+          <td align="left" style="font-size:0px;padding:0 0 15px 0;word-break:break-word;">
+            <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:20px;font-weight:600;letter-spacing:-0.1px;line-height:22px;text-align:left;color:#22D34B;">Events</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="background: #FFFFFF; background-image: url('https://decodefintech.com/public/images/email/green-box.png'); background-size: cover; background-position: -5px 5px; background-repeat: no-repeat; border: 1px solid #22D34B; font-size: 0; line-height: 0; text-align: left; display: inline-block; width: 100%; direction: ltr;padding: 20px">
+      <div 
+        v-for="(event, index) in events"
+        v-bind:key="event.id"
+        v-bind:class="[item == 'event' && selected == index ? 'active' : '', 'item']"
+        @click.prevent="selectEvent(event.id, index)"
+        >
+        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+          <tbody>
+            <tr>
+              <td align="left" style="font-size:0px;padding:10px 0;word-break:break-word;">
+                  <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-size:16px;font-weight:500;letter-spacing:-0.1px;line-height:22px;text-align:left;color:#011b33;">
+                      <a target="_blank" :href="event.link" style="text-decoration: underline; color: #22D34B;">{{event.title}}</a>
+                  <div style="color: #696F75; font-size: 14px; font-weight: normal;">{{event.from}} - {{event.to}}, {{event.location}}</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</script>
+
+<!-- <script src="js/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+function random() {
+  var text = "";
+  var char_list = "abcdefghijklmnopqrstuvwxyz";
+  for(var i=0; i < 5; i++){  
+    text += char_list.charAt(Math.floor(Math.random() * char_list.length));
+  }
+  return text;
+}
+
+Vue.component('news', {
+  props: ['news', 'selected', 'item', 'activeindex', 'index'],
+  data: function() {
+    return {}
+  },
+  methods: {
+    selectEvent: function(key, i, pi) {
+      this.$emit('onselect', key, i, 'news', pi);
+    }
+  },
+  template: '#news-template'
+});
+Vue.component('newsitem', {
+  props: ['newsitem', 'index', 'itemindex', 'selected', 'item', 'onindex'],
+  data: function() {
+    return {}
+  },
+  methods: {
+    selectEvent: function(i, pi) {
+      this.$emit('onselect', this.$vnode.key, i, pi);
+    }
+  },
+  template: '#newsitem-template'
+});
+
+Vue.component('event', {
+  props: ['events', 'selected', 'item'],
+  data: function() {
+    return {
+    }
+  },
+  methods: {
+    selectEvent: function(key, i) {
+      this.$emit('onselect', key, i, 'event');
+    }
+  },
+  template: '#events-template'
+});
+
+Vue.component('jobs', {
+  props: ['job', 'selected', 'item', 'activeindex', 'index'],
+  data: function() {
+    return {}
+  },
+  methods: {
+    selectEvent: function(key, i, pi) {
+      this.$emit('onselect', key, i, 'jobs', pi);
+    }
+  },
+  template: '#jobs-template'
+});
+Vue.component('jobitem', {
+  props: ['jobitem', 'index', 'itemindex', 'selected', 'item', 'onindex'],
+  data: function() {
+    return {}
+  },
+  methods: {
+    selectEvent: function(i, pi) {
+      this.$emit('onselect', this.$vnode.key, i, pi);
+    }
+  },
+  template: '#jobitem-template'
+});
+
+new Vue({
+  el: '#app',
+  data: {
+    activeSection: null,
+    activeIndex: 0,
+    selectedItem: -1,
+    content: {
+      news: [],
+      jobs: [],
+      events: []
+    }
+  },
+  methods: {
+    mainSection: function() {
+      this.activeSection = null;
+      this.selectedItem = -1;
+    },
+
+    openNews: function() {
+      this.content.news.push({
+        id: random(),
+        category: 'Payments',
+        items: []
+      })
+      this.activeSection = 'news';
+      this.activeIndex = this.content.news.length - 1;
+      this.addNewsEntry();
+    },
+    addNewsEntry: function() {
+      this.content.news[this.activeIndex].items.push({
+        id: random(),
+        country: 'Global',
+        title: 'Payments giant Stripe debuts Corporate Card',
+        snippet: 'The move is another major step for Stripe as it continues to diversify its business and bring on more financial products. Eligible Stripe users receive a Visa card - branded with their company logo - with benefits including cash back rewards, no fees, custom spend controls, real-time expense reporting, and more.',
+        link: 'https://techcrunch.com/2019/09/10/payments-giant-stripe-debuts-a-credit-card-in-its-latest-step-into-the-financing-fray/',
+        source: 'Techcrunch',
+      });
+      this.selectedItem = this.content.news[this.activeIndex].items.length - 1;
+    },
+    deleteNews: function() {
+      if (!confirm('Delete news? All entries will be removed.'))  return;
+      this.content.news.splice(this.activeIndex, 1);
+      if (this.content.news.length)
+        this.activeIndex = this.activeIndex - 1;
+      else
+        this.activeSection = null;
+    },
+    deleteNewsEntry: function(i) {
+      if (!confirm('Delete entry?'))  return;
+      this.content.news[this.activeIndex].items.splice(i, 1);
+    },
+
+    openEvent: function() {
+      this.activeSection = 'event';
+      this.selectedItem = 0;
+      this.addEventEntry();
+    },
+    addEventEntry: function() {
+      this.content.events.push({
+        id: random(),
+        title: 'Event title',
+        link: 'https://techcrunch.com/2019/09/10/payments-giant-stripe-debuts-a-credit-card-in-its-latest-step-into-the-financing-fray/',
+        from: 'Date from',
+        to: 'Date to',
+        location: 'Location',
+      });
+      this.selectedItem = this.content.events.length - 1;
+    },
+    deleteEventEntry: function(i) {
+      if (!confirm('Delete entry?'))  return;
+      this.content.events.splice(i, 1);
+      if (this.activeSection == 'event' && this.selectedItem == i)
+        this.selectedItem = this.selectedItem - 1;
+    },
+    selectEvent: function(key, i, sel, pi) {
+      this.selectedItem = i;
+      this.activeSection = sel;
+      this.activeIndex = pi;
+
+      setTimeout(function() {
+        document.querySelector("#"+key).scrollIntoView({ behavior: 'smooth', block: 'end'});
+      }, 100)
+    },
+    
+    openJobs: function() {
+      this.content.jobs.push({
+        id: random(),
+        company: 'Paystack',
+        items: []
+      })
+      this.activeSection = 'jobs';
+      this.activeIndex = this.content.jobs.length - 1;
+      this.addJobEntry();
+    },
+    addJobEntry: function() {
+      this.content.jobs[this.activeIndex].items.push({
+        id: random(),
+        title: 'Principal Engineer',
+        link: 'http://paystack.com',
+        location: 'Lagos, Nigeria'
+      });
+      this.selectedItem = this.content.jobs[this.activeIndex].items.length - 1;
+    },
+    deleteJob: function() {
+      if (!confirm('Delete Job? All entries will be removed.'))  return;
+      this.content.jobs.splice(this.activeIndex, 1);
+      if (this.content.jobs.length)
+        this.activeIndex = this.activeIndex - 1;
+      else
+        this.activeSection = null;
+    },
+    deleteJobEntry: function(i) {
+      if (!confirm('Delete entry?'))  return;
+      this.content.jobs[this.activeIndex].items.splice(i, 1);
+      if (this.activeSection == 'jobs' && this.selectedItem == i)
+        this.selectedItem = this.selectedItem - 1;
+    }
+  }
+})
+</script>
