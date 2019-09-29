@@ -16,16 +16,16 @@
   <div class="left" v-if="!activeSection">
     <h3 class="pa3 ma0">Sections</h3>
     <ul class="list pa0 nav ma0">
-      <li><a href="#" @click.precent="openNews" class="db">+ News Item</a></li>
-      <li><a href="#" class="db" @click.precent="openEvent">Events</a></li>
-      <li><a href="#" class="db" @click.precent="openJobs">+ Job</a></li>
+      <li><a href="#" @click.prevent="openNews" class="db">+ News Item</a></li>
+      <li><a href="#" class="db" @click.prevent="openEvent">Events</a></li>
+      <li><a href="#" class="db" @click.prevent="openJobs">+ Job</a></li>
     </ul>
   </div>
   <div class="left" v-if="activeSection">
     <section v-if="activeSection == 'news'">
       <div>
         <div class="ph3 fixed w-25 header">
-          <div class="db mv3"><a href="#" @click.prevent="mainSection">&larr; Back</a> <a href="#" class="fr" @click.precent="openNews">+ News Item</a></div>
+          <div class="db mv3"><a href="#" @click.prevent="mainSection">&larr; Back</a> <a href="#" class="fr" @click.prevent="openNews">+ News Item</a></div>
           <h3 class="">News Item</h3> 
           <label>Category</label>
           <select name="category" v-model="content.news[activeIndex].category">
@@ -162,7 +162,7 @@
     <section v-if="activeSection == 'jobs'">
       <div>
         <div class="ph3 fixed w-25 header">
-          <div class="db mv3"><a href="#" @click.prevent="mainSection">&larr; Back</a> <a href="#" class="fr" @click.precent="openJobs">+ Job</a></div>
+          <div class="db mv3"><a href="#" @click.prevent="mainSection">&larr; Back</a> <a href="#" class="fr" @click.prevent="openJobs">+ Job</a></div>
           <h3 class="">Job</h3> 
           <div>
             <label>Company</label>
