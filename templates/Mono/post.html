@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IMAP: new messages since last check</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Cousine:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tachyons.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/monokai.css" />
+  <!-- You can replace monokai with zenburn -->
+  <!-- <link rel="stylesheet" href="assets/css/zenburn.css" /> -->
+</head>
+<body>
+
+
+  <div class="w-60-ns w-90-m w-100 pv5 ph6-ns ph4">
+    <nav class="mb5">
+      <a href="/">Home</a> <span class="di mh2">·</span> <a href="posts.html" class="active">Blog</a> <span class="di mh2">·</span> <a href="https://creativemarket.com/kehers">More templates</a>
+    </nav>  
+
+    <section>
+      <article>
+        <date class="fade">01 May 2019</date>
+        <h1 class="lh-title mb5">IMAP: new messages since last check</h1>
+
+        <p>I have been working on <a href="https://sharedbox.app/">sharedBox</a> in the last couple of months. The idea is simple: allow teams send and receive emails in Slack. I had to allow email connection via IMAP and doing this means it is important to be able to get only new emails at every check.</p>
+
+        <h3 id="message-ids-and-other-stories">Message IDs and other stories</h3>
+
+        <p>Let’s start with some basic understanding of the message ids—sequence number and uid. It’s going to be important.  These numbers are how messages are identified<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> in a mailbox. (Note that a <em>mailbox</em> refers to a message folder—inbox, sent, draft…and not the full email box).</p>
+
+        <p>The message sequence number is a sequential numbering of messages in a mailbox. This means that the first message in the mailbox gets 1, the next gets 2, and so on. If a message is deleted, the number is reassigned. For example, given a mailbox with 10 messages, if message 7 is deleted, message with sequence number 8 now becomes 7, 9 becomes 8 and 10 becomes the new 9. So this [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] becomes this [1, 2, 3, 4, 5, 6, 7, 8, 9]. What this says is that the number is not unique and can always change.</p>
+
+        <p>UID is similar to sequence number but “more” unique. It is not affected by message deletes. In the example above, even though message with sequence number 8 is now 7, its UID will remain 8. The new array of message UID will then be [1, 2, 3, 4, 5, 6, 8, 9, 10]. Does this mean UIDs never change? No. Things may happen on the server that will reset message UIDs. Like if the mailbox is recreated. The good news though is that when UIDs change, there is a way to know. Enter UIDVALIDITY.</p>
+
+        <p>UIDVALIDITY is an additional value returned when you select a mailbox. This value should be the same for every time the message UIDs are unique. If at any mailbox selection (session) the value is not the same as what it was in the last session, then know that your message UIDs have changed. It is therefore important you store this value at every session so you are able to compare at next check to know if the message UIDs have changed.</p>
+
+        <p>So where do sequence numbers and uids come in when pulling messages? We use them to specify what message or range of messages to pull. To pull a range of messages, we need to specify a <strong>sequence set</strong> of the message id (uid or sequence number).  This can take the following formats:</p>
+
+        <ul>
+          <li><code class="highlighter-rouge">4</code> (only the message with id 4)</li>
+          <li><code class="highlighter-rouge">2,4,9</code> (messages 2, 4 and 9)</li>
+          <li><code class="highlighter-rouge">4:7</code> (messages 4 to 7, i.e 4, 5, 6, 7)</li>
+          <li><code class="highlighter-rouge">12:*</code> (messages 12 to the last message in the mailbox. If the last message in the mailbox is 14, that is 12, 13, 14. If the last message in the box is however less than 12, say 10 for example, then it is that number to 12, i.e 10, 11, 12)</li>
+          <li><code class="highlighter-rouge">2,4:7,9,12:*</code> (a combination of the formats above)</li>
+        </ul>
+
+        <p>Now that we have a basic idea of what message ids are, it’s easy to start pulling emails. I will show some examples using the Javascript library <a href="https://github.com/emailjs/emailjs-imap-client">emailjs-imap-client</a>. Then we will get to the difficult part, pulling new messages (after last check).</p>
+
+        <p>(The library can be used in browser but I will be using it in Node.js instead. So as the first step, install:  <code class="highlighter-rouge">npm install —save emailjs-imap-client</code>)</p>
+
+        <p>Let’s start with connection to the IMAP server and box selection. And see what the response of the select action looks like.</p>
+
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="kd">function</span> <span class="p">(){</span>
+          <span class="c1">// Connect to the imap server</span>
+          <span class="kd">const</span> <span class="nx">imap</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ImapClient</span><span class="p">.</span><span class="k">default</span><span class="p">(</span><span class="s1">'imap.mail.yahoo.com'</span><span class="p">,</span> <span class="mi">993</span><span class="p">,</span> <span class="p">{</span>
+                  <span class="na">auth</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">user</span><span class="p">:</span> <span class="s1">'awesomeme@yahoo.com'</span><span class="p">,</span>
+                    <span class="na">pass</span><span class="p">:</span> <span class="s1">'ninjaninja'</span>
+                  <span class="p">}</span>
+              <span class="p">});</span>
+          <span class="kr">await</span> <span class="nx">imap</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+
+          <span class="c1">// Select the "mailbox" you want to "interact" with</span>
+          <span class="kd">const</span> <span class="nx">box</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">imap</span><span class="p">.</span><span class="nx">selectMailbox</span><span class="p">(</span><span class="s1">'INBOX'</span><span class="p">);</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">box</span><span class="p">);</span>
+        <span class="p">})()</span>
+        </code></pre></div></div>
+
+        <p>This should give you a response like this:</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+          </span><span class="s2">"readOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"exists"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Answered"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Flagged"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Draft"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Deleted"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Seen"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"$NotPhishing"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"$Phishing"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"permanentFlags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Answered"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Flagged"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Draft"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Deleted"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">Seen"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"$NotPhishing"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"$Phishing"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"</span><span class="se">\\</span><span class="s2">*"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"uidValidity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"uidNext"</span><span class="p">:</span><span class="w"> </span><span class="mi">686</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"highestModseq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108661"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span></code></pre></div></div>
+
+        <p>Notice the <code class="highlighter-rouge">uidValidity</code> and <code class="highlighter-rouge">uidNext</code> fields. Also note <code class="highlighter-rouge">highestModseq</code>. We will get to it. Another parameter you may be interested in is <code class="highlighter-rouge">exists</code>. It returns the number of emails currently available in the mailbox. Even though the mailbox might have received a lot of emails, only one is currently left in the mailbox.</p>
+
+        <p>Let’s extend our example to pull message with sequence number 1:</p>
+
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="kd">function</span> <span class="p">(){</span>
+          <span class="c1">// ...</span>
+          <span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">imap</span><span class="p">.</span><span class="nx">listMessages</span><span class="p">(</span><span class="s1">'INBOX'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'body[]'</span><span class="p">]);</span>
+        <span class="p">})()</span>
+        </code></pre></div></div>
+
+        <p>We can also pull message with UID 686:</p>
+
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="kd">function</span> <span class="p">(){</span>
+          <span class="c1">// ...</span>
+          <span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">imap</span><span class="p">.</span><span class="nx">listMessages</span><span class="p">(</span><span class="s1">'INBOX'</span><span class="p">,</span> <span class="s1">'686'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'body[]'</span><span class="p">],</span> <span class="p">{</span><span class="na">byUid</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+        <span class="p">})()</span>
+        </code></pre></div></div>
+
+        <p>Pulling all emails from the mailbox is easy. All you need to do is specify a message sequence of <code class="highlighter-rouge">1:*</code>. (This may be a bad idea as the number of messages in the mailbox may choke your application. But you can always split the process <code class="highlighter-rouge">1:500</code>, <code class="highlighter-rouge">500:1000</code> and so on). The tricky part comes when you want to only pull new emails (mails after your last pull) from the server. And if you think one way syncs are tricky, wait till you attempt two-way syncs.</p>
+
+        <h3 id="highestmodseq-and-changedsince">HighestModseq and ChangedSince</h3>
+
+        <p><code class="highlighter-rouge">highestModseq</code> returned when the mailbox is selected as you’ve seen above is the highest sequence number value of all messages in the mailbox. Once you select a mailbox and this number is greater than at last check, you can assume that there has been changes to the mailbox. You can then use the last value you have to pull all new messages.</p>
+
+        <p>Let’s assume the first time we checked the user’s mailbox, <code class="highlighter-rouge">highestModseq</code> was 100. The next time, it’s 120. This tells us there has been changes to the mailbox. We can then fetch new messages from when our <code class="highlighter-rouge">highestModseq</code> was 100.</p>
+
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="kd">function</span> <span class="p">(){</span>
+          <span class="c1">// ...</span>
+          <span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">imap</span><span class="p">.</span><span class="nx">listMessages</span><span class="p">(</span><span class="s1">'INBOX'</span><span class="p">,</span> <span class="s1">'1:*'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'body[]'</span><span class="p">],</span> <span class="p">{</span><span class="na">changedSince</span><span class="p">:</span> <span class="s1">'100'</span><span class="p">});</span>
+        <span class="p">})()</span>
+        </code></pre></div></div>
+
+        <p>This is easy and works. There is just one problem though. Not all servers support <code class="highlighter-rouge">highestModseq</code>.</p>
+
+        <h3 id="recent-seen">\Recent? \Seen?</h3>
+
+        <p>There is a <code class="highlighter-rouge">recent</code> flag that can be used to get “recent” messages from the server. The issue with this though is that the definition of “recent” by the server is relative. Here is what I mean:</p>
+        <ul>
+          <li>You disconnected from the server at 9:00pm</li>
+          <li>2 new messages come in at 9:02pm. The server marks these messages with the recent flag.</li>
+          <li>You connect again at 9:05pm to check for new emails using the recent flag and you get the 2 new messages.</li>
+          <li>You disconnect shortly after and the server removes the recent flag on the messages</li>
+          <li>A new message comes in 9:07pm and is marked recent</li>
+          <li>Another mail client that is not you, connects to the server to pull mails</li>
+          <li>The recent flag is removed from the message</li>
+          <li>You connect 9:10pm using the remove flag. You get zero messages even though there has been a new message since you last checked.</li>
+        </ul>
+
+        <p>The <code class="highlighter-rouge">seen</code> flag is similar but also goes through the same fate. If another client opens the message, the flag is removed. Trying to get “unseen” messages after another client has “seen” them will return nothing.</p>
+
+        <h3 id="search-since">Search Since</h3>
+
+        <p>We can combine IMAP’s search function with a <code class="highlighter-rouge">since</code> parameter to get new messages since our last check. And this would have been a great solution—store the last time we checked and use that to get new messages since then. But there is a limitation to IMAP. The <code class="highlighter-rouge">since</code> parameter only takes date and not time.</p>
+
+        <h3 id="uidvalidity--uidnext">uidValidity + uidNext</h3>
+
+        <p>Can we use the knowledge of what the next UID will be (taking into consideration if <code class="highlighter-rouge">uidValidity</code> has changed or not) to do this? Absolutely. If at first pull, uidValidity is 1 and uidNext is 686 then we can pull new messages since last pull with the sequence set: <code class="highlighter-rouge">686:*</code> if uidValidity is still 1.</p>
+
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">async</span> <span class="kd">function</span> <span class="p">(){</span>
+          <span class="c1">// ...</span>
+          <span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">imap</span><span class="p">.</span><span class="nx">listMessages</span><span class="p">(</span><span class="s1">'INBOX'</span><span class="p">,</span> <span class="s1">'686:*'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'body[]'</span><span class="p">],</span> <span class="p">{</span><span class="na">byUid</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+        <span class="p">})()</span>
+        </code></pre></div></div>
+
+        <p>What if uidValidity has changed? Then we can assume that there has been a major change to the mailbox—it has been recreated or so. We just need to assume we are starting our sync again—we store the new uidValidity and the use the new uidNext as our sequence set.</p>
+
+        <div class="footnotes">
+          <ol>
+            <li id="fn:1">
+              <p>https://tools.ietf.org/html/rfc3501#section-2.3.1 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+            </li>
+          </ol>
+        </div>
+
+      </article>
+      
+      <h3>&nbsp;</h3>
+      <p class="b">Previous post: <a href="post-1.html">The Now page</a></p>
+    </section>
+  </div>
+
+  <div class="colophon">
+    <div class="w-60-ns w-100 pt4 ph6-ns ph4">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_shortname = 'kehers';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <footer class="w-60-ns w-100 pv5 ph6-ns ph4">
+    <p>&copy; Mono – <a href="/">Home</a> · <a href="/posts.html">Blog Posts</a> · <a href="/feed.xml">RSS</a></p>  
+  </footer>
+
+</body>
+</html>
