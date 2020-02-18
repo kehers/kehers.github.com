@@ -40,7 +40,7 @@ PORT=993
 HOST="imap.mail.yahoo.com"
 ```
 
-If you are connecting to a Yahoo mail, you will need to [generate an app password](https://help.yahoo.com/kb/generate-third-party-passwords-sln15241.html). Using your real email password won’t work. Gmail is a little more complex. To start with, you ned to [enable IMAP access](https://support.google.com/mail/answer/7126229?hl=en) your account. You can then go with any of the options:
+If you are connecting to a Yahoo mail, you will need to [generate an app password](https://help.yahoo.com/kb/generate-third-party-passwords-sln15241.html). Using your real email password won’t work. Gmail is a little more complex. To start with, you neexd to [enable IMAP access](https://support.google.com/mail/answer/7126229?hl=en) your account. You can then go with any of the options:
 
 1. [Allow less secure apps](https://myaccount.google.com/lesssecureapps?pli=1). But don't forget to turn this off once you are done with the experiment. If you still can't connect, you may need to [allow app access to your account](https://accounts.google.com/b/0/displayunlockcaptcha). 
 2. [Create an app password](https://support.google.com/mail/answer/185833?hl=en) (more secured option).
@@ -96,10 +96,10 @@ Message-Id: <~.expiry@letsencrypt.org>
 Received: from mail132-5.atl131.mandrillapp.com ~
 ```
 
-The `received` headers seem the most accurate place to get the provider but it poses its challenges. The `received` headers are structured in different ways depending on how the mail is sent. After reviewing a couple of headers in Yahoo mail, I was able to find a pattern to match the provider. (Not 100% accurate).
+The `received` headers seem the most accurate place to get the provider but it poses its challenges. They are structured in different ways depending on how the mail is sent. After reviewing a couple of headers in Yahoo mail, I was able to find a pattern to match the provider. (Not 100% accurate).
 
 1. For more than one `received` header, match `by *` of the second `received` header. 
-2. If that doesn’t exist or does not have a host address or there is just one `received` header, then match the `(EHLO *)` of the first `received` header.
+2. If that doesn’t exist or does not have a host address or there is just one `received` header, then match `(EHLO *)` in the first `received` header.
 
 Now we can rewrite our script to use `received` headers. To be able to easily extract this, I will be bringing in [Mailparser](https://github.com/nodemailer/mailparser).
 
@@ -186,8 +186,8 @@ Few notes:
 - spmta.com is for [Sparkpost](http://sparkpost.com/).
 - marketo.org is for [Marketo.com](http://marketo.com/), currently owned by Adobe. Provides marketing email service.
 - Interesting to see [Intercom](http://intercom.com/) there. It's amazing the number of products using Intercom for customer engagement.
-- mailgun.net and mailgun.org belong to [Mailgun](http://mailgun.com/), obviously. Mailgun also recently acquired [Mailjet](http://mailjet.com/). Mailjet provides both marketing and transactional email service. It will take more deep-diving into the headers (or content) to figure if the mail was sent as a marketing or transactional email.
-- [Sendgrid](http://sendgrid.com/), also like Mailjet, offers both marketing and transactional email service. It’s the most used from my experiment but it’s hard to know what fraction of that is marketing and what other is transactional. PS: they were recently acquired by Twilio.
+- mailgun.net and mailgun.org belong to [Mailgun](http://mailgun.com/), obviously. Mailgun also recently acquired [Mailjet](http://mailjet.com/). Mailjet provides both marketing and transactional email services. It will take more deep-diving into the headers (or content) to figure if the mail was sent as a marketing or transactional email.
+- [Sendgrid](http://sendgrid.com/), also like Mailjet, offers both marketing and transactional email services. It’s the most used from my experiment but it’s hard to know what fraction of that is marketing and what other is transactional. PS: they were recently acquired by Twilio.
 
 ### Conclusion
 I merged the same providers for a more accurate chart. 
@@ -195,5 +195,9 @@ I merged the same providers for a more accurate chart. 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/breakdown-merged.png)
 
 This is only a fun experiment and doesn’t show the true market share of the services. Since the data is based on the product emails in just my mailbox, it is flawed by selection bias. However, it’s something you can run on your mailbox for the fun of it. You can also extend it to see what service your favourite product/app uses. Remember, you may need to look at the full headers of some of your emails to come up with the best way to know the service provider. 
+
+By the way, if you use Mailgun or Amazon SES for transactional emails, check out [Mailintel](https://mailintel.io/?ref=oo) for detailed analytics, reporting and business intelligence.
+
+-
 
 [^1]: Plug: [MyRSS.email](https://myrss.email) lets get your newsletter subscriptions via RSS. Check it out.
