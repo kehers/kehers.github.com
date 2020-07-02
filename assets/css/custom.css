@@ -48,8 +48,6 @@ strong {
 .highlight {
   background-color: #fafee1
 }
-ul {
-}
 li {
   margin: 10px 0
 }
@@ -77,4 +75,11 @@ li > code {
 }
 .colophon {
   background-color: #f1f6fb
+}
+
+label {
+  display: block;
+}
+input {
+  padding: 5px
 }

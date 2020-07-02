@@ -33,9 +33,21 @@
         <h1 class="lh-title mb5">{{ page.title }}</h1>
         {{ content }}
       </article>
-      
+
       <h3>&nbsp;</h3>
       <p>My name is Opeyemi Obembe. I build things for web and mobile and write about my experiments. Follow me on Twitter–<a href="http://twitter.com/kehers">@kehers</a>.</p>
+      <p>Also, subscribe to my newsletter.</p>
+      <form
+        action="https://buttondown.email/api/emails/embed-subscribe/kehers"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.email/kehers', 'popupwindow')"
+      >
+        <input type="email" name="email" placeholder="Your email">
+        <input type="hidden" value="1" name="embed"></input>
+        <input type="submit" value="Subscribe"></input>
+      </form>
+      <p>&nbsp;</p>
 
       {% for post in site.posts %}
           {% if post.url == page.url %}

@@ -42,6 +42,21 @@ layout: none
     <h3 class="lh-title">Contact</h3>
     <p>I'd love to hear from you. I am <span class="highlight">@kehers</span> on <a href="http://twitter.com/kehers">Twitter</a> (best way to reach me), <a href="http://instagram.com/kehers">Instagram</a> and <a href="http://github.com/kehers">Github</a>. If email is your thing, it's kehers at gmail.</p>
   </section>
+  <section>
+    <h3 class="lh-title">Newsletter</h3>
+    <p>If you'd like to read about my experiments and less serious stuff, subscribe to my newsletter.</p>
+    <form
+      action="https://buttondown.email/api/emails/embed-subscribe/kehers"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.email/kehers', 'popupwindow')"
+    >
+      <label for="bd-email">Enter your email</label>
+      <input type="email" name="email" id="bd-email">
+      <input type="hidden" value="1" name="embed"></input>
+      <input type="submit" value="Subscribe"></input>
+    </form>
+  </section>
 </div>
 
 {% include footer.html %}
