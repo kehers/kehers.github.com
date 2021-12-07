@@ -6,14 +6,16 @@ body {
 h1 {
   color: #000
 }
-h2, h3 {
-  color: #200263
+h2 {
+  padding-top: 20px
 }
+h2,
 h3 {
   color: #000;
   position: relative;
   display: inline-block;
 }
+h2::after,
 h3::after {
   position: absolute;
   height: 10px;
@@ -82,4 +84,11 @@ label {
 }
 input {
   padding: 5px
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 2px solid #ddd;
+  padding-left: 20px;
+  margin: 40px 0
 }

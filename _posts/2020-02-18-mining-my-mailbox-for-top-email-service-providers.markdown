@@ -6,7 +6,7 @@ layout: post
 
 I was reviewing some stats for [Mailintel](https://mailintel.io/?ref=oo) and was curious about what email service top apps use; being particularly interested in transactional email services. Is there a way I can go through my mailbox, check product emails and check the service for each? Sounds like a fun experiment to give a shot.
 
-### Connecting my mailbox
+## Connecting my mailbox
 With my recent [experiments with IMAP](https://obem.be/2019/05/01/imap-new-messages-since-last-check.html), connecting to my mailbox wasn’t difficult. I am using [emailjs-imap-client](https://github.com/emailjs/emailjs-imap-client), a JS IMAP client.
 
 ```js
@@ -45,7 +45,7 @@ If you are connecting to a Yahoo mail, you will need to [generate an app passwor
 1. [Allow less secure apps](https://myaccount.google.com/lesssecureapps?pli=1). But don't forget to turn this off once you are done with the experiment. If you still can't connect, you may need to [allow app access to your account](https://accounts.google.com/b/0/displayunlockcaptcha). 
 2. [Create an app password](https://support.google.com/mail/answer/185833?hl=en) (more secured option).
 
-### Checking ~~product~~ emails
+## Checking ~~product~~ emails
 Getting product emails is a tricky one. How do you identify product emails from regular emails? How do you differentiate marketing from transactional emails? This can be done but the ideas I came up with were not worth the effort. In the end, I decided to pull all the emails instead. (This was also easier because I have a Yahoo mail dedicated to product signups, subscriptions and newsletters [^1]).
 
 ```js
@@ -72,7 +72,7 @@ const ImapClient = require('emailjs-imap-client').default
 })()
 ```
 
-### Checking the service provider
+## Checking the service provider
 How do I know the email service used for the mail? I checked a couple of email headers and noticed a couple of places the provider details can be extracted from. Here is what an email header looks like:
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/headers.png)
@@ -176,7 +176,7 @@ const PULL = 10000
 })()
 ```
 
-### Results
+## Results
 This was the breakdown after stripping the results to the top ones.
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/breakdown.png)
@@ -189,7 +189,7 @@ Few notes:
 - mailgun.net and mailgun.org belong to [Mailgun](http://mailgun.com/), obviously. Mailgun also recently acquired [Mailjet](http://mailjet.com/). Mailjet provides both marketing and transactional email services. It will take more deep-diving into the headers (or content) to figure if the mail was sent as a marketing or transactional email.
 - [Sendgrid](http://sendgrid.com/), also like Mailjet, offers both marketing and transactional email services. It’s the most used from my experiment but it’s hard to know what fraction of that is marketing and what other is transactional. PS: they were recently acquired by Twilio.
 
-### Conclusion
+## Conclusion
 I merged the same providers for a more accurate chart. 
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/breakdown-merged.png)

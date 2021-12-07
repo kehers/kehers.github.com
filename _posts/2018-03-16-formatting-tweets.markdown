@@ -6,7 +6,7 @@ layout: post
 
 *One thing I’ve noticed on [thefeed.press](https://thefeed.press) is that the conversations (the tweets) surrounding shared links are sometimes more interesting than the link. To place proper emphasis on these tweets mean displaying them wherever necessary; the email digest for example. And displaying them mean formatting them properly.*
 
-### Introduction
+## Introduction
 
 To display a tweet properly, it needs to be well formatted. This means identifying and linking entities like usernames, hashtags and URLs. In simple terms, it is converting a typical tweet object[^1] like this:
 
@@ -61,7 +61,7 @@ const twitter = require('twitter-text')
 console.log(twitter.autoLinkWithJSON(tweet.text, tweet.entities);
 {% endhighlight %}
 
-### Say hello to extended tweets
+## Say hello to extended tweets
 
 For tweets over 140 characters, the tweet object only returns 140 characters of text by default. In this compatibility mode, 
 1. `text` is truncated to 140 characters
@@ -102,7 +102,7 @@ compared to the original tweet:
 
 > I kind of hate how with most web development/new frameworks etc., I start out with the intention “I’d like to spend 20 minutes learning X today,” and have to invest an additional 60 minutes just setting up the appropriate environment.  
 
-### Mode: Extended
+## Mode: Extended
 
 How to get the full text? Simple. Add the parameter `tweet_mode=extended` to any endpoint you are querying.  So instead of `https://api.twitter.com/1.1/statuses/show/972535628742078469.json`, let’s try `https://api.twitter.com/1.1/statuses/show/972535628742078469.json?tweet_mode=extended`
 
@@ -150,7 +150,7 @@ const twitter = require('twitter-text')
 console.log(twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
 {% endhighlight %}
 
-### Hmmm…retweets
+## Hmmm…retweets
 Here is a retweet requested in extended mode.
 
 {% highlight json %}
@@ -223,7 +223,7 @@ if (tweet.retweeted_status)
 formatted = twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
 {% endhighlight %}
 
-### Quotes :/
+## Quotes :/
 
 Quotes are in an entirely different world of their own. You need to see what a quoted tweet looks like to understand.
 
@@ -318,7 +318,7 @@ else
     text = twitter.autoLinkWithJSON(tweet.full_text, tweet.entities);
 {% endhighlight %}
 
-### Conclusion
+## Conclusion
 
 This is all you will probably need. But there is still more to do. What about displaying media (pictures, videos) within the tweet? Quotes within quotes? Threaded replies?
 

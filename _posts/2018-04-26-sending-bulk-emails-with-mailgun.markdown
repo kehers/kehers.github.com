@@ -8,7 +8,7 @@ Beyond transactional emails, sometimes we need to send generic emails to all use
 
 Mailgun Mailing Lists allow you create an email address you can subscribe members to. Any email sent to the address will then be sent to each subscribed member. 
 
-### Creating the Mailing List
+## Creating the Mailing List
 Let’s start by creating our example mailing list. We can do this from the dashboard or Mailgun API.
 
 ![](/assets/image/{{ page.date | date: '%Y/%m' }}/create.png)
@@ -17,7 +17,7 @@ Let’s start by creating our example mailing list. We can do this from the dash
 > - It is important to leave the access level at **read only**. This ensures that only you can send mail to the list through the API.  
 > - Your domain’s MX records must point to Mailgun so that Mailgun can receive and process emails sent to the alias address (the Mailing List email address). If you are using another email provider for your emails, you can create a separate subdomain and use that for your Mailing List.   
 
-### Adding Members
+## Adding Members
 Now that we have our Mailing List, we can start adding members. 
 
 **Endpoint**: https://api.mailgun.net/v3/lists/{address}/members   
@@ -109,7 +109,7 @@ Promise.all(chunk.map(d => {
 })
 {% endhighlight %}
 
-### Removing Members
+## Removing Members
 There are two ways to remove people from our list. One is to delete them. This completely removes them from the list. The other is to unsubscribe them. They will still remain in the list but emails sent to the list will not be sent to them. Let’s take a look at both options. We will be completely deleting them when they no longer fit our segment (in this case, when they are no longer a paid user) and will let them unsubscribe if they are no longer interested in the mails we send. 
 
 Let’s start with deleting the user.
@@ -162,7 +162,7 @@ app.get('/unsubscribe/:email', (req, res) => {
 })
 {% endhighlight %}
 
-### Sending the mail
+## Sending the mail
 Because our list’s access level is read-only, the only way to post to it is through the API. Let’s create a test mail. It can be a simple text email.
 
 {% highlight text %}
@@ -204,8 +204,8 @@ request.post({
 });
 {% endhighlight %}
 
-### Tracking deliveries, opens and clicks
+## Tracking deliveries, opens and clicks
 You can easily track email deliveries, opens and clicks from the Mailgun dashboard. If you use [Suet](https://suet.co/), this will also be available on your Suet dashboard.
 
-### Conclusion
+## Conclusion
 Using a mailing list makes it easy to send bulk emails to your users. The interesting part is you can create multiple lists and segment your users into them.

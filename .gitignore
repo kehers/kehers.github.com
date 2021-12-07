@@ -3,3 +3,4 @@
 Gemfile*
 /backup*
 key*
+.jekyll-cache
