@@ -1,5 +1,5 @@
 ---
-title: "[Building Engage] Rethinking our pricing model"
+title: "[Building Engage] #2. Rethinking our pricing model"
 date: 2021-12-12 00:00:00 Z
 layout: post
 ---
