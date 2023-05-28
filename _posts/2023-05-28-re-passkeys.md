@@ -32,6 +32,6 @@ The experience of logging in on a device when you have a passkey on another devi
 
 ![Authentication on a different device](/assets/image/{{ page.date | date: '%Y/%m' }}/mobile-login.jpeg)
 
-Looking at the friction of these options, “Give me password authentication please.”
+Looking at the friction of these options, give me password authentication please.
 
 Passkey is a good improvement compared to other passwordless methods: multi-device authentication compared to WebAuthn and less friction (not to mention delivery delays and failures) compared to one-time codes/links. I am keenly looking forward to what adoption will look like for this one.
