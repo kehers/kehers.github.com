@@ -20,7 +20,7 @@ Step 2 - set a passkey
 
 ![Sign up process - save a passkey](/assets/image/{{ page.date | date: '%Y/%m' }}/step2.png)
 
-For a non-technical people, Step 2 may be confusing. Or at least cause a pause. I actually paused to understand what exactly was going on there. One question I’d assume the user will be asking at that point is, “What am I supposed to do here?”
+For a non-technical person, Step 2 may be confusing. Or at least cause a pause. I actually paused to understand what exactly was going on there. One question I’d assume the user will be asking at that point is, “What am I supposed to do here?”
 
 If I save the passkey on the device, logins are actually easier. 
 
