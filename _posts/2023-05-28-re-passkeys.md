@@ -28,7 +28,7 @@ If I save the passkey on the device, logins are actually easier.
 
 I click “Continue”, I am requested to unlock my laptop and I am logged in. But what happens if I don’t have any lock on the device? I tested this on my phone and I couldn't create a passkey or log in without a lock on the device itself. This makes sense as it ensures access to your unlocked device does not mean access to your logins.
 
-The experience of logging in on a device when you have a passkey on another device is not what I will call easy as well.
+The experience of logging in on a device when you have a passkey on another device is not what I will call easy as well. There is no "easy" way to connect to the passkey saved on another device. Below is trying to log in on mobile while my passkey is on my laptop.
 
 ![Authentication on a different device](/assets/image/{{ page.date | date: '%Y/%m' }}/mobile-login.jpeg)
 
