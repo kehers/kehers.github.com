@@ -14,7 +14,9 @@
   <meta name="twitter:site" content="@kehers">
   <meta name="twitter:creator" content="@kehers">
   <title>{{ page.title }}</title>
-  <link href="https://fonts.googleapis.com/css?family=Cousine:400,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/tachyons.css">
   <link rel="stylesheet" href="/assets/css/custom.css?021221">
   <link rel="stylesheet" href="/assets/css/monokai.css" />
@@ -22,9 +24,9 @@
 </head>
 <body>
 
-  <div class="w-100 w-60-l pv5 ph6-ns ph4 ph5-m">
+  <div class="center w-800 pa4">
     <nav class="mb5">
-        <a href="/opeyemi">/Opeyemi</a> <span class="di mh2">·</span> <a href="/posts" class="active">Blog Posts</a> <span class="di mh2">·</span> <a href="http://everygood.co/" target="_blank">Projects</a>
+      <a href="/opeyemi">Home</a> <span class="di mh2">·</span> <a href="/posts" class="active">Blog Posts</a> <span class="di mh2">·</span> <a href="http://everygood.co/" target="_blank">Projects</a>
     </nav>
 
     <section>
@@ -39,7 +41,7 @@
       <div class="pa4" style="background-color:#fafafa;border:1px solid #eee">Looking for a simple marketing automation tool to automate your customer onboarding, retention and lifecycle emails? <a href="https://engage.so/?ref=obem.be">Check out Engage</a> and signup for free.</div>
 
       <h3>&nbsp;</h3>
-      <p>My name is Opeyemi Obembe. I build things for web and mobile and write about my experiments. Follow me on Twitter–<a href="http://twitter.com/kehers">@kehers</a>.</p>
+      <p>My name is Opeyemi Obembe. I build things for web and mobile and write about my experiments. Follow me on Twitter—<a href="http://twitter.com/kehers">@kehers</a>.</p>
       <p>&nbsp;</p>
 
       {% for post in site.posts %}
@@ -60,7 +62,7 @@
   </div>
 
   <div class="colophon">
-    <div class="w-100 w-60-l pv5 ph6-ns ph4 ph5-m">
+    <div class="w-800 center">
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           var disqus_shortname = 'kehers';
