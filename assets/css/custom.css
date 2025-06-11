@@ -109,6 +109,14 @@ blockquote {
   margin: 40px 0
 }
 
+.footnotes {
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 90%;
+  color: #777;
+}
+
 .w-800 {
   max-width: 800px;
 }
